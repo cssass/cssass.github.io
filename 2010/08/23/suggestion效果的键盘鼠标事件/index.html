@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        suggestion效果的键盘鼠标事件 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">suggestion效果的键盘鼠标事件</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2010-08-23</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>google的suggestion功能是一个非常棒的用户体验创新，相信你之前也已经使用过了。不过由于某些原因，国内现在却不能使用这个功能了。<br>不过,你还可以在baidu上使用相同的功能。对于好点子好创意，模仿学习并不是件坏事。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;style type=&#x27;text/css&#x27;&gt;</span><br><span class="line">.sugg&#123;position:relative;font-size:12px;&#125;</span><br><span class="line">.sugg a&#123;text-decoration:none;&#125;</span><br><span class="line">.sugg .text&#123;width:210px;height:18px;padding:3px;color:#474747;border:1px solid #ADCAD8;&#125;</span><br><span class="line">#suggestion&#123;display:none;position:absolute;top:26px;left:0;width:216px;border:1px solid #3890d0;border-top:0;background:#fff;&#125;</span><br><span class="line">#suggestion a&#123;display:block;height:25px;line-height:25px;padding:0 5px;color:#000;&#125;</span><br><span class="line">#suggestion a img&#123;vertical-align:middle;&#125;</span><br><span class="line">#suggestion #hover&#123;background:#378ece;color:#fff;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&#x27;sugg&#x27;&gt;</span><br><span class="line">	&lt;form id=&#x27;suggF&#x27; action=&quot;http://www.baidu.com/baidu&quot; onsubmit=&quot;document.charset=&#x27;GBK&#x27;;sug.hide()&quot; accept-charset=&#x27;GBK&#x27; target=&quot;_blank&quot;&gt;</span><br><span class="line">		&lt;input class=&#x27;text&#x27; type=text name=wd autocomplete=&quot;off&quot; onkeydown=&quot;pressKey(this,event)&quot; /&gt;</span><br><span class="line">		&lt;input id=&#x27;sub&#x27; type=&quot;submit&quot; value=&quot;搜索&quot; /&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;div id=&#x27;suggestion&#x27;&gt;</span><br><span class="line">		&lt;a href=&#x27;javascript:;&#x27; onmouseover=&quot;sug.hover(this);&quot; onclick=&quot;sug.select();&quot;&gt;思思&lt;/a&gt;</span><br><span class="line">		&lt;a href=&#x27;javascript:;&#x27; onmouseover=&quot;sug.hover(this);&quot; onclick=&quot;sug.select();&quot;&gt;芊芊&lt;/a&gt;</span><br><span class="line">		&lt;a href=&#x27;javascript:;&#x27; onmouseover=&quot;sug.hover(this);&quot; onclick=&quot;sug.select();&quot;&gt;cssass&lt;/a&gt;</span><br><span class="line">		&lt;a href=&#x27;javascript:;&#x27; onmouseover=&quot;sug.hover(this);&quot; onclick=&quot;sug.select();&quot;&gt;敏敏&lt;/a&gt;</span><br><span class="line">		&lt;a href=&#x27;javascript:;&#x27; onmouseover=&quot;sug.hover(this);&quot; onclick=&quot;sug.select();&quot;&gt;黎黎&lt;/a&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">suggestion显示之后，使用方向键或鼠标进行选择。</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&#x27;text/javascript&#x27;&gt;</span><br><span class="line">var $id=function(o)&#123;</span><br><span class="line">	return document.getElementById(o) || o;</span><br><span class="line">&#125;</span><br><span class="line">var pressKey=function(o,e)&#123;</span><br><span class="line">	var e = e ? e : window.event;</span><br><span class="line">	var k = e.keyCode;</span><br><span class="line">	switch(k)&#123;</span><br><span class="line">		case 9 :  //tab键</span><br><span class="line">		case 13 : return false; //回车键</span><br><span class="line">		default : sug.show(o,k); break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var sug=&#123;</span><br><span class="line">	show:function(o,k)&#123;</span><br><span class="line">		/* 此时动态读取suggestion数据（略）*/</span><br><span class="line">		document.getElementById(&#x27;suggestion&#x27;).style.display=&#x27;block&#x27;;</span><br><span class="line">		document.onclick=function()&#123;sug.hide()&#125;;</span><br><span class="line">		if (k != 38 &amp;&amp; k != 40 &amp;&amp; k != 39 &amp;&amp; k != 37) &#123; //非方向键</span><br><span class="line">			 sug.i = -1;</span><br><span class="line">		&#125;</span><br><span class="line">		sug.i = sug.i || 0;</span><br><span class="line">		var list = $id(&#x27;suggestion&#x27;).getElementsByTagName(&quot;a&quot;);</span><br><span class="line">		var prev = &#x27;&#x27;;</span><br><span class="line">		switch(k)&#123;</span><br><span class="line">			case 38:</span><br><span class="line">				sug.clear();</span><br><span class="line">				if (sug.i &lt; 1) &#123;</span><br><span class="line">					sug.i = list.length</span><br><span class="line">				&#125;</span><br><span class="line">				sug.i--;</span><br><span class="line">				list[sug.i].id = &quot;hover&quot;;</span><br><span class="line">				o.value = list[sug.i].innerHTML;</span><br><span class="line">				return false;</span><br><span class="line">			case 40:</span><br><span class="line">				sug.clear();</span><br><span class="line">				if (sug.i == list.length - 1) &#123;</span><br><span class="line">					sug.i = -1</span><br><span class="line">				&#125;</span><br><span class="line">				sug.i++;</span><br><span class="line">				list[sug.i].id = &quot;hover&quot;;</span><br><span class="line">				o.value = list[sug.i].innerHTML;</span><br><span class="line">				return false;</span><br><span class="line">			default : break;</span><br><span class="line">		&#125;</span><br><span class="line">		sug.hover=function(othis)&#123; //鼠标划过</span><br><span class="line">			sug.clear();</span><br><span class="line">			for(i=0;i&lt;list.length;i++)&#123;</span><br><span class="line">				if(othis==list[i])&#123;</span><br><span class="line">					sug.i=i;</span><br><span class="line">					list[sug.i].id=&quot;hover&quot;;</span><br><span class="line">					o.value = othis.innerHTML;</span><br><span class="line">					return ;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		sug.clear=function()&#123;</span><br><span class="line">			prev = $id(&#x27;hover&#x27;);</span><br><span class="line">			if (prev) prev.id = &#x27;&#x27;;</span><br><span class="line">		&#125;</span><br><span class="line">		sug.select=function()&#123; //鼠标选中</span><br><span class="line">			document.charset=&#x27;GBK&#x27;;</span><br><span class="line">			$id(&#x27;suggF&#x27;).submit();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	hide:function()&#123;</span><br><span class="line">		$id(&#x27;suggestion&#x27;).style.display=&#x27;none&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>下面是加入google的数据（墙内也有几率可以看到效果）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;style type=&#x27;text/css&#x27;&gt;</span><br><span class="line">.sugg&#123;position:relative;font-size:12px;&#125;</span><br><span class="line">.sugg a&#123;text-decoration:none;&#125;</span><br><span class="line">.sugg .text&#123;width:210px;height:18px;padding:3px;color:#474747;border:1px solid #ADCAD8;&#125;</span><br><span class="line">#suggestion&#123;display:none;position:absolute;top:26px;left:0;width:216px;border:1px solid #3890d0;border-top:0;background:#fff;&#125;</span><br><span class="line">.listitem&#123;display:block;height:25px;line-height:25px;padding:0 5px;color:#000;cursor:pointer;&#125;</span><br><span class="line">.itemhover&#123;background:#378ece;color:#fff;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.cssass.com/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&#x27;sugg&#x27;&gt;</span><br><span class="line">	&lt;form id=&quot;searchForm&quot; method=&quot;GET&quot;  action=&quot;http://www.baidu.com/baidu&quot;&gt;</span><br><span class="line">		&lt;input class=&#x27;text&#x27; type=text name=wd autocomplete=&quot;off&quot;  id=&quot;keyInput&quot; /&gt;</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line">	&lt;div id=&#x27;suggestion&#x27;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&#x27;text/javascript&#x27;&gt;</span><br><span class="line">function Suggest(inputer, shower)&#123;</span><br><span class="line">	this.global = &#123;</span><br><span class="line">		keyElm : inputer,</span><br><span class="line">		showElm : shower,</span><br><span class="line">		ajaxURL : &#x27;https://www.google.com/complete/search&#x27;,</span><br><span class="line">		ajaxData : &#123;</span><br><span class="line">			&#x27;client&#x27; : &#x27;hp&#x27;,</span><br><span class="line">			&#x27;xhr&#x27; : &#x27;t&#x27;</span><br><span class="line">		&#125;,</span><br><span class="line">		index : -1</span><br><span class="line">	&#125;</span><br><span class="line">	this.bind();</span><br><span class="line">&#125;;</span><br><span class="line">Suggest.prototype = &#123;</span><br><span class="line">	bind: function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		events.addEvent(this.global.keyElm, &quot;keyup&quot;, function()&#123;</span><br><span class="line">			var e = arguments[0] || window.event,</span><br><span class="line">				k = e.keyCode;</span><br><span class="line">			switch(k)&#123;</span><br><span class="line">				case 9 :  //tab键</span><br><span class="line">				case 13 : //回车键</span><br><span class="line">					that.hide();</span><br><span class="line">					return false;</span><br><span class="line">				case 37 :</span><br><span class="line">				case 38 :</span><br><span class="line">				case 39 :</span><br><span class="line">				case 40 :</span><br><span class="line">					 that.select(k); //方向键</span><br><span class="line">					 break;</span><br><span class="line">				default :</span><br><span class="line">					 that.show(k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		events.delegate(this.global.showElm, &quot;.listitem&quot;, &quot;mouseover&quot;, function()&#123;</span><br><span class="line">			var e = arguments[0] || window.event,</span><br><span class="line">				target = e.srcElement || e.target;</span><br><span class="line">			that.hover(target);</span><br><span class="line">		&#125;);</span><br><span class="line">		events.addEvent(this.global.showElm,&quot;click&quot;, function()&#123;</span><br><span class="line">			$id(&quot;searchForm&quot;).submit();</span><br><span class="line">		&#125;);</span><br><span class="line">		events.addEvent(document, &#x27;click&#x27;, function()&#123;</span><br><span class="line">			that.hide();</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	show: function(k)&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		this.global.ajaxData.q = this.global.keyElm.value;</span><br><span class="line">		$jsonp(this.global.ajaxURL, this.global.ajaxData, function(msg)&#123;</span><br><span class="line">			var list = msg[1],</span><br><span class="line">				html = &#x27;&#x27;;</span><br><span class="line">			if(!list.length )&#123;</span><br><span class="line">				that.hide();</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">				for(var i = 0 ; i&lt; list.length; i++)&#123;</span><br><span class="line">					html += &quot;&lt;span class=&#x27;listitem&#x27; idx=&quot;+i+&quot;&gt;&quot;+list[i][0]+&quot;&lt;/span&gt;&quot;;</span><br><span class="line">				&#125;;</span><br><span class="line">				that.global.showElm.style.display=&#x27;block&#x27;;</span><br><span class="line">			&#125;</span><br><span class="line">			that.global.showElm.innerHTML = html;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	hide: function()&#123;</span><br><span class="line">		$id(&#x27;suggestion&#x27;).style.display=&#x27;none&#x27;;</span><br><span class="line">	&#125;,</span><br><span class="line">	select: function(k)&#123;</span><br><span class="line">		var list = $tag(&quot;span&quot;, $id(&#x27;suggestion&#x27;));</span><br><span class="line">		if(list.length &lt; 1) return false;</span><br><span class="line">		switch(k)&#123;</span><br><span class="line">			case 38:</span><br><span class="line">				this.global.index --;</span><br><span class="line">				if (this.global.index &lt; 0) &#123;</span><br><span class="line">					this.global.index = list.length - 1;</span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			case 40:</span><br><span class="line">				this.global.index ++;</span><br><span class="line">				if (this.global.index &gt; list.length - 1) &#123;</span><br><span class="line">					this.global.index = 0</span><br><span class="line">				&#125;</span><br><span class="line">				break;</span><br><span class="line">			default :</span><br><span class="line">				return false;</span><br><span class="line">		&#125;</span><br><span class="line">		this.setValue(list[this.global.index]);</span><br><span class="line">	&#125;,</span><br><span class="line">	hover : function(target)&#123;</span><br><span class="line">		this.global.index = target.getAttribute(&quot;idx&quot;);</span><br><span class="line">		this.setValue(target);</span><br><span class="line">	&#125;,</span><br><span class="line">	setValue : function(o)&#123;</span><br><span class="line">		removeClass($class(&quot;itemhover&quot;), &quot;itemhover&quot;);</span><br><span class="line">		addClass(o, &quot;itemhover&quot;);</span><br><span class="line">		this.global.keyElm.value = o.innerText || o.textContent;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Suggest($id(&quot;keyInput&quot;), $id(&quot;suggestion&quot;));</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/08/28/%E6%A8%A1%E6%8B%9F%E5%BC%95%E5%8A%9B%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>模拟引力环境下的运动轨迹</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/05/13/%E5%85%83%E7%B4%A0%E7%9A%84%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      元素的拖动效果
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        Position定位巧做彩虹字，倒影字效果 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">Position定位巧做彩虹字，倒影字效果</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
+  
+
+
+          <span class="post-date">2008-11-20</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>“阴阳字”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body&#123;background:#E9F5EE; font-family:&#x27;黑体&#x27;;  font-size:15pt;&#125;</span><br><span class="line">.wrap&#123;</span><br><span class="line">    position:absolute;</span><br><span class="line">    top:8pt;</span><br><span class="line">    overflow:hidden;</span><br><span class="line">    &#125;</span><br><span class="line">.color&#123;</span><br><span class="line">    position:relative;</span><br><span class="line">    top:-8pt;</span><br><span class="line">    color:#ccc;</span><br><span class="line">   &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div style=&quot;position:relative;&quot;&gt;</span><br><span class="line">&lt;div class=&quot;wrap&quot;&gt;&lt;span class=&quot;color&quot;&gt;半色字213font阴阳字（只限单行文字）&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">&lt;span class=&quot;back&quot;&gt;半色字213font阴阳字（只限单行文字）&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>彩虹字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body&#123;background:#3e4b5c; color:#b7e2e9; font-size:15pt;&#125;</span><br><span class="line">.fonts&#123;position:absolute; overflow:hidden; height:2pt;  &#125;</span><br><span class="line">.colors&#123;position:relative;&#125;</span><br><span class="line">.fonts0&#123; top:1pt; &#125;</span><br><span class="line">.colors0&#123; top:-1pt; color:#e61765;&#125;</span><br><span class="line">.fonts1&#123; top:3pt; &#125;</span><br><span class="line">.colors1&#123; top:-3pt; color:#d7588f;&#125;</span><br><span class="line">.fonts2&#123; top:5pt; &#125;</span><br><span class="line">.colors2&#123; top:-5pt; color:#cb8eb2;&#125;</span><br><span class="line">.fonts3&#123; top:5pt; &#125;</span><br><span class="line">.colors3&#123; top:-5pt; color:#c4a8c4;&#125;</span><br><span class="line">.fonts4&#123; top:7pt; &#125;</span><br><span class="line">.colors4&#123; top:-7pt; color:#c2b4cb;&#125;</span><br><span class="line">.fonts5&#123; top:9pt; &#125;</span><br><span class="line">.colors5&#123; top:-9pt; color:#bccbd9;&#125;</span><br><span class="line">.fonts6&#123; top:11pt; &#125;</span><br><span class="line">.colors6&#123; top:-11pt; color:#b7e2e9;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div style=&quot;position:relative;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts0&quot;&gt;&lt;span class=&quot;colors colors0&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts1&quot;&gt;&lt;span class=&quot;colors colors1&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts2&quot;&gt;&lt;span class=&quot;colors colors2&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts3&quot;&gt;&lt;span class=&quot;colors colors3&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts4&quot;&gt;&lt;span class=&quot;colors colors4&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts5&quot;&gt;&lt;span class=&quot;colors colors5&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts6&quot;&gt;&lt;span class=&quot;colors colors6&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;span class=&quot;back&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>倒影字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">body&#123;background:#E9F5EE; font-family:&#x27;黑体&#x27;;  font-size:18px;&#125;</span><br><span class="line">.fonts&#123;position:absolute; overflow:hidden; height:1px;&#125;</span><br><span class="line">.back&#123;position:relative;&#125;</span><br><span class="line">.fonts0&#123; top:18px; &#125;</span><br><span class="line">.back0&#123; top:-15px; color:#999; &#125;</span><br><span class="line">.fonts1&#123; top:19px; &#125;</span><br><span class="line">.back1&#123; top:-14px; color:#aaa;&#125;</span><br><span class="line">.fonts2&#123; top:20px; &#125;</span><br><span class="line">.back2&#123; top:-13px; color:#bbb;&#125;</span><br><span class="line">.fonts3&#123; top:21px; &#125;</span><br><span class="line">.back3&#123; top:-12px; color:#bbb;&#125;</span><br><span class="line">.fonts4&#123; top:22px; &#125;</span><br><span class="line">.back4&#123; top:-11px; color:#ccc;&#125;</span><br><span class="line">.fonts5&#123; top:23px; &#125;</span><br><span class="line">.back5&#123; top:-10px; color:#ccc;&#125;</span><br><span class="line">.fonts6&#123; top:24px; &#125;</span><br><span class="line">.back6&#123; top:-9px; color:#ddd;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div style=&quot;position:relative; height:25px;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts0&quot;&gt;&lt;span class=&quot;back back0&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts1&quot;&gt;&lt;span class=&quot;back back1&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts2&quot;&gt;&lt;span class=&quot;back back2&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts3&quot;&gt;&lt;span class=&quot;back back3&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts4&quot;&gt;&lt;span class=&quot;back back4&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts5&quot;&gt;&lt;span class=&quot;back back5&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;fonts fonts6&quot;&gt;&lt;span class=&quot;back back6&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;&lt;/div&gt;</span><br><span class="line">    &lt;span class=&quot;front&quot;&gt;阔地网络阔地网络阔地网络阔地网络&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2009/02/07/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84Z%E5%80%BC%E6%AF%94%E8%BE%83%E5%8F%8Az-index%E5%9C%A8%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%BD%B1%E5%93%8D/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>定位元素间的Z值比较及z-index在不同浏览器下默认值的影响</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2008/10/06/%E6%9C%AA%E7%9F%A5%E5%B0%BA%E5%AF%B8%E5%85%83%E7%B4%A0%EF%BC%88%E5%8C%85%E6%8B%AC%E5%9D%97%E5%85%83%E7%B4%A0%EF%BC%89%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      未知尺寸元素（包括块元素）的垂直居中方法探究
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

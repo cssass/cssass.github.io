@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        定位元素间的Z值比较及z-index在不同浏览器下默认值的影响 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">定位元素间的Z值比较及z-index在不同浏览器下默认值的影响</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
+  
+
+
+          <span class="post-date">2009-02-07</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <blockquote><p>z-index在ie下缺省为：z-index:0; 而FF下则缺省为：z-index:auto;</p>
+</blockquote>
+<p>正是IE&#x2F;FF下这一点区别导致ie,ff下z值的不同表现。<br>注意：此处所说的z值区别于z-index,它指的是z轴层叠等级(stack level)，表示垂直于显示屏方向上的各层的层叠顺序。z-index值须在设置position:relative&#x2F;absolute&#x2F;fixed之后方才生效，而不止z-index一个属性会影响到z轴层叠等级的大小（本文对其他属性的影响暂不做讨论，但本文的研究已排除其他属性的影响，其他属性不会影响本文的研究）。</p>
+<blockquote><p>正常情况下：兄弟（同级）元素后者居上，父子之间子高于父。</p>
+</blockquote>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;各级元素间z的关系&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	.father1, .son1&#123;border:2px solid #cfc&#125;</span><br><span class="line">	.father2, .son2&#123;border:2px solid #fcf&#125;</span><br><span class="line">/* */</span><br><span class="line">	.father1, .father2&#123;position:relative;background:#aaa;&#125;</span><br><span class="line">    .son1, .son2&#123;position:absolute;background:#eee;left:20px;top:20px;&#125;</span><br><span class="line">/* */</span><br><span class="line">	.father2&#123;top:-40px;left:20px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;father1&quot;&gt;</span><br><span class="line">	    父级1</span><br><span class="line">         &lt;div class=&quot;son1&quot;&gt;</span><br><span class="line">            子级1</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;father2&quot;&gt;</span><br><span class="line">	    父级2</span><br><span class="line">         &lt;div class=&quot;son2&quot;&gt;</span><br><span class="line">            子级2</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出z的等级：子级2（“堂弟”）&gt;父级2（“叔叔”）&gt;子级1（“子”）&gt;父级1（“父”）。</p>
+<p>如果我们想要父盖过子，兄罩着弟只需设置其z-index便可。z-index值越大，给予的z值就越大。<br>那么这个设置能否改变叔侄之间，堂兄弟之间的Z呢？<br>先试试看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;侄子盖过叔叔，堂兄罩着堂弟&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	.father1, .son1&#123;border:2px solid #cfc&#125;</span><br><span class="line">	.father2, .son2&#123;border:2px solid #fcf&#125;</span><br><span class="line">/* */</span><br><span class="line">	.father1, .father2&#123; background:#aaa; &#125;</span><br><span class="line">    .son1, .son2&#123;background:#eee; &#125;</span><br><span class="line">/* */</span><br><span class="line">	.son1&#123;position:relative;z-index:1000;top:20px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;father1&quot;&gt;</span><br><span class="line">	    父级1</span><br><span class="line">         &lt;div class=&quot;son1&quot;&gt;</span><br><span class="line">            子级1</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;father2&quot;&gt;</span><br><span class="line">	    父级2</span><br><span class="line">         &lt;div class=&quot;son2&quot;&gt;</span><br><span class="line">            子级2</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看上去一样有效，是吧？子级1盖过了父级2和子级2。</p>
+<p>但是，再看看下面这个例子，假如各级元素都是定位元素(设置了position),情况就有些不同了（之后的讨论，都是基于这个条件之下的。我觉得position定位的应用非常广泛，基于此的研究也非常有必要）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;ie/ff下表现不同&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	.father1, .son1&#123;border:2px solid #cfc&#125;</span><br><span class="line">	.father2, .son2&#123;border:2px solid #fcf&#125;</span><br><span class="line">/* */</span><br><span class="line">	.father1, .father2&#123;position:relative;background:#aaa;&#125;</span><br><span class="line">    .son1, .son2&#123;position:absolute;background:#eee;left:20px;top:20px;&#125;</span><br><span class="line">	.father2&#123;top:-40px;left:20px;&#125;</span><br><span class="line">/* */</span><br><span class="line">	.son1&#123;z-index:1000;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;father1&quot;&gt;</span><br><span class="line">	    父级1</span><br><span class="line">         &lt;div class=&quot;son1&quot;&gt;</span><br><span class="line">            子级1</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;father2&quot;&gt;</span><br><span class="line">	    父级2</span><br><span class="line">         &lt;div class=&quot;son2&quot;&gt;</span><br><span class="line">            子级2</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>son1设置z-index:1000后，在FF下的z值级别就高于其叔与其堂弟father2,son2。但是在ie下这个设置却还是不行。<br>这时候，我们回过头看最前面的结论：z-index在ie下缺省为：z-index:0; 而FF下则缺省为：z-index:auto;<br>那么再写一个Test，将父级的z-index固定为0:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;Z-index默认值的影响&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	.father1, .son1&#123;border:2px solid #cfc&#125;</span><br><span class="line">	.father2, .son2&#123;border:2px solid #fcf&#125;</span><br><span class="line">/* */</span><br><span class="line">	.father1, .father2&#123;position:relative;background:#aaa;z-index:0;&#125;</span><br><span class="line">    .son1, .son2&#123;position:absolute;background:#eee;left:20px;top:20px;&#125;</span><br><span class="line">	.father2&#123;top:-40px;left:20px;&#125;</span><br><span class="line">/* */</span><br><span class="line">	.son1&#123;z-index:1000;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;father1&quot;&gt;</span><br><span class="line">	    父级1</span><br><span class="line">         &lt;div class=&quot;son1&quot;&gt;</span><br><span class="line">            子级1</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;father2&quot;&gt;</span><br><span class="line">	    父级2</span><br><span class="line">         &lt;div class=&quot;son2&quot;&gt;</span><br><span class="line">            子级2</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出，一旦父级元素设置了相同的z-index，ff下“侄”元素一样无法超过“叔”元素和“堂弟”元素。</p>
+<p>我们可以试着得出这么一个结论：</p>
+<blockquote><p>对于定位元素，（不论IE还是FF）非同级关系和非父子关系元素之间的Z值大小比较，须要回溯至其为兄弟关系的两个祖先元素上，先比较这两个元素的z-index值，只有当“兄”的z-index大于“弟”的z-index值，“兄”的各个后代元素，才能超过“弟元素”及其子孙元素。</p>
+</blockquote>
+<p>我们用一个三级关系来验证一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;三级关系验证本文结论&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	#first,#first div&#123;border:2px solid #cfc&#125;</span><br><span class="line">	#second,#second div&#123;border:2px solid #fcf&#125;</span><br><span class="line">	#second&#123;top:-80px;&#125;</span><br><span class="line">/* */</span><br><span class="line">    .grandfather&#123;position:relative;background:#aaa;z-index:0;&#125;</span><br><span class="line">	.father&#123;position:absolute;background:#ccc;left:20px;top:20px;z-index:0;&#125;</span><br><span class="line">    .son&#123;position:absolute;background:#eee;left:20px;top:20px;z-index:0;&#125;</span><br><span class="line">/*  */</span><br><span class="line">    #first&#123;z-index:1;&#125;</span><br><span class="line">    #first .father&#123;z-index:1;&#125;</span><br><span class="line">    #first .son&#123;z-index:1;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;div id=&quot;first&quot; class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div id=&quot;second&quot;  class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>不论#first .father和#first .son如何设置，只有#first的z-index值大于0（second的z-index值为0）时，才能盖住#second。</p>
+<p>对于IE,元素的z-index缺省值是0，如果不另外设置“兄”，“弟”元素的z-index值，那么”兄”的z-index就无法大于“弟”的z-index。那么”兄”元素及其子孙就无法盖过”弟”元素及其子孙。而一旦“兄”的z-index大过了”弟”元素的z-index,那么情况就翻转了，“弟”元素及其子孙将无法盖过“兄”元素及其子孙。<br>而对FF,元素的z-index缺省值是auto,auto的意思是什么，就是说“随便，不关我事”，那么子孙们的z值等级就只跟他们自己本身的z-index有关了。<br>那么，IE上能否设置z-index:auto;呢？</p>
+<p>测试：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;测试IE下的z-index:auto属性&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	#first,#first div&#123;border:2px solid #cfc&#125;</span><br><span class="line">	#second,#second div&#123;border:2px solid #fcf&#125;</span><br><span class="line">	#second&#123;top:-80px;&#125;</span><br><span class="line">/* */</span><br><span class="line">    .grandfather&#123;position:relative;background:#aaa;z-index:auto;&#125;</span><br><span class="line">	.father&#123;position:absolute;background:#ccc;left:20px;top:20px;z-index:auto;&#125;</span><br><span class="line">    .son&#123;position:absolute;background:#eee;left:20px;top:20px;z-index:auto;&#125;</span><br><span class="line">/*  #first&#123;z-index:1;&#125;   */</span><br><span class="line">    #first .father&#123;z-index:1;&#125;</span><br><span class="line">    #first .son&#123;z-index:1;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;div id=&quot;first&quot; class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div id=&quot;second&quot;  class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出，在IE下，去除#first{z-index:1}后，#first及其子孙无法盖住#second。<br>而FF下，#first .father,#first .son却盖住了整个#second。</p>
+<p>推论：</p>
+<blockquote><p>z-index:auto在ie下无效。</p>
+</blockquote>
+<p>那么在IE下，对于由定位元素构成的两个并列的嵌套结构块间的Z值大小，只存在两种情况：要么这个结构块里的所有层元素都在另一个结构块之上，要么就是那个结构块所有元素在其之上。没有可能一个元素能插在另一个结构块的父与子之间，这种情况在FF下是存在的（当然，还有其他浏览器），在FF下，父级是z-index:auto的元素，他们都是自由的，依据自己的z-index决定Z值。FF下甚至可以形成：<br>————-<br>   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">————-</span><br></pre></td></tr></table></figure><br>这么一个四层交错，但要超过四层，就无能为力了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;FF下的四层交错&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">    div&#123;display:block;width:400px;height:200px;&#125;</span><br><span class="line">	#first,#first div&#123;border:2px solid #cfc&#125;</span><br><span class="line">	#second,#second div&#123;border:2px solid #fcf&#125;</span><br><span class="line">	#second&#123;top:-80px;&#125;</span><br><span class="line">/* */</span><br><span class="line">    .grandfather&#123;position:relative;background:#aaa;z-index:auto;&#125;</span><br><span class="line">	.father&#123;position:absolute;background:#ccc;left:20px;top:20px;z-index:auto;&#125;</span><br><span class="line">    .son&#123;position:absolute;background:#eee;left:20px;top:20px;z-index:auto;&#125;</span><br><span class="line">/* */</span><br><span class="line">    #first .father&#123;z-index:1;&#125;</span><br><span class="line">    #first .son&#123;z-index:3;&#125;</span><br><span class="line">	#second .father&#123;z-index:2;&#125;</span><br><span class="line">	#second .son&#123;z-index:4;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;div id=&quot;first&quot; class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"> &lt;div id=&quot;second&quot;  class=&quot;grandfather&quot;&gt;</span><br><span class="line">    祖父级</span><br><span class="line">    &lt;div class=&quot;father&quot;&gt;</span><br><span class="line">	    父级</span><br><span class="line">         &lt;div class=&quot;son&quot;&gt;</span><br><span class="line">            子级</span><br><span class="line">		 &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>补充：关于z-index:auto的解释，在W3C的CSS说明文档中的解释是：</p>
+<blockquote><p>The stack level of the generated box in the current stacking context is the same as its parent’s box. The box does not establish a new local stacking context.</p>
+</blockquote>
+<p>即Z的层叠等级将继承父级，不创建新的层叠内容。</p>
+<p>这段说明在CSS2和CSS2.1中是完全一致的，那为什么ie”不支持” z-index:auto呢？</p>
+<p>在css2中有一段css2.1中所没有的解释：</p>
+<blockquote><p>An element that establishes a local stacking context generates a box that has two stack levels: one for the stacking context it creates (always ‘0′) and one for the stacking context to which it belongs (given by the ‘z-index’ property).</p>
+</blockquote>
+<p>一个元素创建的层叠内容框包含两个层叠等级，一个是就是创建的层叠内容（总是“0”），另一个就是这个层叠内容包含的子层叠内容（由“z-index”属性决定）。</p>
+<p>所以在ie当中，即便某元素设置z-index：auto，它所继承的z也是0。<br>这貌似同我们文章中第一段结论一致。也勉强解释了为什么z-index:auto在IE中无效。</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2009/04/14/HTML%E7%9A%84dir%E5%B1%9E%E6%80%A7%E5%92%8Cbdo%E6%A0%87%E7%AD%BE%E5%8F%8A%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9BCSS%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E5%B1%9E%E6%80%A7%E3%80%81%E6%BB%A4%E9%95%9C/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>HTML的dir属性和bdo标签及其他一些CSS文字排版属性、滤镜</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2008/11/20/Position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      Position定位巧做彩虹字，倒影字效果
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

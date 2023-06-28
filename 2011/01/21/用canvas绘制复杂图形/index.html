@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        用canvas绘制复杂图形 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">用canvas绘制复杂图形</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2011-01-21</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>在闪吧看见一棵树，移植到canvas+javascript里来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">	con.lineWidth=0.8;</span><br><span class="line">function dw(ax, ay, bx, by) &#123;</span><br><span class="line">	con.beginPath()</span><br><span class="line">	con.moveTo(ax, ay);</span><br><span class="line">	con.lineTo(bx, by);</span><br><span class="line">	con.stroke();</span><br><span class="line">&#125;</span><br><span class="line">function lzh(x, y, l, angle, n) &#123;</span><br><span class="line">	if (n&gt;0) &#123;</span><br><span class="line">		var a_l, a_r, x1, y1, x2, y2, y2_l;</span><br><span class="line">		x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">		y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">		x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">		y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">		dw(x, y, x2, y2);</span><br><span class="line">		a_l = angle+30;</span><br><span class="line">		a_r = angle-30;</span><br><span class="line">		l=l*2/3</span><br><span class="line">		lzh(x2, y2, l, angle+rand, n-1);</span><br><span class="line">		lzh(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">		lzh(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">		lzh(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">		lzh(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">var rand=2-Math.random()*10</span><br><span class="line">lzh(300, 400, 100, 90, 6);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>用setInterval让它动起来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">    con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">    con.lineWidth=0.8;</span><br><span class="line">var Tree=function(x, y, l, angle, n)&#123;</span><br><span class="line">    var a=[],rand=0,dir=1,val;</span><br><span class="line">    this.init=function(x, y, l, angle, n) &#123;</span><br><span class="line">        var that=this;</span><br><span class="line">        if (n&gt;0) &#123;</span><br><span class="line">            var a_l, a_r, x1, y1, x2, y2;</span><br><span class="line">            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            a.push([x, y, x2, y2]);</span><br><span class="line">            a_l = angle+30;</span><br><span class="line">            a_r = angle-30;</span><br><span class="line">            l=l*2/3;</span><br><span class="line">            that.init(x2, y2, l, angle+rand, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">         &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.run=function()&#123;</span><br><span class="line">		con.clearRect(0,0,1000,500);</span><br><span class="line">        for(var i=0; i&lt;a.length; i++)&#123;</span><br><span class="line">            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);</span><br><span class="line">        &#125;;</span><br><span class="line">		a=[];</span><br><span class="line">    &#125;;</span><br><span class="line">	this.move=function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var _s=function()&#123;</span><br><span class="line">			that.change();</span><br><span class="line">			that.init(x, y, l, angle, n);</span><br><span class="line">			that.run();</span><br><span class="line">			setTimeout(_s,100);</span><br><span class="line">		&#125;;</span><br><span class="line">		_s();</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		val=Math.random()*2;</span><br><span class="line">		rand+=dir*val;</span><br><span class="line">		if(rand&gt;10 || rand&lt;-2)&#123;dir=-dir;&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init(x, y, l, angle, n);</span><br><span class="line">	this.run();</span><br><span class="line">&#125;;</span><br><span class="line">Tree.prototype.dw=function(ax, ay, bx, by)&#123;</span><br><span class="line">    con.beginPath()</span><br><span class="line">    con.moveTo(ax, ay);</span><br><span class="line">    con.lineTo(bx, by);</span><br><span class="line">    con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tree(300, 400, 100, 90, 6).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>补充：<br>除了setTimeout&#x2F;setInterval这两个函数控制动画外。现在很多浏览器还提供了另一个函数requestAnimationFrame，这个函数接口所拥有的优势是：</p>
+<p>对于一个侦中对DOM的所有操作，只进行一次Layout和Paint。<br>如果发生动画的元素被隐藏了，那么就不再去Paint。</p>
+<p>不过这个方法的使用只类似于递归调用，并没有一个时间停顿，所以我们一般要根据记录时间间隔来决定动画的每一帧的绘制情况。<br>下面用requestAnimationFrame来完成上面的动画。由于requestAnimationFrame的兼容性，我们需要先写一个兼容性的方法（来自three.js）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    /* 兼容requestAnimationFrame */</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&#x27;RequestAnimationFrame&#x27;];</span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&#x27;CancelAnimationFrame&#x27;] </span><br><span class="line">                                   || window[vendors[x]+&#x27;RequestCancelAnimationFrame&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function() &#123;</span><br><span class="line">	/* 兼容requestAnimationFrame */</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&#x27;RequestAnimationFrame&#x27;];</span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&#x27;CancelAnimationFrame&#x27;]</span><br><span class="line">                                   || window[vendors[x]+&#x27;RequestCancelAnimationFrame&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br><span class="line">var con = document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">    con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">    con.lineWidth=0.8;</span><br><span class="line">var Tree = function(x, y, l, angle, n)&#123;</span><br><span class="line">    var a=[],rand=0,dir=1,val;</span><br><span class="line">    this.init = function(x, y, l, angle, n) &#123;</span><br><span class="line">        var that = this;</span><br><span class="line">        if (n&gt;0) &#123;</span><br><span class="line">            var a_l, a_r, x1, y1, x2, y2;</span><br><span class="line">            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            a.push([x, y, x2, y2]);</span><br><span class="line">            a_l = angle+30;</span><br><span class="line">            a_r = angle-30;</span><br><span class="line">            l=l*2/3;</span><br><span class="line">            that.init(x2, y2, l, angle+rand, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">         &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.run=function()&#123;</span><br><span class="line">		con.clearRect(0,0,1000,500);</span><br><span class="line">        for(var i=0; i&lt;a.length; i++)&#123;</span><br><span class="line">            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);</span><br><span class="line">        &#125;;</span><br><span class="line">		a=[];</span><br><span class="line">    &#125;;</span><br><span class="line">	this.move = function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var start = new Date().getTime(),</span><br><span class="line">			delta;</span><br><span class="line">		(function _s()&#123;</span><br><span class="line">			delta = new Date().getTime() - start;</span><br><span class="line">			if( delta &gt; 100 )&#123;</span><br><span class="line">				start = new Date().getTime();</span><br><span class="line">				that.change();</span><br><span class="line">				that.init(x, y, l, angle, n);</span><br><span class="line">				that.run();</span><br><span class="line">			&#125;</span><br><span class="line">			return requestAnimationFrame(_s)</span><br><span class="line">		&#125;)();</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		val = Math.random()*2;</span><br><span class="line">		rand += dir*val;</span><br><span class="line">		if (rand &gt;10 || rand &lt; -2)&#123; dir = -dir; &#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init(x, y, l, angle, n);</span><br><span class="line">	this.run();</span><br><span class="line">&#125;;</span><br><span class="line">Tree.prototype.dw=function(ax, ay, bx, by)&#123;</span><br><span class="line">    con.beginPath()</span><br><span class="line">    con.moveTo(ax, ay);</span><br><span class="line">    con.lineTo(bx, by);</span><br><span class="line">    con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tree(300, 400, 100, 90, 6).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>再画几个图形：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;那些花儿&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;background:#333;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;2000&#x27; height=&#x27;1000&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle = &#x27;rgba(255,255,255,0.5)&#x27;;</span><br><span class="line">	con.lineJoin = &#x27;round&#x27;;</span><br><span class="line">	con.lineCap = &#x27;round&#x27;;</span><br><span class="line">	con.lineWidth=.5;</span><br><span class="line">function Tad(x,y,c)&#123; /* 位置，角数 */</span><br><span class="line">	var l,r,n,k,mx;</span><br><span class="line">	var xt=0, yt=0, angle=0 ,a=[];</span><br><span class="line">		r=360/c; //每只角分到的度数</span><br><span class="line">		var t=5; //转角</span><br><span class="line">		while(t&gt;1)&#123;</span><br><span class="line">			if(r%t===0) break;</span><br><span class="line">			t--;</span><br><span class="line">		&#125;;</span><br><span class="line">		n=360/t; //总线条数</span><br><span class="line">		k=r/t; //每只角分到的线条数</span><br><span class="line">	this.init=function()&#123;</span><br><span class="line">		if(a.length&lt;n)&#123;</span><br><span class="line">			angle+=t;</span><br><span class="line">			a.unshift(angle);  //存储所有转角</span><br><span class="line">			this.init();</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		angle+=t;</span><br><span class="line">		a.unshift(angle)</span><br><span class="line">		a.pop(angle);</span><br><span class="line">		this.body(x,y);</span><br><span class="line">	&#125;;</span><br><span class="line">	this.body=function() &#123;</span><br><span class="line">		l=0; //线长(初始)</span><br><span class="line">		o=c; //每次增加的线长.这个值可以自定义</span><br><span class="line">		mx=l+ k*o + 10; //直径(最大值)</span><br><span class="line">		con.clearRect(x-mx/2, y-mx/2, mx, mx);</span><br><span class="line">		for(var i=1; i&lt;a.length; i++) &#123;</span><br><span class="line">			l+=o;</span><br><span class="line">			if(Math.floor(i%(k/2))===0) &#123; //峰谷时反向</span><br><span class="line">				o=-o;</span><br><span class="line">				if(i%(k/2)===0.5) &#123;l+=o;&#125; //遇到k是奇数的情况。如c=8时。</span><br><span class="line">			&#125;</span><br><span class="line">			xt = l*Math.cos(a[i-1]*Math.PI/180);</span><br><span class="line">			yt = l*Math.sin(a[i-1]*Math.PI/180);</span><br><span class="line">			this.dw(x, y, x+xt, y-yt);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init();</span><br><span class="line">	this.body();</span><br><span class="line">&#125;</span><br><span class="line">Tad.prototype.move=function()&#123;</span><br><span class="line">	var that = this;</span><br><span class="line">	var _s=function()&#123;</span><br><span class="line">		that.change();</span><br><span class="line">		setTimeout(_s,100);</span><br><span class="line">	&#125;</span><br><span class="line">	_s();</span><br><span class="line">&#125;;</span><br><span class="line">Tad.prototype.dw=function(ax, ay, bx, by) &#123;</span><br><span class="line">	con.beginPath();</span><br><span class="line">	con.moveTo(ax, ay);</span><br><span class="line">	con.lineTo(bx, by);</span><br><span class="line">	con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tad(100,100,15).move();</span><br><span class="line">new Tad(200,100,12).move();</span><br><span class="line">new Tad(300,100,9).move();</span><br><span class="line">new Tad(400,100,8).move();</span><br><span class="line">new Tad(500,100,6).move();</span><br><span class="line">new Tad(100,200,5).move();</span><br><span class="line">new Tad(200,200,4).move();</span><br><span class="line">new Tad(300,200,3).move();</span><br><span class="line">new Tad(400,200,2).move();</span><br><span class="line">new Tad(500,200,1).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2023/06/27/hello-world/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>Hello World</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/12/27/%E4%B8%A4%E4%B8%AAcanvas%E5%8A%A8%E7%94%BB/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      两个canvas动画
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

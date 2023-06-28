@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        canvas鼠标绘图Demo | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">canvas鼠标绘图Demo</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2010-09-02</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body title=&#x27;鼠标绘图&#x27;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1800&#x27; height=&#x27;1000&#x27; onmousedown=draw(event) style=&#x27;border:1px solid #ccc&#x27;&gt;ie用户(9以下)请忽略&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">var D=&#123;</span><br><span class="line">	width : 0.2 ,</span><br><span class="line">	randRGB : function()&#123; return Math.round(Math.random()*250) &#125;,</span><br><span class="line">	color : function()&#123;return &#x27;rgba(&#x27; + D.randRGB() + &#x27;,&#x27; + D.randRGB() + &#x27;,&#x27; + D.randRGB() + &#x27; , 1)&#x27;&#125;</span><br><span class="line">&#125;</span><br><span class="line">var draw=function(e)&#123;</span><br><span class="line">	var e=window.event || e;</span><br><span class="line">	var o=$id(&quot;pad&quot;);</span><br><span class="line">	var con=o.getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.beginPath();</span><br><span class="line">	con.moveTo(e.clientX,e.clientY);</span><br><span class="line">	con.strokeStyle = D.color();</span><br><span class="line">	con.lineWidth=D.width;</span><br><span class="line">	con.lineCap =&#x27;round&#x27;;</span><br><span class="line">	con.lineJoin = &#x27;round&#x27;;</span><br><span class="line">	document.onmousemove=function(e)&#123;</span><br><span class="line">		con.lineTo(e.clientX,e.clientY);</span><br><span class="line">		con.stroke();</span><br><span class="line">		document.onmouseup=function()&#123;</span><br><span class="line">			document.onmousemove=null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>我之前用window.onload来绑定函数修改canvas的高度，这通过运行框运行open新页面，在chrome下获取document.documentElemnet.offsetHeight时会等于0，导致绘图板高度也没了。<br>另外发现，Opera下绘线同其他浏览器有点差别：单独的一个path(即同上一次的path没有瓜葛)，如果没有moveTo设置起点，一般浏览器会以第一个lineTo为起点，这在Opera下是不正确的。</p>
+<p>下面再放一个百度UEO基于canvas绘制热力图的演示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;canvas热力图演示&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">.wrap&#123;width:1000px;height:500px;margin:0 auto;border:2px solid #eee;&#125;</span><br><span class="line">#pad&#123;position:absolute;z-index:-1;top:0;left:50%;background:#eee;opacity:.8;&#125;</span><br><span class="line">#switch&#123;position:absolute;z-index:20;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body onmousedown=imit(event)&gt;</span><br><span class="line">&lt;div class=&quot;wrap&quot; &gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;input id=&quot;switch&quot;type=&#x27;button&#x27; value=&quot;切换热力图显示在上层&quot; /&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var canvas= document.createElement(&#x27;canvas&#x27;);</span><br><span class="line">var context = canvas.getContext(&#x27;2d&#x27;);</span><br><span class="line">	canvas.id = &quot;pad&quot;;</span><br><span class="line">	canvas.width = document.documentElement.scrollWidth;</span><br><span class="line">	canvas.height = Math.max(document.documentElement.clientHeight,document.body.offsetHeight);</span><br><span class="line">	canvas.style.marginLeft = - canvas.width/2+&#x27;px&#x27;;</span><br><span class="line">	document.body.appendChild(canvas);</span><br><span class="line">var points =[];</span><br><span class="line">var oData = [];</span><br><span class="line">var imit=function(e)&#123;</span><br><span class="line">	points.push([e.clientX - canvas.offsetLeft, e.clientY]);  //手动模拟点,再按二次函数自动生成100个点。</span><br><span class="line">	for(var i=0; i&lt;100 ;i++)&#123;</span><br><span class="line">		var r1=Math.random()*2,r2=Math.random()*2;</span><br><span class="line">		points.push([parseInt(Math.pow(r1,2)*500)+5,parseInt(Math.pow(r2,2)*150)+5])</span><br><span class="line">	&#125;</span><br><span class="line">	analy();</span><br><span class="line">	draw();</span><br><span class="line">&#125;</span><br><span class="line">function analy()&#123;</span><br><span class="line">	var cache = &#123;&#125;;</span><br><span class="line">	//计算每个点的密度</span><br><span class="line">	for (var i = 0, len = points.length; i &lt; len; i++) &#123;</span><br><span class="line">		var key = points[i][0] + &#x27;*&#x27; + points[i][1];</span><br><span class="line">		 if (cache[key]) &#123;</span><br><span class="line">			cache[key] ++;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			cache[key] = 1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//点数据还原</span><br><span class="line">	oData.length=0;</span><br><span class="line">	for (var m in cache) &#123;</span><br><span class="line">		if (m == &#x27;0*0&#x27;) continue;</span><br><span class="line">		var x = parseInt(m.split(&#x27;*&#x27;)[0], 10);</span><br><span class="line">		var y = parseInt(m.split(&#x27;*&#x27;)[1], 0);</span><br><span class="line">		oData.push([x, y, cache[m]]);</span><br><span class="line">	&#125;</span><br><span class="line">	//简单排序，使用数组内建的sort</span><br><span class="line">	oData.sort(function(a, b)&#123;</span><br><span class="line">		return a[2] - b[2];</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">function draw()&#123;</span><br><span class="line">	context.clearRect(0,0,canvas.width,canvas.height); //每次点击都要重绘，每次重绘都需清屏</span><br><span class="line">	var max = oData[oData.length - 1][2];</span><br><span class="line">		max=(max==1) ? 2 : max   //如果最大密度等于1，则认为2，避免log(max)为0</span><br><span class="line">	var pi2 = Math.PI * 2;</span><br><span class="line">	//alpha增强参数</span><br><span class="line">	var pr = (Math.log(245)-1)/245;</span><br><span class="line">	for (var i = 0, len = oData.length; i &lt; len; i++) &#123;</span><br><span class="line">		//q参数用于平衡梯度差，使之符合人的感知曲线log2N，如需要精确梯度，去掉log计算</span><br><span class="line">		var q = parseInt(Math.log(oData[i][2]) / Math.log(max) * 255);</span><br><span class="line">		var r = parseInt(128 * Math.sin((1 / 256 * q - 0.5 ) * Math.PI ) + 200);</span><br><span class="line">		var g = parseInt(128 * Math.sin((1 / 128 * q - 0.5 ) * Math.PI ) + 127);</span><br><span class="line">		var b = parseInt(256 * Math.sin((1 / 256 * q + 0.5 ) * Math.PI ));</span><br><span class="line">		var alp = (0.92 * q + 20) / 255;</span><br><span class="line">		//灰度增强，</span><br><span class="line">		//var alp = (Math.exp(pr * q + 1) + 10) / 255</span><br><span class="line">		var radgrad = context.createRadialGradient(oData[i][0], oData[i][1], 1, oData[i][0], oData[i][1], 8);</span><br><span class="line">		radgrad.addColorStop( 0, &#x27;rgba(&#x27; + r + &#x27;,&#x27; + g + &#x27;,&#x27;+ b + &#x27;,&#x27; + alp + &#x27;)&#x27;);</span><br><span class="line">		radgrad.addColorStop( 1, &#x27;rgba(&#x27; + r + &#x27;,&#x27; + g + &#x27;,&#x27;+ b + &#x27;,0)&#x27;);</span><br><span class="line">		context.fillStyle = radgrad;</span><br><span class="line">		context.fillRect( oData[i][0] - 8, oData[i][1] - 8, 16, 16);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var switcher = document.getElementById(&quot;switch&quot;);</span><br><span class="line">	switcher.onclick = function()&#123;</span><br><span class="line">		canvas.style.zIndex = (canvas.style.zIndex == -1) ?  10 : -1; //注意一点，style.xx只能取得行内样式的，要获取外部样式可以使用getComputedStyle和currentStyle.</span><br><span class="line">		//canvas.style.display = (canvas.style.display == &#x27;block&#x27;) ?  &#x27;none&#x27; : &#x27;block&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/09/10/MDC%E7%9A%84canvas%E7%BB%8F%E5%85%B8%E6%95%99%E7%A8%8B%E8%BE%91%E5%92%8C%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>MDC的canvas经典教程辑和个人学习笔记</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/08/28/%E6%A8%A1%E6%8B%9F%E5%BC%95%E5%8A%9B%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      模拟引力环境下的运动轨迹
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

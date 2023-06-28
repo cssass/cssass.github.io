@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        MDC的canvas经典教程辑和个人学习笔记 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">MDC的canvas经典教程辑和个人学习笔记</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2010-09-10</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>mozilla developer center的关于canvas的教程集Canvas tutorial，可说是目前入门canvas教程中最棒的了。<br>教程列表：<br>Basic usage(中译：基本用法)<br>Drawing shapes(中译：绘制图形)<br>Using images(中译：使用图像)<br>Applying styles and colors(中译：运用样式与颜色)<br>Transformations(中译：变形)<br>Compositing(中译：组合)<br>Basic animations(中译：基本动画)</p>
+<p>以下是个人的一点笔记，涵盖了教程中所有知识点。但只适用于个人，存此备忘。</p>
+<p>canvas_ABC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&#x27;800&#x27; height=&quot;500&quot; style=&quot;border:1px solid #c3c3c3;&quot;&gt;ie（有ie9求测试）用户请绕行&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">var con=c.getContext(&#x27;2d&#x27;);   //-----画矩形框</span><br><span class="line">var grd=con.createLinearGradient(10,10,150,10);</span><br><span class="line">grd.addColorStop(0,&quot;#f00&quot;);  //起色</span><br><span class="line">grd.addColorStop(1,&quot;#0f0&quot;);  //终色</span><br><span class="line">con.fillStyle=grd;   //渐变填充</span><br><span class="line">con.rect(0, 0, 180,100)   //矩形1</span><br><span class="line">con.fillRect(10,10,150,75);  //矩形2</span><br><span class="line">con.clearRect(20,20,80,40);  //清除出一个矩形3</span><br><span class="line">con.lineWidth=2;</span><br><span class="line">con.lineCap =&#x27;round&#x27;;  //线端点，默认butt; square和round会多出一半宽度的长度</span><br><span class="line">con.lineJoin = &#x27;round&#x27;;  //折线连接点样式，默认miter延伸来连接；（round磨圆, beve削平） ；miter有miterLimit做限制，超过则应用beve</span><br><span class="line">con.strokeStyle = &#x27;#00f&#x27;;</span><br><span class="line">con.strokeRect(30,30,20,20);  //矩形边框</span><br><span class="line">var con2=c.getContext(&#x27;2d&#x27;);  //-------画折线</span><br><span class="line">con2.moveTo(20,10); //起点位置</span><br><span class="line">con2.lineTo(45,80);  //点</span><br><span class="line">con2.lineTo(20,50);  //点</span><br><span class="line">con2.lineTo(40,30);</span><br><span class="line">con2.stroke();  //描边</span><br><span class="line">// con2.fill(); //填充</span><br><span class="line">var con3=c.getContext(&#x27;2d&#x27;);  //-------画圆</span><br><span class="line">var radi=con3.createRadialGradient(290,50,10,295,60,30);  // 径向渐变（x1,y1,r1,x2,y2,r2）</span><br><span class="line">radi.addColorStop(0, &#x27;#A7D30C&#x27;);</span><br><span class="line">radi.addColorStop(0.9, &#x27;#019F62&#x27;);</span><br><span class="line">//radi.addColorStop(1, &#x27;rgba(1,159,98,0)&#x27;);</span><br><span class="line">con3.fillStyle = radi;</span><br><span class="line">con3.beginPath();  //初始化路径</span><br><span class="line">con3.arc(290,50,50,0,Math.PI*2,true);   //（x,y,radius,起，末弧度，逆，顺时针）</span><br><span class="line">con3.closePath();  //终止路径</span><br><span class="line">con3.stroke();</span><br><span class="line">con3.fill();</span><br><span class="line">var con4=c.getContext(&#x27;2d&#x27;);  //-------应用图片</span><br><span class="line">var img=new Image();</span><br><span class="line">img.src=&#x27;http://bbs.blueidea.com/images/default/logo.gif&#x27;;</span><br><span class="line">img.onload=function()&#123;</span><br><span class="line">	con4.drawImage(img,10,90,200,200);  //图片对象，位置，[尺寸]，</span><br><span class="line">	var ptrn = con4.createPattern(img,&#x27;repeat&#x27;);  //图案填充</span><br><span class="line">	con4.fillStyle = ptrn;</span><br><span class="line">	con4.fillRect(0,350,150,150);</span><br><span class="line">&#125;</span><br><span class="line">//var con4_2=c.getContext(&#x27;2d&#x27;);</span><br><span class="line">//var img2=new Image();</span><br><span class="line">//img2.src=&#x27;https://developer.mozilla.org/samples/canvas-tutorial/images/rhino.jpg&#x27;;</span><br><span class="line">//con4_2.drawImage(document.getElementById(&#x27;source&#x27;),33,71,104,124);</span><br><span class="line">//con4_2.drawImage(document.getElementById(&#x27;source&#x27;),0,0,20,100,0,90,120,124);</span><br><span class="line">var con5=c.getContext(&#x27;2d&#x27;);  //二次，三次贝赛尔曲线</span><br><span class="line">con5.moveTo(200,0)  //起点</span><br><span class="line">con5.quadraticCurveTo(20, 20, 200, 200);  //（1个）控制点，终点</span><br><span class="line">con5.stroke();</span><br><span class="line">con5.moveTo(200,100)  //起点</span><br><span class="line">con5.bezierCurveTo(250, 250, 350, 350, 220, 220); //（2个）控制点，终点</span><br><span class="line">con5.stroke();</span><br><span class="line">var con6=c.getContext(&#x27;2d&#x27;);  //文字阴影</span><br><span class="line">con6.shadowOffsetX=2;</span><br><span class="line">con6.shadowOffsetY=2;</span><br><span class="line">con6.shadowBlur=2;</span><br><span class="line">con6.shadowColor=&#x27;rgba(0,0,0,0.5)&#x27;;</span><br><span class="line">con6.font=&#x27;20px Times New Roman&#x27;;</span><br><span class="line">con6.fillStyle=&#x27;black&#x27;;</span><br><span class="line">con6.fillText(&#x27;hello HTML5&#x27;,0,300);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>canvas_DEF</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&#x27;1000&#x27; height=&quot;600&quot; style=&quot;border:1px solid #c3c3c3;&quot;&gt;ie（有ie9求测试）用户请绕行&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">var con1=c.getContext(&#x27;2d&#x27;);   //-----用于保存一些状态属性。</span><br><span class="line">  con1.fillRect(0,0,40,40);</span><br><span class="line">  con1.save();</span><br><span class="line">  con1.fillStyle = &#x27;blue&#x27;</span><br><span class="line">  con1.globalAlpha = 0.1;</span><br><span class="line">  con1.translate(50,0);  //【平移】圆点位置（位置1）</span><br><span class="line">  con1.fillRect(0,0,40,40);</span><br><span class="line">  con1.save();            //注意：圆点位置状态也会被保存</span><br><span class="line">  con1.fillStyle = &#x27;red&#x27;</span><br><span class="line">  con1.globalAlpha = 1;</span><br><span class="line">  con1.translate(50,0);</span><br><span class="line">  con1.fillRect(0,0,40,40);</span><br><span class="line">  con1.restore();   //恢复到位置1状态</span><br><span class="line">  con1.translate(100,0); //从位置1开始移动100</span><br><span class="line">  con1.fillRect(0,0,40,40);</span><br><span class="line">  con1.restore();</span><br><span class="line">  con1.save();</span><br><span class="line">  con1.translate(200,0);</span><br><span class="line">  con1.rotate(Math.PI*2/6);  //以圆点（200，0）为中心，【旋转】六分之一个角度</span><br><span class="line">  con1.fillRect(0,0,40,40);</span><br><span class="line">con1.restore();</span><br><span class="line">con1.save();</span><br><span class="line">con1.scale(1,0.25);  //【缩放】</span><br><span class="line">con1.translate(250,0);</span><br><span class="line">con1.fillRect(0,0,40,40);</span><br><span class="line">con1.restore();</span><br><span class="line">~function draw() &#123;  //【变形】示例：http://www.html5.jp/blog/contents/HTML5-Tech-Talk-201001/transform-jquery.html</span><br><span class="line">  con1.translate(200, 200);</span><br><span class="line">  var sin = Math.sin(Math.PI/6);</span><br><span class="line">  var cos = Math.cos(Math.PI/6);</span><br><span class="line">  for (var i=0; i &lt;= 12; i++) &#123;</span><br><span class="line">    con1.fillRect(0, 0, 100, 10);</span><br><span class="line">    con1.transform(cos, sin, -sin, cos, 0, 0);  // (m11, m12, m21, m22, dx, dy) 水平缩放，垂直斜切，水平斜切，垂直缩放，水平平移，垂直平移。</span><br><span class="line">  &#125;</span><br><span class="line">  con1.setTransform(1,0.5 , 0, 1,0, 0);  //set重置后设置。</span><br><span class="line">  con1.fillRect(300,300, 100, 100);</span><br><span class="line">&#125;()</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>canvas_HIJ</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&#x27;350&#x27; height=&quot;300&quot; style=&quot;border:1px solid #c3c3c3;&quot;&gt;ie（有ie9求测试）用户请绕行&lt;/canvas&gt;</span><br><span class="line">&lt;canvas id=&quot;myCanvas2&quot; width=&#x27;350&#x27; height=&quot;300&quot; style=&quot;border:1px solid #c3c3c3;&quot;&gt;ie（有ie9求测试）用户请绕行&lt;/canvas&gt;</span><br><span class="line">&lt;br /&gt;</span><br><span class="line">&lt;select id=&#x27;types&#x27; onchange=&#x27;comp();&#x27;&gt;</span><br><span class="line">	&lt;option value=&#x27;source-over&#x27; selected&gt;source-over&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;source-in&#x27;&gt;source-in&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;source-out&#x27;&gt;source-out&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;source-atop&#x27;&gt;source-atop&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;destination-over&#x27;&gt;destination-over&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;destination-in&#x27;&gt;destination-in&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;destination-out&#x27;&gt;destination-out&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;destination-atop&#x27;&gt;destination-atop&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;lighter&#x27;&gt;lighter&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;darker&#x27;&gt;darker&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;copy&#x27;&gt;copy&lt;/option&gt;</span><br><span class="line">	&lt;option value=&#x27;xor&#x27;&gt;xor&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">//组合</span><br><span class="line">var con1=$id(&quot;myCanvas&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">function comp()&#123;</span><br><span class="line">	con1.save();</span><br><span class="line">	con1.clearRect(0,0,200,300);</span><br><span class="line">    con1.fillStyle = &quot;#09f&quot;;</span><br><span class="line">    con1.fillRect(15,15,70,70);</span><br><span class="line">    con1.globalCompositeOperation =$id(&#x27;types&#x27;).value; //对所以绘制的图形均起作用。</span><br><span class="line">    con1.fillStyle = &quot;#f30&quot;;</span><br><span class="line">    con1.beginPath();</span><br><span class="line">    con1.arc(75,75,35,0,Math.PI*2,true);</span><br><span class="line">    con1.fill();</span><br><span class="line">	con1.restore();</span><br><span class="line">	con1.font=&#x27;20px Times New Roman&#x27;;</span><br><span class="line">	con1.fillText($id(&#x27;types&#x27;).value,0,200)</span><br><span class="line">&#125;</span><br><span class="line">comp();</span><br><span class="line">//clip</span><br><span class="line">var con2=$id(&quot;myCanvas2&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">function draw() &#123;</span><br><span class="line">  con2.save();</span><br><span class="line">  con2.translate(100,100);</span><br><span class="line">  con2.fillRect(0,0,150,150);</span><br><span class="line">  con2.translate(75,75);</span><br><span class="line">  con2.beginPath();</span><br><span class="line">  con2.arc(0,0,60,0,Math.PI*2,true);</span><br><span class="line">  con2.clip();</span><br><span class="line">  con2.fillStyle = &#x27;#143778&#x27;;</span><br><span class="line">  con2.fillRect(-75,-75,150,150);</span><br><span class="line">  for (j=1;j&lt;50;j++)&#123;</span><br><span class="line">    con2.save();</span><br><span class="line">    con2.fillStyle = &#x27;#fff&#x27;;</span><br><span class="line">    con2.translate(75-Math.floor(Math.random()*150),75-Math.floor(Math.random()*150));</span><br><span class="line">	drawStar(con2,Math.floor(Math.random()*4)+2);</span><br><span class="line">    con2.restore();</span><br><span class="line">  &#125;</span><br><span class="line">  con2.restore();</span><br><span class="line">&#125;</span><br><span class="line">draw();</span><br><span class="line">function drawStar(con2,r)&#123;  //五角星的画法</span><br><span class="line">  con2.save();</span><br><span class="line">  con2.beginPath()</span><br><span class="line">  con2.moveTo(r,0);</span><br><span class="line">  for (i=0;i&lt;9;i++)&#123;</span><br><span class="line">    con2.rotate(Math.PI/5);</span><br><span class="line">    if(i%2 == 0) &#123;</span><br><span class="line">      con2.lineTo((r/0.525731)*0.200811,0);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      con2.lineTo(r,0);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  con2.closePath();</span><br><span class="line">  con2.fill();</span><br><span class="line">  con2.restore();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94Photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>贝塞尔曲线的可视化操作实现——Photoshop钢笔工具的初级模拟</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEDemo/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      canvas鼠标绘图Demo
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>
