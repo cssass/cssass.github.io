@@ -130,23 +130,320 @@ runcode.copy=function(element)
 <p>人们总是喜欢用这样一个类比:想象生活在三维空间中的一张二维平面画中的扁片人,不管这幅画多么丰富多彩,其中的二维人只能看到周围世界的侧面,在他们眼中,周围的人和事物都是一些长短不一的线段而已。只有当一个二维扁片人从画中飘出来,进人三维空间,再回头看那幅画,才能看到画的全貌。<br>这个类比,其实也只是进一步描述了四维感觉的不可描述。</p>
 <p>关于《三体——死神永生》里四维空间（不算时间维）的讨论，这里还有篇有意思的博文：四维世界的堵车问题</p>
 <p>好了，言归正传。<br>下面提供一个三维到二维的投影算法（from <a href="http://www.benjoffe.com）：">www.benjoffe.com）：</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(x,y,z)&#123;</span><br><span class="line">var dist = Math.sqrt(x*x+y*y);</span><br><span class="line">var angle = (x==0 &amp;&amp; y==0) ? 0 : Math.atan(y/x) + theta + ((x&lt;0)? Math.PI : 0);</span><br><span class="line"></span><br><span class="line">x=Math.cos(angle)*dist;</span><br><span class="line">y=-Math.sin(angle)*dist;</span><br><span class="line">var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(eleva) - z*Math.cos(eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line"></span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_0873e429-012d-4df8-ad9d-00df110e293a">var theta = 4.2; //转角
+var eleva = 0.6; //仰角
+function iso(x,y,z){
+var dist = Math.sqrt(x*x+y*y);
+var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
+
+x=Math.cos(angle)*dist;
+y=-Math.sin(angle)*dist;
+var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
+y=y*Math.sin(eleva) - z*Math.cos(eleva);
+x*=fact;
+y*=fact;
+
+return {
+x: x,
+y: y
+};
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0873e429-012d-4df8-ad9d-00df110e293a');" />
 
 <p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
 <p>我们应用一下：下面是一个3D球</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;2D canvas API下的3D效果&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body&#123;background:#cbe846;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body title=&#x27;拖到鼠标&#x27;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&quot;800&quot; height=&quot;800&quot;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：本例使用HTML5的canvas标签。ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; &gt;</span><br><span class="line">	function g(e)&#123;</span><br><span class="line">		return document.getElementById(e);</span><br><span class="line">	&#125;</span><br><span class="line">	/* 一个插值算法(无关紧要) */</span><br><span class="line">	function Cubic(t,b,c,d)&#123;</span><br><span class="line">		return c*(t/=d)*t*t + b;</span><br><span class="line">	&#125;</span><br><span class="line">	var ctx = g(&#x27;pad&#x27;).getContext(&#x27;2d&#x27;);</span><br><span class="line">		ctx.scale(100,100);</span><br><span class="line">		ctx.translate(3,3);</span><br><span class="line">	var theta = 4.2; //转角</span><br><span class="line">	var eleva = 0.6; //仰角</span><br><span class="line">	/* 投影算法（from: www.benjoffe.com） */</span><br><span class="line">	function iso(x,y,z)&#123;</span><br><span class="line">		var dist = Math.sqrt(x*x+y*y);</span><br><span class="line">		var angle = (x==0 &amp;&amp; y==0) ? 0 : Math.atan(y/x) + theta + ((x&lt;0)? Math.PI : 0);</span><br><span class="line">		x=Math.cos(angle)*dist;</span><br><span class="line">		y=-Math.sin(angle)*dist;</span><br><span class="line">		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;</span><br><span class="line">		y=y*Math.sin(eleva) - z*Math.cos(eleva);</span><br><span class="line">		x*=fact;</span><br><span class="line">		y*=fact;</span><br><span class="line">		return &#123;</span><br><span class="line">			x: x,</span><br><span class="line">			y: y</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	/* 球方程 x^2+y^2+z^2=r^2 */</span><br><span class="line">	function sphere(r)&#123;</span><br><span class="line">		var x,y,z;</span><br><span class="line">		var t;</span><br><span class="line">		z=-r;</span><br><span class="line">		while(z&lt;r)&#123;</span><br><span class="line">			x=-Math.sqrt(r*r-z*z);</span><br><span class="line">			y=0;</span><br><span class="line">			t=1;</span><br><span class="line">			co = iso(x,y,z); ctx.moveTo(co.x, co.y);</span><br><span class="line">			while(true)&#123;</span><br><span class="line">				y=Math.sqrt((r*r-x*x-z*z))*t;</span><br><span class="line">				if(isNaN(y))&#123;  /* 此时，x值为极值,y的绝对值已经不能再小 */</span><br><span class="line">					if(t==1) &#123;t=-t; x=Math.sqrt(r*r-z*z); continue;&#125; /* x值达到最大 */</span><br><span class="line">					else break;</span><br><span class="line">				&#125;;</span><br><span class="line">				co = iso(x,y,z); ctx.lineTo(co.x, co.y);</span><br><span class="line">				x+=0.1*t;</span><br><span class="line">			&#125;</span><br><span class="line">			ctx.closePath();</span><br><span class="line">			z=Cubic(1,z,2*r,4); //应用插值算法（分布均匀些）</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	function preview()&#123;</span><br><span class="line">		ctx.clearRect(-3,-3,10,10);</span><br><span class="line">		ctx.lineWidth=0.001;</span><br><span class="line">		ctx.lineJoin = &quot;round&quot;;</span><br><span class="line">		ctx.strokeStyle = &#x27;rgba(0,0,100,0.8)&#x27;;</span><br><span class="line">		var co;</span><br><span class="line">		ctx.beginPath();</span><br><span class="line">		sphere(2);</span><br><span class="line">		ctx.stroke();</span><br><span class="line">	&#125;</span><br><span class="line">	preview();</span><br><span class="line">	/* 鼠标控制 */</span><br><span class="line">	g(&#x27;pad&#x27;).onmousedown=function(e)&#123;</span><br><span class="line">		var x0 = e.clientX, y0 = e.clientY;</span><br><span class="line">		document.onmousemove=function(e)&#123;</span><br><span class="line">				theta -= (x0 - (x0=e.clientX))/100;</span><br><span class="line">				eleva -= (y0 - (y0=e.clientY))/100;</span><br><span class="line">				theta%=Math.PI*2; if (theta&lt;0) theta+=Math.PI*2;</span><br><span class="line">				eleva%=Math.PI*2; if (eleva&lt;0) eleva+=Math.PI*2;</span><br><span class="line">				preview();</span><br><span class="line">		&#125;</span><br><span class="line">		document.onmouseup=function(e)&#123;</span><br><span class="line">			document.onmousemove=null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_56934cff-127a-45d1-995a-f922b15cde52"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>2D canvas API下的3D效果</title>
+<style>
+body{background:#cbe846;}
+</style>
+</head>
+<body title='拖到鼠标'>
+<canvas id="pad" width="800" height="800"><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	/* 一个插值算法(无关紧要) */
+	function Cubic(t,b,c,d){
+		return c*(t/=d)*t*t + b;
+	}
+	var ctx = g('pad').getContext('2d');
+		ctx.scale(100,100);
+		ctx.translate(3,3);
+	var theta = 4.2; //转角
+	var eleva = 0.6; //仰角
+	/* 投影算法（from: www.benjoffe.com） */
+	function iso(x,y,z){
+		var dist = Math.sqrt(x*x+y*y);
+		var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
+		x=Math.cos(angle)*dist;
+		y=-Math.sin(angle)*dist;
+		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
+		y=y*Math.sin(eleva) - z*Math.cos(eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	/* 球方程 x^2+y^2+z^2=r^2 */
+	function sphere(r){
+		var x,y,z;
+		var t;
+		z=-r;
+		while(z<r){
+			x=-Math.sqrt(r*r-z*z);
+			y=0;
+			t=1;
+			co = iso(x,y,z); ctx.moveTo(co.x, co.y);
+			while(true){
+				y=Math.sqrt((r*r-x*x-z*z))*t;
+				if(isNaN(y)){  /* 此时，x值为极值,y的绝对值已经不能再小 */
+					if(t==1) {t=-t; x=Math.sqrt(r*r-z*z); continue;} /* x值达到最大 */
+					else break;
+				};
+				co = iso(x,y,z); ctx.lineTo(co.x, co.y);
+				x+=0.1*t;
+			}
+			ctx.closePath();
+			z=Cubic(1,z,2*r,4); //应用插值算法（分布均匀些）
+		}
+	}
+	function preview(){
+		ctx.clearRect(-3,-3,10,10);
+		ctx.lineWidth=0.001;
+		ctx.lineJoin = "round";
+		ctx.strokeStyle = 'rgba(0,0,100,0.8)';
+		var co;
+		ctx.beginPath();
+		sphere(2);
+		ctx.stroke();
+	}
+	preview();
+	/* 鼠标控制 */
+	g('pad').onmousedown=function(e){
+		var x0 = e.clientX, y0 = e.clientY;
+		document.onmousemove=function(e){
+				theta -= (x0 - (x0=e.clientX))/100;
+				eleva -= (y0 - (y0=e.clientY))/100;
+				theta%=Math.PI*2; if (theta<0) theta+=Math.PI*2;
+				eleva%=Math.PI*2; if (eleva<0) eleva+=Math.PI*2;
+				preview();
+		}
+		document.onmouseup=function(e){
+			document.onmousemove=null;
+		}
+	};
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_56934cff-127a-45d1-995a-f922b15cde52');" />
 
 <p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
 <p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;3D LOVE in canvas&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body&#123;background:#efd5e2;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body  title=&#x27;拖到鼠标&#x27;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&quot;800&quot; height=&quot;800&quot; &gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; &gt;</span><br><span class="line">	function g(e)&#123;</span><br><span class="line">		return document.getElementById(e);</span><br><span class="line">	&#125;</span><br><span class="line">	var theta = -0.4; //转角</span><br><span class="line">	var eleva = -0.1; //仰角</span><br><span class="line">	var pad = g(&#x27;pad&#x27;);</span><br><span class="line">	var ctx = pad.getContext(&#x27;2d&#x27;);</span><br><span class="line">		ctx.translate(200,200);</span><br><span class="line">		ctx.scale(82,82);</span><br><span class="line">	/* 将三维投射到二维（三维直角坐标系转平面直角坐标系） */</span><br><span class="line">	function iso(x,y,z)&#123;</span><br><span class="line">		var dist = Math.sqrt(x*x+y*y);</span><br><span class="line">		var angle = (x==0 &amp;&amp; y==0) ? 0 : Math.atan(y/x) + theta + ((x&lt;0)? Math.PI : 0);</span><br><span class="line">		x=Math.cos(angle)*dist;</span><br><span class="line">		y=-Math.sin(angle)*dist;</span><br><span class="line">		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;</span><br><span class="line">		y=y*Math.sin(eleva) - z*Math.cos(eleva);</span><br><span class="line">		x*=fact;</span><br><span class="line">		y*=fact;</span><br><span class="line">		return &#123;</span><br><span class="line">			x: x,</span><br><span class="line">			y: y</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	/* 方程式: (x^2 + (9/4)y^2 + z^2 - 1)^3 - x^2*z^3 - (9/80)y^2*z^3 &lt; 0 */</span><br><span class="line">	function love()&#123;</span><br><span class="line">		var x,y,z,m,t=3;</span><br><span class="line">		for(z=-3;z&lt;=3;)&#123;</span><br><span class="line">			for(y=-3;y&lt;=3;)&#123;</span><br><span class="line">				for(x=-3;x&lt;=3;)&#123;</span><br><span class="line">					m=(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1) - x*x*z*z*z - (9/80)*y*y*z*z*z;</span><br><span class="line">					if(m&lt;0)&#123;</span><br><span class="line">						co = iso(x,y,z);</span><br><span class="line">						ctx.strokeRect(co.x, co.y,0.02,0.02);</span><br><span class="line">						ctx.closePath();</span><br><span class="line">					&#125;</span><br><span class="line">					x+=0.11;</span><br><span class="line">				&#125;</span><br><span class="line">				y+=0.11;</span><br><span class="line">			&#125;</span><br><span class="line">			z+=0.11;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	function preview()&#123;</span><br><span class="line">		ctx.clearRect(-10,-10,20,20);</span><br><span class="line">		ctx.lineWidth=0.008;</span><br><span class="line">		ctx.lineJoin = &quot;round&quot;;</span><br><span class="line">		ctx.strokeStyle = &#x27;rgba(150,0,100,0.3)&#x27;;</span><br><span class="line">		var co;</span><br><span class="line">		ctx.beginPath();</span><br><span class="line">		love();</span><br><span class="line">		ctx.stroke();</span><br><span class="line">	&#125;;</span><br><span class="line">	preview();</span><br><span class="line">	/* 鼠标拖动控制 */</span><br><span class="line">	pad.onmousedown=function(e)&#123;</span><br><span class="line">		var x0 = e.clientX, y0 = e.clientY;</span><br><span class="line">		document.onmousemove=function(e)&#123;</span><br><span class="line">				theta -= (x0 - (x0=e.clientX))/100;</span><br><span class="line">				eleva -= (y0 - (y0=e.clientY))/100;</span><br><span class="line">				theta%=Math.PI*2; if (theta&lt;0) theta+=Math.PI*2;</span><br><span class="line">				eleva%=Math.PI*2; if (eleva&lt;0) eleva+=Math.PI*2;</span><br><span class="line">				preview();</span><br><span class="line">		&#125;</span><br><span class="line">		document.onmouseup=function(e)&#123;</span><br><span class="line">			document.onmousemove=null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_4eb7142f-a18d-4011-99e4-178a39225b93"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>3D LOVE in canvas</title>
+<style>
+body{background:#efd5e2;}
+</style>
+</head>
+<body  title='拖到鼠标'>
+<canvas id="pad" width="800" height="800" ><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	var theta = -0.4; //转角
+	var eleva = -0.1; //仰角
+	var pad = g('pad');
+	var ctx = pad.getContext('2d');
+		ctx.translate(200,200);
+		ctx.scale(82,82);
+	/* 将三维投射到二维（三维直角坐标系转平面直角坐标系） */
+	function iso(x,y,z){
+		var dist = Math.sqrt(x*x+y*y);
+		var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
+		x=Math.cos(angle)*dist;
+		y=-Math.sin(angle)*dist;
+		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
+		y=y*Math.sin(eleva) - z*Math.cos(eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	/* 方程式: (x^2 + (9/4)y^2 + z^2 - 1)^3 - x^2*z^3 - (9/80)y^2*z^3 < 0 */
+	function love(){
+		var x,y,z,m,t=3;
+		for(z=-3;z<=3;){
+			for(y=-3;y<=3;){
+				for(x=-3;x<=3;){
+					m=(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1) - x*x*z*z*z - (9/80)*y*y*z*z*z;
+					if(m<0){
+						co = iso(x,y,z);
+						ctx.strokeRect(co.x, co.y,0.02,0.02);
+						ctx.closePath();
+					}
+					x+=0.11;
+				}
+				y+=0.11;
+			}
+			z+=0.11;
+		}
+	}
+	function preview(){
+		ctx.clearRect(-10,-10,20,20);
+		ctx.lineWidth=0.008;
+		ctx.lineJoin = "round";
+		ctx.strokeStyle = 'rgba(150,0,100,0.3)';
+		var co;
+		ctx.beginPath();
+		love();
+		ctx.stroke();
+	};
+	preview();
+	/* 鼠标拖动控制 */
+	pad.onmousedown=function(e){
+		var x0 = e.clientX, y0 = e.clientY;
+		document.onmousemove=function(e){
+				theta -= (x0 - (x0=e.clientX))/100;
+				eleva -= (y0 - (y0=e.clientY))/100;
+				theta%=Math.PI*2; if (theta<0) theta+=Math.PI*2;
+				eleva%=Math.PI*2; if (eleva<0) eleva+=Math.PI*2;
+				preview();
+		}
+		document.onmouseup=function(e){
+			document.onmousemove=null;
+		}
+	}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4eb7142f-a18d-4011-99e4-178a39225b93');" />
 
 <p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
 <p>x&#x3D;rsinθcosφ 　<br>y&#x3D;rsinθsinφ 　　<br>z&#x3D;rcosθ</p>
 <p>呃哦，代入iso函数后我们发现iso变的更简单了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(a,b,r)&#123;</span><br><span class="line">var x,y,z</span><br><span class="line">x=r*Math.cos(a+this.theta)*Math.sin(b);</span><br><span class="line">y=r*Math.sin(a+this.theta)*Math.sin(b);</span><br><span class="line">z=r*Math.cos(b);</span><br><span class="line"></span><br><span class="line">var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_f7a8b4e3-9ed2-4fcd-b8bd-3dcd50a6388b">var theta = 4.2; //转角
+var eleva = 0.6; //仰角
+function iso(a,b,r){
+var x,y,z
+x=r*Math.cos(a+this.theta)*Math.sin(b);
+y=r*Math.sin(a+this.theta)*Math.sin(b);
+z=r*Math.cos(b);
+
+var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;
+y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);
+x*=fact;
+y*=fact;
+return {
+x: x,
+y: y
+};
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f7a8b4e3-9ed2-4fcd-b8bd-3dcd50a6388b');" />
 
 <p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;球坐标系投影到二维直角坐标系&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	body&#123;background:#666;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&quot;800&quot; height=&quot;800&quot;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; &gt;</span><br><span class="line">	function g(e)&#123;</span><br><span class="line">		return document.getElementById(e);</span><br><span class="line">	&#125;</span><br><span class="line">	var random=function()&#123;</span><br><span class="line">		return (Math.random()*10&gt;&gt;0)/10;</span><br><span class="line">	&#125;</span><br><span class="line">	var ctx = g(&#x27;pad&#x27;).getContext(&#x27;2d&#x27;);</span><br><span class="line">		ctx.scale(100,100);</span><br><span class="line">		ctx.lineWidth=0.002;</span><br><span class="line">		ctx.lineJoin = &quot;round&quot;;</span><br><span class="line">	var Ball=function(x,y,r)&#123;</span><br><span class="line">		this.theta = 0; //球坐标转角</span><br><span class="line">		this.eleva = 0; //球坐标仰角</span><br><span class="line">		this.radius= r || 1; //球坐标半径</span><br><span class="line">		this.pos=&#123; //球坐标原点</span><br><span class="line">			x:x || 2,</span><br><span class="line">			y:y || 2</span><br><span class="line">		&#125;;</span><br><span class="line">		this.co=&#123; //二维上的投影坐标</span><br><span class="line">			x:0,</span><br><span class="line">			y:0</span><br><span class="line">		&#125;;</span><br><span class="line">		this.col=&#123; //颜色</span><br><span class="line">			r:255,</span><br><span class="line">			g:255,</span><br><span class="line">			b:255,</span><br><span class="line">			a:0.6</span><br><span class="line">		&#125;;</span><br><span class="line">		this.init=function()&#123;</span><br><span class="line">			ctx.translate(this.pos.x,this.pos.y);</span><br><span class="line">			this.preview();</span><br><span class="line">		&#125;;</span><br><span class="line">		this.init();</span><br><span class="line">	&#125;;</span><br><span class="line">	/* 球坐标系转平面直角坐标系 */</span><br><span class="line">	Ball.prototype.iso=function(a,b,r)&#123;</span><br><span class="line">		var x,y,z</span><br><span class="line">		x=r*Math.cos(a+this.theta)*Math.sin(b);</span><br><span class="line">		y=r*Math.sin(a+this.theta)*Math.sin(b);</span><br><span class="line">		z=r*Math.cos(b);</span><br><span class="line">		var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;</span><br><span class="line">		y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);</span><br><span class="line">		x*=fact;</span><br><span class="line">		y*=fact;</span><br><span class="line">		return &#123;</span><br><span class="line">			x: x,</span><br><span class="line">			y: y</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	Ball.prototype.preview=function()&#123;</span><br><span class="line">		ctx.strokeStyle = &#x27;rgba(&#x27;+this.col.r+&#x27;,&#x27;+this.col.g+&#x27;,&#x27;+this.col.b+&#x27;,&#x27;+this.col.a+&#x27;)&#x27;;</span><br><span class="line">		ctx.clearRect(-2,-2,4,4);</span><br><span class="line">		ctx.beginPath();</span><br><span class="line">		this.sphere();</span><br><span class="line">		ctx.stroke();</span><br><span class="line">	&#125;</span><br><span class="line">	Ball.prototype.sphere=function()&#123;</span><br><span class="line">		var a,b;</span><br><span class="line">		for(a=0; a&lt;2*Math.PI; a+=Math.PI/12)&#123;</span><br><span class="line">			for(b=0; b&lt;2*Math.PI; b+=Math.PI/12)&#123;</span><br><span class="line">				if(b ==0 || b*100&gt;&gt;0 == Math.PI*100&gt;&gt;0 || b*100&gt;&gt;0 == 2*Math.PI*100&gt;&gt;0)  continue; /* 排除一些仰角(接近)为0/PI/2PI的点.  */</span><br><span class="line">				this.co = this.iso(0,0,0);</span><br><span class="line">				ctx.moveTo(this.co.x, this.co.y);</span><br><span class="line">				this.co = this.iso(a,b,this.radius);</span><br><span class="line">				ctx.lineTo(this.co.x, this.co.y);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	Ball.prototype.fluc=function()&#123;</span><br><span class="line">		var that=this;</span><br><span class="line">		setInterval(function()&#123;</span><br><span class="line">			that.theta+=random()/20;</span><br><span class="line">			that.eleva+=random()/20;</span><br><span class="line">			that.radius+=(random()/10-0.05);</span><br><span class="line">			if(that.radius&lt;0.5 || that.radius&gt;2) that.radius=1;</span><br><span class="line">			that.preview();</span><br><span class="line">		&#125;,100)</span><br><span class="line">	&#125;;</span><br><span class="line">	new Ball(2,2,1).fluc();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_2c18680d-cdd6-4a79-a7c9-60a07cdcd1b4"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>球坐标系投影到二维直角坐标系</title>
+<style>
+	body{background:#666;}
+</style>
+</head>
+<body>
+<canvas id="pad" width="800" height="800"><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	var random=function(){
+		return (Math.random()*10>>0)/10;
+	}
+	var ctx = g('pad').getContext('2d');
+		ctx.scale(100,100);
+		ctx.lineWidth=0.002;
+		ctx.lineJoin = "round";
+	var Ball=function(x,y,r){
+		this.theta = 0; //球坐标转角
+		this.eleva = 0; //球坐标仰角
+		this.radius= r || 1; //球坐标半径
+		this.pos={ //球坐标原点
+			x:x || 2,
+			y:y || 2
+		};
+		this.co={ //二维上的投影坐标
+			x:0,
+			y:0
+		};
+		this.col={ //颜色
+			r:255,
+			g:255,
+			b:255,
+			a:0.6
+		};
+		this.init=function(){
+			ctx.translate(this.pos.x,this.pos.y);
+			this.preview();
+		};
+		this.init();
+	};
+	/* 球坐标系转平面直角坐标系 */
+	Ball.prototype.iso=function(a,b,r){
+		var x,y,z
+		x=r*Math.cos(a+this.theta)*Math.sin(b);
+		y=r*Math.sin(a+this.theta)*Math.sin(b);
+		z=r*Math.cos(b);
+		var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;
+		y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	Ball.prototype.preview=function(){
+		ctx.strokeStyle = 'rgba('+this.col.r+','+this.col.g+','+this.col.b+','+this.col.a+')';
+		ctx.clearRect(-2,-2,4,4);
+		ctx.beginPath();
+		this.sphere();
+		ctx.stroke();
+	}
+	Ball.prototype.sphere=function(){
+		var a,b;
+		for(a=0; a<2*Math.PI; a+=Math.PI/12){
+			for(b=0; b<2*Math.PI; b+=Math.PI/12){
+				if(b ==0 || b*100>>0 == Math.PI*100>>0 || b*100>>0 == 2*Math.PI*100>>0)  continue; /* 排除一些仰角(接近)为0/PI/2PI的点.  */
+				this.co = this.iso(0,0,0);
+				ctx.moveTo(this.co.x, this.co.y);
+				this.co = this.iso(a,b,this.radius);
+				ctx.lineTo(this.co.x, this.co.y);
+			}
+		}
+	}
+	Ball.prototype.fluc=function(){
+		var that=this;
+		setInterval(function(){
+			that.theta+=random()/20;
+			that.eleva+=random()/20;
+			that.radius+=(random()/10-0.05);
+			if(that.radius<0.5 || that.radius>2) that.radius=1;
+			that.preview();
+		},100)
+	};
+	new Ball(2,2,1).fluc();
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2c18680d-cdd6-4a79-a7c9-60a07cdcd1b4');" />
 
 
 

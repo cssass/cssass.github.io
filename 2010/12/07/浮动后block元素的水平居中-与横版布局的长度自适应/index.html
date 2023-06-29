@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/DOM/" class="post-tag">#DOM</a>
+  
 
 
           <span class="post-date">2010-12-07</span>
@@ -125,12 +127,118 @@ runcode.copy=function(element)
         
         <p>今天介绍两个小技巧，与float，margin负值有关。</p>
 <p>众所周知：<br>inline元素的水平居中可以用text-align:center;<br>block元素的水平居中可以用margin:0 auto; (设置宽度后，方显效果)。<br>block元素设置float:left;后，如果幸运，我们知道其确定的宽度值，则可以用left:50%;margin-left:-width&#x2F;2;来实现。<br>那么，当我们不确定知道block具体要达到的宽度时，该如何办呢？<br>这种情况，常见于菜单栏居中，而因为某些原因，各个菜单项的宽度很难去确定，造成菜单栏宽度的不确定。<br>当然，我们也可以使用inline元素来嵌套菜单项（即使菜单项是block元素，也未尝不可），父级使用text-align:center;来居中。<br>而下面的方法也不错，值得吸收的小技巧。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;block元素浮动后的自适应水平居中&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;</span><br><span class="line">	margin:0;</span><br><span class="line">	padding:0;</span><br><span class="line">	list-style:none;</span><br><span class="line">&#125;</span><br><span class="line">.header&#123;overflow:hidden;&#125;</span><br><span class="line">.nav&#123;</span><br><span class="line">	float:left;</span><br><span class="line">	position:relative;</span><br><span class="line">	left:50%;</span><br><span class="line">&#125;</span><br><span class="line">.menu&#123;</span><br><span class="line">	float:left;</span><br><span class="line">    position:relative;</span><br><span class="line">	right:50%;</span><br><span class="line">	background: #ccc;</span><br><span class="line">&#125;</span><br><span class="line">.menu li&#123;</span><br><span class="line">	float:left;</span><br><span class="line">	padding:5px 20px;</span><br><span class="line">	border:1px solid #aaa;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;header&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;nav&quot;&gt;</span><br><span class="line">		&lt;ul class=&quot;menu&quot;&gt;</span><br><span class="line">			&lt;li&gt;1&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;2&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;3&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;4&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;5&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;6&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;7&lt;/li&gt;</span><br><span class="line">			&lt;li&gt;8&lt;/li&gt;</span><br><span class="line">		&lt;/ul&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_f4d9c052-1e18-4a27-b2ad-924cb8f9fd90"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>block元素浮动后的自适应水平居中</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.header{overflow:hidden;}
+.nav{
+	float:left;
+	position:relative;
+	left:50%;
+}
+.menu{
+	float:left;
+    position:relative;
+	right:50%;
+	background: #ccc;
+}
+.menu li{
+	float:left;
+	padding:5px 20px;
+	border:1px solid #aaa;
+}
+</style>
+</head>
+<body>
+<div class="header">
+	<div class="nav">
+		<ul class="menu">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f4d9c052-1e18-4a27-b2ad-924cb8f9fd90');" />
 <p>下面介绍第二个简单的技巧。<br>它应用于横版布局的宽度自适应，因为我们同样不知道横版最终达到的宽度是多少。<br>尽管这种布局很少见，但里面的技巧其实用处很广。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;横版布局的长度自适应&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;</span><br><span class="line">	margin:0;</span><br><span class="line">	padding:0;</span><br><span class="line">	list-style:none;</span><br><span class="line">&#125;</span><br><span class="line">.menu&#123;</span><br><span class="line">	float:left;</span><br><span class="line">    margin-right:-30000px;</span><br><span class="line">&#125;</span><br><span class="line">.menu li&#123;</span><br><span class="line">	float:left;</span><br><span class="line">	width:200px;border:1px solid #ccc;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul class=&quot;menu&quot;&gt;</span><br><span class="line">	&lt;li&gt;1&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;2&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;3&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;4&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;5&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;6&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;7&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;8&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;1&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;2&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;3&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;4&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;5&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;6&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;7&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;8&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_6e8c6c86-ff4e-4f74-b690-ccdae278cf97"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>横版布局的长度自适应</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.menu{
+	float:left;
+    margin-right:-30000px;
+}
+.menu li{
+	float:left;
+	width:200px;border:1px solid #ccc;
+}
+</style>
+</head>
+<body>
+<ul class="menu">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+</ul>
+</body>
+</html>
+</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6e8c6c86-ff4e-4f74-b690-ccdae278cf97');" />
 <p>里面的技巧其实就是个margin负值。<br>应用margin负值来完成预定的布局，往往有“柳暗花明”的效果。</p>
 <p>&#x2F;************** 额外奉送第三个小技巧 **************&#x2F;<br>文本单行居中，多行居左的效果。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;单行居中，多行居左&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.box&#123;width:350px;border:1px solid #ccc;margin:50px;text-align:center;&#125;</span><br><span class="line">.box span&#123;display:inline-block;text-align:left;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">&lt;span&gt;让我们荡起双桨&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">&lt;span&gt;让我们荡起双桨,小船儿推开波浪,海面倒映着美丽的白塔,四周环绕着绿树红墙~&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_85d90791-63b7-4dba-9a40-260261000fa6"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>单行居中，多行居左</title>
+<style>
+.box{width:350px;border:1px solid #ccc;margin:50px;text-align:center;}
+.box span{display:inline-block;text-align:left;}
+</style>
+</head>
+<body>
+<div class="box">
+<span>让我们荡起双桨</span>
+</div>
+<div class="box">
+<span>让我们荡起双桨,小船儿推开波浪,海面倒映着美丽的白塔,四周环绕着绿树红墙~</span>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_85d90791-63b7-4dba-9a40-260261000fa6');" />
 
 
       </div>

@@ -107,6 +107,10 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/ajax/" class="post-tag">#ajax</a>
+  
+    <a href="/tags/jsonp/" class="post-tag">#jsonp</a>
+  
 
 
           <span class="post-date">2012-12-03</span>
@@ -126,25 +130,145 @@ runcode.copy=function(element)
         <p>XMLHttpRequest Level 2的功能已经大幅提升了，<br>参见：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html">http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html</a></p>
 <p>我们知道，受到浏览器”同域限制“制约，以前的xhr对象是无法完成跨域请求的，而现在只需在Server端做一个访问控制，Client端再用xhr对象请求就行了，一般情况下Client并不需要设置，当然还有些相关的方法属性可供使用的，比如setRequestHeader，withCredentials。<br>服务端设置参见： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Server-Side_Access_Control">https://developer.mozilla.org/en-US/docs/Server-Side_Access_Control</a></p>
 <p>下面我们简单的做个demo<br>Server端代码(PHP)：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if($_SERVER[&#x27;HTTP_ORIGIN&#x27;] == &quot;http://www.cssass.com&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            header(&#x27;Access-Control-Allow-Origin: http://www.cssass.com&#x27;);</span><br><span class="line">            header(&#x27;Content-Type: text/plain&#x27;);</span><br><span class="line">            if($_SERVER[&#x27;REQUEST_METHOD&#x27;] == &quot;GET&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                $arr = array( </span><br><span class="line">                    &#x27;id&#x27; =&gt; &#x27;1&#x27;,</span><br><span class="line">                    &#x27;name&#x27; =&gt; &#x27;XMLHttpRequest Response&#x27; </span><br><span class="line">                );</span><br><span class="line">                echo json_encode($arr);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_0bce2959-62a5-48d6-bde3-62841981da0d">if($_SERVER['HTTP_ORIGIN'] == "http://www.cssass.com")
+        {
+            header('Access-Control-Allow-Origin: http://www.cssass.com');
+            header('Content-Type: text/plain');
+            if($_SERVER['REQUEST_METHOD'] == "GET")
+            {
+                $arr = array( 
+                    'id' => '1',
+                    'name' => 'XMLHttpRequest Response' 
+                );
+                echo json_encode($arr);
+            };
+        };</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0bce2959-62a5-48d6-bde3-62841981da0d');" />
 <p>http响应头设置参见：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/HTTP_access_control#The_HTTP_response_headers">https://developer.mozilla.org/en-US/docs/HTTP_access_control#The_HTTP_response_headers</a></p>
 <p>Client端代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;XMLHttpRequest 2演示&lt;/title&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_xhr2()&quot;&gt;获取数据!(xhr2)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_xhr2()&#123;</span><br><span class="line">		var xhr = new XMLHttpRequest();</span><br><span class="line">		xhr.open(&#x27;GET&#x27;, &#x27;http://www.hzmilo.com/me.php?r=/xhr2/send&#x27;); //POST也支持</span><br><span class="line">		xhr.onload = function(e) &#123; //绑定onload</span><br><span class="line">		  var data = JSON.parse(this.response); //json解析</span><br><span class="line">		  alert(data.name);</span><br><span class="line">		&#125;</span><br><span class="line">		xhr.send();</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_0122b2da-6f16-4485-8c01-537947a8ec7a"><!doctype html>
+<meta charset="UTF-8" />
+<title>XMLHttpRequest 2演示</title>
+<a href="javascript:;" onclick="get_xhr2()">获取数据!(xhr2)</a>
+<script>
+	function get_xhr2(){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'http://www.hzmilo.com/me.php?r=/xhr2/send'); //POST也支持
+		xhr.onload = function(e) { //绑定onload
+		  var data = JSON.parse(this.response); //json解析
+		  alert(data.name);
+		}
+		xhr.send();
+	};
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0122b2da-6f16-4485-8c01-537947a8ec7a');" />
 <p>正如你所知，ie下是不支持XMLHttpRequest Level 2的，不过ie8引入了自己的跨域对象XDomainRequest。(同时ie8下的xhr对象也引入了 timeou属性t和ontimeout方法）<br>所以我们做下兼容（不支持ie6，ie7）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;XMLHttpRequest 2演示&lt;/title&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_xhr2()&quot;&gt;获取数据!(xhr2)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_xhr2()&#123;</span><br><span class="line">		var xr,xrName;</span><br><span class="line">		if(window.XDomainRequest)&#123;</span><br><span class="line">			xr = new XDomainRequest();</span><br><span class="line">			xrName = &quot;XDomainRequest&quot;;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			xr = new XMLHttpRequest();</span><br><span class="line">			xrName = &quot;XMLHttpRequest&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		xr.open(&#x27;GET&#x27;, &#x27;http://www.hzmilo.com/me.php?r=/xhr2/send/&amp;xr=&#x27;+xrName);</span><br><span class="line">		xr.onload = function(e) &#123;</span><br><span class="line">		  var data = JSON.parse(this.responseText); //json解析</span><br><span class="line">		  alert(data.name);</span><br><span class="line">		&#125;</span><br><span class="line">		xr.send();</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_bb25cc46-4579-41ca-9f9f-1a11a3dc41ee"><!doctype html>
+<meta charset="UTF-8" />
+<title>XMLHttpRequest 2演示</title>
+<a href="javascript:;" onclick="get_xhr2()">获取数据!(xhr2)</a>
+<script>
+	function get_xhr2(){
+		var xr,xrName;
+		if(window.XDomainRequest){
+			xr = new XDomainRequest();
+			xrName = "XDomainRequest";
+		}else{
+			xr = new XMLHttpRequest();
+			xrName = "XMLHttpRequest";
+		}
+		xr.open('GET', 'http://www.hzmilo.com/me.php?r=/xhr2/send/&xr='+xrName);
+		xr.onload = function(e) {
+		  var data = JSON.parse(this.responseText); //json解析
+		  alert(data.name);
+		}
+		xr.send();
+	};
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bb25cc46-4579-41ca-9f9f-1a11a3dc41ee');" />
 <p>接下来，我们来了解下JSONP这种在同域限制的情况下实现跨域请求（GET）的实现过程。<br>原理其实就是：以script标签的形式在页面中放置一个请求地址，该请求地址返回的数据格式为：</p>
 <p>jsonp1354513528560({“id”:”2″,”name”:”JSON with Padding”})</p>
 <p>如果jsonp1354513528560是一个预先定义好的JS方法，那么获取其参数（我们实际需要获取的数据）就顺理成章了。</p>
 <p>以下是Client端的实现代码:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">        //jsonp的具体实现</span><br><span class="line">          var randomNum = (new Date).getTime(),</span><br><span class="line">              callName = null,</span><br><span class="line">              sendScriptRequest = function(url,id)&#123;</span><br><span class="line">                  //将请求地址以script标签形式插入到页面。（注定是GET请求）</span><br><span class="line">                var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line">                var script = document.createElement(&quot;script&quot;);</span><br><span class="line">                script.id = id;</span><br><span class="line">                script.src = url;</span><br><span class="line">                script.charset = &#x27;utf-8&#x27;;</span><br><span class="line">                head.appendChild(script);</span><br><span class="line">            &#125;,</span><br><span class="line">            buildTempFunction = function(callback)&#123;</span><br><span class="line">                //创建一个全局方法，并将方法名当做请求地址的一个参数</span><br><span class="line">                callName = &quot;jsonp&quot; + randomNum++;</span><br><span class="line">                window[ callName ] = function(data)&#123;</span><br><span class="line">                    callback(data);</span><br><span class="line">                    window[ callName ] = undefined;</span><br><span class="line">                    try&#123; </span><br><span class="line">                        delete window[ callName ];</span><br><span class="line">                        //var jsNode = document.getElementById(callName);</span><br><span class="line">                        //jsNode.parentElement.removeChild(jsNode);  //执行全局方法后，将script标签删除</span><br><span class="line">                    &#125; catch(e)&#123;&#125;</span><br><span class="line">                &#125;;</span><br><span class="line">                return callName;</span><br><span class="line">            &#125;,</span><br><span class="line">            $jsonp = function(url,params)&#123;</span><br><span class="line">                //生成GET请求地址</span><br><span class="line">                  params.callback = buildTempFunction(params.callback);</span><br><span class="line">                  url += (url.indexOf(&quot;?&quot;)&gt;0 ) ? &quot;&quot; : &quot;?&quot; ;</span><br><span class="line">                  for(var i in params)</span><br><span class="line">                      url += &quot;&amp;&quot; + i + &quot;=&quot; + params[i];</span><br><span class="line">                sendScriptRequest(url,callName);</span><br><span class="line">              &#125;;</span><br><span class="line">            //对外开放接口：$jsonp</span><br><span class="line">            /**</span><br><span class="line">            * @$jsonp JSONP方法</span><br><span class="line">            * @param &#123;String&#125; url 请求地址</span><br><span class="line">            * @param &#123;Object&#125; params 请求参数</span><br><span class="line">            */ </span><br><span class="line">              if (!window.$jsonp)</span><br><span class="line">                   window.$jsonp = $jsonp;</span><br><span class="line">    &#125;)();</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_a5268a0c-0cf7-461e-9a87-3e468727c33e">(function(){
+        //jsonp的具体实现
+          var randomNum = (new Date).getTime(),
+              callName = null,
+              sendScriptRequest = function(url,id){
+                  //将请求地址以script标签形式插入到页面。（注定是GET请求）
+                var head = document.getElementsByTagName("head")[0];
+                var script = document.createElement("script");
+                script.id = id;
+                script.src = url;
+                script.charset = 'utf-8';
+                head.appendChild(script);
+            },
+            buildTempFunction = function(callback){
+                //创建一个全局方法，并将方法名当做请求地址的一个参数
+                callName = "jsonp" + randomNum++;
+                window[ callName ] = function(data){
+                    callback(data);
+                    window[ callName ] = undefined;
+                    try{ 
+                        delete window[ callName ];
+                        //var jsNode = document.getElementById(callName);
+                        //jsNode.parentElement.removeChild(jsNode);  //执行全局方法后，将script标签删除
+                    } catch(e){}
+                };
+                return callName;
+            },
+            $jsonp = function(url,params){
+                //生成GET请求地址
+                  params.callback = buildTempFunction(params.callback);
+                  url += (url.indexOf("?")>0 ) ? "" : "?" ;
+                  for(var i in params)
+                      url += "&" + i + "=" + params[i];
+                sendScriptRequest(url,callName);
+              };
+            //对外开放接口：$jsonp
+            /**
+            * @$jsonp JSONP方法
+            * @param {String} url 请求地址
+            * @param {Object} params 请求参数
+            */ 
+              if (!window.$jsonp)
+                   window.$jsonp = $jsonp;
+    })();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a5268a0c-0cf7-461e-9a87-3e468727c33e');" />
 <p>Server端很简单,只需拼接输出一个js的执行方法即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$jsonp = $_GET[&#x27;callback&#x27;]; //请求端传递的callback参数，作为输出的方法名</span><br><span class="line">        $arr = array( </span><br><span class="line">            &#x27;id&#x27; =&gt; &#x27;2&#x27;,</span><br><span class="line">            &#x27;name&#x27; =&gt; &#x27;JSON with Padding&#x27; </span><br><span class="line">        );</span><br><span class="line">        echo $jsonp, &#x27;(&#x27;, json_encode($arr), &#x27;)&#x27;;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_948bcfaa-fc52-4fa2-98c4-e6a54fa39b3b">$jsonp = $_GET['callback']; //请求端传递的callback参数，作为输出的方法名
+        $arr = array( 
+            'id' => '2',
+            'name' => 'JSON with Padding' 
+        );
+        echo $jsonp, '(', json_encode($arr), ')';
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_948bcfaa-fc52-4fa2-98c4-e6a54fa39b3b');" />
 <p>演示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;jsonp演示&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_jsonp()&quot;&gt;获取数据!(jsonp)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_jsonp()&#123;</span><br><span class="line">		$jsonp(&#x27;http://www.hzmilo.com/me.php?r=/xhr2/send2&#x27;,&#123;&quot;id&quot;:1001&#125;,function(data)&#123;</span><br><span class="line">				alert(data.name);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_5c3d72e2-dcd1-4372-9122-1ada3c6e8403"><!doctype html>
+<meta charset="UTF-8" />
+<title>jsonp演示</title>
+<script src="/public/js/extend.js"></script>
+<a href="javascript:;" onclick="get_jsonp()">获取数据!(jsonp)</a>
+<script>
+	function get_jsonp(){
+		$jsonp('http://www.hzmilo.com/me.php?r=/xhr2/send2',{"id":1001},function(data){
+				alert(data.name);
+		});
+	};
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5c3d72e2-dcd1-4372-9122-1ada3c6e8403');" />
 <p>因为大多数网站不会开启server端的访问控制，所以xhr2目前比较适用于自己所属的几个域名下网站的连结,并且放弃ie6、7。<br>JSONP应用倒是很普遍，很多网站开放API的时候，也会用jsonp的形式给js提供接口，这样一来，使得ajax也能直接调用到API，当然只限一些普通的无需授权即用的接口。</p>
 <p>然而很多网站并未开放API, 也未在服务端设置callback之类的参数，而我们也不想自己写server端代码去抓取。<br>那么我们可以试试中间代理：<a target="_blank" rel="noopener" href="http://developer.yahoo.com/yql/">http://developer.yahoo.com/yql/</a></p>
 <p>演示：我们抓取一下我很喜欢的一个电影网站（dianying.fm）的数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;yql演示&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_yql()&quot;&gt;获取数据!(jsonp代理)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_yql()&#123;</span><br><span class="line">		$jsonp(&#x27;http://query.yahooapis.com/v1/public/yql&#x27;,&#123;</span><br><span class="line">			q: &quot;select * from json where url=\&quot;http://dianying.fm/reflect/cannes/e30=/2\&quot;&quot;,</span><br><span class="line">	    	format: &quot;json&quot;&#125;,function(data)&#123;</span><br><span class="line">				alert(data.query.results.json.html);</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_ec291d3c-0cb6-4c5f-9720-13981088af93"><!doctype html>
+<meta charset="UTF-8" />
+<title>yql演示</title>
+<script src="/public/js/extend.js"></script>
+<a href="javascript:;" onclick="get_yql()">获取数据!(jsonp代理)</a>
+<script>
+	function get_yql(){
+		$jsonp('http://query.yahooapis.com/v1/public/yql',{
+			q: "select * from json where url=\"http://dianying.fm/reflect/cannes/e30=/2\"",
+	    	format: "json"},function(data){
+				alert(data.query.results.json.html);
+			});
+	};
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ec291d3c-0cb6-4c5f-9720-13981088af93');" />
 
       </div>
     </div>

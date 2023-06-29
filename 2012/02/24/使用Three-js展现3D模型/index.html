@@ -107,6 +107,10 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/3D/" class="post-tag">#3D</a>
+  
+    <a href="/tags/threejs/" class="post-tag">#threejs</a>
+  
 
 
           <span class="post-date">2012-02-24</span>
@@ -126,11 +130,105 @@ runcode.copy=function(element)
         <p>CSS3的3d-Transform，Canvas，SVG，WebGL等等技术的出现和发展，正将网页的3D化慢慢变得简单友好，但是3D建模毕竟有其很高的专业性，所以如果拥有一个内心强大，接口简洁的库就能使我们得心应手许多。Three.js便是备受推崇的一个，尽管API的变动，简陋的文档会让我们的上手比较困难。</p>
 <p>下面我提供一个入门Demo，及一个用Three.js展示通用的3D模型格式的Demo。（注意：确保你使用的浏览器支持了Canvas，及WebGL。拥有一个先进的浏览器，将为你带来更好的上网体验。Test）</p>
 <p>下面是入门Demo，加了注释。详细入门教程可以到这里Getting Started with Three.js</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;立方体&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/blog/resource/threejs/three.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;style&gt;body&#123;overflow:hidden;&#125;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;&lt;/body&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	/* 场景 */</span><br><span class="line">	var WIDTH = document.documentElement.offsetWidth || 800,</span><br><span class="line">		HEIGHT = document.documentElement.clientHeight || 600;</span><br><span class="line">	var scene = new THREE.Scene();</span><br><span class="line">	/* 摄像头 */</span><br><span class="line">	var VIEW_ANGLE = 75,</span><br><span class="line">		ASPECT = WIDTH / HEIGHT,</span><br><span class="line">		NEAR = 0.1,</span><br><span class="line">		FAR = 10000;</span><br><span class="line">	var	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); /* 摄像机视角，视口长宽比，近切面，远切面 */</span><br><span class="line">		camera.position.set(0, 0, 1000); //放置位置</span><br><span class="line">		scene.add(camera);</span><br><span class="line">	/* 显示对象 */</span><br><span class="line">	var geometry = new THREE.CubeGeometry( 200, 200, 200 ), //几何属性。代码位于&quot;\src\extras\geometries&quot;</span><br><span class="line">		material = new THREE.MeshLambertMaterial( &#123; color: 0xcccccc&#125; ); //材质属性 &quot;\src\materials&quot;</span><br><span class="line">	var cube = new THREE.Mesh(geometry, material);</span><br><span class="line">		cube.rotation.set(10,20,10); //放置角度</span><br><span class="line">		scene.add(cube);</span><br><span class="line">	/* 灯光 */</span><br><span class="line">	var light = new THREE.DirectionalLight(0xFFFFFF); //直线光,&quot;\src\lights&quot;</span><br><span class="line">		light.position.set(0, 0, 100).normalize();</span><br><span class="line">		scene.add(light);</span><br><span class="line">	/* 渲染器 */</span><br><span class="line">	var	renderer = new THREE.CanvasRenderer(); //有Canvas，WebGL，SVG三种模式</span><br><span class="line">		renderer.setSize(WIDTH , HEIGHT);</span><br><span class="line">		document.body.appendChild(renderer.domElement);</span><br><span class="line">	/* 动画 */</span><br><span class="line">	(function anime()&#123;</span><br><span class="line">		cube.rotation.x += 0.01; //改变立方体角度</span><br><span class="line">		renderer.render(scene, camera); //开始渲染</span><br><span class="line">		return requestAnimationFrame(anime);</span><br><span class="line">	&#125;)()</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_069b1bcf-8181-4e87-ac43-98be76a6c689"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>立方体</title>
+    <script type="text/javascript" charset="utf-8" src="/blog/resource/threejs/three.min.js"></script>
+	<style>body{overflow:hidden;}</style>
+</head>
+<body></body>
+	<script>
+	/* 场景 */
+	var WIDTH = document.documentElement.offsetWidth || 800,
+		HEIGHT = document.documentElement.clientHeight || 600;
+	var scene = new THREE.Scene();
+	/* 摄像头 */
+	var VIEW_ANGLE = 75,
+		ASPECT = WIDTH / HEIGHT,
+		NEAR = 0.1,
+		FAR = 10000;
+	var	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); /* 摄像机视角，视口长宽比，近切面，远切面 */
+		camera.position.set(0, 0, 1000); //放置位置
+		scene.add(camera);
+	/* 显示对象 */
+	var geometry = new THREE.CubeGeometry( 200, 200, 200 ), //几何属性。代码位于"\src\extras\geometries"
+		material = new THREE.MeshLambertMaterial( { color: 0xcccccc} ); //材质属性 "\src\materials"
+	var cube = new THREE.Mesh(geometry, material);
+		cube.rotation.set(10,20,10); //放置角度
+		scene.add(cube);
+	/* 灯光 */
+	var light = new THREE.DirectionalLight(0xFFFFFF); //直线光,"\src\lights"
+		light.position.set(0, 0, 100).normalize();
+		scene.add(light);
+	/* 渲染器 */
+	var	renderer = new THREE.CanvasRenderer(); //有Canvas，WebGL，SVG三种模式
+		renderer.setSize(WIDTH , HEIGHT);
+		document.body.appendChild(renderer.domElement);
+	/* 动画 */
+	(function anime(){
+		cube.rotation.x += 0.01; //改变立方体角度
+		renderer.render(scene, camera); //开始渲染
+		return requestAnimationFrame(anime);
+	})()
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_069b1bcf-8181-4e87-ac43-98be76a6c689');" />
 
 <p>考虑到Opera还不支持WebGL，上面使用了Canvas模式渲染。但WebGL的渲染模式要比Canvas快的要多的多。</p>
 <p>下面是一个展示机器人MGA-411 Mangusa模型的Demo。<br>Three.js可以调用以Json格式存储模型信息的js文件来创建模型。模型你可以自己在3D软件上建模完成，或在网上下载。至于模型格式，你可以通过three.js提供的插件在Blender这款开源3D制作软件中将一些3D模型格式，如3ds，obj等，转换成符合three.js标准的js格式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;MGA-411 Mangusa&lt;/title&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; charset=&quot;utf-8&quot; src=&quot;/blog/resource/threejs/three.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;style&gt;body&#123;overflow:hidden;background:#000&#125;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div id=&quot;Loading&quot; style=&quot;color:#fff&quot;&gt;Loading...&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	/* 场景 */</span><br><span class="line">	var WIDTH = document.documentElement.offsetWidth || 800,</span><br><span class="line">		HEIGHT = document.documentElement.clientHeight || 600;</span><br><span class="line">	var scene = new THREE.Scene();</span><br><span class="line">	/* 摄像头 */</span><br><span class="line">	var VIEW_ANGLE = 75,</span><br><span class="line">		ASPECT = WIDTH / HEIGHT,</span><br><span class="line">		NEAR = 0.1,</span><br><span class="line">		FAR = 10000;</span><br><span class="line">	var	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);</span><br><span class="line">		camera.position.set(0, 0, 1000);</span><br><span class="line">		scene.add(camera);</span><br><span class="line">	/* 渲染器 */</span><br><span class="line">	var	renderer = new THREE.WebGLRenderer();</span><br><span class="line">		renderer.setSize(WIDTH , HEIGHT);</span><br><span class="line">		document.body.appendChild(renderer.domElement);</span><br><span class="line">	/* 灯光 */</span><br><span class="line">	var light = new THREE.DirectionalLight(0xFFFFFF);</span><br><span class="line">		light.position.set(0, 0, 99).normalize();</span><br><span class="line">		scene.add(light);</span><br><span class="line">	/* 显示对象 */</span><br><span class="line">	var material = new THREE.MeshLambertMaterial(&#123; color: 0xcccccc, wireframe: true &#125;),</span><br><span class="line">		obj;</span><br><span class="line">	var loader = new THREE.JSONLoader(true);</span><br><span class="line">    loader.load(&quot;/blog/resource/threejs/model/MGA.js&quot;, function ( geometry ) &#123;</span><br><span class="line">		var loading = document.getElementById(&quot;Loading&quot;);</span><br><span class="line">		loading.parentNode.removeChild(loading);</span><br><span class="line">		obj = new THREE.Mesh(geometry, material);</span><br><span class="line">		obj.position.set(0,1,990);</span><br><span class="line">		scene.add(obj);</span><br><span class="line">		var start = new Date().getTime(),delta;</span><br><span class="line">		(function anime()&#123;</span><br><span class="line">			delta = new Date().getTime() - start;</span><br><span class="line">			obj.rotation.y =   delta / 1000;</span><br><span class="line">			renderer.render(scene, camera);</span><br><span class="line">			return requestAnimationFrame(anime);</span><br><span class="line">		&#125;)();</span><br><span class="line">	&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_b9ea302d-9d2d-41ee-a9d2-c920fd8d960d"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>MGA-411 Mangusa</title>
+    <script type="text/javascript" charset="utf-8" src="/blog/resource/threejs/three.min.js"></script>
+	<style>body{overflow:hidden;background:#000}</style>
+</head>
+<body>
+	<div id="Loading" style="color:#fff">Loading...</div>
+</body>
+	<script>
+	/* 场景 */
+	var WIDTH = document.documentElement.offsetWidth || 800,
+		HEIGHT = document.documentElement.clientHeight || 600;
+	var scene = new THREE.Scene();
+	/* 摄像头 */
+	var VIEW_ANGLE = 75,
+		ASPECT = WIDTH / HEIGHT,
+		NEAR = 0.1,
+		FAR = 10000;
+	var	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+		camera.position.set(0, 0, 1000);
+		scene.add(camera);
+	/* 渲染器 */
+	var	renderer = new THREE.WebGLRenderer();
+		renderer.setSize(WIDTH , HEIGHT);
+		document.body.appendChild(renderer.domElement);
+	/* 灯光 */
+	var light = new THREE.DirectionalLight(0xFFFFFF);
+		light.position.set(0, 0, 99).normalize();
+		scene.add(light);
+	/* 显示对象 */
+	var material = new THREE.MeshLambertMaterial({ color: 0xcccccc, wireframe: true }),
+		obj;
+	var loader = new THREE.JSONLoader(true);
+    loader.load("/blog/resource/threejs/model/MGA.js", function ( geometry ) {
+		var loading = document.getElementById("Loading");
+		loading.parentNode.removeChild(loading);
+		obj = new THREE.Mesh(geometry, material);
+		obj.position.set(0,1,990);
+		scene.add(obj);
+		var start = new Date().getTime(),delta;
+		(function anime(){
+			delta = new Date().getTime() - start;
+			obj.rotation.y =   delta / 1000;
+			renderer.render(scene, camera);
+			return requestAnimationFrame(anime);
+		})();
+	});
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b9ea302d-9d2d-41ee-a9d2-c920fd8d960d');" />
 
 
 

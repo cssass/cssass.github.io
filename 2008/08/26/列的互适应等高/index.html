@@ -126,12 +126,138 @@ runcode.copy=function(element)
           </div>
         
         <p>利用margin-bottom负值与padding-bottom抵消法。<br>两列情况:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;左右两列高度互适应&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">#wrap&#123;width:600px;margin:0 auto;overflow: hidden&#125;</span><br><span class="line">#left&#123;width:300px;float:left;background:green;&#125;</span><br><span class="line">#right&#123;width:300px;float:left;background:gray;&#125;</span><br><span class="line">.row&#123;margin-bottom:-1000em;padding-bottom:1000em;&#125;</span><br><span class="line">#footer&#123;width:600px;margin:0 auto;text-align:left;background:#f4dcd8;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;wrap&quot;&gt;</span><br><span class="line">&lt;div id=&quot;left&quot; class=&quot;row&quot;&gt;</span><br><span class="line">左侧&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;right&quot; class=&quot;row&quot;&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">右侧&lt;br /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;footer&quot;&gt;底部&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_cd243592-b275-468f-b8df-7725d96e27c9"><!DOCTYPE html>
+<head>
+<title>左右两列高度互适应</title>
+<style type="text/css">
+#wrap{width:600px;margin:0 auto;overflow: hidden}
+#left{width:300px;float:left;background:green;}
+#right{width:300px;float:left;background:gray;}
+.row{margin-bottom:-1000em;padding-bottom:1000em;}
+#footer{width:600px;margin:0 auto;text-align:left;background:#f4dcd8;}
+</style>
+</head>
+<body>
+<div id="wrap">
+<div id="left" class="row">
+左侧</div>
+<div id="right" class="row">
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+右侧<br />
+</div>
+</div>
+<div id="footer">底部</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cd243592-b275-468f-b8df-7725d96e27c9');" />
 
 
 
 <p>多列多模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;多列多模块高度自适应&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">.main &#123;overflow: hidden; width: 800px; margin: 0 auto;&#125;</span><br><span class="line">.left, .center, .right&#123;float: left; width: 250px; overflow: hidden; margin-left:5px; &#125;</span><br><span class="line">.equal &#123;padding-bottom: 1000em; margin-bottom: -1000em;zoom:1;&#125;</span><br><span class="line">.box &#123;background: #f4dcd8; border: 1px #FB9D51 solid; padding-left:10px; &#125;</span><br><span class="line">.mt5 &#123;margin-top: 5px;&#125;</span><br><span class="line">.bor_top &#123; height:1px; background:#FB9D51; overflow:hidden; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">&lt;div class=&quot;left  equal&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">   Left NO.1</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box mt5&quot;&gt;</span><br><span class="line">   Left NO.2</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box mt5&quot;&gt;</span><br><span class="line">   Left NO.3</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;equal mt5 box&quot;&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line">   Left NO.4&lt;br /&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;center equal&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">   center NO.1&lt;br /&gt;</span><br><span class="line">   center NO.1&lt;br /&gt;</span><br><span class="line">   center NO.1&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box mt5&quot;&gt;</span><br><span class="line">   center NO.2&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;equal mt5 box&quot;&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">   center NO.3&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;equal right&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">   right NO.1</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box mt5&quot;&gt;</span><br><span class="line">   right NO.2&lt;br /&gt;</span><br><span class="line">   right NO.2&lt;br /&gt;</span><br><span class="line">   right NO.2&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;box mt5&quot;&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">   right NO.3&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;equal mt5 box&quot;&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">   right NO.4&lt;br /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;main&quot;&gt;&lt;div class=&quot;left bor_top&quot;&gt;&lt;/div&gt;&lt;div class=&quot;center bor_top&quot;&gt;&lt;/div&gt;&lt;div class=&quot;right bor_top&quot;&gt;&lt;/div&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_fb53fbd8-5663-4f90-8c27-4bf95e7cc275"><!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<title>多列多模块高度自适应</title>
+<style type="text/css">
+.main {overflow: hidden; width: 800px; margin: 0 auto;}
+.left, .center, .right{float: left; width: 250px; overflow: hidden; margin-left:5px; }
+.equal {padding-bottom: 1000em; margin-bottom: -1000em;zoom:1;}
+.box {background: #f4dcd8; border: 1px #FB9D51 solid; padding-left:10px; }
+.mt5 {margin-top: 5px;}
+.bor_top { height:1px; background:#FB9D51; overflow:hidden; }
+</style>
+</head>
+<body>
+<div class="main">
+<div class="left  equal">
+  <div class="box">
+   Left NO.1
+  </div>
+  <div class="box mt5">
+   Left NO.2
+  </div>
+  <div class="box mt5">
+   Left NO.3
+  </div>
+<div class="equal mt5 box">
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+   Left NO.4<br />
+ </div>
+</div>
+  <div class="center equal">
+  <div class="box">
+   center NO.1<br />
+   center NO.1<br />
+   center NO.1<br />
+  </div>
+  <div class="box mt5">
+   center NO.2<br />
+  </div>
+<div class="equal mt5 box">
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+   center NO.3<br />
+  </div>
+</div>
+<div class="equal right">
+  <div class="box">
+   right NO.1
+  </div>
+  <div class="box mt5">
+   right NO.2<br />
+   right NO.2<br />
+   right NO.2<br />
+  </div>
+  <div class="box mt5">
+   right NO.3<br />
+   right NO.3<br />
+   right NO.3<br />
+   right NO.3<br />
+   right NO.3<br />
+   right NO.3<br />
+  </div>
+  <div class="equal mt5 box">
+   right NO.4<br />
+   right NO.4<br />
+   right NO.4<br />
+   right NO.4<br />
+   right NO.4<br />
+   right NO.4<br />
+   right NO.4<br />
+  </div>
+</div>
+</div>
+<div class="main"><div class="left bor_top"></div><div class="center bor_top"></div><div class="right bor_top"></div></div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fb53fbd8-5663-4f90-8c27-4bf95e7cc275');" />
 
 
       </div>

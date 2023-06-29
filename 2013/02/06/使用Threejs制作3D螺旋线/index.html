@@ -107,7 +107,9 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
-    <a href="/tags/JS/" class="post-tag">#JS</a>
+    <a href="/tags/3D/" class="post-tag">#3D</a>
+  
+    <a href="/tags/threejs/" class="post-tag">#threejs</a>
   
 
 
@@ -126,10 +128,320 @@ runcode.copy=function(element)
           </div>
         
         <p>做了一个3D螺旋线的生成器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Threejs制作3D螺旋线&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">body&#123;background:#333;color:#fff;&#125;</span><br><span class="line">.controlBar&#123;position:absolute;&#125;</span><br><span class="line">#control ul&#123;width:150px;float:left;list-style:none;&#125;</span><br><span class="line">#control b&#123;position:relative;display:inline-block;width:120px;height:5px;font-size:0;line-height:0;background:#fff;border:1px solid #aaa;border-radius:2px;&#125;</span><br><span class="line">#control i&#123;position:absolute;cursor:pointer;top:-4px;left:50%;width:10px;height:10px;margin-left:-4px;border:1px solid #d3d3d3;background:#ececec;border-radius:2px;&#125;</span><br><span class="line">#control i:hover&#123;border:1px solid #999;background:#dcdcdc;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;/blog/resource/threejs/three.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;controlBar&quot;&gt;</span><br><span class="line">&lt;div id=&quot;control&quot;&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;x:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;85.2&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;y:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;205.2&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;z:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;-64.8&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;x:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;60&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;y:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;-49.8&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;z:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;184.8&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;x:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;225&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;y:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;-195&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;z:  &lt;b class=&#x27;range&#x27;&gt;&lt;i data-value=&#x27;195&#x27;&gt;&amp;nbsp;&lt;/i&gt;&lt;/b&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;button onclick=&quot;Producer.createPoints()&quot;&gt;增加操作点&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var controlElm = $id(&quot;control&quot;),</span><br><span class="line">	iElm = $tag(&quot;i&quot;, controlElm);</span><br><span class="line">for(var i = 0; i &lt; iElm.length; i++)&#123;</span><br><span class="line">	iElm[i].style.left = (iElm[i].dataset[&#x27;value&#x27;] - 0 + 300) * 100 /600 + &quot;%&quot;;</span><br><span class="line">&#125;</span><br><span class="line">var Producer = &#123;</span><br><span class="line">	points : [],</span><br><span class="line">	getPoints : function()&#123;</span><br><span class="line">		Producer.points = [];</span><br><span class="line">		var UL = $tag(&quot;UL&quot;, controlElm), item, jsondata;</span><br><span class="line">		for(var i = 0 ; i &lt;UL.length; i++)&#123;</span><br><span class="line">			item =  $tag(&quot;i&quot;,UL[i]);</span><br><span class="line">			jsondata = &#123;</span><br><span class="line">				x : item[0].dataset[&#x27;value&#x27;]-0,</span><br><span class="line">				y : item[1].dataset[&#x27;value&#x27;]-0,</span><br><span class="line">				z : item[2].dataset[&#x27;value&#x27;]-0,</span><br><span class="line">			&#125;</span><br><span class="line">			Producer.points.push(jsondata);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	createPoints : function()&#123;</span><br><span class="line">		$id(&quot;control&quot;).insertAdjacentHTML(&#x27;beforeEnd&#x27;,$tag(&quot;UL&quot;,$id(&quot;control&quot;))[0].outerHTML);</span><br><span class="line">	&#125;,</span><br><span class="line">	changePoints : function(o,e)&#123;</span><br><span class="line">		var l = 600;</span><br><span class="line">		if(!window.event) &#123;e.preventDefault();&#125;</span><br><span class="line">		var tX = o.offsetLeft,</span><br><span class="line">			dx = e.clientX;</span><br><span class="line">		events.addEvent(document,&#x27;mousemove&#x27;,mouseMove);</span><br><span class="line">		events.addEvent(document,&#x27;mouseup&#x27;,mouseUp);</span><br><span class="line">		function mouseMove()&#123;</span><br><span class="line">			var e = arguments[0] || window.event;</span><br><span class="line">			var len = tX + e.clientX - dx + 8, val;</span><br><span class="line">			if(len &gt;=0 &amp;&amp; len &lt;= 120)&#123;</span><br><span class="line">				var rat = (len / 120) * 100;</span><br><span class="line">				o.style.left = rat+ &quot;%&quot;;</span><br><span class="line">				val = l * Math.round((rat - 50)*10)/1000;</span><br><span class="line">				o.dataset[&#x27;value&#x27;] = val;</span><br><span class="line">				o.title = val;</span><br><span class="line">			&#125;</span><br><span class="line">			if(window.event) e.returnValue=false;</span><br><span class="line">		&#125;</span><br><span class="line">		function mouseUp()&#123;</span><br><span class="line">			events.removeEvent(document,&#x27;mousemove&#x27;,mouseMove);</span><br><span class="line">			events.removeEvent(document,&#x27;mouseup&#x27;,mouseUp);</span><br><span class="line">			spiralDemo.init().animate();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">function Spiral3D()&#123;</span><br><span class="line">	this.width = Math.max(1000, document.documentElement.offsetWidth);</span><br><span class="line">	this.height = 800;</span><br><span class="line">	this.camera = new THREE.PerspectiveCamera( 33, this.width / this.height, 1, 10000);</span><br><span class="line">	this.scene = new THREE.Scene();</span><br><span class="line">	this.renderer = null;</span><br><span class="line">	this.create();</span><br><span class="line">&#125;</span><br><span class="line">Spiral3D.prototype = &#123;</span><br><span class="line">	create : function()&#123;</span><br><span class="line">		try&#123;</span><br><span class="line">			this.renderer = new THREE.WebGLRenderer( &#123; antialias: true &#125; ); //webgl</span><br><span class="line">		&#125;catch(e)&#123;</span><br><span class="line">			this.renderer = new THREE.CanvasRenderer(); //canvas</span><br><span class="line">		&#125;</span><br><span class="line">		this.renderer.setSize( this.width, this.height);</span><br><span class="line">		document.body.appendChild( this.renderer.domElement );</span><br><span class="line">		this.init();</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	init : function() &#123;</span><br><span class="line">		this.scene = new THREE.Scene();</span><br><span class="line">		this.stop();</span><br><span class="line">		Producer.getPoints();</span><br><span class="line">		var spline = new THREE.Spline( Producer.points ),  //以关键点创建曲线</span><br><span class="line">			geometry = new THREE.Geometry(),</span><br><span class="line">			material = new THREE.LineBasicMaterial( &#123; color: 0xffffff, opacity: 1, linewidth: 1, vertexColors: THREE.VertexColors &#125; );</span><br><span class="line">		//自动补全曲线点</span><br><span class="line">		for ( var i =0, position, l = Producer.points.length * 7; i &lt; l; i ++ ) &#123;</span><br><span class="line">			position = spline.getPoint( i/l );</span><br><span class="line">			geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );</span><br><span class="line">			geometry.colors[ i ] = new THREE.Color( 0x00ffff );</span><br><span class="line">			geometry.colors[ i ].setHSV( ( 100 + position.x ) / 400 * i/8, ( 200 + position.x ) / 400, ( 250 + position.x ) / 300);</span><br><span class="line">		&#125;</span><br><span class="line">		//创建100条线</span><br><span class="line">		for(var line, i=0, l = 100 ; i&lt;l; i++)&#123;</span><br><span class="line">			line = new THREE.Line(geometry,  material);</span><br><span class="line">			line.position = &#123;x: 0, y: 0, z: 0&#125;;</span><br><span class="line">			if(i &gt; 0) &#123;</span><br><span class="line">				line.rotation.y = Math.PI * 2 * (i/l);</span><br><span class="line">			&#125;</span><br><span class="line">			this.scene.add( line ); //将显示对象加入场景</span><br><span class="line">		&#125;</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	render : function() &#123;</span><br><span class="line">		var timer = Date.now() * 0.0005;</span><br><span class="line">		this.camera.position.x = Math.cos( timer ) * 500;</span><br><span class="line">		this.camera.position.z = Math.sin( timer ) * 500;</span><br><span class="line">		this.camera.lookAt( this.scene.position );</span><br><span class="line">		this.renderer.render( this.scene, this.camera ); //使用渲染器</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	_reqID : &#123;&#125;,</span><br><span class="line">	animate : function() &#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var _loop = function()&#123;</span><br><span class="line">			that._reqID = requestAnimationFrame( _loop );</span><br><span class="line">			that.render();</span><br><span class="line">		&#125;</span><br><span class="line">		_loop();</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	stop : function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		cancelAnimationFrame(that._reqID);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var spiralDemo = new Spiral3D();</span><br><span class="line">	spiralDemo.animate();</span><br><span class="line">events.delegate(controlElm, &#x27;i&#x27;, &#x27;mousedown&#x27;,function()&#123;</span><br><span class="line">	var e = arguments[0] || window.event,</span><br><span class="line">		target = e.srcElement || e.target;</span><br><span class="line">	Producer.changePoints(target,e);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_5c6101ed-0eba-49d2-b542-52fbc47d5401"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Threejs制作3D螺旋线</title>
+<style>
+*{padding:0;margin:0;}
+body{background:#333;color:#fff;}
+.controlBar{position:absolute;}
+#control ul{width:150px;float:left;list-style:none;}
+#control b{position:relative;display:inline-block;width:120px;height:5px;font-size:0;line-height:0;background:#fff;border:1px solid #aaa;border-radius:2px;}
+#control i{position:absolute;cursor:pointer;top:-4px;left:50%;width:10px;height:10px;margin-left:-4px;border:1px solid #d3d3d3;background:#ececec;border-radius:2px;}
+#control i:hover{border:1px solid #999;background:#dcdcdc;}
+</style>
+<script src="/public/js/extend.js"></script>
+<script src="/blog/resource/threejs/three.min.js"></script>
+</head>
+<body>
+<div class="controlBar">
+<div id="control">
+	<ul>
+		<li>x:  <b class='range'><i data-value='85.2'>&nbsp;</i></b></li>
+		<li>y:  <b class='range'><i data-value='205.2'>&nbsp;</i></b></li>
+		<li>z:  <b class='range'><i data-value='-64.8'>&nbsp;</i></b></li>
+	</ul>
+	<ul>
+		<li>x:  <b class='range'><i data-value='60'>&nbsp;</i></b></li>
+		<li>y:  <b class='range'><i data-value='-49.8'>&nbsp;</i></b></li>
+		<li>z:  <b class='range'><i data-value='184.8'>&nbsp;</i></b></li>
+	</ul>
+	<ul>
+		<li>x:  <b class='range'><i data-value='225'>&nbsp;</i></b></li>
+		<li>y:  <b class='range'><i data-value='-195'>&nbsp;</i></b></li>
+		<li>z:  <b class='range'><i data-value='195'>&nbsp;</i></b></li>
+	</ul>
+</div>
+<button onclick="Producer.createPoints()">增加操作点</button>
+</div>
+<script>
+var controlElm = $id("control"),
+	iElm = $tag("i", controlElm);
+for(var i = 0; i < iElm.length; i++){
+	iElm[i].style.left = (iElm[i].dataset['value'] - 0 + 300) * 100 /600 + "%";
+}
+var Producer = {
+	points : [],
+	getPoints : function(){
+		Producer.points = [];
+		var UL = $tag("UL", controlElm), item, jsondata;
+		for(var i = 0 ; i <UL.length; i++){
+			item =  $tag("i",UL[i]);
+			jsondata = {
+				x : item[0].dataset['value']-0,
+				y : item[1].dataset['value']-0,
+				z : item[2].dataset['value']-0,
+			}
+			Producer.points.push(jsondata);
+		}
+	},
+	createPoints : function(){
+		$id("control").insertAdjacentHTML('beforeEnd',$tag("UL",$id("control"))[0].outerHTML);
+	},
+	changePoints : function(o,e){
+		var l = 600;
+		if(!window.event) {e.preventDefault();}
+		var tX = o.offsetLeft,
+			dx = e.clientX;
+		events.addEvent(document,'mousemove',mouseMove);
+		events.addEvent(document,'mouseup',mouseUp);
+		function mouseMove(){
+			var e = arguments[0] || window.event;
+			var len = tX + e.clientX - dx + 8, val;
+			if(len >=0 && len <= 120){
+				var rat = (len / 120) * 100;
+				o.style.left = rat+ "%";
+				val = l * Math.round((rat - 50)*10)/1000;
+				o.dataset['value'] = val;
+				o.title = val;
+			}
+			if(window.event) e.returnValue=false;
+		}
+		function mouseUp(){
+			events.removeEvent(document,'mousemove',mouseMove);
+			events.removeEvent(document,'mouseup',mouseUp);
+			spiralDemo.init().animate();
+		}
+	}
+};
+function Spiral3D(){
+	this.width = Math.max(1000, document.documentElement.offsetWidth);
+	this.height = 800;
+	this.camera = new THREE.PerspectiveCamera( 33, this.width / this.height, 1, 10000);
+	this.scene = new THREE.Scene();
+	this.renderer = null;
+	this.create();
+}
+Spiral3D.prototype = {
+	create : function(){
+		try{
+			this.renderer = new THREE.WebGLRenderer( { antialias: true } ); //webgl
+		}catch(e){
+			this.renderer = new THREE.CanvasRenderer(); //canvas
+		}
+		this.renderer.setSize( this.width, this.height);
+		document.body.appendChild( this.renderer.domElement );
+		this.init();
+		return this;
+	},
+	init : function() {
+		this.scene = new THREE.Scene();
+		this.stop();
+		Producer.getPoints();
+		var spline = new THREE.Spline( Producer.points ),  //以关键点创建曲线
+			geometry = new THREE.Geometry(),
+			material = new THREE.LineBasicMaterial( { color: 0xffffff, opacity: 1, linewidth: 1, vertexColors: THREE.VertexColors } );
+		//自动补全曲线点
+		for ( var i =0, position, l = Producer.points.length * 7; i < l; i ++ ) {
+			position = spline.getPoint( i/l );
+			geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+			geometry.colors[ i ] = new THREE.Color( 0x00ffff );
+			geometry.colors[ i ].setHSV( ( 100 + position.x ) / 400 * i/8, ( 200 + position.x ) / 400, ( 250 + position.x ) / 300);
+		}
+		//创建100条线
+		for(var line, i=0, l = 100 ; i<l; i++){
+			line = new THREE.Line(geometry,  material);
+			line.position = {x: 0, y: 0, z: 0};
+			if(i > 0) {
+				line.rotation.y = Math.PI * 2 * (i/l);
+			}
+			this.scene.add( line ); //将显示对象加入场景
+		}
+		return this;
+	},
+	render : function() {
+		var timer = Date.now() * 0.0005;
+		this.camera.position.x = Math.cos( timer ) * 500;
+		this.camera.position.z = Math.sin( timer ) * 500;
+		this.camera.lookAt( this.scene.position );
+		this.renderer.render( this.scene, this.camera ); //使用渲染器
+		return this;
+	},
+	_reqID : {},
+	animate : function() {
+		var that = this;
+		var _loop = function(){
+			that._reqID = requestAnimationFrame( _loop );
+			that.render();
+		}
+		_loop();
+		return this;
+	},
+	stop : function(){
+		var that = this;
+		cancelAnimationFrame(that._reqID);
+	}
+}
+var spiralDemo = new Spiral3D();
+	spiralDemo.animate();
+events.delegate(controlElm, 'i', 'mousedown',function(){
+	var e = arguments[0] || window.event,
+		target = e.srcElement || e.target;
+	Producer.changePoints(target,e);
+});
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5c6101ed-0eba-49d2-b542-52fbc47d5401');" />
 
 <p>配套做一个动画效果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Threejs 3D lines&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">body&#123;background:#333;color:#fff;overflow:hidden;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;/blog/resource/threejs/three.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var Producer = &#123;</span><br><span class="line">	points : [&#123;</span><br><span class="line">		x : 85.2,</span><br><span class="line">		y : 205.2,</span><br><span class="line">		z : -64.8,</span><br><span class="line">		a : 1,</span><br><span class="line">		b : 1,</span><br><span class="line">		c : 1</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		x : 60,</span><br><span class="line">		y : -49.8,</span><br><span class="line">		z : 184.8,</span><br><span class="line">		a : 1,</span><br><span class="line">		b : 1,</span><br><span class="line">		c : 2</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		x : 225,</span><br><span class="line">		y : -195,</span><br><span class="line">		z : 195,</span><br><span class="line">		a : 1,</span><br><span class="line">		b : 2,</span><br><span class="line">		c : 1</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		x : 40,</span><br><span class="line">		y : -40.8,</span><br><span class="line">		z : 114.8,</span><br><span class="line">		a : 2,</span><br><span class="line">		b : 1,</span><br><span class="line">		c : 1</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		x : 85.2,</span><br><span class="line">		y : 105.2,</span><br><span class="line">		z : -24.8,</span><br><span class="line">		a : 2,</span><br><span class="line">		b : 1,</span><br><span class="line">		c : 1</span><br><span class="line">	&#125;,&#123;</span><br><span class="line">		x : 85.2,</span><br><span class="line">		y : 205.2,</span><br><span class="line">		z : -64.8,</span><br><span class="line">		a : 1,</span><br><span class="line">		b : 1,</span><br><span class="line">		c : 1</span><br><span class="line">	&#125;],</span><br><span class="line">	changePoints : function()&#123;</span><br><span class="line">		var points = Producer.points;</span><br><span class="line">		for(var i = 0 ; i &lt; points.length; i++)&#123;</span><br><span class="line">			item =  points[i];</span><br><span class="line">			if(item.x &lt; -250 || item.x &gt; 250) item.a = -item.a;</span><br><span class="line">			if(item.y &lt; -250 || item.y &gt; 250) item.b = -item.b;</span><br><span class="line">			if(item.z &lt; -250 || item.z &gt; 250) item.c = -item.c;</span><br><span class="line">			item.x -= item.a,</span><br><span class="line">			item.y -= item.b,</span><br><span class="line">			item.z -= item.c</span><br><span class="line">		&#125;</span><br><span class="line">		spiralDemo.init().animate();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">function Spiral3D()&#123;</span><br><span class="line">	this.width = document.documentElement.offsetWidth;</span><br><span class="line">	this.height = Math.max(document.documentElement.clientHeight,document.body.offsetHeight);</span><br><span class="line">	this.camera = new THREE.PerspectiveCamera( 33, this.width / this.height, 1, 10000);</span><br><span class="line">	this.scene = new THREE.Scene();</span><br><span class="line">	this.renderer = null;</span><br><span class="line">	this.create();</span><br><span class="line">&#125;</span><br><span class="line">Spiral3D.prototype = &#123;</span><br><span class="line">	create : function()&#123;</span><br><span class="line">		try&#123;</span><br><span class="line">			this.renderer = new THREE.WebGLRenderer( &#123; antialias: true &#125; ); //webgl</span><br><span class="line">		&#125;catch(e)&#123;</span><br><span class="line">			this.renderer = new THREE.CanvasRenderer(); //canvas</span><br><span class="line">		&#125;</span><br><span class="line">		this.renderer.setSize( this.width, this.height);</span><br><span class="line">		document.body.appendChild( this.renderer.domElement );</span><br><span class="line">		this.init();</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	init : function() &#123;</span><br><span class="line">		this.scene = new THREE.Scene();</span><br><span class="line">		this.stop();</span><br><span class="line">		var spline = new THREE.Spline( Producer.points ),  //以关键点创建曲线</span><br><span class="line">			geometry = new THREE.Geometry(),</span><br><span class="line">			material = new THREE.LineBasicMaterial( &#123; color: 0xffffff, opacity: 1, linewidth: 1, vertexColors: THREE.VertexColors &#125; );</span><br><span class="line">		//自动补全曲线点</span><br><span class="line">		for ( var i =0, position, l = Producer.points.length * 7; i &lt; l; i ++ ) &#123;</span><br><span class="line">			position = spline.getPoint( i/l );</span><br><span class="line">			geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );</span><br><span class="line">			geometry.colors[ i ] = new THREE.Color( 0x00ffff );</span><br><span class="line">			geometry.colors[ i ].setHSV( ( 100 + position.x ) / 400 * i/8, ( 200 + position.x ) / 400, ( 250 + position.x ) / 300);</span><br><span class="line">		&#125;</span><br><span class="line">		//创建100条线</span><br><span class="line">		for(var line, i=0, l = 100 ; i&lt;l; i++)&#123;</span><br><span class="line">			line = new THREE.Line(geometry,  material);</span><br><span class="line">			line.position = &#123;x: 0, y: 0, z: 0&#125;;</span><br><span class="line">			if(i &gt; 0) &#123;</span><br><span class="line">				line.rotation.y = Math.PI * 2 * (i/l);</span><br><span class="line">			&#125;</span><br><span class="line">			this.scene.add( line ); //将显示对象加入场景</span><br><span class="line">		&#125;</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	render : function() &#123;</span><br><span class="line">		var timer = Date.now() * 0.0005;</span><br><span class="line">		this.camera.position.x = Math.cos( timer ) * 500;</span><br><span class="line">		this.camera.position.z = Math.sin( timer ) * 500;</span><br><span class="line">		this.camera.lookAt( this.scene.position );</span><br><span class="line">		this.renderer.render( this.scene, this.camera ); //使用渲染器</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	_reqID : &#123;&#125;,</span><br><span class="line">	animate : function() &#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var _loop = function()&#123;</span><br><span class="line">			that._reqID = requestAnimationFrame( _loop );</span><br><span class="line">			that.render();</span><br><span class="line">		&#125;</span><br><span class="line">		_loop();</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	stop : function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		cancelAnimationFrame(that._reqID);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">var spiralDemo = new Spiral3D();</span><br><span class="line">	spiralDemo.animate();</span><br><span class="line">setInterval(Producer.changePoints,50);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_72456ad4-0fd2-400d-bc7a-53e748802f8a">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Threejs 3D lines</title>
+<style>
+*{padding:0;margin:0;}
+body{background:#333;color:#fff;overflow:hidden;}
+</style>
+<script src="/public/js/extend.js"></script>
+<script src="/blog/resource/threejs/three.min.js"></script>
+</head>
+<body>
+<script>
+var Producer = {
+	points : [{
+		x : 85.2,
+		y : 205.2,
+		z : -64.8,
+		a : 1,
+		b : 1,
+		c : 1
+	},{
+		x : 60,
+		y : -49.8,
+		z : 184.8,
+		a : 1,
+		b : 1,
+		c : 2
+	},{
+		x : 225,
+		y : -195,
+		z : 195,
+		a : 1,
+		b : 2,
+		c : 1
+	},{
+		x : 40,
+		y : -40.8,
+		z : 114.8,
+		a : 2,
+		b : 1,
+		c : 1
+	},{
+		x : 85.2,
+		y : 105.2,
+		z : -24.8,
+		a : 2,
+		b : 1,
+		c : 1
+	},{
+		x : 85.2,
+		y : 205.2,
+		z : -64.8,
+		a : 1,
+		b : 1,
+		c : 1
+	}],
+	changePoints : function(){
+		var points = Producer.points;
+		for(var i = 0 ; i < points.length; i++){
+			item =  points[i];
+			if(item.x < -250 || item.x > 250) item.a = -item.a;
+			if(item.y < -250 || item.y > 250) item.b = -item.b;
+			if(item.z < -250 || item.z > 250) item.c = -item.c;
+			item.x -= item.a,
+			item.y -= item.b,
+			item.z -= item.c
+		}
+		spiralDemo.init().animate();
+	}
+};
+function Spiral3D(){
+	this.width = document.documentElement.offsetWidth;
+	this.height = Math.max(document.documentElement.clientHeight,document.body.offsetHeight);
+	this.camera = new THREE.PerspectiveCamera( 33, this.width / this.height, 1, 10000);
+	this.scene = new THREE.Scene();
+	this.renderer = null;
+	this.create();
+}
+Spiral3D.prototype = {
+	create : function(){
+		try{
+			this.renderer = new THREE.WebGLRenderer( { antialias: true } ); //webgl
+		}catch(e){
+			this.renderer = new THREE.CanvasRenderer(); //canvas
+		}
+		this.renderer.setSize( this.width, this.height);
+		document.body.appendChild( this.renderer.domElement );
+		this.init();
+		return this;
+	},
+	init : function() {
+		this.scene = new THREE.Scene();
+		this.stop();
+		var spline = new THREE.Spline( Producer.points ),  //以关键点创建曲线
+			geometry = new THREE.Geometry(),
+			material = new THREE.LineBasicMaterial( { color: 0xffffff, opacity: 1, linewidth: 1, vertexColors: THREE.VertexColors } );
+		//自动补全曲线点
+		for ( var i =0, position, l = Producer.points.length * 7; i < l; i ++ ) {
+			position = spline.getPoint( i/l );
+			geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+			geometry.colors[ i ] = new THREE.Color( 0x00ffff );
+			geometry.colors[ i ].setHSV( ( 100 + position.x ) / 400 * i/8, ( 200 + position.x ) / 400, ( 250 + position.x ) / 300);
+		}
+		//创建100条线
+		for(var line, i=0, l = 100 ; i<l; i++){
+			line = new THREE.Line(geometry,  material);
+			line.position = {x: 0, y: 0, z: 0};
+			if(i > 0) {
+				line.rotation.y = Math.PI * 2 * (i/l);
+			}
+			this.scene.add( line ); //将显示对象加入场景
+		}
+		return this;
+	},
+	render : function() {
+		var timer = Date.now() * 0.0005;
+		this.camera.position.x = Math.cos( timer ) * 500;
+		this.camera.position.z = Math.sin( timer ) * 500;
+		this.camera.lookAt( this.scene.position );
+		this.renderer.render( this.scene, this.camera ); //使用渲染器
+		return this;
+	},
+	_reqID : {},
+	animate : function() {
+		var that = this;
+		var _loop = function(){
+			that._reqID = requestAnimationFrame( _loop );
+			that.render();
+		}
+		_loop();
+		return this;
+	},
+	stop : function(){
+		var that = this;
+		cancelAnimationFrame(that._reqID);
+	}
+};
+var spiralDemo = new Spiral3D();
+	spiralDemo.animate();
+setInterval(Producer.changePoints,50);
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_72456ad4-0fd2-400d-bc7a-53e748802f8a');" />
 
 
 

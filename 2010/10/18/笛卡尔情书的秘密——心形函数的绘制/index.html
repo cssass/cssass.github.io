@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/Math/" class="post-tag">#Math</a>
+  
 
 
           <span class="post-date">2010-10-18</span>
@@ -133,7 +135,36 @@ runcode.copy=function(element)
 </blockquote>
 
 <p>而我们将借助canvas的arc方法，为你揭开这行字的秘密：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Cardioid&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body style=&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;500&#x27; height=&#x27;500&#x27;&gt;你不换一个浏览器，比如chrome，将无法知道这个秘密。&lt;/a&gt;&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">window.addEventListener(&quot;load&quot;,draw, false);</span><br><span class="line">var con=$id(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.fillStyle=&#x27;#e21f27&#x27;</span><br><span class="line">	con.translate(200,100);</span><br><span class="line">function draw()&#123;</span><br><span class="line">	var r=0 , a=100 , start = 0 , end= 0;</span><br><span class="line">	con.rotate(Math.PI);</span><br><span class="line">	for(var q=0; q&lt;500; q++)&#123;</span><br><span class="line">		start +=  Math.PI * 2 /500;</span><br><span class="line">		end = start + Math.PI * 2 /500;</span><br><span class="line">		r=a * (1-Math.sin(start));  //心形极坐标表示法</span><br><span class="line">		con.arc(0,0,r,start,end,false);</span><br><span class="line">&#125;</span><br><span class="line">con.fill();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_8f8efb1d-8a31-4c81-b01d-d4271f547743"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Cardioid</title>
+</head>
+<body style="text-align:center;">
+<canvas id="pad" width='500' height='500'>你不换一个浏览器，比如chrome，将无法知道这个秘密。</a></canvas>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+window.addEventListener("load",draw, false);
+var con=$id("pad").getContext('2d');
+	con.fillStyle='#e21f27'
+	con.translate(200,100);
+function draw(){
+	var r=0 , a=100 , start = 0 , end= 0;
+	con.rotate(Math.PI);
+	for(var q=0; q<500; q++){
+		start +=  Math.PI * 2 /500;
+		end = start + Math.PI * 2 /500;
+		r=a * (1-Math.sin(start));  //心形极坐标表示法
+		con.arc(0,0,r,start,end,false);
+}
+con.fill();
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8f8efb1d-8a31-4c81-b01d-d4271f547743');" />
 
 <blockquote><p>不久之后那位国王死了，克丽丝汀继承王位， 登基之后她马上派人在欧洲四处寻找迪卡尔的踪迹，可惜人已故。。。</p>
 </blockquote>
@@ -142,11 +173,96 @@ runcode.copy=function(element)
 <p>除了使用arc方法，bezierCurveTo方法来绘制各种曲线图形也不在话下，但那并不是通过心形函数本身绘制的。</p>
 <p>好吧其实r&#x3D;a(1-sinθ)是极坐标系方程，而不是笛卡尔坐标系(直角坐标系)方程式。<br>关于心形函数的一些资料</p>
 <p>话说，极坐标公式是非常利于绘制图形的。<br>比如玫瑰线公式：r(θ) &#x3D; a sin kθ<br>阿基米德螺线公式：r(θ) &#x3D; a+bθ</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Rose&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;500&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie低版本用户请更新你的浏览器&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">window.addEventListener(&quot;load&quot;,draw, false);</span><br><span class="line">var con=$id(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle=&#x27;#e21f27&#x27;</span><br><span class="line">	con.translate(100,100);</span><br><span class="line">function draw()&#123;</span><br><span class="line">	var r=0 , a=100 , start = 0 , end= 0 , k=4; //可以改变k值试试</span><br><span class="line">	for(var q=0; q&lt;500; q++)&#123;</span><br><span class="line">		start +=  Math.PI * 2 /500;</span><br><span class="line">		end = start + Math.PI * 2 /500;</span><br><span class="line">		r =Math.abs(a *(Math.cos( k * start)))  //玫瑰线公式r(θ) = a sin kθ</span><br><span class="line">		con.arc(0,0,r,start,end,false);</span><br><span class="line">&#125;</span><br><span class="line">con.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_d70d4995-b20c-47a9-b88e-fff88cafe0ba"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Rose</title>
+</head>
+<body>
+<canvas id="pad" width='500' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+window.addEventListener("load",draw, false);
+var con=$id("pad").getContext('2d');
+	con.strokeStyle='#e21f27'
+	con.translate(100,100);
+function draw(){
+	var r=0 , a=100 , start = 0 , end= 0 , k=4; //可以改变k值试试
+	for(var q=0; q<500; q++){
+		start +=  Math.PI * 2 /500;
+		end = start + Math.PI * 2 /500;
+		r =Math.abs(a *(Math.cos( k * start)))  //玫瑰线公式r(θ) = a sin kθ
+		con.arc(0,0,r,start,end,false);
+}
+con.stroke();
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d70d4995-b20c-47a9-b88e-fff88cafe0ba');" />
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Archimedean spiral&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;500&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie低版本用户请更新你的浏览器&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">window.addEventListener(&quot;load&quot;,draw, false);</span><br><span class="line">var con=$id(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle=&#x27;#e21f27&#x27;</span><br><span class="line">	con.translate(100,100);</span><br><span class="line">function draw()&#123;</span><br><span class="line">	var r=0 , a=20 , start = 0 , end= 0 , k=2;</span><br><span class="line">	for(var q=0; q&lt;500; q++)&#123;</span><br><span class="line">		start +=  Math.PI * 2 /100;</span><br><span class="line">		end = start + Math.PI * 2 /100;</span><br><span class="line">		r =a + k * start  //阿基米德螺线</span><br><span class="line">		con.arc(0,0,r,start,end,false);</span><br><span class="line">&#125;</span><br><span class="line">con.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_425f103a-0c4a-43a7-aff9-19345c51a45e"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Archimedean spiral</title>
+</head>
+<body>
+<canvas id="pad" width='500' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+window.addEventListener("load",draw, false);
+var con=$id("pad").getContext('2d');
+	con.strokeStyle='#e21f27'
+	con.translate(100,100);
+function draw(){
+	var r=0 , a=20 , start = 0 , end= 0 , k=2;
+	for(var q=0; q<500; q++){
+		start +=  Math.PI * 2 /100;
+		end = start + Math.PI * 2 /100;
+		r =a + k * start  //阿基米德螺线
+		con.arc(0,0,r,start,end,false);
+}
+con.stroke();
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_425f103a-0c4a-43a7-aff9-19345c51a45e');" />
 <p>另外，出于审美需求，我们的心型图形往往是这样的：<br>17(x^2+y^2)-16*abs(x)<em>y&#x3D;225<br>但是这里所用到的坐标系是直角坐标系，我们可以先转换成极坐标方程，如下：<br>r&#x3D;sqrt(225&#x2F;(17-16sinθ</em>sqrt((cosθ)^2)))<br>绘制如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;LOVE&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body style=&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;300&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie低版本用户请更新你的浏览器&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">window.addEventListener(&quot;load&quot;,draw, false);</span><br><span class="line">var con=$id(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.fillStyle=&#x27;#e21f27&#x27;</span><br><span class="line">	con.translate(100,100);</span><br><span class="line">function draw()&#123;</span><br><span class="line">	var r=0 , a=20 , start = 0 , end= 0;</span><br><span class="line">	con.rotate(Math.PI);</span><br><span class="line">	for(var q=0; q&lt;1000; q++)&#123;</span><br><span class="line">		start +=  Math.PI * 2 /1000;</span><br><span class="line">		end = start + Math.PI * 2 /1000;</span><br><span class="line">		r=a*Math.sqrt(225/(17-16*Math.sin(start)*Math.sqrt(Math.cos(start)*Math.cos(start))))</span><br><span class="line">		con.arc(0,0,r,start,end,false);</span><br><span class="line">&#125;</span><br><span class="line">con.fill();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_3c54b6ca-2745-46a5-9b39-2fa64a6fc412"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>LOVE</title>
+</head>
+<body style="text-align:center;">
+<canvas id="pad" width='300' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+window.addEventListener("load",draw, false);
+var con=$id("pad").getContext('2d');
+	con.fillStyle='#e21f27'
+	con.translate(100,100);
+function draw(){
+	var r=0 , a=20 , start = 0 , end= 0;
+	con.rotate(Math.PI);
+	for(var q=0; q<1000; q++){
+		start +=  Math.PI * 2 /1000;
+		end = start + Math.PI * 2 /1000;
+		r=a*Math.sqrt(225/(17-16*Math.sin(start)*Math.sqrt(Math.cos(start)*Math.cos(start))))
+		con.arc(0,0,r,start,end,false);
+}
+con.fill();
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3c54b6ca-2745-46a5-9b39-2fa64a6fc412');" />
 
       </div>
     </div>

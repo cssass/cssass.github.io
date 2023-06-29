@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/DOM/" class="post-tag">#DOM</a>
+  
 
 
           <span class="post-date">2010-05-13</span>
@@ -124,14 +126,195 @@ runcode.copy=function(element)
           </div>
         
         <p>先看一下普通的拖动元素的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;简单拖曳&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;&#125;</span><br><span class="line">.tips&#123;position:absolute;background:#eee;width:100px;height:100px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;tips&quot; onmousedown=&quot;drag(this,event);&quot;&gt;</span><br><span class="line">	拖动框</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var drag=function(o,e)&#123;</span><br><span class="line">	var e = e ? e : window.event;</span><br><span class="line">	var tX=o.offsetLeft,</span><br><span class="line">		tY=o.offsetTop,</span><br><span class="line">		dx=e.clientX,</span><br><span class="line">		dy=e.clientY;</span><br><span class="line">	document.onmousemove=function(e)&#123;</span><br><span class="line">		var e = e ? e : window.event;</span><br><span class="line">		o.style.left=tX+(e.clientX-dx)+&quot;px&quot;;</span><br><span class="line">		o.style.top=tY+(e.clientY-dy)+&quot;px&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	document.onmouseup=function()&#123;</span><br><span class="line">		document.onmousemove=null;</span><br><span class="line">		document.onmouseup=null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_cf18d9c3-35c0-4943-b3be-24208f34fff7"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;}
+.tips{position:absolute;background:#eee;width:100px;height:100px;}
+</style>
+</head>
+<body>
+<div class="tips" onmousedown="drag(this,event);">
+	拖动框
+</div>
+</body>
+<script type="text/javascript">
+var drag=function(o,e){
+	var e = e ? e : window.event;
+	var tX=o.offsetLeft,
+		tY=o.offsetTop,
+		dx=e.clientX,
+		dy=e.clientY;
+	document.onmousemove=function(e){
+		var e = e ? e : window.event;
+		o.style.left=tX+(e.clientX-dx)+"px";
+		o.style.top=tY+(e.clientY-dy)+"px";
+	}
+	document.onmouseup=function(){
+		document.onmousemove=null;
+		document.onmouseup=null;
+	}
+}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cf18d9c3-35c0-4943-b3be-24208f34fff7');" />
 <p>非常简单。</p>
 <p>考虑一下边境问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;简单拖曳&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;&#125;</span><br><span class="line">.tips&#123;position:absolute;background:#eee;width:100px;height:100px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body style=&quot;&quot;&gt;</span><br><span class="line">&lt;div class=&quot;tips&quot; onmousedown=&quot;drag(this,event);&quot;&gt;</span><br><span class="line">	拖动框</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var drag=function(o,e)&#123;</span><br><span class="line">	var e = e ? e : window.event;</span><br><span class="line">	var tX=o.offsetLeft,</span><br><span class="line">		tY=o.offsetTop,</span><br><span class="line">		dx=e.clientX,</span><br><span class="line">		dy=e.clientY;</span><br><span class="line">	var largeL = document.documentElement.offsetWidth -  o.offsetWidth,</span><br><span class="line">		largeT = Math.max(document.documentElement.clientHeight,document.body.offsetHeight) - o.offsetHeight;</span><br><span class="line">	document.onmousemove=function(e)&#123;</span><br><span class="line">		var e = e ? e : window.event;</span><br><span class="line">		var oX = tX + (e.clientX - dx),</span><br><span class="line">			oY = tY + (e.clientY - dy);</span><br><span class="line">			(function()&#123;</span><br><span class="line">			/* 考虑边境 */</span><br><span class="line">				if(oX &gt; largeL || oX &lt; 0)&#123;</span><br><span class="line">					oX = (oX &lt; 0) ? 0 : largeL</span><br><span class="line">				&#125;</span><br><span class="line">				if(oY &gt; largeT || oY &lt; 0)&#123;</span><br><span class="line">					oY = (oY &lt; 0) ? 0 : largeT</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;)();</span><br><span class="line">			o.style.left = oX + &quot;px&quot;;</span><br><span class="line">			o.style.top = oY + &quot;px&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	document.onmouseup=function()&#123;</span><br><span class="line">		document.onmousemove=null;</span><br><span class="line">		document.onmouseup=null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_4511c135-e64b-434b-9aea-c60ccdaa3d3a"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;}
+.tips{position:absolute;background:#eee;width:100px;height:100px;}
+</style>
+</head>
+<body style="">
+<div class="tips" onmousedown="drag(this,event);">
+	拖动框
+</div>
+</body>
+<script type="text/javascript">
+var drag=function(o,e){
+	var e = e ? e : window.event;
+	var tX=o.offsetLeft,
+		tY=o.offsetTop,
+		dx=e.clientX,
+		dy=e.clientY;
+	var largeL = document.documentElement.offsetWidth -  o.offsetWidth,
+		largeT = Math.max(document.documentElement.clientHeight,document.body.offsetHeight) - o.offsetHeight;
+	document.onmousemove=function(e){
+		var e = e ? e : window.event;
+		var oX = tX + (e.clientX - dx),
+			oY = tY + (e.clientY - dy);
+			(function(){
+			/* 考虑边境 */
+				if(oX > largeL || oX < 0){
+					oX = (oX < 0) ? 0 : largeL
+				}
+				if(oY > largeT || oY < 0){
+					oY = (oY < 0) ? 0 : largeT
+				}
+			})();
+			o.style.left = oX + "px";
+			o.style.top = oY + "px";
+	}
+	document.onmouseup=function(){
+		document.onmousemove=null;
+		document.onmouseup=null;
+	}
+}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4511c135-e64b-434b-9aea-c60ccdaa3d3a');" />
 <p>如果拖动层内有元素不允许拖动。可以绑定一个事件，阻止拖动处理函数的执行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;简单拖曳&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;&#125;</span><br><span class="line">.tips&#123;position:absolute;background:#eee;width:180px;height:200px;&#125;</span><br><span class="line">textarea&#123;font-size:12px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;tips&quot; onmousedown=&quot;drag(this,event);&quot;&gt;</span><br><span class="line">	&lt;textarea cols=&#x27;25&#x27; rows=&#x27;5&#x27; onmousedown=&quot;(document.all)?(event.cancelBubble = true) : (event.stopPropagation())&quot;&gt;阻止拖动区域（ie,ff支持cancelBubble; ie除外，都支持标准stopPropagation()）&lt;/textarea&gt;</span><br><span class="line">	可以拖动区域</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var drag=function(o,e)&#123;</span><br><span class="line">	var e = e ? e : window.event;</span><br><span class="line">	var tX=o.offsetLeft,</span><br><span class="line">		tY=o.offsetTop,</span><br><span class="line">		dx=e.clientX,</span><br><span class="line">		dy=e.clientY;</span><br><span class="line">	document.onmousemove=function(e)&#123;</span><br><span class="line">		var e = e ? e : window.event;</span><br><span class="line">		o.style.left=tX+(e.clientX-dx)+&quot;px&quot;;</span><br><span class="line">		o.style.top=tY+(e.clientY-dy)+&quot;px&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	document.onmouseup=function()&#123;</span><br><span class="line">		document.onmousemove=null;</span><br><span class="line">		document.onmouseup=null;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_52a9d101-645c-4c85-8a31-c9847989980b"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;}
+.tips{position:absolute;background:#eee;width:180px;height:200px;}
+textarea{font-size:12px;}
+</style>
+</head>
+<body>
+<div class="tips" onmousedown="drag(this,event);">
+	<textarea cols='25' rows='5' onmousedown="(document.all)?(event.cancelBubble = true) : (event.stopPropagation())">阻止拖动区域（ie,ff支持cancelBubble; ie除外，都支持标准stopPropagation()）</textarea>
+	可以拖动区域
+</div>
+</body>
+<script type="text/javascript">
+var drag=function(o,e){
+	var e = e ? e : window.event;
+	var tX=o.offsetLeft,
+		tY=o.offsetTop,
+		dx=e.clientX,
+		dy=e.clientY;
+	document.onmousemove=function(e){
+		var e = e ? e : window.event;
+		o.style.left=tX+(e.clientX-dx)+"px";
+		o.style.top=tY+(e.clientY-dy)+"px";
+	}
+	document.onmouseup=function(){
+		document.onmousemove=null;
+		document.onmouseup=null;
+	}
+}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_52a9d101-645c-4c85-8a31-c9847989980b');" />
 <p>图片的drag&amp;drop需要注意浏览器中在拖动图片时候会有默认动作的，拖动带链接的内容也是。所以拖动这些内容时应阻止其事件，另外加入setCapture。（下面拖动代码略有差别）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;拖曳&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">.tips&#123;position:absolute;background:#eee;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;tips&quot; id=&quot;tips1&quot; onmouseover=&quot;dragF.drag($id(&#x27;tips1&#x27;));&quot;&gt;</span><br><span class="line">	&lt;img src=&quot;http://www.baidu.com/img/bd_logo1.png&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;tips&quot; id=&quot;tips2&quot; onmouseover=&quot;dragF.drag($id(&#x27;tips2&#x27;));&quot;&gt;</span><br><span class="line">	&lt;a href=&quot;http://www.cssass.com&quot; target=&quot;_blank&quot;&gt;链接&lt;/a&gt;&lt;br /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(id)&#123;return document.getElementById(id);&#125;</span><br><span class="line">var dragF=&#123;</span><br><span class="line">	locked:false,</span><br><span class="line">	lastObj:undefined,</span><br><span class="line">	drag:function(obj)&#123;</span><br><span class="line">		obj.onmousedown=function(e)&#123;</span><br><span class="line">			var e = e ? e : window.event;</span><br><span class="line">			if(!window.event) &#123;e.preventDefault();&#125;		/* 阻止标注浏览器下拖动a,img的默认事件 */</span><br><span class="line">			if(obj.setCapture)&#123;</span><br><span class="line">				 obj.setCapture();</span><br><span class="line">			&#125;else if(window.captureEvents)&#123;</span><br><span class="line">				window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);</span><br><span class="line">			&#125;</span><br><span class="line">			dragF.locked=true;</span><br><span class="line">		  	obj.style.position=&quot;absolute&quot;;</span><br><span class="line">			obj.style.zIndex=&quot;100&quot;;</span><br><span class="line">			if (dragF.lastObj&amp;&amp;dragF.lastObj!=obj) &#123;		 /* 多元素拖动时候需要恢复上一次元素的状态 */</span><br><span class="line">				dragF.lastObj.style.zIndex = &quot;1&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			dragF.lastObj=obj;</span><br><span class="line">			var tempX=obj.offsetLeft;</span><br><span class="line">			var tempY=obj.offsetTop;</span><br><span class="line">			dragF.x=e.clientX;</span><br><span class="line">			dragF.y=e.clientY;</span><br><span class="line">			document.onmousemove=function(e)&#123;</span><br><span class="line">				var e = e ? e : window.event;</span><br><span class="line">				if(dragF.locked==false) return false;</span><br><span class="line">				obj.style.left=tempX+(e.clientX-dragF.x)+&quot;px&quot;;</span><br><span class="line">				obj.style.top=tempY+(e.clientY-dragF.y)+&quot;px&quot;;</span><br><span class="line">				if(window.event) &#123;e.returnValue=false;&#125;		/* 阻止ie下a,img的默认事件 */</span><br><span class="line">			&#125;</span><br><span class="line">			document.onmouseup=function()&#123;</span><br><span class="line">				dragF.locked=false;</span><br><span class="line">				document.onmousemove=null;</span><br><span class="line">				document.onmouseup=null;</span><br><span class="line">				if(obj.releaseCapture)&#123;</span><br><span class="line">					obj.releaseCapture();</span><br><span class="line">				&#125;else if(window.captureEvents)&#123;</span><br><span class="line">					window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_1a3e9665-d54b-4466-a323-ab370b131588"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>拖曳</title>
+<style type="text/css">
+*{padding:0;margin:0;}
+.tips{position:absolute;background:#eee;}
+</style>
+</head>
+<body>
+<div class="tips" id="tips1" onmouseover="dragF.drag($id('tips1'));">
+	<img src="http://www.baidu.com/img/bd_logo1.png">
+</div>
+<div class="tips" id="tips2" onmouseover="dragF.drag($id('tips2'));">
+	<a href="http://www.cssass.com" target="_blank">链接</a><br />
+</div>
+</body>
+<script type="text/javascript">
+var $id=function(id){return document.getElementById(id);}
+var dragF={
+	locked:false,
+	lastObj:undefined,
+	drag:function(obj){
+		obj.onmousedown=function(e){
+			var e = e ? e : window.event;
+			if(!window.event) {e.preventDefault();}		/* 阻止标注浏览器下拖动a,img的默认事件 */
+			if(obj.setCapture){
+				 obj.setCapture();
+			}else if(window.captureEvents){
+				window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+			}
+			dragF.locked=true;
+		  	obj.style.position="absolute";
+			obj.style.zIndex="100";
+			if (dragF.lastObj&&dragF.lastObj!=obj) {		 /* 多元素拖动时候需要恢复上一次元素的状态 */
+				dragF.lastObj.style.zIndex = "1";
+			}
+			dragF.lastObj=obj;
+			var tempX=obj.offsetLeft;
+			var tempY=obj.offsetTop;
+			dragF.x=e.clientX;
+			dragF.y=e.clientY;
+			document.onmousemove=function(e){
+				var e = e ? e : window.event;
+				if(dragF.locked==false) return false;
+				obj.style.left=tempX+(e.clientX-dragF.x)+"px";
+				obj.style.top=tempY+(e.clientY-dragF.y)+"px";
+				if(window.event) {e.returnValue=false;}		/* 阻止ie下a,img的默认事件 */
+			}
+			document.onmouseup=function(){
+				dragF.locked=false;
+				document.onmousemove=null;
+				document.onmouseup=null;
+				if(obj.releaseCapture){
+					obj.releaseCapture();
+				}else if(window.captureEvents){
+					window.captureEvents(Event.MOUSEMOVE|Event.MOUSEUP);
+				}
+			}
+		}
+	}
+}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1a3e9665-d54b-4466-a323-ab370b131588');" />
 
       </div>
     </div>

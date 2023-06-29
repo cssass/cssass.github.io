@@ -107,6 +107,12 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/CSS3/" class="post-tag">#CSS3</a>
+  
+    <a href="/tags/3D/" class="post-tag">#3D</a>
+  
+    <a href="/tags/Transform/" class="post-tag">#Transform</a>
+  
 
 
           <span class="post-date">2010-11-16</span>
@@ -126,15 +132,240 @@ runcode.copy=function(element)
         <p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">body &#123; background-color:#deddcd;&#125;</span><br><span class="line">#movieposters &#123; list-style:none; margin:100px;&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-webkit-perspective: 500;</span><br><span class="line">	/*</span><br><span class="line">	-webkit-transform-style: preserve-3d;</span><br><span class="line">	-webkit-transition-property: perspective;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">	*/</span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">#movieposters li:hover &#123; -webkit-perspective: 5000; &#125;</span><br><span class="line">*/</span><br><span class="line">#movieposters li img &#123; border:10px solid #fcfafa;-webkit-box-shadow:0 3px 10px #888;</span><br><span class="line">	-webkit-transform: rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;-webkit-transform: rotateY(0deg); &#125;</span><br><span class="line">.movieinfo &#123;border:10px solid #fcfafa; padding:0 10px; width:120px; height:100px; background-color:#deddcd; margin:-125px 0 0 55px; position:absolute;-webkit-box-shadow:0 10px 20px #888;</span><br><span class="line">	-webkit-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform, box-shadow, margin;</span><br><span class="line">	-webkit-transition-duration: 0.5s; &#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;-webkit-box-shadow:0 5px 10px #888; margin:-105px 0 0 30px;</span><br><span class="line">	-webkit-transform: rotateY(0deg); &#125;</span><br><span class="line">.movieinfo h3 &#123;color:#7a3f3a;font-family:Georgia; text-align:center; &#125;</span><br><span class="line">.movieinfo p &#123;padding:10px 0;&#125;</span><br><span class="line">.movieinfo a &#123; display:block; background:#7a3f3a; padding:3px 0; color:#eee; text-decoration:none; text-align:center; margin:0 auto;-webkit-border-radius:5px; &#125;</span><br><span class="line">.movieinfo a:hover, .movieinfo a:focus &#123; background-color:#6a191f; color:#fff; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_2e8aa09d-a699-4aed-b566-62c17ae10b07"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;}
+body { background-color:#deddcd;}
+#movieposters { list-style:none; margin:100px;}
+#movieposters li {float:left;
+	-webkit-perspective: 500;
+	/*
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition-property: perspective;
+	-webkit-transition-duration: 0.5s;
+	*/
+}
+/*
+#movieposters li:hover { -webkit-perspective: 5000; }
+*/
+#movieposters li img { border:10px solid #fcfafa;-webkit-box-shadow:0 3px 10px #888;
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {-webkit-transform: rotateY(0deg); }
+.movieinfo {border:10px solid #fcfafa; padding:0 10px; width:120px; height:100px; background-color:#deddcd; margin:-125px 0 0 55px; position:absolute;-webkit-box-shadow:0 10px 20px #888;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, box-shadow, margin;
+	-webkit-transition-duration: 0.5s; }
+#movieposters li:hover .movieinfo {-webkit-box-shadow:0 5px 10px #888; margin:-105px 0 0 30px;
+	-webkit-transform: rotateY(0deg); }
+.movieinfo h3 {color:#7a3f3a;font-family:Georgia; text-align:center; }
+.movieinfo p {padding:10px 0;}
+.movieinfo a { display:block; background:#7a3f3a; padding:3px 0; color:#eee; text-decoration:none; text-align:center; margin:0 auto;-webkit-border-radius:5px; }
+.movieinfo a:hover, .movieinfo a:focus { background-color:#6a191f; color:#fff; }
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2e8aa09d-a699-4aed-b566-62c17ae10b07');" />
 <p>进一步删减</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;list-style:none; &#125;</span><br><span class="line">body &#123; background:#deddcd;margin:100px;&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-webkit-perspective: 500;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li img &#123;</span><br><span class="line">	-webkit-transform: rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;</span><br><span class="line">	-webkit-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">.movieinfo &#123;</span><br><span class="line">	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;</span><br><span class="line">	-webkit-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform, margin;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;</span><br><span class="line">	margin:-105px 0 0 40px;</span><br><span class="line">	-webkit-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			Avatar 2</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_bfe71681-bc33-4876-b259-9bfe2abe97b6"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;list-style:none; }
+body { background:#deddcd;margin:100px;}
+#movieposters li {float:left;
+	-webkit-perspective: 500;
+}
+#movieposters li img {
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {
+	-webkit-transform: rotateY(0deg);
+}
+.movieinfo {
+	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, margin;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover .movieinfo {
+	margin:-105px 0 0 40px;
+	-webkit-transform: rotateY(0deg);
+}
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bfe71681-bc33-4876-b259-9bfe2abe97b6');" />
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Explaining transform-style&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">    #container &#123;</span><br><span class="line">      position: relative;</span><br><span class="line">      height: 300px;</span><br><span class="line">      width: 300px;</span><br><span class="line">      margin: 50px 100px;</span><br><span class="line">      border: 2px solid blue;</span><br><span class="line">      -webkit-perspective: 500;</span><br><span class="line">    &#125;</span><br><span class="line">    #parent &#123;</span><br><span class="line">      margin: 10px;</span><br><span class="line">      width: 280px;</span><br><span class="line">      height: 280px;</span><br><span class="line">      background-color: #844BCA;</span><br><span class="line">      opacity: 0.8;</span><br><span class="line">      -webkit-transform-style: preserve-3d;</span><br><span class="line">      -webkit-animation: spin 10s infinite linear;</span><br><span class="line">    &#125;</span><br><span class="line">    #container:hover #parent &#123;</span><br><span class="line">      -webkit-transform-style: flat;</span><br><span class="line">    &#125;</span><br><span class="line">    @-webkit-keyframes spin &#123;</span><br><span class="line">      from &#123; -webkit-transform: rotateY(0); &#125;</span><br><span class="line">      to   &#123; -webkit-transform: rotateY(360deg); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    #parent &gt; div &#123;</span><br><span class="line">      position: absolute;</span><br><span class="line">      top: 40px;</span><br><span class="line">      left: 40px;</span><br><span class="line">      width: 200px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      padding: 10px;</span><br><span class="line">      -webkit-box-sizing: border-box;</span><br><span class="line">    &#125;</span><br><span class="line">    #parent &gt; :first-child &#123;</span><br><span class="line">      background-color: #49DC93;</span><br><span class="line">      -webkit-transform: translateZ(-100px) rotateY(45deg);</span><br><span class="line">    &#125;</span><br><span class="line">    #parent &gt; :last-child &#123;</span><br><span class="line">      background-color: #FF6;</span><br><span class="line">      -webkit-transform: translateZ(50px) rotateX(20deg);</span><br><span class="line">      -webkit-transform-origin: 50% top;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;parent&quot;&gt;</span><br><span class="line">      &lt;div&gt;-webkit-transform: translateZ(-100px) rotateY(45deg);&lt;/div&gt;</span><br><span class="line">      &lt;div&gt;-webkit-transform: translateZ(50px) rotateX(20deg);&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_5b15bc93-f07c-4876-9124-3c63086ecd87"><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Explaining transform-style</title>
+  <style>
+    #container {
+      position: relative;
+      height: 300px;
+      width: 300px;
+      margin: 50px 100px;
+      border: 2px solid blue;
+      -webkit-perspective: 500;
+    }
+    #parent {
+      margin: 10px;
+      width: 280px;
+      height: 280px;
+      background-color: #844BCA;
+      opacity: 0.8;
+      -webkit-transform-style: preserve-3d;
+      -webkit-animation: spin 10s infinite linear;
+    }
+    #container:hover #parent {
+      -webkit-transform-style: flat;
+    }
+    @-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+    #parent > div {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      width: 200px;
+      height: 200px;
+      padding: 10px;
+      -webkit-box-sizing: border-box;
+    }
+    #parent > :first-child {
+      background-color: #49DC93;
+      -webkit-transform: translateZ(-100px) rotateY(45deg);
+    }
+    #parent > :last-child {
+      background-color: #FF6;
+      -webkit-transform: translateZ(50px) rotateX(20deg);
+      -webkit-transform-origin: 50% top;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="parent">
+      <div>-webkit-transform: translateZ(-100px) rotateY(45deg);</div>
+      <div>-webkit-transform: translateZ(50px) rotateX(20deg);</div>
+    </div>
+  </div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5b15bc93-f07c-4876-9124-3c63086ecd87');" />
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;list-style:none; &#125;</span><br><span class="line">body &#123; background:#deddcd;margin:100px;&#125;</span><br><span class="line">#movieposters&#123;</span><br><span class="line">	-webkit-perspective: 1000;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-webkit-animation: spin 10s infinite linear;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li.first&#123;</span><br><span class="line">	-webkit-transform-style: preserve-3d;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li.second&#123;</span><br><span class="line">	-webkit-transform-style: plat;</span><br><span class="line">&#125;</span><br><span class="line"> @-webkit-keyframes spin &#123;</span><br><span class="line">      from &#123; -webkit-transform: rotateY(0); &#125;</span><br><span class="line">      to   &#123; -webkit-transform: rotateY(360deg); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">#movieposters li img &#123;</span><br><span class="line">	-webkit-transform: rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;</span><br><span class="line">	-webkit-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">.movieinfo &#123;</span><br><span class="line">	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;</span><br><span class="line">	-webkit-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-webkit-transition-property: transform, margin;</span><br><span class="line">	-webkit-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;</span><br><span class="line">	margin:-105px 0 0 40px;</span><br><span class="line">	-webkit-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li class=&#x27;first&#x27;&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			Avatar 2</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li class=&#x27;second&#x27;&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			Avatar 2</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_ad7bb213-1df6-446b-80d6-b7587a359441"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;list-style:none; }
+body { background:#deddcd;margin:100px;}
+#movieposters{
+	-webkit-perspective: 1000;
+}
+#movieposters li {float:left;
+	-webkit-animation: spin 10s infinite linear;
+}
+#movieposters li.first{
+	-webkit-transform-style: preserve-3d;
+}
+#movieposters li.second{
+	-webkit-transform-style: plat;
+}
+ @-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+#movieposters li img {
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {
+	-webkit-transform: rotateY(0deg);
+}
+.movieinfo {
+	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, margin;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover .movieinfo {
+	margin:-105px 0 0 40px;
+	-webkit-transform: rotateY(0deg);
+}
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li class='first'>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+	<li class='second'>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ad7bb213-1df6-446b-80d6-b7587a359441');" />
 
       </div>
     </div>

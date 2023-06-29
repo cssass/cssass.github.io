@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/HTML/" class="post-tag">#HTML</a>
+  
 
 
           <span class="post-date">2009-09-04</span>
@@ -148,22 +150,174 @@ runcode.copy=function(element)
 <p>好了， HTML5能做的够多了，但他还处在草案阶段，那关键是现在我们能做什么呢？</p>
 <p>我们能做什么？<br>HTML5估计能在2012年之前成为W3C的候选推荐标准，不过在这之前，只要浏览器支持，我们都可以使用html5的功能。</p>
 <ol>
-<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">document.createElement(&quot;元素名称&quot;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-创建文档元素。<br>批量创建的方法:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">    if(!/*@cc_on!@*/0) return;    </span><br><span class="line">    var html5 = &quot;abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video&quot;.split(&#x27;,&#x27;);   </span><br><span class="line">    for(var i = 0, len = html5.length; i &lt; len; i++ ) &#123;       </span><br><span class="line">    document.createElement(html5[i]);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">();</span><br></pre></td></tr></table></figure>
+<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<textarea class="runcode_text" id="runcode_6b2eb908-5e43-4ca2-837e-593596ed37eb"><script>
+document.createElement("元素名称")
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6b2eb908-5e43-4ca2-837e-593596ed37eb');" />
+创建文档元素。<br>批量创建的方法:<textarea class="runcode_text" id="runcode_718fb250-fa29-498e-9d86-8454a6e4b3da">(function(){
+    if(!/*@cc_on!@*/0) return;    
+    var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');   
+    for(var i = 0, len = html5.length; i < len; i++ ) {       
+    document.createElement(html5[i]);  
+    }
+})
+();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_718fb250-fa29-498e-9d86-8454a6e4b3da');" />
 现在在IE里也可以对HTML5元素进行布局了。<br>不过，在此之前，我们还需要对这些新元素定义基本的Display style,<br>这个工作本来一般是由浏览器完成的，比如FireFox的html.css。<br>现在只能自己对引进的HTML5元素进行定义了。<br>那么哪些需要定义成display:block;哪些又是不需要呢？这个我们可以看下W3C是怎么定义的：display-types</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">address, article, aside, blockquote, body, center, dd, dialog, dir,</span><br><span class="line">div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,</span><br><span class="line">hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,</span><br><span class="line">section, ul, xmp &#123; display: block; &#125;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_d9995a90-bb63-40ac-a4cb-87475b1241ca">address, article, aside, blockquote, body, center, dd, dialog, dir,
+div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
+hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,
+section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d9995a90-bb63-40ac-a4cb-87475b1241ca');" />
 
 <p>刨除HTML老元素，以下这些元素:<br>article,aside,dialog,figure,footer,header,hgroup,nav,section可以定义为{display:block;}<br>这篇针对HTML 5 Reset Stylesheet的文章也可以参考下：<a target="_blank" rel="noopener" href="http://html5doctor.com/html-5-reset-stylesheet/%E3%80%82%E6%96%87%E7%AB%A0%E5%9C%A8Eric%E7%9A%84CSS">http://html5doctor.com/html-5-reset-stylesheet/。文章在Eric的CSS</a> Reset的基础上考虑HTML5新元素及W3C规范推荐下对元素进行了style reset。当然reset CSS本身就存在争议的，一般来说，reset CSS是你自己的style，很多东西都可以按你的意愿来定，当然不要太偏离W3C的元素设计本意。<br>接下来，使用HTML5新元素进行布局就可以随心所欲了（还是悠着点好）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;HTML5新标签试用&lt;/title&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,menu,nav,section,time,mark,audio,video&#123;margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;&#125;</span><br><span class="line">body &#123;font:normal 12px/140% Georgia,Tahoma,Verdana,Arial,sans-serif;&#125;</span><br><span class="line">article,aside,dialog,figure,footer,header,hgroup,nav,section&#123;display:block;&#125;</span><br><span class="line">ul,ol&#123;list-style:none;&#125;</span><br><span class="line">blockquote, q&#123;quotes:none;&#125;</span><br><span class="line">blockquote:before, blockquote:after,q:before, q:after &#123;content:&#x27;&#x27;;content:none;&#125;</span><br><span class="line">a &#123;margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;background:transparent;&#125;</span><br><span class="line">ins&#123;background-color:#ff9;color:#000;text-decoration:none;&#125;</span><br><span class="line">mark&#123;background-color:#ff9;color:#000;font-style:italic;font-weight:bold;&#125;</span><br><span class="line">del&#123;text-decoration: line-through;&#125;</span><br><span class="line">abbr[title], dfn[title]&#123;border-bottom:1px dotted #000;cursor:help;&#125;</span><br><span class="line">table &#123;border-collapse:collapse;border-spacing:0;&#125;</span><br><span class="line">hr&#123;display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;&#125;</span><br><span class="line">input,select&#123;vertical-align:middle;&#125;</span><br><span class="line">/* reset over */</span><br><span class="line">body&#123;overflow-x:hidden;&#125;</span><br><span class="line">header&#123;height:60px;background:#669bb7;position:fixed;_position:absolute;left:0;width:100%;&#125;</span><br><span class="line">h1&#123;font:bold 40px/110% Georgia;text-align:center;border-bottom:10px dashed #fff;&#125;</span><br><span class="line">h1 a&#123;text-decoration:none;position:relative;&#125;</span><br><span class="line">h1 span&#123;color:#000;zoom:1;opacity:0.5;filter:alpha(opacity=50);&#125;</span><br><span class="line">h1 b&#123;position:absolute;left:0;margin-left:-2px;margin-top:-1px;color:#fff;cursor:pointer;&#125;</span><br><span class="line">.main&#123;min-width:400px;max-width:970px;overflow:hidden;margin:0 auto;padding-top:70px;_margin:0 20px;&#125;</span><br><span class="line">aside&#123;background:#e2ebf0;float:left;width:160px;padding:5px;margin-right:10px;display:inline;&#125;</span><br><span class="line">.portrait&#123;width:132px;margin:0 auto;padding:5px;text-align:center;border-bottom:1px solid #c0d6df;&#125;</span><br><span class="line">.portrait img&#123;display:block;width:120px;height:180px;padding:3px;background:#fff;border:4px solid #e3e3e3;border-left:2px solid #e0e0e0;border-top:1px solid #e3e3e3;margin-left:1px&#125;</span><br><span class="line">.portrait span&#123;line-height:150%;cursor:help;&#125;</span><br><span class="line">aside nav&#123;padding:5px 10px;&#125;</span><br><span class="line">aside nav li&#123;font-size:14px;line-height:150%;&#125;</span><br><span class="line">aside nav li a&#123;text-decoration:none;color:#005eac;&#125;</span><br><span class="line">section&#123;border-top:20px solid #fff;margin-left:20px;background:#f6f6f6;padding:10px;padding-left:20px;&#125;</span><br><span class="line">article h2&#123;font-size:18px;text-align:center;&#125;</span><br><span class="line">article h2 a&#123;color:#73a6bc&#125;</span><br><span class="line">article h3,article p&#123;margin:8px 0;&#125;</span><br><span class="line">dialog time&#123;padding-left:10px;font-style:italic;&#125;</span><br><span class="line">footer&#123;clear:both;text-align:center;sss&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">(function()&#123;</span><br><span class="line">if(!/*@cc_on!@*/0) return;</span><br><span class="line">var html5 = &quot;abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,eventsource,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video&quot;.split(&#x27;,&#x27;);</span><br><span class="line">for(var i = 0, len = html5.length; i &lt; len; i++ ) &#123;document.createElement(html5[i]); &#125;&#125;)();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;header&gt;</span><br><span class="line">	&lt;h1&gt;&lt;a href=&quot;http://www.cssass.com&quot; target=&quot;_blank&quot;&gt;&lt;span&gt;CSSASS&lt;/span&gt;&lt;b&gt;CSSASS&lt;/b&gt;&lt;/a&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/header&gt;</span><br><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">&lt;aside&gt;</span><br><span class="line">&lt;figure class=&quot;portrait&quot;&gt;</span><br><span class="line">	&lt;img alt=&quot;A boy named oneboys said he is The One.&quot;  src=&quot;http://center.blueidea.com/data/avatar/000/36/17/22_avatar_middle.jpg&quot; /&gt;</span><br><span class="line">	&lt;!-- &lt;legend&gt;ONEBOYS&lt;/legend&gt;  legend标签在html5之前是只允许作为fieldset的第一个子元素的，所以加在这里会出错。无法实现。我们还是用span来代替--&gt;</span><br><span class="line">	&lt;span&gt;ONEBOYS&lt;/span&gt;</span><br><span class="line">&lt;/figure&gt;</span><br><span class="line">&lt;nav&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;首页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;我的主页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;个人资料&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;心情日志&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/nav&gt;</span><br><span class="line">&lt;/aside&gt;</span><br><span class="line">&lt;section&gt;</span><br><span class="line">	&lt;article class=&quot;article1&quot;&gt;</span><br><span class="line">        &lt;h2&gt;&lt;a href=&quot;http://html5doctor.com/html-5-reset-stylesheet/&quot; target=&quot;_blank&quot;&gt;HTML 5 Reset Stylesheet&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">        &lt;p&gt;We’ve had a number of people asking about templates, boilerplates and styling for HTML 5 so to give you all a helping hand and continue on from those basic building blocks that Remy talked about last week I’ve created a HTML 5 reset stylesheet for you to take away and use, edit, amend and update in your projects.&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;Based on Eric Meyers CSS reset, I’ve made a few adjustments from Erics work that we’ll get to later but first here’s the file in full and we’ll then break it down step by step.&lt;/p&gt;</span><br><span class="line">		&lt;h3&gt;So what’s new then?&lt;/h3&gt;</span><br><span class="line">		&lt;p&gt;Well firstly, I’ve removed those elements that have been deprecated from the HTML 5 specification such as &amp;lt;acronym&amp;gt;, &amp;lt;font&amp;gt; and &amp;lt;big&amp;gt; (We’ll cover deprecated elements in more detail in another post). I’ve added in the the new HTML 5 elements to the reset, to remove any default padding, margin and borders. I’ve then added the explicit display:block declaration for those elements that are required to render as blocks.&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;I’ve also removed the :focus part from Eric’s stylesheet. There are two reasons for this; the first is that by declaring outline:0 you remove the focus identifier for keyboard users. The second is that although Eric released his stylesheet in good faith that people would edit it and style :focus, they don’t. You will also notice that I’ve set defaults for &lt;ins&gt;&amp;lt;ins&amp;gt&lt;/ins&gt;; as I don’t think they got updated very often in Eric’s styles either.&lt;/p&gt;</span><br><span class="line">		&lt;p&gt;Another change from Eric’s stylsheet is that I decided to remove the lines that remove bullets from lists, the reason for this is purely personal. I tend to only add the list style back in when using Erics reset anyway. I have however included nav ul &#123;list-style:none;&#125; to at least remove those pesky bullets from your navigation. &lt;/p&gt;</span><br><span class="line">		&lt;h3&gt;Using attribute selectors&lt;/h3&gt;</span><br><span class="line">		&lt;p&gt;You’ll notice that I’ve included attribute selctors for &lt;abbr title=&quot;缩写：abbreviation&quot;&gt;&amp;lt;abbr&amp;gt;&lt;/abbr&gt; and &lt;dfn&gt;&amp;lt;dfn&amp;gt;&lt;/dfn&gt;, the reason for this is I only want the style to appear if there is a title attribute to be displayed. The reason for this is primarly for accessibility. For example we use &amp;ltabbr&amp;gt regularly on this site but don’t always include a title attribute, that’s because it’s safe to assume all (no matter what device they are using) our readers know what HTML is, however we need to still include &amp;ltabbr&amp;gt to make sure screenreaders read the text as H-T-M-L rather than “HTML” which they struggle to pronounce.&lt;/p&gt;</span><br><span class="line">		&lt;h3&gt;What’s that bit about mark?&lt;/h3&gt;</span><br><span class="line">		&lt;p&gt;&lt;mark&gt;&amp;lt;mark&amp;gt&lt;/mark&gt;; is a new element introduced in HTML 5 used to (you guessed it) mark text in a document. The spec describes &lt;mark&gt;&amp;lt;mark&amp;gt&lt;/mark&gt;; as “The mark element represents a run of text in one document marked or highlighted for reference purposes, due to its relevance in another context.”. I anticipate this it will be used for highlighting phrases in search results and similar. We’ll have more on this in a post soon.&lt;/p&gt;</span><br><span class="line">		&lt;h3&gt;Where are all those application elements?&lt;/h3&gt;</span><br><span class="line">		&lt;p&gt;“Application elements” is the term I’ve used to loosely describe those elements such as &amp;lt;datagrid&amp;gt;, &amp;lt;datalist&amp;gt; etc. Basically those that you are likely to find in web apps rather than websites. These have been left out because at the current time hardly any of what was ‘Web Applications 1.0′ has been implemented by browsers. Also this reset is primarily aimed at those serving their pages as text/html not xml.&lt;/p&gt;</span><br><span class="line">		&lt;h3&gt;Go grab it&lt;/h3&gt;</span><br><span class="line">		&lt;p&gt;So that basically wraps it up, it’s released under a creative commons license and you can use it for both personal and commercial work. I thought I’d let Google take care of the hosting so go grab it from Google Code and let me know of any thoughts, queries or improvements you can offer.&lt;/p&gt;</span><br><span class="line">	&lt;/article&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer&gt;Copyright © 2009 Cssass.com &lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_1760cde5-bc9b-4fd0-b58a-0d6c2c95cf12"><!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML5新标签试用</title>
+<style type="text/css">
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,dialog,figure,footer,header,hgroup,menu,nav,section,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body {font:normal 12px/140% Georgia,Tahoma,Verdana,Arial,sans-serif;}
+article,aside,dialog,figure,footer,header,hgroup,nav,section{display:block;}
+ul,ol{list-style:none;}
+blockquote, q{quotes:none;}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none;}
+a {margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;background:transparent;}
+ins{background-color:#ff9;color:#000;text-decoration:none;}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold;}
+del{text-decoration: line-through;}
+abbr[title], dfn[title]{border-bottom:1px dotted #000;cursor:help;}
+table {border-collapse:collapse;border-spacing:0;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+input,select{vertical-align:middle;}
+/* reset over */
+body{overflow-x:hidden;}
+header{height:60px;background:#669bb7;position:fixed;_position:absolute;left:0;width:100%;}
+h1{font:bold 40px/110% Georgia;text-align:center;border-bottom:10px dashed #fff;}
+h1 a{text-decoration:none;position:relative;}
+h1 span{color:#000;zoom:1;opacity:0.5;filter:alpha(opacity=50);}
+h1 b{position:absolute;left:0;margin-left:-2px;margin-top:-1px;color:#fff;cursor:pointer;}
+.main{min-width:400px;max-width:970px;overflow:hidden;margin:0 auto;padding-top:70px;_margin:0 20px;}
+aside{background:#e2ebf0;float:left;width:160px;padding:5px;margin-right:10px;display:inline;}
+.portrait{width:132px;margin:0 auto;padding:5px;text-align:center;border-bottom:1px solid #c0d6df;}
+.portrait img{display:block;width:120px;height:180px;padding:3px;background:#fff;border:4px solid #e3e3e3;border-left:2px solid #e0e0e0;border-top:1px solid #e3e3e3;margin-left:1px}
+.portrait span{line-height:150%;cursor:help;}
+aside nav{padding:5px 10px;}
+aside nav li{font-size:14px;line-height:150%;}
+aside nav li a{text-decoration:none;color:#005eac;}
+section{border-top:20px solid #fff;margin-left:20px;background:#f6f6f6;padding:10px;padding-left:20px;}
+article h2{font-size:18px;text-align:center;}
+article h2 a{color:#73a6bc}
+article h3,article p{margin:8px 0;}
+dialog time{padding-left:10px;font-style:italic;}
+footer{clear:both;text-align:center;sss}
+</style>
+<script type="text/javascript">
+(function(){
+if(!/*@cc_on!@*/0) return;
+var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,eventsource,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');
+for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[i]); }})();
+</script>
+</head>
+<body>
+<header>
+	<h1><a href="http://www.cssass.com" target="_blank"><span>CSSASS</span><b>CSSASS</b></a></h1>
+</header>
+<div class="main">
+<aside>
+<figure class="portrait">
+	<img alt="A boy named oneboys said he is The One."  src="http://center.blueidea.com/data/avatar/000/36/17/22_avatar_middle.jpg" />
+	<!-- <legend>ONEBOYS</legend>  legend标签在html5之前是只允许作为fieldset的第一个子元素的，所以加在这里会出错。无法实现。我们还是用span来代替-->
+	<span>ONEBOYS</span>
+</figure>
+<nav>
+	<ul>
+		<li><a href="#">首页</a></li>
+		<li><a href="#">我的主页</a></li>
+		<li><a href="#">个人资料</a></li>
+		<li><a href="#">心情日志</a></li>
+	</ul>
+</nav>
+</aside>
+<section>
+	<article class="article1">
+        <h2><a href="http://html5doctor.com/html-5-reset-stylesheet/" target="_blank">HTML 5 Reset Stylesheet</a></h2>
+        <p>We’ve had a number of people asking about templates, boilerplates and styling for HTML 5 so to give you all a helping hand and continue on from those basic building blocks that Remy talked about last week I’ve created a HTML 5 reset stylesheet for you to take away and use, edit, amend and update in your projects.</p>
+		<p>Based on Eric Meyers CSS reset, I’ve made a few adjustments from Erics work that we’ll get to later but first here’s the file in full and we’ll then break it down step by step.</p>
+		<h3>So what’s new then?</h3>
+		<p>Well firstly, I’ve removed those elements that have been deprecated from the HTML 5 specification such as &lt;acronym&gt;, &lt;font&gt; and &lt;big&gt; (We’ll cover deprecated elements in more detail in another post). I’ve added in the the new HTML 5 elements to the reset, to remove any default padding, margin and borders. I’ve then added the explicit display:block declaration for those elements that are required to render as blocks.</p>
+		<p>I’ve also removed the :focus part from Eric’s stylesheet. There are two reasons for this; the first is that by declaring outline:0 you remove the focus identifier for keyboard users. The second is that although Eric released his stylesheet in good faith that people would edit it and style :focus, they don’t. You will also notice that I’ve set defaults for <ins>&lt;ins&gt</ins>; as I don’t think they got updated very often in Eric’s styles either.</p>
+		<p>Another change from Eric’s stylsheet is that I decided to remove the lines that remove bullets from lists, the reason for this is purely personal. I tend to only add the list style back in when using Erics reset anyway. I have however included nav ul {list-style:none;} to at least remove those pesky bullets from your navigation. </p>
+		<h3>Using attribute selectors</h3>
+		<p>You’ll notice that I’ve included attribute selctors for <abbr title="缩写：abbreviation">&lt;abbr&gt;</abbr> and <dfn>&lt;dfn&gt;</dfn>, the reason for this is I only want the style to appear if there is a title attribute to be displayed. The reason for this is primarly for accessibility. For example we use &ltabbr&gt regularly on this site but don’t always include a title attribute, that’s because it’s safe to assume all (no matter what device they are using) our readers know what HTML is, however we need to still include &ltabbr&gt to make sure screenreaders read the text as H-T-M-L rather than “HTML” which they struggle to pronounce.</p>
+		<h3>What’s that bit about mark?</h3>
+		<p><mark>&lt;mark&gt</mark>; is a new element introduced in HTML 5 used to (you guessed it) mark text in a document. The spec describes <mark>&lt;mark&gt</mark>; as “The mark element represents a run of text in one document marked or highlighted for reference purposes, due to its relevance in another context.”. I anticipate this it will be used for highlighting phrases in search results and similar. We’ll have more on this in a post soon.</p>
+		<h3>Where are all those application elements?</h3>
+		<p>“Application elements” is the term I’ve used to loosely describe those elements such as &lt;datagrid&gt;, &lt;datalist&gt; etc. Basically those that you are likely to find in web apps rather than websites. These have been left out because at the current time hardly any of what was ‘Web Applications 1.0′ has been implemented by browsers. Also this reset is primarily aimed at those serving their pages as text/html not xml.</p>
+		<h3>Go grab it</h3>
+		<p>So that basically wraps it up, it’s released under a creative commons license and you can use it for both personal and commercial work. I thought I’d let Google take care of the hosting so go grab it from Google Code and let me know of any thoughts, queries or improvements you can offer.</p>
+	</article>
+</section>
+</div>
+<footer>Copyright © 2009 Cssass.com </footer>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1760cde5-bc9b-4fd0-b58a-0d6c2c95cf12');" />
 <ol start="2">
-<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;Drag and Drop&lt;/title&gt;</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">   div &#123;margin: 1em 2em; border: black solid;text-align: center;float:left;height: 9em; width: 12em; &#125;</span><br><span class="line">	img &#123;width:4em;float:left; &#125;</span><br><span class="line">	p&#123;clear:left;&#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line"> &lt;/head&gt;&lt;body&gt;</span><br><span class="line">  &lt;h1&gt;Drag and Drop&lt;/h1&gt;</span><br><span class="line">  &lt;div ondrop=&quot;drop(this, event)&quot; ondragenter=&quot;return false&quot; ondragover=&quot;return false&quot;&gt;</span><br><span class="line">   &lt;p&gt;Good&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div ondrop=&quot;drop(this, event)&quot; ondragenter=&quot;return false&quot; ondragover=&quot;return false&quot;&gt;</span><br><span class="line">   &lt;p&gt;Bad&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">   &lt;img src=&quot;http://www.baidu.com/img/baidu_logo.gif&quot; id=&quot;baidu&quot; alt=&quot;baidu&quot; ondragstart=&quot;drag(this, event)&quot;&gt;</span><br><span class="line">   &lt;img src=&quot;http://www.google.cn/intl/zh-CN/images/logo_cn.gif&quot; id=&quot;google&quot; alt=&quot;google&quot; ondragstart=&quot;drag(this, event)&quot;&gt;</span><br><span class="line">   &lt;img src=&quot;http://www.blueidea.com/img/common/logo.gif&quot; id=&quot;blueidea&quot; alt=&quot;blueidea&quot; ondragstart=&quot;drag(this, event)&quot;&gt;</span><br><span class="line">   &lt;img src=&quot;http://www.w3.org/Icons/w3c_main&quot; id=&quot;W3C&quot; alt=&quot;W3C&quot; ondragstart=&quot;drag(this, event)&quot;&gt;</span><br><span class="line">  &lt;/p&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">   function drag(target, e) &#123;</span><br><span class="line">     e.dataTransfer.setData(&#x27;Text&#x27;, target.id);</span><br><span class="line">   &#125;</span><br><span class="line">   function drop(target, e) &#123;</span><br><span class="line">     var id = e.dataTransfer.getData(&#x27;Text&#x27;);</span><br><span class="line">     target.appendChild(document.getElementById(id));</span><br><span class="line">     e.preventDefault();</span><br><span class="line">   &#125;</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line"> &lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<textarea class="runcode_text" id="runcode_322b4d9d-f6bb-449d-8b31-476ef3a872bc"><!DOCTYPE HTML>
+<html>
+<head>
+  <title>Drag and Drop</title>
+  <style>
+   div {margin: 1em 2em; border: black solid;text-align: center;float:left;height: 9em; width: 12em; }
+	img {width:4em;float:left; }
+	p{clear:left;}
+  </style>
+ </head><body>
+  <h1>Drag and Drop</h1>
+  <div ondrop="drop(this, event)" ondragenter="return false" ondragover="return false">
+   <p>Good</p>
+  </div>
+  <div ondrop="drop(this, event)" ondragenter="return false" ondragover="return false">
+   <p>Bad</p>
+  </div>
+  <p>
+   <img src="http://www.baidu.com/img/baidu_logo.gif" id="baidu" alt="baidu" ondragstart="drag(this, event)">
+   <img src="http://www.google.cn/intl/zh-CN/images/logo_cn.gif" id="google" alt="google" ondragstart="drag(this, event)">
+   <img src="http://www.blueidea.com/img/common/logo.gif" id="blueidea" alt="blueidea" ondragstart="drag(this, event)">
+   <img src="http://www.w3.org/Icons/w3c_main" id="W3C" alt="W3C" ondragstart="drag(this, event)">
+  </p>
+  <script>
+   function drag(target, e) {
+     e.dataTransfer.setData('Text', target.id);
+   }
+   function drop(target, e) {
+     var id = e.dataTransfer.getData('Text');
+     target.appendChild(document.getElementById(id));
+     e.preventDefault();
+   }
+  </script>
+ </body>
+ </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_322b4d9d-f6bb-449d-8b31-476ef3a872bc');" /></li>
 <li>canvas<br>我们先看一些canvas的示例：<br><a target="_blank" rel="noopener" href="http://www.agustinfernandez.com.ar/proyectos/canvas/">http://www.agustinfernandez.com.ar/proyectos/canvas/</a><br><a target="_blank" rel="noopener" href="http://www.whatwg.org/demos/2008-sept/color/color.html">http://www.whatwg.org/demos/2008-sept/color/color.html</a><br>网上还有一些互动性蛮强的Demo.<br>canvas应用的发展无疑将威胁到也行进在富Web之路上的Flash和Silverligth这些Web插件。</li>
 </ol>
 <p>canvas在safari,firefox,opera很早就有了支持，但IE缺迟迟不予支持，尽管他在ie8中已经开始支持多个HTML5功能。MS的同志很有理由这么做:“HTML 5标准制定之前,某些功能确实已经得以实现,例如Google Gears实现了离线应用程序功能,Flash和silverlight实现了类似Canvas API的功能.在下一代HTML规范中设置这些内容未必非常必要”。要知道MS在silverlight是花了很大力气。事实上，MS在参与HTML5之事上一直非常谨慎，并且希望精简HTML5。<br>Flash的所有者，HTML5参与者之一Adobe则表现的很轻松：“canvas还很弱，HTML 5 + CSS 3 可能要 10年的时间才能定稿，在这期间，Flash 会持续发展，并提供更好的用户体验”。</p>
 <p>尽管IE没有支持canvas功能，但我们可以使用JS模拟达到：<br><a target="_blank" rel="noopener" href="http://excanvas.sourceforge.net/">http://excanvas.sourceforge.net/</a><br>这是其中的一个Demo,试试你的IE:<br>3Dcanvas_For_IE.html</p>
 <ol start="4">
-<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Video&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;Video&lt;/h1&gt;</span><br><span class="line">	&lt;video src=&quot;http://v2v.cc/~j/theora_testsuite/320x240.ogg&quot; controls autoplay &gt;</span><br><span class="line">	   你的浏览器不支持</span><br><span class="line">	&lt;/video&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var video = document.getElementsByTagName(&#x27;video&#x27;)[0];</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">	&lt;p&gt;&lt;input type=&quot;button&quot; value=&quot;&amp;#x2588; &amp;#x2588;&quot; onclick=&quot;if (video.paused) video.play(); else video.pause()&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></li>
+<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<textarea class="runcode_text" id="runcode_f09ec556-1d75-46b8-93be-5ea9e28d2710"><!DOCTYPE HTML>
+<html>
+<head>
+<title>Video</title>
+</head>
+<body>
+	<h1>Video</h1>
+	<video src="http://v2v.cc/~j/theora_testsuite/320x240.ogg" controls autoplay >
+	   你的浏览器不支持
+	</video>
+	<script>
+		var video = document.getElementsByTagName('video')[0];
+	</script>
+	<p><input type="button" value="&#x2588; &#x2588;" onclick="if (video.paused) video.play(); else video.pause()"></p>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f09ec556-1d75-46b8-93be-5ea9e28d2710');" /></li>
 </ol>
 <p>我们没有引入flash播放器就能播放swf。</p>
 <p>在下面这个页面里罗列了各浏览器所支持的HTML5功能：<br>Implementations in Web browsers</p>

@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
 
 
           <span class="post-date">2010-09-02</span>
@@ -123,10 +125,143 @@ runcode.copy=function(element)
             
           </div>
         
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;cssass.com&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body title=&#x27;鼠标绘图&#x27;&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1800&#x27; height=&#x27;1000&#x27; onmousedown=draw(event) style=&#x27;border:1px solid #ccc&#x27;&gt;ie用户(9以下)请忽略&lt;/canvas&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">var $id=function(n)&#123;</span><br><span class="line">	return document.getElementById(n) || n;</span><br><span class="line">&#125;</span><br><span class="line">var D=&#123;</span><br><span class="line">	width : 0.2 ,</span><br><span class="line">	randRGB : function()&#123; return Math.round(Math.random()*250) &#125;,</span><br><span class="line">	color : function()&#123;return &#x27;rgba(&#x27; + D.randRGB() + &#x27;,&#x27; + D.randRGB() + &#x27;,&#x27; + D.randRGB() + &#x27; , 1)&#x27;&#125;</span><br><span class="line">&#125;</span><br><span class="line">var draw=function(e)&#123;</span><br><span class="line">	var e=window.event || e;</span><br><span class="line">	var o=$id(&quot;pad&quot;);</span><br><span class="line">	var con=o.getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.beginPath();</span><br><span class="line">	con.moveTo(e.clientX,e.clientY);</span><br><span class="line">	con.strokeStyle = D.color();</span><br><span class="line">	con.lineWidth=D.width;</span><br><span class="line">	con.lineCap =&#x27;round&#x27;;</span><br><span class="line">	con.lineJoin = &#x27;round&#x27;;</span><br><span class="line">	document.onmousemove=function(e)&#123;</span><br><span class="line">		con.lineTo(e.clientX,e.clientY);</span><br><span class="line">		con.stroke();</span><br><span class="line">		document.onmouseup=function()&#123;</span><br><span class="line">			document.onmousemove=null;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+        <textarea class="runcode_text" id="runcode_b15892f2-912a-4969-b754-e27d524be95d"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;}
+</style>
+</head>
+<body title='鼠标绘图'>
+<canvas id="pad" width='1800' height='1000' onmousedown=draw(event) style='border:1px solid #ccc'>ie用户(9以下)请忽略</canvas>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+var D={
+	width : 0.2 ,
+	randRGB : function(){ return Math.round(Math.random()*250) },
+	color : function(){return 'rgba(' + D.randRGB() + ',' + D.randRGB() + ',' + D.randRGB() + ' , 1)'}
+}
+var draw=function(e){
+	var e=window.event || e;
+	var o=$id("pad");
+	var con=o.getContext('2d');
+	con.beginPath();
+	con.moveTo(e.clientX,e.clientY);
+	con.strokeStyle = D.color();
+	con.lineWidth=D.width;
+	con.lineCap ='round';
+	con.lineJoin = 'round';
+	document.onmousemove=function(e){
+		con.lineTo(e.clientX,e.clientY);
+		con.stroke();
+		document.onmouseup=function(){
+			document.onmousemove=null;
+		}
+	}
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b15892f2-912a-4969-b754-e27d524be95d');" />
 <p>我之前用window.onload来绑定函数修改canvas的高度，这通过运行框运行open新页面，在chrome下获取document.documentElemnet.offsetHeight时会等于0，导致绘图板高度也没了。<br>另外发现，Opera下绘线同其他浏览器有点差别：单独的一个path(即同上一次的path没有瓜葛)，如果没有moveTo设置起点，一般浏览器会以第一个lineTo为起点，这在Opera下是不正确的。</p>
 <p>下面再放一个百度UEO基于canvas绘制热力图的演示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;canvas热力图演示&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">.wrap&#123;width:1000px;height:500px;margin:0 auto;border:2px solid #eee;&#125;</span><br><span class="line">#pad&#123;position:absolute;z-index:-1;top:0;left:50%;background:#eee;opacity:.8;&#125;</span><br><span class="line">#switch&#123;position:absolute;z-index:20;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body onmousedown=imit(event)&gt;</span><br><span class="line">&lt;div class=&quot;wrap&quot; &gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">	&lt;img src=&quot;https://www.google.com.hk/intl/zh-CN/images/logo_cn.png&quot; /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;input id=&quot;switch&quot;type=&#x27;button&#x27; value=&quot;切换热力图显示在上层&quot; /&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var canvas= document.createElement(&#x27;canvas&#x27;);</span><br><span class="line">var context = canvas.getContext(&#x27;2d&#x27;);</span><br><span class="line">	canvas.id = &quot;pad&quot;;</span><br><span class="line">	canvas.width = document.documentElement.scrollWidth;</span><br><span class="line">	canvas.height = Math.max(document.documentElement.clientHeight,document.body.offsetHeight);</span><br><span class="line">	canvas.style.marginLeft = - canvas.width/2+&#x27;px&#x27;;</span><br><span class="line">	document.body.appendChild(canvas);</span><br><span class="line">var points =[];</span><br><span class="line">var oData = [];</span><br><span class="line">var imit=function(e)&#123;</span><br><span class="line">	points.push([e.clientX - canvas.offsetLeft, e.clientY]);  //手动模拟点,再按二次函数自动生成100个点。</span><br><span class="line">	for(var i=0; i&lt;100 ;i++)&#123;</span><br><span class="line">		var r1=Math.random()*2,r2=Math.random()*2;</span><br><span class="line">		points.push([parseInt(Math.pow(r1,2)*500)+5,parseInt(Math.pow(r2,2)*150)+5])</span><br><span class="line">	&#125;</span><br><span class="line">	analy();</span><br><span class="line">	draw();</span><br><span class="line">&#125;</span><br><span class="line">function analy()&#123;</span><br><span class="line">	var cache = &#123;&#125;;</span><br><span class="line">	//计算每个点的密度</span><br><span class="line">	for (var i = 0, len = points.length; i &lt; len; i++) &#123;</span><br><span class="line">		var key = points[i][0] + &#x27;*&#x27; + points[i][1];</span><br><span class="line">		 if (cache[key]) &#123;</span><br><span class="line">			cache[key] ++;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			cache[key] = 1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//点数据还原</span><br><span class="line">	oData.length=0;</span><br><span class="line">	for (var m in cache) &#123;</span><br><span class="line">		if (m == &#x27;0*0&#x27;) continue;</span><br><span class="line">		var x = parseInt(m.split(&#x27;*&#x27;)[0], 10);</span><br><span class="line">		var y = parseInt(m.split(&#x27;*&#x27;)[1], 0);</span><br><span class="line">		oData.push([x, y, cache[m]]);</span><br><span class="line">	&#125;</span><br><span class="line">	//简单排序，使用数组内建的sort</span><br><span class="line">	oData.sort(function(a, b)&#123;</span><br><span class="line">		return a[2] - b[2];</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">function draw()&#123;</span><br><span class="line">	context.clearRect(0,0,canvas.width,canvas.height); //每次点击都要重绘，每次重绘都需清屏</span><br><span class="line">	var max = oData[oData.length - 1][2];</span><br><span class="line">		max=(max==1) ? 2 : max   //如果最大密度等于1，则认为2，避免log(max)为0</span><br><span class="line">	var pi2 = Math.PI * 2;</span><br><span class="line">	//alpha增强参数</span><br><span class="line">	var pr = (Math.log(245)-1)/245;</span><br><span class="line">	for (var i = 0, len = oData.length; i &lt; len; i++) &#123;</span><br><span class="line">		//q参数用于平衡梯度差，使之符合人的感知曲线log2N，如需要精确梯度，去掉log计算</span><br><span class="line">		var q = parseInt(Math.log(oData[i][2]) / Math.log(max) * 255);</span><br><span class="line">		var r = parseInt(128 * Math.sin((1 / 256 * q - 0.5 ) * Math.PI ) + 200);</span><br><span class="line">		var g = parseInt(128 * Math.sin((1 / 128 * q - 0.5 ) * Math.PI ) + 127);</span><br><span class="line">		var b = parseInt(256 * Math.sin((1 / 256 * q + 0.5 ) * Math.PI ));</span><br><span class="line">		var alp = (0.92 * q + 20) / 255;</span><br><span class="line">		//灰度增强，</span><br><span class="line">		//var alp = (Math.exp(pr * q + 1) + 10) / 255</span><br><span class="line">		var radgrad = context.createRadialGradient(oData[i][0], oData[i][1], 1, oData[i][0], oData[i][1], 8);</span><br><span class="line">		radgrad.addColorStop( 0, &#x27;rgba(&#x27; + r + &#x27;,&#x27; + g + &#x27;,&#x27;+ b + &#x27;,&#x27; + alp + &#x27;)&#x27;);</span><br><span class="line">		radgrad.addColorStop( 1, &#x27;rgba(&#x27; + r + &#x27;,&#x27; + g + &#x27;,&#x27;+ b + &#x27;,0)&#x27;);</span><br><span class="line">		context.fillStyle = radgrad;</span><br><span class="line">		context.fillRect( oData[i][0] - 8, oData[i][1] - 8, 16, 16);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var switcher = document.getElementById(&quot;switch&quot;);</span><br><span class="line">	switcher.onclick = function()&#123;</span><br><span class="line">		canvas.style.zIndex = (canvas.style.zIndex == -1) ?  10 : -1; //注意一点，style.xx只能取得行内样式的，要获取外部样式可以使用getComputedStyle和currentStyle.</span><br><span class="line">		//canvas.style.display = (canvas.style.display == &#x27;block&#x27;) ?  &#x27;none&#x27; : &#x27;block&#x27;;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_3679a032-b580-4047-87e7-c911a83a4cff"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>canvas热力图演示</title>
+<style>
+*{padding:0;margin:0;}
+.wrap{width:1000px;height:500px;margin:0 auto;border:2px solid #eee;}
+#pad{position:absolute;z-index:-1;top:0;left:50%;background:#eee;opacity:.8;}
+#switch{position:absolute;z-index:20;}
+</style>
+</head>
+<body onmousedown=imit(event)>
+<div class="wrap" >
+	<img src="https://www.google.com.hk/intl/zh-CN/images/logo_cn.png" />
+	<img src="https://www.google.com.hk/intl/zh-CN/images/logo_cn.png" />
+	<img src="https://www.google.com.hk/intl/zh-CN/images/logo_cn.png" />
+</div>
+<input id="switch"type='button' value="切换热力图显示在上层" />
+<script>
+var canvas= document.createElement('canvas');
+var context = canvas.getContext('2d');
+	canvas.id = "pad";
+	canvas.width = document.documentElement.scrollWidth;
+	canvas.height = Math.max(document.documentElement.clientHeight,document.body.offsetHeight);
+	canvas.style.marginLeft = - canvas.width/2+'px';
+	document.body.appendChild(canvas);
+var points =[];
+var oData = [];
+var imit=function(e){
+	points.push([e.clientX - canvas.offsetLeft, e.clientY]);  //手动模拟点,再按二次函数自动生成100个点。
+	for(var i=0; i<100 ;i++){
+		var r1=Math.random()*2,r2=Math.random()*2;
+		points.push([parseInt(Math.pow(r1,2)*500)+5,parseInt(Math.pow(r2,2)*150)+5])
+	}
+	analy();
+	draw();
+}
+function analy(){
+	var cache = {};
+	//计算每个点的密度
+	for (var i = 0, len = points.length; i < len; i++) {
+		var key = points[i][0] + '*' + points[i][1];
+		 if (cache[key]) {
+			cache[key] ++;
+		} else {
+			cache[key] = 1;
+		}
+	}
+	//点数据还原
+	oData.length=0;
+	for (var m in cache) {
+		if (m == '0*0') continue;
+		var x = parseInt(m.split('*')[0], 10);
+		var y = parseInt(m.split('*')[1], 0);
+		oData.push([x, y, cache[m]]);
+	}
+	//简单排序，使用数组内建的sort
+	oData.sort(function(a, b){
+		return a[2] - b[2];
+	});
+}
+function draw(){
+	context.clearRect(0,0,canvas.width,canvas.height); //每次点击都要重绘，每次重绘都需清屏
+	var max = oData[oData.length - 1][2];
+		max=(max==1) ? 2 : max   //如果最大密度等于1，则认为2，避免log(max)为0
+	var pi2 = Math.PI * 2;
+	//alpha增强参数
+	var pr = (Math.log(245)-1)/245;
+	for (var i = 0, len = oData.length; i < len; i++) {
+		//q参数用于平衡梯度差，使之符合人的感知曲线log2N，如需要精确梯度，去掉log计算
+		var q = parseInt(Math.log(oData[i][2]) / Math.log(max) * 255);
+		var r = parseInt(128 * Math.sin((1 / 256 * q - 0.5 ) * Math.PI ) + 200);
+		var g = parseInt(128 * Math.sin((1 / 128 * q - 0.5 ) * Math.PI ) + 127);
+		var b = parseInt(256 * Math.sin((1 / 256 * q + 0.5 ) * Math.PI ));
+		var alp = (0.92 * q + 20) / 255;
+		//灰度增强，
+		//var alp = (Math.exp(pr * q + 1) + 10) / 255
+		var radgrad = context.createRadialGradient(oData[i][0], oData[i][1], 1, oData[i][0], oData[i][1], 8);
+		radgrad.addColorStop( 0, 'rgba(' + r + ',' + g + ','+ b + ',' + alp + ')');
+		radgrad.addColorStop( 1, 'rgba(' + r + ',' + g + ','+ b + ',0)');
+		context.fillStyle = radgrad;
+		context.fillRect( oData[i][0] - 8, oData[i][1] - 8, 16, 16);
+	}
+}
+var switcher = document.getElementById("switch");
+	switcher.onclick = function(){
+		canvas.style.zIndex = (canvas.style.zIndex == -1) ?  10 : -1; //注意一点，style.xx只能取得行内样式的，要获取外部样式可以使用getComputedStyle和currentStyle.
+		//canvas.style.display = (canvas.style.display == 'block') ?  'none' : 'block';
+	}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3679a032-b580-4047-87e7-c911a83a4cff');" />
       </div>
     </div>
   </article>

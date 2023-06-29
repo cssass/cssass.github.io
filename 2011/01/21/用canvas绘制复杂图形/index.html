@@ -107,6 +107,8 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
 
 
           <span class="post-date">2011-01-21</span>
@@ -124,20 +126,331 @@ runcode.copy=function(element)
           </div>
         
         <p>在闪吧看见一棵树，移植到canvas+javascript里来。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">	con.lineWidth=0.8;</span><br><span class="line">function dw(ax, ay, bx, by) &#123;</span><br><span class="line">	con.beginPath()</span><br><span class="line">	con.moveTo(ax, ay);</span><br><span class="line">	con.lineTo(bx, by);</span><br><span class="line">	con.stroke();</span><br><span class="line">&#125;</span><br><span class="line">function lzh(x, y, l, angle, n) &#123;</span><br><span class="line">	if (n&gt;0) &#123;</span><br><span class="line">		var a_l, a_r, x1, y1, x2, y2, y2_l;</span><br><span class="line">		x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">		y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">		x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">		y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">		dw(x, y, x2, y2);</span><br><span class="line">		a_l = angle+30;</span><br><span class="line">		a_r = angle-30;</span><br><span class="line">		l=l*2/3</span><br><span class="line">		lzh(x2, y2, l, angle+rand, n-1);</span><br><span class="line">		lzh(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">		lzh(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">		lzh(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">		lzh(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">var rand=2-Math.random()*10</span><br><span class="line">lzh(300, 400, 100, 90, 6);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_12bcf683-8611-47ba-853a-6e736baa6f78"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Tree</title>
+</head>
+<body>
+<canvas id="pad" width='1000' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script>
+var con=document.getElementById("pad").getContext('2d');
+	con.strokeStyle = '#000';
+	con.lineWidth=0.8;
+function dw(ax, ay, bx, by) {
+	con.beginPath()
+	con.moveTo(ax, ay);
+	con.lineTo(bx, by);
+	con.stroke();
+}
+function lzh(x, y, l, angle, n) {
+	if (n>0) {
+		var a_l, a_r, x1, y1, x2, y2, y2_l;
+		x1 = x+0.5*l*Math.cos(angle*Math.PI/180);
+		y1 = y-0.5*l*Math.sin(angle*Math.PI/180);
+		x2 = x+l*Math.cos(angle*Math.PI/180);
+		y2 = y-l*Math.sin(angle*Math.PI/180);
+		dw(x, y, x2, y2);
+		a_l = angle+30;
+		a_r = angle-30;
+		l=l*2/3
+		lzh(x2, y2, l, angle+rand, n-1);
+		lzh(x1, y1, l*2/3, a_l+rand/2, n-1);
+		lzh(x1, y1, l*2/3, a_r+rand/2, n-1);
+		lzh(x2, y2, l*2/3, a_l+rand/2, n-1);
+		lzh(x2, y2, l*2/3, a_r+rand/2, n-1);
+		}
+	}
+var rand=2-Math.random()*10
+lzh(300, 400, 100, 90, 6);
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_12bcf683-8611-47ba-853a-6e736baa6f78');" />
 
 <p>用setInterval让它动起来</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">    con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">    con.lineWidth=0.8;</span><br><span class="line">var Tree=function(x, y, l, angle, n)&#123;</span><br><span class="line">    var a=[],rand=0,dir=1,val;</span><br><span class="line">    this.init=function(x, y, l, angle, n) &#123;</span><br><span class="line">        var that=this;</span><br><span class="line">        if (n&gt;0) &#123;</span><br><span class="line">            var a_l, a_r, x1, y1, x2, y2;</span><br><span class="line">            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            a.push([x, y, x2, y2]);</span><br><span class="line">            a_l = angle+30;</span><br><span class="line">            a_r = angle-30;</span><br><span class="line">            l=l*2/3;</span><br><span class="line">            that.init(x2, y2, l, angle+rand, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">         &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.run=function()&#123;</span><br><span class="line">		con.clearRect(0,0,1000,500);</span><br><span class="line">        for(var i=0; i&lt;a.length; i++)&#123;</span><br><span class="line">            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);</span><br><span class="line">        &#125;;</span><br><span class="line">		a=[];</span><br><span class="line">    &#125;;</span><br><span class="line">	this.move=function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var _s=function()&#123;</span><br><span class="line">			that.change();</span><br><span class="line">			that.init(x, y, l, angle, n);</span><br><span class="line">			that.run();</span><br><span class="line">			setTimeout(_s,100);</span><br><span class="line">		&#125;;</span><br><span class="line">		_s();</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		val=Math.random()*2;</span><br><span class="line">		rand+=dir*val;</span><br><span class="line">		if(rand&gt;10 || rand&lt;-2)&#123;dir=-dir;&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init(x, y, l, angle, n);</span><br><span class="line">	this.run();</span><br><span class="line">&#125;;</span><br><span class="line">Tree.prototype.dw=function(ax, ay, bx, by)&#123;</span><br><span class="line">    con.beginPath()</span><br><span class="line">    con.moveTo(ax, ay);</span><br><span class="line">    con.lineTo(bx, by);</span><br><span class="line">    con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tree(300, 400, 100, 90, 6).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_c1080a8e-cd11-4c5c-9020-18f4ccb44019"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Tree</title>
+</head>
+<body>
+<canvas id="pad" width='1000' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script>
+var con=document.getElementById("pad").getContext('2d');
+    con.strokeStyle = '#000';
+    con.lineWidth=0.8;
+var Tree=function(x, y, l, angle, n){
+    var a=[],rand=0,dir=1,val;
+    this.init=function(x, y, l, angle, n) {
+        var that=this;
+        if (n>0) {
+            var a_l, a_r, x1, y1, x2, y2;
+            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);
+            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);
+            x2 = x+l*Math.cos(angle*Math.PI/180);
+            y2 = y-l*Math.sin(angle*Math.PI/180);
+            a.push([x, y, x2, y2]);
+            a_l = angle+30;
+            a_r = angle-30;
+            l=l*2/3;
+            that.init(x2, y2, l, angle+rand, n-1);
+            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);
+            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);
+            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);
+            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);
+         };
+    };
+    this.run=function(){
+		con.clearRect(0,0,1000,500);
+        for(var i=0; i<a.length; i++){
+            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);
+        };
+		a=[];
+    };
+	this.move=function(){
+		var that = this;
+		var _s=function(){
+			that.change();
+			that.init(x, y, l, angle, n);
+			that.run();
+			setTimeout(_s,100);
+		};
+		_s();
+	};
+	this.change=function(){
+		val=Math.random()*2;
+		rand+=dir*val;
+		if(rand>10 || rand<-2){dir=-dir;}
+	};
+	this.init(x, y, l, angle, n);
+	this.run();
+};
+Tree.prototype.dw=function(ax, ay, bx, by){
+    con.beginPath()
+    con.moveTo(ax, ay);
+    con.lineTo(bx, by);
+    con.stroke();
+};
+new Tree(300, 400, 100, 90, 6).move();
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c1080a8e-cd11-4c5c-9020-18f4ccb44019');" />
 
 <p>补充：<br>除了setTimeout&#x2F;setInterval这两个函数控制动画外。现在很多浏览器还提供了另一个函数requestAnimationFrame，这个函数接口所拥有的优势是：</p>
 <p>对于一个侦中对DOM的所有操作，只进行一次Layout和Paint。<br>如果发生动画的元素被隐藏了，那么就不再去Paint。</p>
 <p>不过这个方法的使用只类似于递归调用，并没有一个时间停顿，所以我们一般要根据记录时间间隔来决定动画的每一帧的绘制情况。<br>下面用requestAnimationFrame来完成上面的动画。由于requestAnimationFrame的兼容性，我们需要先写一个兼容性的方法（来自three.js）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    /* 兼容requestAnimationFrame */</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&#x27;RequestAnimationFrame&#x27;];</span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&#x27;CancelAnimationFrame&#x27;] </span><br><span class="line">                                   || window[vendors[x]+&#x27;RequestCancelAnimationFrame&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_ca8d1c3e-a32d-4bbb-a779-d57b517b0ea3">(function() {
+    /* 兼容requestAnimationFrame */
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] 
+                                   || window[vendors[x]+'RequestCancelAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ca8d1c3e-a32d-4bbb-a779-d57b517b0ea3');" />
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;Tree&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;1000&#x27; height=&#x27;500&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function() &#123;</span><br><span class="line">	/* 兼容requestAnimationFrame */</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&#x27;RequestAnimationFrame&#x27;];</span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&#x27;CancelAnimationFrame&#x27;]</span><br><span class="line">                                   || window[vendors[x]+&#x27;RequestCancelAnimationFrame&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br><span class="line">var con = document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">    con.strokeStyle = &#x27;#000&#x27;;</span><br><span class="line">    con.lineWidth=0.8;</span><br><span class="line">var Tree = function(x, y, l, angle, n)&#123;</span><br><span class="line">    var a=[],rand=0,dir=1,val;</span><br><span class="line">    this.init = function(x, y, l, angle, n) &#123;</span><br><span class="line">        var that = this;</span><br><span class="line">        if (n&gt;0) &#123;</span><br><span class="line">            var a_l, a_r, x1, y1, x2, y2;</span><br><span class="line">            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            x2 = x+l*Math.cos(angle*Math.PI/180);</span><br><span class="line">            y2 = y-l*Math.sin(angle*Math.PI/180);</span><br><span class="line">            a.push([x, y, x2, y2]);</span><br><span class="line">            a_l = angle+30;</span><br><span class="line">            a_r = angle-30;</span><br><span class="line">            l=l*2/3;</span><br><span class="line">            that.init(x2, y2, l, angle+rand, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);</span><br><span class="line">            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);</span><br><span class="line">         &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">    this.run=function()&#123;</span><br><span class="line">		con.clearRect(0,0,1000,500);</span><br><span class="line">        for(var i=0; i&lt;a.length; i++)&#123;</span><br><span class="line">            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);</span><br><span class="line">        &#125;;</span><br><span class="line">		a=[];</span><br><span class="line">    &#125;;</span><br><span class="line">	this.move = function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var start = new Date().getTime(),</span><br><span class="line">			delta;</span><br><span class="line">		(function _s()&#123;</span><br><span class="line">			delta = new Date().getTime() - start;</span><br><span class="line">			if( delta &gt; 100 )&#123;</span><br><span class="line">				start = new Date().getTime();</span><br><span class="line">				that.change();</span><br><span class="line">				that.init(x, y, l, angle, n);</span><br><span class="line">				that.run();</span><br><span class="line">			&#125;</span><br><span class="line">			return requestAnimationFrame(_s)</span><br><span class="line">		&#125;)();</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		val = Math.random()*2;</span><br><span class="line">		rand += dir*val;</span><br><span class="line">		if (rand &gt;10 || rand &lt; -2)&#123; dir = -dir; &#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init(x, y, l, angle, n);</span><br><span class="line">	this.run();</span><br><span class="line">&#125;;</span><br><span class="line">Tree.prototype.dw=function(ax, ay, bx, by)&#123;</span><br><span class="line">    con.beginPath()</span><br><span class="line">    con.moveTo(ax, ay);</span><br><span class="line">    con.lineTo(bx, by);</span><br><span class="line">    con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tree(300, 400, 100, 90, 6).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_5e3f9e65-5fbc-4609-b425-0691e17f5292"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>Tree</title>
+</head>
+<body>
+<canvas id="pad" width='1000' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script>
+(function() {
+	/* 兼容requestAnimationFrame */
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+                                   || window[vendors[x]+'RequestCancelAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
+var con = document.getElementById("pad").getContext('2d');
+    con.strokeStyle = '#000';
+    con.lineWidth=0.8;
+var Tree = function(x, y, l, angle, n){
+    var a=[],rand=0,dir=1,val;
+    this.init = function(x, y, l, angle, n) {
+        var that = this;
+        if (n>0) {
+            var a_l, a_r, x1, y1, x2, y2;
+            x1 = x+0.5*l*Math.cos(angle*Math.PI/180);
+            y1 = y-0.5*l*Math.sin(angle*Math.PI/180);
+            x2 = x+l*Math.cos(angle*Math.PI/180);
+            y2 = y-l*Math.sin(angle*Math.PI/180);
+            a.push([x, y, x2, y2]);
+            a_l = angle+30;
+            a_r = angle-30;
+            l=l*2/3;
+            that.init(x2, y2, l, angle+rand, n-1);
+            that.init(x1, y1, l*2/3, a_l+rand/2, n-1);
+            that.init(x1, y1, l*2/3, a_r+rand/2, n-1);
+            that.init(x2, y2, l*2/3, a_l+rand/2, n-1);
+            that.init(x2, y2, l*2/3, a_r+rand/2, n-1);
+         };
+    };
+    this.run=function(){
+		con.clearRect(0,0,1000,500);
+        for(var i=0; i<a.length; i++){
+            this.dw(a[i][0],a[i][1],a[i][2],a[i][3]);
+        };
+		a=[];
+    };
+	this.move = function(){
+		var that = this;
+		var start = new Date().getTime(),
+			delta;
+		(function _s(){
+			delta = new Date().getTime() - start;
+			if( delta > 100 ){
+				start = new Date().getTime();
+				that.change();
+				that.init(x, y, l, angle, n);
+				that.run();
+			}
+			return requestAnimationFrame(_s)
+		})();
+	};
+	this.change=function(){
+		val = Math.random()*2;
+		rand += dir*val;
+		if (rand >10 || rand < -2){ dir = -dir; }
+	};
+	this.init(x, y, l, angle, n);
+	this.run();
+};
+Tree.prototype.dw=function(ax, ay, bx, by){
+    con.beginPath()
+    con.moveTo(ax, ay);
+    con.lineTo(bx, by);
+    con.stroke();
+};
+new Tree(300, 400, 100, 90, 6).move();
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5e3f9e65-5fbc-4609-b425-0691e17f5292');" />
 
 <p>再画几个图形：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&#x27;UTF-8&#x27; /&gt;</span><br><span class="line">&lt;title&gt;那些花儿&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">html,body&#123;height:100%;overflow:hidden;background:#333;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;canvas id=&quot;pad&quot; width=&#x27;2000&#x27; height=&#x27;1000&#x27;&gt;&lt;a href=&#x27;http://www.cssass.com&#x27;&gt;cssass.com&lt;/a&gt;提醒您：ie9以下用户请一边惭愧去吧&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var con=document.getElementById(&quot;pad&quot;).getContext(&#x27;2d&#x27;);</span><br><span class="line">	con.strokeStyle = &#x27;rgba(255,255,255,0.5)&#x27;;</span><br><span class="line">	con.lineJoin = &#x27;round&#x27;;</span><br><span class="line">	con.lineCap = &#x27;round&#x27;;</span><br><span class="line">	con.lineWidth=.5;</span><br><span class="line">function Tad(x,y,c)&#123; /* 位置，角数 */</span><br><span class="line">	var l,r,n,k,mx;</span><br><span class="line">	var xt=0, yt=0, angle=0 ,a=[];</span><br><span class="line">		r=360/c; //每只角分到的度数</span><br><span class="line">		var t=5; //转角</span><br><span class="line">		while(t&gt;1)&#123;</span><br><span class="line">			if(r%t===0) break;</span><br><span class="line">			t--;</span><br><span class="line">		&#125;;</span><br><span class="line">		n=360/t; //总线条数</span><br><span class="line">		k=r/t; //每只角分到的线条数</span><br><span class="line">	this.init=function()&#123;</span><br><span class="line">		if(a.length&lt;n)&#123;</span><br><span class="line">			angle+=t;</span><br><span class="line">			a.unshift(angle);  //存储所有转角</span><br><span class="line">			this.init();</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.change=function()&#123;</span><br><span class="line">		angle+=t;</span><br><span class="line">		a.unshift(angle)</span><br><span class="line">		a.pop(angle);</span><br><span class="line">		this.body(x,y);</span><br><span class="line">	&#125;;</span><br><span class="line">	this.body=function() &#123;</span><br><span class="line">		l=0; //线长(初始)</span><br><span class="line">		o=c; //每次增加的线长.这个值可以自定义</span><br><span class="line">		mx=l+ k*o + 10; //直径(最大值)</span><br><span class="line">		con.clearRect(x-mx/2, y-mx/2, mx, mx);</span><br><span class="line">		for(var i=1; i&lt;a.length; i++) &#123;</span><br><span class="line">			l+=o;</span><br><span class="line">			if(Math.floor(i%(k/2))===0) &#123; //峰谷时反向</span><br><span class="line">				o=-o;</span><br><span class="line">				if(i%(k/2)===0.5) &#123;l+=o;&#125; //遇到k是奇数的情况。如c=8时。</span><br><span class="line">			&#125;</span><br><span class="line">			xt = l*Math.cos(a[i-1]*Math.PI/180);</span><br><span class="line">			yt = l*Math.sin(a[i-1]*Math.PI/180);</span><br><span class="line">			this.dw(x, y, x+xt, y-yt);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	this.init();</span><br><span class="line">	this.body();</span><br><span class="line">&#125;</span><br><span class="line">Tad.prototype.move=function()&#123;</span><br><span class="line">	var that = this;</span><br><span class="line">	var _s=function()&#123;</span><br><span class="line">		that.change();</span><br><span class="line">		setTimeout(_s,100);</span><br><span class="line">	&#125;</span><br><span class="line">	_s();</span><br><span class="line">&#125;;</span><br><span class="line">Tad.prototype.dw=function(ax, ay, bx, by) &#123;</span><br><span class="line">	con.beginPath();</span><br><span class="line">	con.moveTo(ax, ay);</span><br><span class="line">	con.lineTo(bx, by);</span><br><span class="line">	con.stroke();</span><br><span class="line">&#125;;</span><br><span class="line">new Tad(100,100,15).move();</span><br><span class="line">new Tad(200,100,12).move();</span><br><span class="line">new Tad(300,100,9).move();</span><br><span class="line">new Tad(400,100,8).move();</span><br><span class="line">new Tad(500,100,6).move();</span><br><span class="line">new Tad(100,200,5).move();</span><br><span class="line">new Tad(200,200,4).move();</span><br><span class="line">new Tad(300,200,3).move();</span><br><span class="line">new Tad(400,200,2).move();</span><br><span class="line">new Tad(500,200,1).move();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<textarea class="runcode_text" id="runcode_b98e1afe-f938-4f60-bf33-e0a8ccc12ae4"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>那些花儿</title>
+<style>
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;background:#333;}
+</style>
+</head>
+<body>
+<canvas id="pad" width='2000' height='1000'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script>
+var con=document.getElementById("pad").getContext('2d');
+	con.strokeStyle = 'rgba(255,255,255,0.5)';
+	con.lineJoin = 'round';
+	con.lineCap = 'round';
+	con.lineWidth=.5;
+function Tad(x,y,c){ /* 位置，角数 */
+	var l,r,n,k,mx;
+	var xt=0, yt=0, angle=0 ,a=[];
+		r=360/c; //每只角分到的度数
+		var t=5; //转角
+		while(t>1){
+			if(r%t===0) break;
+			t--;
+		};
+		n=360/t; //总线条数
+		k=r/t; //每只角分到的线条数
+	this.init=function(){
+		if(a.length<n){
+			angle+=t;
+			a.unshift(angle);  //存储所有转角
+			this.init();
+		};
+	};
+	this.change=function(){
+		angle+=t;
+		a.unshift(angle)
+		a.pop(angle);
+		this.body(x,y);
+	};
+	this.body=function() {
+		l=0; //线长(初始)
+		o=c; //每次增加的线长.这个值可以自定义
+		mx=l+ k*o + 10; //直径(最大值)
+		con.clearRect(x-mx/2, y-mx/2, mx, mx);
+		for(var i=1; i<a.length; i++) {
+			l+=o;
+			if(Math.floor(i%(k/2))===0) { //峰谷时反向
+				o=-o;
+				if(i%(k/2)===0.5) {l+=o;} //遇到k是奇数的情况。如c=8时。
+			}
+			xt = l*Math.cos(a[i-1]*Math.PI/180);
+			yt = l*Math.sin(a[i-1]*Math.PI/180);
+			this.dw(x, y, x+xt, y-yt);
+		}
+	};
+	this.init();
+	this.body();
+}
+Tad.prototype.move=function(){
+	var that = this;
+	var _s=function(){
+		that.change();
+		setTimeout(_s,100);
+	}
+	_s();
+};
+Tad.prototype.dw=function(ax, ay, bx, by) {
+	con.beginPath();
+	con.moveTo(ax, ay);
+	con.lineTo(bx, by);
+	con.stroke();
+};
+new Tad(100,100,15).move();
+new Tad(200,100,12).move();
+new Tad(300,100,9).move();
+new Tad(400,100,8).move();
+new Tad(500,100,6).move();
+new Tad(100,200,5).move();
+new Tad(200,200,4).move();
+new Tad(300,200,3).move();
+new Tad(400,200,2).move();
+new Tad(500,200,1).move();
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b98e1afe-f938-4f60-bf33-e0a8ccc12ae4');" />
 
 
       </div>
