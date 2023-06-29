@@ -1,97 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 400px;
-}
-
-.douban-card {
-    display: flex;
-    margin: 30px 10px;
-    padding: 15px;
-    border-radius: 15px;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    color: antiquewhite;
-    text-decoration: none;
-}
-
-.douban-card:hover {
-    text-decoration: none;
-}
-
-.douban-card-bgimg {
-    position: absolute;
-    width: 115%;
-    height: 115%;
-    filter: blur(15px) brightness(0.6);
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.douban-card-img {
-    position: relative;
-    height: 130px;
-    width: 80px;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.douban-card-left:hover .douban-card-img {
-    filter: blur(5px) brightness(0.6);
-    transform: perspective(800px) rotateX(180deg);
-}
-
-.douban-card-left .douban-card-img {
-    transition: all 500ms ease;
-}
-
-.douban-card-left {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.douban-card-left .douban-card-status {
-    height: 130px;
-    width: 80px;
-    text-align: center;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 30%;
-    transform: rotateX(180deg);
-    backface-visibility: hidden;
-    transition: all 500ms ease;
-}
-
-.douban-card-left:hover .douban-card-status {
-    transform: perspective(800px) rotateX(0deg);
-}
-
-.douban-card-right {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: 12px;
-    font-size: 16px;
-    font-family: "Courier New", Courier, monospace;
-    line-height: 1.3;
-    color: antiquewhite;
-}
-
-.douban-card-item {
-    margin-top: 4px;
-}
-</style><!-- hexo injector head_begin end -->
+  <head>
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -130,7 +39,49 @@
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
   
 
-  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
+.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
+.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
+.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #98c513;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
+	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
+	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+}
+.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
+.fullScreen .wrap{position:static;}
+.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
+.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
+.fullCode .fullBtn{background-position:0 -50px;}
+</style><script type="text/javascript">var runcode={};
+runcode.open=function(element)
+{
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element)
+{
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}
+	codeobj.select(); 	 
+
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
     <div class="head">
@@ -174,7 +125,33 @@
             
           </div>
         
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">*&#123;margin:0; padding:0;&#125;</span><br><span class="line">html,body&#123;width:100%; height:100%;overflow:hidden;&#125;</span><br><span class="line">body&#123;margin:100px 0 0 100px;position:relative;&#125;</span><br><span class="line">.wrap&#123;height:100%; width:100%; background:#ccc; position:absolute;</span><br><span class="line"> bottom:200px; right:200px;&#125;</span><br><span class="line">.cont&#123;margin:200px 0 0 200px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;wrap&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;cont&quot;&gt;</span><br><span class="line">	&lt;p&gt;昔我往矣，杨柳依依。</span><br><span class="line"></span><br><span class="line">	&lt;p&gt;今我来思，雨雪霏霏。</span><br><span class="line"></span><br><span class="line">	&lt;p&gt;行道迟迟，载渴载饥。</span><br><span class="line"></span><br><span class="line">	&lt;p&gt;我心伤悲，莫知我哀！</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+        <textarea class="runcode_text" id="runcode_6c8a392b-3350-4bf9-baeb-f4dcb5221ece"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<style type="text/css">
+*{margin:0; padding:0;}
+html,body{width:100%; height:100%;overflow:hidden;}
+body{margin:100px 0 0 100px;position:relative;}
+.wrap{height:100%; width:100%; background:#ccc; position:absolute;
+ bottom:200px; right:200px;}
+.cont{margin:200px 0 0 200px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="cont">
+	<p>昔我往矣，杨柳依依。
+
+	<p>今我来思，雨雪霏霏。
+
+	<p>行道迟迟，载渴载饥。
+
+	<p>我心伤悲，莫知我哀！
+	</div>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6c8a392b-3350-4bf9-baeb-f4dcb5221ece');" />
 
 
 <p>上面这种方法，应该说很少会被用上。<br>再看一个比较常见的：对已确定尺寸的元素的水平与垂直居中。</p>

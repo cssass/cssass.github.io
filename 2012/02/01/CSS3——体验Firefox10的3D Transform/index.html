@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        CSS3——体验Firefox10的3D Transform | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
+.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
+.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
+.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #98c513;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
+	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
+	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+}
+.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
+.fullScreen .wrap{position:static;}
+.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
+.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
+.fullCode .fullBtn{background-position:0 -50px;}
+</style><script type="text/javascript">var runcode={};
+runcode.open=function(element)
+{
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element)
+{
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}
+	codeobj.select(); 	 
+
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">CSS3——体验Firefox10的3D Transform</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2012-02-01</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>之前写了一篇CSS3的崛起——体验webkit的3D-Effect。<br>随着firefox10正式版发布，firefox也支持3D Transform了，所以补充一篇，将上篇中的代码移植过来，支持firefox。</p>
+<p>这里先穿插介绍下firefox10的新特性，firefox10除了支持3D Transform，还提供了Fullscreen API，令人兴奋吧。另外firefox10成为Mozila首个“长期支持版本”(Extended Support Release，简称“ESR”)，这种当然是市场考虑啦，至于是什么用意和市场反响我们就不探讨了。</p>
+<p>下面是演示demo，只支持firefox10。 chrome浏览器的用户可以参考上一篇。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;firefox10&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;&#125;</span><br><span class="line">body &#123; background-color:#deddcd;&#125;</span><br><span class="line">#movieposters &#123; list-style:none; margin:100px;&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-moz-perspective: 500px;</span><br><span class="line">&#125;</span><br><span class="line">/* 图片3d变换效果 */</span><br><span class="line">#movieposters li img &#123; border:10px solid #fcfafa;-moz-box-shadow:0 3px 10px #888;</span><br><span class="line">	-moz-transform: rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform;</span><br><span class="line">	-moz-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;-moz-transform: rotateY(0deg); &#125;</span><br><span class="line">/* 文字框3d变换效果 */</span><br><span class="line">.movieinfo &#123;border:10px solid #fcfafa; padding:0 10px; width:120px; height:100px; background-color:#deddcd; margin:-125px 0 0 55px; position:absolute;-moz-box-shadow:0 10px 20px #888;</span><br><span class="line">	-moz-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform, box-shadow, margin;</span><br><span class="line">	-moz-transition-duration: 0.5s; &#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;-moz-box-shadow:0 5px 10px #888; margin:-105px 0 0 30px;</span><br><span class="line">	-moz-transform: rotateY(0deg); &#125;</span><br><span class="line">.movieinfo h3 &#123;color:#7a3f3a;font-family:Georgia; text-align:center; &#125;</span><br><span class="line">.movieinfo p &#123;padding:10px 0;&#125;</span><br><span class="line">.movieinfo a &#123; display:block; background:#7a3f3a; padding:3px 0; color:#eee; text-decoration:none; text-align:center; margin:0 auto;-moz-border-radius:5px; &#125;</span><br><span class="line">.movieinfo a:hover, .movieinfo a:focus &#123; background-color:#6a191f; color:#fff; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			&lt;h3&gt;Avatar 2&lt;/h3&gt;</span><br><span class="line">			&lt;p&gt;You like a baby&lt;/p&gt;</span><br><span class="line">			&lt;a href=&quot;http://www.cssass.com&quot; title=&quot;I see you&quot;&gt;More info&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>去除一些效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;firefox10&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;list-style:none; &#125;</span><br><span class="line">body &#123; background:#deddcd;margin:100px;&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-moz-perspective: 500px;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li img &#123;</span><br><span class="line">	-moz-transform: rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform;</span><br><span class="line">	-moz-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;</span><br><span class="line">	-moz-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">.movieinfo &#123;</span><br><span class="line">	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;</span><br><span class="line">	-moz-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform, margin;</span><br><span class="line">	-moz-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;</span><br><span class="line">	margin:-105px 0 0 40px;</span><br><span class="line">	-moz-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			(未设置transform-style，默认为plat)</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用preserve-3d，实现全方位3D</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;firefox10&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">*&#123;padding:0;margin:0;list-style:none; &#125;</span><br><span class="line">body &#123; background:#deddcd;margin:100px;&#125;</span><br><span class="line">#movieposters&#123;</span><br><span class="line">	-moz-perspective: 1000px;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li &#123;float:left;</span><br><span class="line">	-moz-animation: spin 10s infinite linear;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li.first&#123;</span><br><span class="line">	-moz-transform-style: preserve-3d;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li.second&#123;</span><br><span class="line">	-moz-transform-style: plat;</span><br><span class="line">&#125;</span><br><span class="line"> @-moz-keyframes spin &#123;</span><br><span class="line">      from &#123; -moz-transform: rotateY(0); &#125;</span><br><span class="line">      to   &#123; -moz-transform: rotateY(360deg); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">#movieposters li img &#123;</span><br><span class="line">	-moz-transform: rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform;</span><br><span class="line">	-moz-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover img &#123;</span><br><span class="line">	-moz-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">.movieinfo &#123;</span><br><span class="line">	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;</span><br><span class="line">	-moz-transform: translateZ(30px) rotateY(30deg);</span><br><span class="line">	-moz-transition-property: -moz-transform, margin;</span><br><span class="line">	-moz-transition-duration: 0.5s;</span><br><span class="line">&#125;</span><br><span class="line">#movieposters li:hover .movieinfo &#123;</span><br><span class="line">	margin:-105px 0 0 40px;</span><br><span class="line">	-moz-transform: rotateY(0deg);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul id=&quot;movieposters&quot;&gt;</span><br><span class="line">	&lt;li class=&#x27;first&#x27;&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			Avatar 2 (preserve-3d)</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	&lt;li class=&#x27;second&#x27;&gt;</span><br><span class="line">		&lt;img src=&#x27;http://www.cssass.com/blog/resource/avatar/avatar_m.jpg&#x27; width=&#x27;200&#x27; /&gt;</span><br><span class="line">		&lt;div class=&quot;movieinfo&quot;&gt;</span><br><span class="line">			Avatar 2 (plat)</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最后说明一下firefox和webkit间使用的一点差别：<br>火狐10下的3D Transforms在设置perspective属性值时必须带单位px，webkit可以省略；<br>另外，webkit在用transition-property设置transform这个值时，可以不用前缀，而firefox需要写上-moz-transform;</p>
+<p>现在综合Webkit和Firefox，写一个效果，顺便也兼用下另两个属性：transition 和 animation</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;link href=&#x27;http://fonts.googleapis.com/css?family=Ultra&amp;v2&#x27; rel=&#x27;stylesheet&#x27; type=&#x27;text/css&#x27;&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body&#123;background:#333;&#125;</span><br><span class="line">h1&#123;font:normal 90px/1.5 &#x27;Ultra&#x27;,&#x27;Curlz MT&#x27;,&#x27;Bauhaus 93&#x27;,&#x27;Blackoak Std&#x27;,Courier,Arial;color:#7e9409;position:absolute;top:85px;left:10px;width:300px;</span><br><span class="line">	/* animation */</span><br><span class="line">	-moz-animation: 1s slidein;</span><br><span class="line">	-webkit-animation: 1s slidein;</span><br><span class="line">	/* 3d-transform */</span><br><span class="line">	-webkit-perspective: 600;</span><br><span class="line">	-moz-perspective: 600px;</span><br><span class="line">&#125;</span><br><span class="line">@-moz-keyframes slidein &#123;</span><br><span class="line">	from &#123;top:1550px;&#125;</span><br><span class="line">	85% &#123;top:5px;&#125;</span><br><span class="line">	to &#123;top:85px;&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes slidein &#123;</span><br><span class="line">	from &#123;top:1550px;&#125;</span><br><span class="line">	85% &#123;top:5px;&#125;</span><br><span class="line">	to &#123;top:85px;&#125;</span><br><span class="line">&#125;</span><br><span class="line">.myLogo,.myLogo a&#123;</span><br><span class="line">	/*  transition */</span><br><span class="line">	-moz-transition: all 2s ease-in-out 0s;</span><br><span class="line">	-webkit-transition:all 2s ease-in-out 0;</span><br><span class="line">	transition:all 2s ease-in-out 0;</span><br><span class="line">&#125;</span><br><span class="line">.myLogo&#123;position:relative;display:inline-block;zoom:1;top:0;left:0;text-shadow:-2px -1px 1px #7e9409;opacity: 0.8;filter:alpha(opacity=50);</span><br><span class="line">	-webkit-transform: rotateY(30deg);</span><br><span class="line">	-moz-transform: rotateY(30deg);</span><br><span class="line">	transform: rotateY(30deg);</span><br><span class="line">&#125;</span><br><span class="line">h1:hover .myLogo &#123;</span><br><span class="line">	 /* 3d-transform */</span><br><span class="line">	 -webkit-transform: rotateY(0);</span><br><span class="line">	-moz-transform: rotateY(0);</span><br><span class="line">	transform: rotateY(0);</span><br><span class="line">	text-shadow:0;</span><br><span class="line">&#125;</span><br><span class="line">.myLogo a&#123;position:absolute;top:1px;left:5px;color:#B7D902;text-shadow:-1px -1px 1px #fff;text-decoration: none;&#125;</span><br><span class="line">h1:hover .myLogo a&#123;left: 2px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;h1&gt;</span><br><span class="line">	&lt;span class=&quot;myLogo&quot;&gt;</span><br><span class="line">		CSSASS</span><br><span class="line">		&lt;a href=&quot;http://www.cssass.com/blog/&quot;&gt;CSSASS&lt;/a&gt;</span><br><span class="line">	&lt;/span&gt;</span><br><span class="line">&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2012/02/24/%E4%BD%BF%E7%94%A8Three-js%E5%B1%95%E7%8E%B03D%E6%A8%A1%E5%9E%8B/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>使用Three.js展现3D模型</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2012/01/17/canvas%E7%9A%84%E5%83%8F%E7%B4%A0%E7%BA%A7%E6%93%8D%E4%BD%9C%E2%80%94%E2%80%944-%E5%85%B3%E6%B3%A8%E6%80%A7%E8%83%BD/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      canvas的像素级操作——4.关注性能
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>

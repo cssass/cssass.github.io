@@ -1,97 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-height: 400px;
-}
-
-.douban-card {
-    display: flex;
-    margin: 30px 10px;
-    padding: 15px;
-    border-radius: 15px;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    color: antiquewhite;
-    text-decoration: none;
-}
-
-.douban-card:hover {
-    text-decoration: none;
-}
-
-.douban-card-bgimg {
-    position: absolute;
-    width: 115%;
-    height: 115%;
-    filter: blur(15px) brightness(0.6);
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.douban-card-img {
-    position: relative;
-    height: 130px;
-    width: 80px;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.douban-card-left:hover .douban-card-img {
-    filter: blur(5px) brightness(0.6);
-    transform: perspective(800px) rotateX(180deg);
-}
-
-.douban-card-left .douban-card-img {
-    transition: all 500ms ease;
-}
-
-.douban-card-left {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.douban-card-left .douban-card-status {
-    height: 130px;
-    width: 80px;
-    text-align: center;
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 30%;
-    transform: rotateX(180deg);
-    backface-visibility: hidden;
-    transition: all 500ms ease;
-}
-
-.douban-card-left:hover .douban-card-status {
-    transform: perspective(800px) rotateX(0deg);
-}
-
-.douban-card-right {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-left: 12px;
-    font-size: 16px;
-    font-family: "Courier New", Courier, monospace;
-    line-height: 1.3;
-    color: antiquewhite;
-}
-
-.douban-card-item {
-    margin-top: 4px;
-}
-</style><!-- hexo injector head_begin end -->
+  <head>
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -129,7 +38,49 @@
     
   <link rel="stylesheet" type="text/css" href="/css/category.css" />
 
-  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
+.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
+.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
+.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #98c513;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
+	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
+	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+}
+.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
+.fullScreen .wrap{position:static;}
+.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
+.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
+.fullCode .fullBtn{background-position:0 -50px;}
+</style><script type="text/javascript">var runcode={};
+runcode.open=function(element)
+{
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element)
+{
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}
+	codeobj.select(); 	 
+
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
     <div class="head">
@@ -150,6 +101,57 @@
       
   <div class="tag-page-title">#JS</div>
   <div class="post-list">
+    
+      <div class="post-card">
+        <div class="post__head">
+          <a href="/2013/07/09/%E9%B2%B8%E9%B1%BC%E5%A4%AB%E5%A6%87/" class="post-title hover-line">鲸鱼夫妇</a>
+        </div>
+        <div class="post__body">
+          
+          <div class="post-excerpt"></div>
+        </div>
+        <div class="post__foot">
+          <div class="post-tags">
+            
+              <a href="/tags/JS/" class="post-tag">#JS</a>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="post-card">
+        <div class="post__head">
+          <a href="/2013/02/06/%E4%BD%BF%E7%94%A8Threejs%E5%88%B6%E4%BD%9C3D%E8%9E%BA%E6%97%8B%E7%BA%BF/" class="post-title hover-line">使用Threejs制作3D螺旋线</a>
+        </div>
+        <div class="post__body">
+          
+          <div class="post-excerpt"></div>
+        </div>
+        <div class="post__foot">
+          <div class="post-tags">
+            
+              <a href="/tags/JS/" class="post-tag">#JS</a>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="post-card">
+        <div class="post__head">
+          <a href="/2011/07/28/%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAJS%E7%89%B9%E6%95%88%EF%BC%9A%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C%EF%BC%88%E6%9C%89%E5%BD%A9%E8%9B%8B%EF%BC%89/" class="post-title hover-line">写了一个JS特效：打字效果（有彩蛋）</a>
+        </div>
+        <div class="post__body">
+          
+          <div class="post-excerpt"></div>
+        </div>
+        <div class="post__foot">
+          <div class="post-tags">
+            
+              <a href="/tags/JS/" class="post-tag">#JS</a>
+            
+          </div>
+        </div>
+      </div>
     
       <div class="post-card">
         <div class="post__head">

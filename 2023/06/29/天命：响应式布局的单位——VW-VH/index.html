@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        天命：响应式布局的单位——VW/VH | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
+.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
+.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
+.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #98c513;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
+	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
+	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+}
+.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
+.fullScreen .wrap{position:static;}
+.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
+.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
+.fullCode .fullBtn{background-position:0 -50px;}
+</style><script type="text/javascript">var runcode={};
+runcode.open=function(element)
+{
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element)
+{
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}
+	codeobj.select(); 	 
+
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a href="/" class="nav-logo">
+          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            <a href="/blog/">博客</a>
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">天命：响应式布局的单位——VW/VH</div>
+        <div class="post-info">
+          
+  
+
+
+          <span class="post-date">2023-06-29</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>本文最早发布于知乎的一个回答：<a href="https://www.zhihu.com/question/37179916/answer/101810379" title="" target="">vw相比rem，在实际开发中究竟有多大区别？</a><br>几年前，人们谈论响应式布局的时候，必会提到一个单位：rem，其基于rem的布局思路影响一直持续到今天。那么rem是否是最好的呢？有没有更合理的布局结局方案呢？以下是原文：</p>
+<p>我认为基于vw开发布局比基于rem不知道要高明到哪里去了。</p>
+<p>vw可以轻松搞定弹性布局，流体布局。而网上那些吹捧rem的文章，所用的响应式适配方案都是基于弹性布局的。流体布局？人家说了，流体布局不好，见 <a href="https://isux.tencent.com/web-app-rem.html" title="" target="">web app变革之rem</a></p>
+<p>vw逻辑非常清晰，”1vw ＝ 1&#x2F;100th viewport width”，用viewport width的百分比来设置element width。rem是什么？“The font size of the root element”，就是说你用它来布局，就相当于用font size 来设置 width size，中间你要转一道。<br>基于以上，我也发出了题主的疑问，为什么rem这种单位会被用来布局，而vw这种天生的布局单位缺鲜有人关注？</p>
+<p>所以今天深扒了一下关于这两个单位在 W3C组织 的邮件组里的讨论，<br>rem这个单位，我能找到的最早讨论是在2002年4月，一封比较各种样式语言的邮件中：<a target="_blank" rel="noopener" href="http://lists.w3.org/Archives/Public/www-style/2002Apr/0010.html">http://lists.w3.org/Archives/Public/www-style/2002Apr/0010.html</a> ，</p>
+<blockquote><p>CSS3 would just need a unit relative to the Root element’s EM – say, ‘rem’</p>
+</blockquote>
+
+<p>之后有理由相信，rem最晚在2003年8月，已经被讨论组内人士所公认，并有可能已处在 w3c 工作组成员的笔记之中：<a target="_blank" rel="noopener" href="http://lists.w3.org/Archives/Public/www-style/2003Aug/0044.html">http://lists.w3.org/Archives/Public/www-style/2003Aug/0044.html</a></p>
+<blockquote><p>According to my experience, when some authors look for exotic ways to define size of some element, it really comes to trying to define size of that element relative to viewport size. Nowadays, one has to use percentages and carefully compute size of every element from root to the element one wants to set size for. This is logical addition to ‘rem’ unit (root’s em).</p>
+</blockquote>
+
+<p>邮件的作者此时也提出了两个单位：</p>
+<blockquote><p>vpw: viewport width<br>vph: viewport height</p>
+</blockquote>
+
+<p>仔细一看，这不就是现在的vw 和 vh 么。</p>
+<p>其实，再早半年，也已经有人提出了与 vw 和 vh 接近的概念：<a target="_blank" rel="noopener" href="http://lists.w3.org/Archives/Public/www-style/2003Feb/0110.html">http://lists.w3.org/Archives/Public/www-style/2003Feb/0110.html</a></p>
+<blockquote><p>The unit should be relative to the screen (or paper) width.<br>The unit should be referenced to the preferred screen resolution.</p>
+<p>I suggest those units:<br>sw8 &#x3D; (screen.width &#x2F; 800 ) px;<br>sw12 &#x3D; (screen.width &#x2F; 1200 ) px;<br>sw16 &#x3D; (screen.width &#x2F; 1600 ) px;<br>sw24 &#x3D; (screen.width &#x2F; 2400 ) px;</p>
+</blockquote>
+
+<p>2005年3月，从一封讨论CSS运算表达式的邮件里 <a target="_blank" rel="noopener" href="http://lists.w3.org/Archives/Public/www-style/2005Mar/0057.html">http://lists.w3.org/Archives/Public/www-style/2005Mar/0057.html</a> 可以确定 vw 已基本被定下，同时被定下的还有vh 和 vm (也就是后来的vmin)：</p>
+<blockquote><p>the working group recently decided to investigate the implications of allowing simple, linear expressions as values.</p>
+<p>Some common cases can be done without expressions, by means of a few new units:</p>
+<p>gd &#x3D; the grid unit from CSS3 Text<br>rem &#x3D; the font size of the root element<br>vw &#x3D; the viewport width (or 1&#x2F;100th of it)<br>vh &#x3D; the viewport height (or 1&#x2F;100th of it)<br>vm &#x3D; min(vw, vh)</p>
+</blockquote>
+
+<p>当然</p>
+<blockquote><p>There is not even a draft yet, though.</p>
+</blockquote>
+<p>不过话音刚落，到了当年7月26日，working draft 发布： CSS3 Values and Units</p>
+<p>此次是第二次发布CSS3 Values and Units草案，距离首次发布已经过去整整4年，显而易见： ren, vw, vh, vm 是同时进的草案。</p>
+<p>之后，2012年3月8日，vm 更改为 vmin。2012年8月28日，发布Candidate Recommendation（备选标准），增加 vmax。截止到现在，CSS3 Values and Units依然处于备选标准阶段，并不是一个正式标准，CSS Values and Units Module Level 3。</p>
+<p>但俨然它是一个事实标准，因为浏览器厂商从来不是等标准确定后才付之实施，否则就会落后于人。我猜也不乏浏览器厂家在事先实现了某个features，继而正式递交工作组要求成为标准的，当然大多数浏览器厂商本身就是标准制定组成员。所以，虽然同时进入标准，rem 和 vw 的命运还得看浏览器厂家们是否积极去实现。</p>
+<p>我们来看看 rem 和 vw 在 Moliza 家的待遇：<br>2009-01-05：有用户提交bug要求支持rem：472195 – support css3 root em (‘rem’ or ‘re’) units<br>2009-07-11：有用户提交bug要求实现vw：503720 – Implement vw&#x2F;vh&#x2F;vmin&#x2F;vmax (viewport sizes) from CSS 3 Values and Units<br>相差半年<br>2010-1-21: Firefox3.6发布，支持rem：Firefox 3.6 for developers<br>2013-2-19: Firefox 19发布，支持vw：Firefox 19 for developers<br>晚了三年</p>
+<p>其它各家皆是如此，厚此而薄彼，就导致了如下的支持度差异：<br>rem：</p>
+<img src="https://pic2.zhimg.com/b4f035b1007996aba311cab004425179_b.png" class="">
+<p>vw:</p>
+<img src="https://pic4.zhimg.com/a6df85f2f4c38db8ff30da6f5276362f_b.png" class="">
+
+<p>回到原题，vw被支持的太晚是其并不流行的根本原因，而当时移动端web app&#x2F;page的开发需求已经十分旺盛，弹性布局是一种不错的移动端界面兼容展现方式，对于rem机遇就此而来，便成为一个实现弹性布局效果的极佳方案。</p>
+<p>其实看目前状况，对vw最不利的是Android Browser，据我调查Android Browser 4.4以下的还占全部Android Browser的 9% 左右, 这个量还是不容忽视的。</p>
+<p>好在既然所有最新浏览器都已经支持，那么随着时间推移，相信未来vw必将会流行。</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <div class="post-nav-item-left"></div>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2014/08/16/Date%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96Month%EF%BC%8CDay%E5%8F%82%E6%95%B0%E7%9A%84%E5%A5%87%E8%91%A9%E8%AE%BE%E5%AE%9A%E7%9A%84%E8%A7%A3%E9%87%8A/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      Date对象初始化Month，Day参数的奇葩设定的解释
+    </a>
+  
+</div>
+
+    
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+  
+
+  </body>
+</html>
