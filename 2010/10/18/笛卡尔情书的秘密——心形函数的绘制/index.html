@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -135,7 +139,7 @@ runcode.copy=function(element)
 </blockquote>
 
 <p>而我们将借助canvas的arc方法，为你揭开这行字的秘密：</p>
-<textarea class="runcode_text" id="runcode_8f8efb1d-8a31-4c81-b01d-d4271f547743"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_b8057b0e-3e1a-4cb0-8662-1ee02ffda67a"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -164,7 +168,7 @@ con.fill();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8f8efb1d-8a31-4c81-b01d-d4271f547743');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b8057b0e-3e1a-4cb0-8662-1ee02ffda67a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b8057b0e-3e1a-4cb0-8662-1ee02ffda67a');" /></p>
 
 <blockquote><p>不久之后那位国王死了，克丽丝汀继承王位， 登基之后她马上派人在欧洲四处寻找迪卡尔的踪迹，可惜人已故。。。</p>
 </blockquote>
@@ -173,7 +177,7 @@ con.fill();
 <p>除了使用arc方法，bezierCurveTo方法来绘制各种曲线图形也不在话下，但那并不是通过心形函数本身绘制的。</p>
 <p>好吧其实r&#x3D;a(1-sinθ)是极坐标系方程，而不是笛卡尔坐标系(直角坐标系)方程式。<br>关于心形函数的一些资料</p>
 <p>话说，极坐标公式是非常利于绘制图形的。<br>比如玫瑰线公式：r(θ) &#x3D; a sin kθ<br>阿基米德螺线公式：r(θ) &#x3D; a+bθ</p>
-<textarea class="runcode_text" id="runcode_d70d4995-b20c-47a9-b88e-fff88cafe0ba"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_13f4141b-1b8a-42f0-a7e0-acc4ac3105c2"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -201,9 +205,9 @@ con.stroke();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d70d4995-b20c-47a9-b88e-fff88cafe0ba');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_13f4141b-1b8a-42f0-a7e0-acc4ac3105c2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_13f4141b-1b8a-42f0-a7e0-acc4ac3105c2');" /></p>
 
-<textarea class="runcode_text" id="runcode_425f103a-0c4a-43a7-aff9-19345c51a45e"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c76d5959-7520-44a2-a838-87830325928e"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -231,9 +235,9 @@ con.stroke();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_425f103a-0c4a-43a7-aff9-19345c51a45e');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c76d5959-7520-44a2-a838-87830325928e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c76d5959-7520-44a2-a838-87830325928e');" /></p>
 <p>另外，出于审美需求，我们的心型图形往往是这样的：<br>17(x^2+y^2)-16*abs(x)<em>y&#x3D;225<br>但是这里所用到的坐标系是直角坐标系，我们可以先转换成极坐标方程，如下：<br>r&#x3D;sqrt(225&#x2F;(17-16sinθ</em>sqrt((cosθ)^2)))<br>绘制如下：</p>
-<textarea class="runcode_text" id="runcode_3c54b6ca-2745-46a5-9b39-2fa64a6fc412"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_77c621a4-896f-4c12-a7df-99ddd5291e67"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -262,7 +266,7 @@ con.fill();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3c54b6ca-2745-46a5-9b39-2fa64a6fc412');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_77c621a4-896f-4c12-a7df-99ddd5291e67');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_77c621a4-896f-4c12-a7df-99ddd5291e67');" /></p>
 
       </div>
     </div>
@@ -271,7 +275,7 @@ con.fill();
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/10/22/Transform%E5%8F%98%E5%BD%A2%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%BC%94%E7%A4%BA/">
+    <a class="post-nav-item-left" href="/2010/10/22/transform%E5%8F%98%E5%BD%A2%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%BC%94%E7%A4%BA/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -287,7 +291,7 @@ con.fill();
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94Photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
+    <a class="post-nav-item-right" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

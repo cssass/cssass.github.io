@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -130,7 +134,7 @@ runcode.copy=function(element)
 <p>人们总是喜欢用这样一个类比:想象生活在三维空间中的一张二维平面画中的扁片人,不管这幅画多么丰富多彩,其中的二维人只能看到周围世界的侧面,在他们眼中,周围的人和事物都是一些长短不一的线段而已。只有当一个二维扁片人从画中飘出来,进人三维空间,再回头看那幅画,才能看到画的全貌。<br>这个类比,其实也只是进一步描述了四维感觉的不可描述。</p>
 <p>关于《三体——死神永生》里四维空间（不算时间维）的讨论，这里还有篇有意思的博文：四维世界的堵车问题</p>
 <p>好了，言归正传。<br>下面提供一个三维到二维的投影算法（from <a href="http://www.benjoffe.com）：">www.benjoffe.com）：</a></p>
-<textarea class="runcode_text" id="runcode_0873e429-012d-4df8-ad9d-00df110e293a">var theta = 4.2; //转角
+<p><textarea class="runcode_text" id="runcode_6822fe6f-4290-4c56-a557-ac81c69c30c9">var theta = 4.2; //转角
 var eleva = 0.6; //仰角
 function iso(x,y,z){
 var dist = Math.sqrt(x*x+y*y);
@@ -147,11 +151,11 @@ return {
 x: x,
 y: y
 };
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0873e429-012d-4df8-ad9d-00df110e293a');" />
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6822fe6f-4290-4c56-a557-ac81c69c30c9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6822fe6f-4290-4c56-a557-ac81c69c30c9');" /></p>
 
 <p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
 <p>我们应用一下：下面是一个3D球</p>
-<textarea class="runcode_text" id="runcode_56934cff-127a-45d1-995a-f922b15cde52"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_81d6073f-c2c2-483f-bbfe-3cfd981b9c14"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -240,11 +244,11 @@ body{background:#cbe846;}
 	};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_56934cff-127a-45d1-995a-f922b15cde52');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_81d6073f-c2c2-483f-bbfe-3cfd981b9c14');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_81d6073f-c2c2-483f-bbfe-3cfd981b9c14');" /></p>
 
 <p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
 <p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
-<textarea class="runcode_text" id="runcode_4eb7142f-a18d-4011-99e4-178a39225b93"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_1e6a2853-d686-4284-b6bc-8dab41c9b0fa"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -326,12 +330,12 @@ body{background:#efd5e2;}
 		}
 	}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4eb7142f-a18d-4011-99e4-178a39225b93');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1e6a2853-d686-4284-b6bc-8dab41c9b0fa');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1e6a2853-d686-4284-b6bc-8dab41c9b0fa');" /></p>
 
 <p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
 <p>x&#x3D;rsinθcosφ 　<br>y&#x3D;rsinθsinφ 　　<br>z&#x3D;rcosθ</p>
 <p>呃哦，代入iso函数后我们发现iso变的更简单了：</p>
-<textarea class="runcode_text" id="runcode_f7a8b4e3-9ed2-4fcd-b8bd-3dcd50a6388b">var theta = 4.2; //转角
+<p><textarea class="runcode_text" id="runcode_4f078fa5-0741-4cf3-99db-199dabfd9d14">var theta = 4.2; //转角
 var eleva = 0.6; //仰角
 function iso(a,b,r){
 var x,y,z
@@ -347,10 +351,10 @@ return {
 x: x,
 y: y
 };
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f7a8b4e3-9ed2-4fcd-b8bd-3dcd50a6388b');" />
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4f078fa5-0741-4cf3-99db-199dabfd9d14');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4f078fa5-0741-4cf3-99db-199dabfd9d14');" /></p>
 
 <p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
-<textarea class="runcode_text" id="runcode_2c18680d-cdd6-4a79-a7c9-60a07cdcd1b4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_b7ef0f58-d0db-47f3-b75d-49928cc0bbe1"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -443,7 +447,7 @@ y: y
 	};
 	new Ball(2,2,1).fluc();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2c18680d-cdd6-4a79-a7c9-60a07cdcd1b4');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b7ef0f58-d0db-47f3-b75d-49928cc0bbe1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b7ef0f58-d0db-47f3-b75d-49928cc0bbe1');" /></p>
 
 
 
@@ -454,7 +458,7 @@ y: y
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2011/03/09/CSS3%E7%BB%98%E5%88%B6%E5%AF%B9%E8%AF%9D%E6%A1%86/">
+    <a class="post-nav-item-left" href="/2011/03/09/css3%E7%BB%98%E5%88%B6%E5%AF%B9%E8%AF%9D%E6%A1%86/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

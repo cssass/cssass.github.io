@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -127,7 +131,7 @@ runcode.copy=function(element)
         
         <p>我们开篇就提过，canvas的像素级操作相对来说是很低效的。</p>
 <p>我们试着写一个图片切割效果。</p>
-<textarea class="runcode_text" id="runcode_55123183-7cb8-4b91-a85d-5e1ed512b6b1"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_c064e006-490e-4ea8-ba42-bf6cecafb138"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -172,11 +176,11 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_55123183-7cb8-4b91-a85d-5e1ed512b6b1');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c064e006-490e-4ea8-ba42-bf6cecafb138');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c064e006-490e-4ea8-ba42-bf6cecafb138');" /></p>
 
 <p>对于这个效果，因为我们并不需要操作图像的rgba数据，而只是把图像进行分割，所以利用putImageData的后四个可见区参数进行了设置就行了。<br>但是，这样做的性能却非常不理想。因为我们操作的ImageData数据实在太多了，循环执行了2750遍，相当于我们对整幅图像进行了2750次的像素级复制，而其实在可见区之外的ImageData数据并不是我们所需要的。</p>
 <p>那么，我们在对源图getImageData的时候，可以只获取我们需要的ImageData。</p>
-<textarea class="runcode_text" id="runcode_c5bc2aa9-5691-4f7c-bbef-3cd2285d2122"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_846fb8e7-e159-4ca4-ba10-2550317239b5"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -222,12 +226,12 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c5bc2aa9-5691-4f7c-bbef-3cd2285d2122');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_846fb8e7-e159-4ca4-ba10-2550317239b5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_846fb8e7-e159-4ca4-ba10-2550317239b5');" /></p>
 
 <p>第二种做法虽然在循环的时候多运行了一个方法（共执行2750次的getImageData和putImageData方法），但因为操作的ImageData少了2750倍，所以在效率上比第一种方式高了很多。</p>
 <p>但从流程上来讲，我们只需要在刚开始的时候获取一次源图的ImageData（执行getImageData），对数据进行再排列后，最后再输出一次新的ImageData（执行putImageData）就可以了。<br>根本不需要在循环中反复调用getImageData和putImageData。所以现在的关键点是get和put之间的如何对数据进行重排列。</p>
 <p>ImageData.data可以看做一个矩形矩阵，我们已知，它的序列号（n）与ImageData.width(w),及x轴序列号(x),y轴序列号（y）的关系是：n &#x3D; ((y * w) + x) * 4; （其中的4表示了RGBA四个数据）。我们要的新的输出ImageData，其实是x加倍，y加倍，w加倍的一个新矩阵。那么新矩阵序号与原x,y,w的关系式应该是：t &#x3D; ((y * 2 * w * 2) + x * 2) * 4;</p>
-<textarea class="runcode_text" id="runcode_e0b586f3-fba8-44b9-b7ef-f108c8a01fd4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -281,7 +285,7 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e0b586f3-fba8-44b9-b7ef-f108c8a01fd4');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6');" /></p>
 
 <p>第三种方法相对于第二种方法的效率提高了十几倍。第三种方法的关键点是找出新旧矩阵之间的关系，对于我们这一例来说还比较容易，复杂一点的，算法可就没这么简单了。</p>
 <p>——————————————<br>重要补充：</p>
@@ -295,7 +299,7 @@ function demo(img){
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2012/02/01/CSS3%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8CFirefox10%E7%9A%843D%20Transform/">
+    <a class="post-nav-item-left" href="/2012/02/01/css3%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8Cfirefox10%E7%9A%843d-transform/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

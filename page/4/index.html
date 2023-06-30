@@ -39,49 +39,7 @@
   
   <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 
-  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-}
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element)
-{
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}
-	codeobj.select(); 	 
-
-}
-
-
-
-</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
     <div class="head">
@@ -92,7 +50,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>

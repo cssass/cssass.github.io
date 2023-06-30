@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -130,7 +134,7 @@ runcode.copy=function(element)
         <p>mozilla developer center的关于canvas的教程集Canvas tutorial，可说是目前入门canvas教程中最棒的了。<br>教程列表：<br>Basic usage(中译：基本用法)<br>Drawing shapes(中译：绘制图形)<br>Using images(中译：使用图像)<br>Applying styles and colors(中译：运用样式与颜色)<br>Transformations(中译：变形)<br>Compositing(中译：组合)<br>Basic animations(中译：基本动画)</p>
 <p>以下是个人的一点笔记，涵盖了教程中所有知识点。但只适用于个人，存此备忘。</p>
 <p>canvas_ABC</p>
-<textarea class="runcode_text" id="runcode_0bb5478d-cea7-4735-8d36-c5b0fd5fd3cd"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -202,9 +206,9 @@ con6.fillStyle='black';
 con6.fillText('hello HTML5',0,300);
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0bb5478d-cea7-4735-8d36-c5b0fd5fd3cd');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d');" /></p>
 <p>canvas_DEF</p>
-<textarea class="runcode_text" id="runcode_c375b74c-7d60-4b2b-ad30-ee8e5ab1b329"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -253,10 +257,10 @@ con1.restore();
 }()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c375b74c-7d60-4b2b-ad30-ee8e5ab1b329');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52');" /></p>
 
 <p>canvas_HIJ</p>
-<textarea class="runcode_text" id="runcode_673029cd-4fc0-4312-9c9f-1a8d775df2c1"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -341,7 +345,7 @@ function drawStar(con2,r){  //五角星的画法
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_673029cd-4fc0-4312-9c9f-1a8d775df2c1');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b');" /></p>
       </div>
     </div>
   </article>
@@ -349,7 +353,7 @@ function drawStar(con2,r){  //五角星的画法
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94Photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
+    <a class="post-nav-item-left" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -365,7 +369,7 @@ function drawStar(con2,r){  //五角星的画法
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEDemo/">
+    <a class="post-nav-item-right" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEdemo/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

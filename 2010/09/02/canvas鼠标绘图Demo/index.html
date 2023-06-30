@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -125,7 +129,7 @@ runcode.copy=function(element)
             
           </div>
         
-        <textarea class="runcode_text" id="runcode_b15892f2-912a-4969-b754-e27d524be95d"><!doctype html>
+        <p><textarea class="runcode_text" id="runcode_ed522818-8668-4699-80c1-f848ab6937e4"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -166,10 +170,10 @@ var draw=function(e){
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b15892f2-912a-4969-b754-e27d524be95d');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ed522818-8668-4699-80c1-f848ab6937e4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ed522818-8668-4699-80c1-f848ab6937e4');" /></p>
 <p>我之前用window.onload来绑定函数修改canvas的高度，这通过运行框运行open新页面，在chrome下获取document.documentElemnet.offsetHeight时会等于0，导致绘图板高度也没了。<br>另外发现，Opera下绘线同其他浏览器有点差别：单独的一个path(即同上一次的path没有瓜葛)，如果没有moveTo设置起点，一般浏览器会以第一个lineTo为起点，这在Opera下是不正确的。</p>
 <p>下面再放一个百度UEO基于canvas绘制热力图的演示：</p>
-<textarea class="runcode_text" id="runcode_3679a032-b580-4047-87e7-c911a83a4cff"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_3d2d6153-fe68-4521-9586-cd8d07a2495b"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -261,7 +265,7 @@ var switcher = document.getElementById("switch");
 	}
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3679a032-b580-4047-87e7-c911a83a4cff');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3d2d6153-fe68-4521-9586-cd8d07a2495b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3d2d6153-fe68-4521-9586-cd8d07a2495b');" /></p>
       </div>
     </div>
   </article>
@@ -269,7 +273,7 @@ var switcher = document.getElementById("switch");
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/09/10/MDC%E7%9A%84canvas%E7%BB%8F%E5%85%B8%E6%95%99%E7%A8%8B%E8%BE%91%E5%92%8C%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <a class="post-nav-item-left" href="/2010/09/10/mdc%E7%9A%84canvas%E7%BB%8F%E5%85%B8%E6%95%99%E7%A8%8B%E8%BE%91%E5%92%8C%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

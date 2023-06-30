@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -127,7 +131,7 @@ runcode.copy=function(element)
         
         <p>今天介绍两个小技巧，与float，margin负值有关。</p>
 <p>众所周知：<br>inline元素的水平居中可以用text-align:center;<br>block元素的水平居中可以用margin:0 auto; (设置宽度后，方显效果)。<br>block元素设置float:left;后，如果幸运，我们知道其确定的宽度值，则可以用left:50%;margin-left:-width&#x2F;2;来实现。<br>那么，当我们不确定知道block具体要达到的宽度时，该如何办呢？<br>这种情况，常见于菜单栏居中，而因为某些原因，各个菜单项的宽度很难去确定，造成菜单栏宽度的不确定。<br>当然，我们也可以使用inline元素来嵌套菜单项（即使菜单项是block元素，也未尝不可），父级使用text-align:center;来居中。<br>而下面的方法也不错，值得吸收的小技巧。</p>
-<textarea class="runcode_text" id="runcode_f4d9c052-1e18-4a27-b2ad-924cb8f9fd90"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -173,9 +177,9 @@ runcode.copy=function(element)
 	</div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f4d9c052-1e18-4a27-b2ad-924cb8f9fd90');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f');" /></p>
 <p>下面介绍第二个简单的技巧。<br>它应用于横版布局的宽度自适应，因为我们同样不知道横版最终达到的宽度是多少。<br>尽管这种布局很少见，但里面的技巧其实用处很广。</p>
-<textarea class="runcode_text" id="runcode_6e8c6c86-ff4e-4f74-b690-ccdae278cf97"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -217,10 +221,10 @@ runcode.copy=function(element)
 </ul>
 </body>
 </html>
-</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6e8c6c86-ff4e-4f74-b690-ccdae278cf97');" />
+</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540');" /></p>
 <p>里面的技巧其实就是个margin负值。<br>应用margin负值来完成预定的布局，往往有“柳暗花明”的效果。</p>
 <p>&#x2F;************** 额外奉送第三个小技巧 **************&#x2F;<br>文本单行居中，多行居左的效果。</p>
-<textarea class="runcode_text" id="runcode_85d90791-63b7-4dba-9a40-260261000fa6"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -238,7 +242,7 @@ runcode.copy=function(element)
 <span>让我们荡起双桨,小船儿推开波浪,海面倒映着美丽的白塔,四周环绕着绿树红墙~</span>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_85d90791-63b7-4dba-9a40-260261000fa6');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96');" /></p>
 
 
       </div>
@@ -264,7 +268,7 @@ runcode.copy=function(element)
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2010/11/16/CSS3%E7%9A%84%E5%B4%9B%E8%B5%B7%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8Cwebkit%E7%9A%843D-Effect/">
+    <a class="post-nav-item-right" href="/2010/11/16/css3%E7%9A%84%E5%B4%9B%E8%B5%B7%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8Cwebkit%E7%9A%843d-effect/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

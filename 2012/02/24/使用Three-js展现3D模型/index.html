@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -130,7 +134,7 @@ runcode.copy=function(element)
         <p>CSS3的3d-Transform，Canvas，SVG，WebGL等等技术的出现和发展，正将网页的3D化慢慢变得简单友好，但是3D建模毕竟有其很高的专业性，所以如果拥有一个内心强大，接口简洁的库就能使我们得心应手许多。Three.js便是备受推崇的一个，尽管API的变动，简陋的文档会让我们的上手比较困难。</p>
 <p>下面我提供一个入门Demo，及一个用Three.js展示通用的3D模型格式的Demo。（注意：确保你使用的浏览器支持了Canvas，及WebGL。拥有一个先进的浏览器，将为你带来更好的上网体验。Test）</p>
 <p>下面是入门Demo，加了注释。详细入门教程可以到这里Getting Started with Three.js</p>
-<textarea class="runcode_text" id="runcode_069b1bcf-8181-4e87-ac43-98be76a6c689"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_445bbbd2-fc80-4a0d-ba2c-ff8c4ccffb61"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -173,11 +177,11 @@ runcode.copy=function(element)
 		return requestAnimationFrame(anime);
 	})()
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_069b1bcf-8181-4e87-ac43-98be76a6c689');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_445bbbd2-fc80-4a0d-ba2c-ff8c4ccffb61');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_445bbbd2-fc80-4a0d-ba2c-ff8c4ccffb61');" /></p>
 
 <p>考虑到Opera还不支持WebGL，上面使用了Canvas模式渲染。但WebGL的渲染模式要比Canvas快的要多的多。</p>
 <p>下面是一个展示机器人MGA-411 Mangusa模型的Demo。<br>Three.js可以调用以Json格式存储模型信息的js文件来创建模型。模型你可以自己在3D软件上建模完成，或在网上下载。至于模型格式，你可以通过three.js提供的插件在Blender这款开源3D制作软件中将一些3D模型格式，如3ds，obj等，转换成符合three.js标准的js格式。</p>
-<textarea class="runcode_text" id="runcode_b9ea302d-9d2d-41ee-a9d2-c920fd8d960d"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_494e19b0-476a-4727-96c9-8ff86df8eb20"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -228,7 +232,7 @@ runcode.copy=function(element)
 		})();
 	});
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b9ea302d-9d2d-41ee-a9d2-c920fd8d960d');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_494e19b0-476a-4727-96c9-8ff86df8eb20');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_494e19b0-476a-4727-96c9-8ff86df8eb20');" /></p>
 
 
 
@@ -239,7 +243,7 @@ runcode.copy=function(element)
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2012/12/03/XMLHttpRequest%20Level%202%E7%9A%84%E8%B7%A8%E5%9F%9F%E5%8A%9F%E8%83%BD/">
+    <a class="post-nav-item-left" href="/2012/12/03/xmlhttprequest-level-2%E7%9A%84%E8%B7%A8%E5%9F%9F%E5%8A%9F%E8%83%BD/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -255,7 +259,7 @@ runcode.copy=function(element)
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2012/02/01/CSS3%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8CFirefox10%E7%9A%843D%20Transform/">
+    <a class="post-nav-item-right" href="/2012/02/01/css3%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8Cfirefox10%E7%9A%843d-transform/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -126,7 +130,7 @@ runcode.copy=function(element)
           </div>
         
         <p>话说这篇文章的起源还得从1643年1月4日谈起。这一天，一位引领人类认知世界的巨人诞生了，他就是艾萨克·牛顿（Isaac Newton）。<br>扯远了，就近一点：2010年1月4日，为了纪念牛顿，google设计了一个Google Doodles<br>看这里：今日google纪念logo,典型的物理运动实现<br>进口审核剪切版：</p>
-<textarea class="runcode_text" id="runcode_0dc4f25b-a69c-4e4a-b229-c4cbe3f6d0e5"><input type="button" value="demo" onclick="demo()" />
+<p><textarea class="runcode_text" id="runcode_8a8242b8-1480-4b1a-a405-5a09ae07a192"><input type="button" value="demo" onclick="demo()" />
 <img id="fall" src="http://www.google.com/logos/newton09-apple.png" style="position:absolute;left:200px;top:46px"/>
 <script type="text/javascript">
 function demo(){
@@ -143,9 +147,9 @@ function demo(){
 			if(h==0){clearInterval(i);h=1;}
 		},25);
 }
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0dc4f25b-a69c-4e4a-b229-c4cbe3f6d0e5');" />
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8a8242b8-1480-4b1a-a405-5a09ae07a192');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8a8242b8-1480-4b1a-a405-5a09ae07a192');" /></p>
 <p>随后，我便模拟了一个重力环境下的抛物线运动：</p>
-<textarea class="runcode_text" id="runcode_483c1efc-7d09-4fc3-9d4b-1cbfd0f40f57">  <!doctype html>
+<p><textarea class="runcode_text" id="runcode_dbf117f8-de64-4aa2-8d4b-aa610c2a94c2">  <!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -209,12 +213,12 @@ var shoot=function(x,y,a,t) {
 	},t);
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_483c1efc-7d09-4fc3-9d4b-1cbfd0f40f57');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dbf117f8-de64-4aa2-8d4b-aa610c2a94c2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dbf117f8-de64-4aa2-8d4b-aa610c2a94c2');" /></p>
 <p>模拟采用的公式</p>
 <p>Function: 对于运动瞬间<br>V&#x3D;V0+aT;<br>S&#x3D;S0+VT;<br>T：运动的时间间隔，是固定值。<br>这个公式有别于那种运动模拟中常用的补间动画公式（tween算法）。<br>补间动画是需要事先确定总路程，和总时间的，<br>而我们模拟的运动轨迹没有事先计算，因为我们运动中间或许还有一些变数，比如撞击，主动改变方向（键盘控制）等等，所以我觉得这个物理公式更能模拟出真实的各种运动。</p>
 <p>直至本月前两天，某同事向我展示了这个：<br>重力版google(浏览首选chrome,safari,次选opera,firefox,若是ie9以下请无视)<br>膜拜啊。js且不论，css3已经大量使用了。我还只局限用用阴影，圆角呢。</p>
 <p>不才，也做一个关于落体，撞击，摩擦的简单模拟。以表膜拜。</p>
-<textarea class="runcode_text" id="runcode_c7787e8b-41da-4a94-be20-380edd35c5cf">  <!doctype html>
+<p><textarea class="runcode_text" id="runcode_31134c70-e5f5-441f-b745-55b0074f34d0">  <!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -297,7 +301,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c7787e8b-41da-4a94-be20-380edd35c5cf');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_31134c70-e5f5-441f-b745-55b0074f34d0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_31134c70-e5f5-441f-b745-55b0074f34d0');" /></p>
 
 
       </div>
@@ -307,7 +311,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEDemo/">
+    <a class="post-nav-item-left" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEdemo/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -323,7 +327,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2010/08/23/suggestion%E6%95%88%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6/">
+    <a class="post-nav-item-right" href="/2010/08/23/google-suggestion%E6%95%88%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"
@@ -335,7 +339,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
           <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
         </svg>
       </div>
-      suggestion效果的键盘鼠标事件
+      google suggestion效果的键盘鼠标事件
     </a>
   
 </div>

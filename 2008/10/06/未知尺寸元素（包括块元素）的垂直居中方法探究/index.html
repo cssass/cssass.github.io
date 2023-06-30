@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -130,7 +134,7 @@ runcode.copy=function(element)
 <li>我们一般会设置height&#x3D;line-height来使一行内文字(及inline元素)可以垂直居中，那能不能推而广之呢？遗憾，单纯设置外层height&#x3D;line-height使image等可置换元素垂直居中，在ie6下是行不通的。见小结line-height和vertical-align, image等可置换元素尚且不行，更别提div等块级元素了。</li>
 <li>利用display的一个属性：table-cell。其实这个方法用来支持垂直居中，那是舍我其谁啊，可惜的是ie8以下的浏览器并不支持display:table-cell;<br>我们可以看一下：</li>
 </ol>
-<textarea class="runcode_text" id="runcode_e4774c9a-6d23-41e3-bc6f-bd2894da84d0"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_895c6e9d-1699-467f-8536-f8ad1e0a2411"><!DOCTYPE HTML>
 <html>
 <head>
 <meta  charset="utf-8" />
@@ -157,11 +161,11 @@ runcode.copy=function(element)
 	</div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e4774c9a-6d23-41e3-bc6f-bd2894da84d0');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_895c6e9d-1699-467f-8536-f8ad1e0a2411');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_895c6e9d-1699-467f-8536-f8ad1e0a2411');" /></p>
 
 <p>我们发现以上代码在ie6，ie7之下并不能完成我们的要求。</p>
 <p>下面，在我们的新方法中，我们得引入一个空标签。</p>
-<textarea class="runcode_text" id="runcode_086c8eec-7f41-4dce-878c-99a76f1cbe3b">
+<p><textarea class="runcode_text" id="runcode_92caa738-d869-408e-9b4c-24d7b7db01cc">
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -195,9 +199,9 @@ runcode.copy=function(element)
 		<span class="edge"></span> <!-- 引入作为垂直对齐的空标签 -->
 	</div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_086c8eec-7f41-4dce-878c-99a76f1cbe3b');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_92caa738-d869-408e-9b4c-24d7b7db01cc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_92caa738-d869-408e-9b4c-24d7b7db01cc');" /></p>
 <p>这种方法在<a target="_blank" rel="noopener" href="http://www.deviantart.com/%E7%BD%91%E7%AB%99%E4%B8%8A%E5%BE%88%E6%97%A9%E5%B0%B1%E5%BA%94%E7%94%A8%E4%BA%86%E3%80%82%E4%B8%8D%E8%BF%87%EF%BC%8C%E4%BA%BA%E5%AE%B6%E9%92%88%E5%AF%B9firefox,opera%E7%AD%89%E6%94%AF%E6%8C%81table-cell%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8display:table-cell">http://www.deviantart.com/网站上很早就应用了。不过，人家针对firefox,opera等支持table-cell的浏览器使用display:table-cell</a>;<br>而只对ie6,7这两个异类使用了空标签来达到效果。</p>
-<textarea class="runcode_text" id="runcode_018c5927-5d8b-43fe-96de-a212c5abd7f6"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_3ef57b62-47ac-4bf4-b018-a576b8acf5b2"><!DOCTYPE HTML>
 <html>
 <head>
 <meta  charset="utf-8" />
@@ -232,7 +236,7 @@ runcode.copy=function(element)
 		<span class="edge"></span>
 	</div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_018c5927-5d8b-43fe-96de-a212c5abd7f6');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3ef57b62-47ac-4bf4-b018-a576b8acf5b2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3ef57b62-47ac-4bf4-b018-a576b8acf5b2');" /></p>
 
 
       </div>
@@ -242,7 +246,7 @@ runcode.copy=function(element)
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2008/11/20/Position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
+    <a class="post-nav-item-left" href="/2008/11/20/position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

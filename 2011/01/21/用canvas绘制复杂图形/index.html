@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -126,7 +130,7 @@ runcode.copy=function(element)
           </div>
         
         <p>在闪吧看见一棵树，移植到canvas+javascript里来。</p>
-<textarea class="runcode_text" id="runcode_12bcf683-8611-47ba-853a-6e736baa6f78"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_bb998f5f-9ec5-4c45-8781-744057f67d57"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -166,10 +170,10 @@ function lzh(x, y, l, angle, n) {
 var rand=2-Math.random()*10
 lzh(300, 400, 100, 90, 6);
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_12bcf683-8611-47ba-853a-6e736baa6f78');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bb998f5f-9ec5-4c45-8781-744057f67d57');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bb998f5f-9ec5-4c45-8781-744057f67d57');" /></p>
 
 <p>用setInterval让它动起来</p>
-<textarea class="runcode_text" id="runcode_c1080a8e-cd11-4c5c-9020-18f4ccb44019"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -236,12 +240,12 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c1080a8e-cd11-4c5c-9020-18f4ccb44019');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90');" /></p>
 
 <p>补充：<br>除了setTimeout&#x2F;setInterval这两个函数控制动画外。现在很多浏览器还提供了另一个函数requestAnimationFrame，这个函数接口所拥有的优势是：</p>
 <p>对于一个侦中对DOM的所有操作，只进行一次Layout和Paint。<br>如果发生动画的元素被隐藏了，那么就不再去Paint。</p>
 <p>不过这个方法的使用只类似于递归调用，并没有一个时间停顿，所以我们一般要根据记录时间间隔来决定动画的每一帧的绘制情况。<br>下面用requestAnimationFrame来完成上面的动画。由于requestAnimationFrame的兼容性，我们需要先写一个兼容性的方法（来自three.js）：</p>
-<textarea class="runcode_text" id="runcode_ca8d1c3e-a32d-4bbb-a779-d57b517b0ea3">(function() {
+<p><textarea class="runcode_text" id="runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6">(function() {
     /* 兼容requestAnimationFrame */
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -263,9 +267,9 @@ new Tree(300, 400, 100, 90, 6).move();
         window.cancelAnimationFrame = function(id) {
             clearTimeout(id);
         };
-}());</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ca8d1c3e-a32d-4bbb-a779-d57b517b0ea3');" />
+}());</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6');" /></p>
 
-<textarea class="runcode_text" id="runcode_5e3f9e65-5fbc-4609-b425-0691e17f5292"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -360,10 +364,10 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5e3f9e65-5fbc-4609-b425-0691e17f5292');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7');" /></p>
 
 <p>再画几个图形：</p>
-<textarea class="runcode_text" id="runcode_b98e1afe-f938-4f60-bf33-e0a8ccc12ae4"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -450,7 +454,7 @@ new Tad(300,200,3).move();
 new Tad(400,200,2).move();
 new Tad(500,200,1).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b98e1afe-f938-4f60-bf33-e0a8ccc12ae4');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15');" /></p>
 
 
       </div>
@@ -460,7 +464,7 @@ new Tad(500,200,1).move();
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2011/02/24/%E5%9C%A8canvas%202D%20API%E4%B8%8B%E5%AE%9E%E7%8E%B03D%E6%95%88%E6%9E%9C%EF%BC%883D%E7%89%88%E5%BF%83%E5%BD%A2%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%98%E5%88%B6%EF%BC%89/">
+    <a class="post-nav-item-left" href="/2011/02/24/%E5%9C%A8canvas-2d-api%E4%B8%8B%E5%AE%9E%E7%8E%B03d%E6%95%88%E6%9E%9C%EF%BC%883d%E7%89%88%E5%BF%83%E5%BD%A2%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%98%E5%88%B6%EF%BC%89/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

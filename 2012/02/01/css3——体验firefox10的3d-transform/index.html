@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -132,7 +136,7 @@ runcode.copy=function(element)
         <p>之前写了一篇CSS3的崛起——体验webkit的3D-Effect。<br>随着firefox10正式版发布，firefox也支持3D Transform了，所以补充一篇，将上篇中的代码移植过来，支持firefox。</p>
 <p>这里先穿插介绍下firefox10的新特性，firefox10除了支持3D Transform，还提供了Fullscreen API，令人兴奋吧。另外firefox10成为Mozila首个“长期支持版本”(Extended Support Release，简称“ESR”)，这种当然是市场考虑啦，至于是什么用意和市场反响我们就不探讨了。</p>
 <p>下面是演示demo，只支持firefox10。 chrome浏览器的用户可以参考上一篇。</p>
-<textarea class="runcode_text" id="runcode_dff2cffc-85bd-4a0d-9c0c-775f5bf619d3"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7050116a-dde6-4c3f-9321-0253798ae7f8"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -192,10 +196,10 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dff2cffc-85bd-4a0d-9c0c-775f5bf619d3');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7050116a-dde6-4c3f-9321-0253798ae7f8');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7050116a-dde6-4c3f-9321-0253798ae7f8');" /></p>
 
 <p>去除一些效果</p>
-<textarea class="runcode_text" id="runcode_49ea25b3-4169-4e34-b20b-f800c63ae7d9"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_9f255da1-a5ee-4ef7-8e08-1efa5a746589"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -236,10 +240,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_49ea25b3-4169-4e34-b20b-f800c63ae7d9');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9f255da1-a5ee-4ef7-8e08-1efa5a746589');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9f255da1-a5ee-4ef7-8e08-1efa5a746589');" /></p>
 
 <p>使用preserve-3d，实现全方位3D</p>
-<textarea class="runcode_text" id="runcode_c82b7b6e-b020-4331-ab9b-c5c627ea05d9"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_6fc7884b-25dd-4f8e-8bb6-42935ff77455"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -299,11 +303,11 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c82b7b6e-b020-4331-ab9b-c5c627ea05d9');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6fc7884b-25dd-4f8e-8bb6-42935ff77455');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6fc7884b-25dd-4f8e-8bb6-42935ff77455');" /></p>
 
 <p>最后说明一下firefox和webkit间使用的一点差别：<br>火狐10下的3D Transforms在设置perspective属性值时必须带单位px，webkit可以省略；<br>另外，webkit在用transition-property设置transform这个值时，可以不用前缀，而firefox需要写上-moz-transform;</p>
 <p>现在综合Webkit和Firefox，写一个效果，顺便也兼用下另两个属性：transition 和 animation</p>
-<textarea class="runcode_text" id="runcode_cc88253c-8c1c-4f05-882f-3ee660051ac9"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_d806a3ec-efc0-4d67-862b-2d789b0a5469"><!doctype html>
 <link href='http://fonts.googleapis.com/css?family=Ultra&v2' rel='stylesheet' type='text/css'>
 <style>
 body{background:#333;}
@@ -351,7 +355,7 @@ h1:hover .myLogo a{left: 2px;}
 		CSSASS
 		<a href="http://www.cssass.com/blog/">CSSASS</a>
 	</span>
-</h1></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cc88253c-8c1c-4f05-882f-3ee660051ac9');" />
+</h1></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d806a3ec-efc0-4d67-862b-2d789b0a5469');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d806a3ec-efc0-4d67-862b-2d789b0a5469');" /></p>
 
       </div>
     </div>
@@ -360,7 +364,7 @@ h1:hover .myLogo a{left: 2px;}
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2012/02/24/%E4%BD%BF%E7%94%A8Three-js%E5%B1%95%E7%8E%B03D%E6%A8%A1%E5%9E%8B/">
+    <a class="post-nav-item-left" href="/2012/02/24/%E4%BD%BF%E7%94%A8three-js%E5%B1%95%E7%8E%B03d%E6%A8%A1%E5%9E%8B/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

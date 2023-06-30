@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -127,7 +131,7 @@ runcode.copy=function(element)
         
         <p>获取元素的尺寸，似乎offsetWidth&#x2F;Height就可以了，还需要什么方法吗？<br>的确，一般情况下，获取元素尺寸，用offsetWidth&#x2F;Height就搞定了，但如果这个元素是display:none的呢？<br>试验一下就知道，none元素的尺寸是0。</p>
 <p>所以需要我们下面的这个方法来获取。</p>
-<textarea class="runcode_text" id="runcode_41dc1892-4bcc-44c2-86a9-7514c8231e16"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c534ef65-eb6a-4cd7-8dc2-6686e4f7db51"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -166,11 +170,11 @@ var getSize = function(elem){
 };
 alert(getSize($id("box")).height)
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_41dc1892-4bcc-44c2-86a9-7514c8231e16');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c534ef65-eb6a-4cd7-8dc2-6686e4f7db51');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c534ef65-eb6a-4cd7-8dc2-6686e4f7db51');" /></p>
 
 <p>第二个，获取元素的位置。<br>或许你经常使用offsetLeft&#x2F;Top来获取位置，不过offsetLeft&#x2F;Top是相对 offsetParent的位置（在ie6，7下是相对直接父级的),并且在firefox下还有些小bug</p>
 <p>下面这个方法提供获取元素相对于窗口（页面可视区）的距离。</p>
-<textarea class="runcode_text" id="runcode_814958a9-ecd3-4782-9ca3-b9725dff1206"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_ea59d586-f3b1-41df-ab69-e1925eb9a1a2"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -193,7 +197,7 @@ alert(getSize($id("box")).height)
 					"<br />width:"+pos.width +
 					"<br />height:"+pos.height
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_814958a9-ecd3-4782-9ca3-b9725dff1206');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ea59d586-f3b1-41df-ab69-e1925eb9a1a2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ea59d586-f3b1-41df-ab69-e1925eb9a1a2');" /></p>
 
 <p>这个方法是由ie提出的，不过在其他浏览器吸收之后，还加了width，height两个值。</p>
 <p>重复一下，这个方法是相对于页面窗口的，至于相对于整个页面文档的距离，那只需加上scrollTop这些值就行了，不做赘述。</p>

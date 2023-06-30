@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -132,7 +136,7 @@ runcode.copy=function(element)
         <p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<textarea class="runcode_text" id="runcode_2e8aa09d-a699-4aed-b566-62c17ae10b07"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_51babc7d-06af-4d80-8b5c-85d651848fd2"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -198,9 +202,9 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2e8aa09d-a699-4aed-b566-62c17ae10b07');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_51babc7d-06af-4d80-8b5c-85d651848fd2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_51babc7d-06af-4d80-8b5c-85d651848fd2');" /></p>
 <p>进一步删减</p>
-<textarea class="runcode_text" id="runcode_bfe71681-bc33-4876-b259-9bfe2abe97b6"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_f213ef8e-b473-4654-a9fa-639c44f19203"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -241,10 +245,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bfe71681-bc33-4876-b259-9bfe2abe97b6');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f213ef8e-b473-4654-a9fa-639c44f19203');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f213ef8e-b473-4654-a9fa-639c44f19203');" /></p>
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<textarea class="runcode_text" id="runcode_5b15bc93-f07c-4876-9124-3c63086ecd87"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745"><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -302,10 +306,10 @@ body { background:#deddcd;margin:100px;}
     </div>
   </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5b15bc93-f07c-4876-9124-3c63086ecd87');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745');" /></p>
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<textarea class="runcode_text" id="runcode_ad7bb213-1df6-446b-80d6-b7587a359441"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -365,7 +369,7 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ad7bb213-1df6-446b-80d6-b7587a359441');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394');" /></p>
 
       </div>
     </div>
@@ -390,7 +394,7 @@ body { background:#deddcd;margin:100px;}
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2010/11/03/%E7%BA%AFcss%E6%89%93%E9%80%A0%E6%8A%95%E5%BD%B1%E6%95%88%E6%9E%9C%E2%80%94%E2%80%94CSS3%E5%B1%9E%E6%80%A7transform%E7%9A%84%E5%BA%94%E7%94%A8/">
+    <a class="post-nav-item-right" href="/2010/11/03/%E7%BA%AFcss%E6%89%93%E9%80%A0%E6%8A%95%E5%BD%B1%E6%95%88%E6%9E%9C%E2%80%94%E2%80%94css3%E5%B1%9E%E6%80%A7transform%E7%9A%84%E5%BA%94%E7%94%A8/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

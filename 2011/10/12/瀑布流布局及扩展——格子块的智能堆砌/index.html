@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -124,7 +128,7 @@ runcode.copy=function(element)
           </div>
         
         <p>图片分享网站Pinterest（beta），在不久前获得了2700$的投资，估值已超2亿元（据说现该公司团队有8人）。该网站的一大特色就是每一张分享的图片被拟作“Pin”被钉在页面上面，每一Pin依尺寸智能排列，同时滚动页面时异步加载新Pin，极具效果。这种创新模式被在国内也被广泛copy，其中最有前途的当属Mark之，以”Mark”代”Pin”,也算有些想法。</p>
-<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <textarea class="runcode_text" id="runcode_d460767e-ba1b-434b-a203-67f02893c9ca"><!doctype html>
+<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -227,9 +231,9 @@ window.onload = window.onresize = function() {
 };
 </script>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d460767e-ba1b-434b-a203-67f02893c9ca');" /></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc');" /></p></p>
 <p>这种布局中虽然每个Pin的高度不尽相同，但是他们的宽度都是一样的。<br>那么假如，很邪恶的提出一个要求，宽度也不尽相同，只是说宽高都按比例成倍增加，那还怎么排列呢？<br>呵呵，如下：</p>
- <textarea class="runcode_text" id="runcode_c667b94a-e23e-46be-a2ff-d9dfe79bd006"><!doctype html>
+ <p><textarea class="runcode_text" id="runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -430,10 +434,10 @@ window.onresize = function(){
 </script>
 </body>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c667b94a-e23e-46be-a2ff-d9dfe79bd006');" />
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352');" /></p>
 
 <p>现在这种布局已经不能叫瀑布流了，我们称之为格子块，格子块通过算法智能堆砌。</p>
-<p>支持一下拖动交换：<br> <textarea class="runcode_text" id="runcode_470b323d-e5c1-4e81-aa2f-70c3fa8b27f3"><!doctype html>
+<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -860,7 +864,7 @@ initDrag(myWidget);
 window.onresize = function(){box.init(myWidget)};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_470b323d-e5c1-4e81-aa2f-70c3fa8b27f3');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551');" /></p></p>
 
       </div>
     </div>
@@ -885,7 +889,7 @@ window.onresize = function(){box.init(myWidget)};
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2011/07/28/%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAJS%E7%89%B9%E6%95%88%EF%BC%9A%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C%EF%BC%88%E6%9C%89%E5%BD%A9%E8%9B%8B%EF%BC%89/">
+    <a class="post-nav-item-right" href="/2011/07/28/%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAjs%E7%89%B9%E6%95%88%EF%BC%9A%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C%EF%BC%88%E6%9C%89%E5%BD%A9%E8%9B%8B%EF%BC%89/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

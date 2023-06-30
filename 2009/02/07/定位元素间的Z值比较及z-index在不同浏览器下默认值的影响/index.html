@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -107,9 +111,9 @@ runcode.copy=function(element)
         <div class="post-info">
           
   
-    <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
-  
     <a href="/tags/DOM/" class="post-tag">#DOM</a>
+  
+    <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
   
 
 
@@ -133,7 +137,7 @@ runcode.copy=function(element)
 <blockquote><p>正常情况下：兄弟（同级）元素后者居上，父子之间子高于父。</p>
 </blockquote>
 
-<textarea class="runcode_text" id="runcode_e0295a67-aec3-4403-8408-49362cc567a8"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7df9a88f-c0da-40a8-983a-f617dd42ebd9"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -163,10 +167,10 @@ runcode.copy=function(element)
 		 </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e0295a67-aec3-4403-8408-49362cc567a8');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7df9a88f-c0da-40a8-983a-f617dd42ebd9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7df9a88f-c0da-40a8-983a-f617dd42ebd9');" /></p>
 <p>可以看出z的等级：子级2（“堂弟”）&gt;父级2（“叔叔”）&gt;子级1（“子”）&gt;父级1（“父”）。</p>
 <p>如果我们想要父盖过子，兄罩着弟只需设置其z-index便可。z-index值越大，给予的z值就越大。<br>那么这个设置能否改变叔侄之间，堂兄弟之间的Z呢？<br>先试试看：</p>
-<textarea class="runcode_text" id="runcode_ec36f8c0-49c9-489e-86bb-5b7dde71e5ba"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_39345856-b910-4fbf-866f-89335f9f02b8"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -196,11 +200,11 @@ runcode.copy=function(element)
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ec36f8c0-49c9-489e-86bb-5b7dde71e5ba');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_39345856-b910-4fbf-866f-89335f9f02b8');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_39345856-b910-4fbf-866f-89335f9f02b8');" /></p>
 
 <p>看上去一样有效，是吧？子级1盖过了父级2和子级2。</p>
 <p>但是，再看看下面这个例子，假如各级元素都是定位元素(设置了position),情况就有些不同了（之后的讨论，都是基于这个条件之下的。我觉得position定位的应用非常广泛，基于此的研究也非常有必要）。</p>
-<textarea class="runcode_text" id="runcode_cbfcbf08-30c9-49e6-9006-5d1bfc1d4613"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_23a19905-45ea-4ffc-8027-ecb34eb4c59c"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -231,9 +235,9 @@ runcode.copy=function(element)
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cbfcbf08-30c9-49e6-9006-5d1bfc1d4613');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_23a19905-45ea-4ffc-8027-ecb34eb4c59c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_23a19905-45ea-4ffc-8027-ecb34eb4c59c');" /></p>
 <p>son1设置z-index:1000后，在FF下的z值级别就高于其叔与其堂弟father2,son2。但是在ie下这个设置却还是不行。<br>这时候，我们回过头看最前面的结论：z-index在ie下缺省为：z-index:0; 而FF下则缺省为：z-index:auto;<br>那么再写一个Test，将父级的z-index固定为0:</p>
-<textarea class="runcode_text" id="runcode_38868fa0-4dd0-4fee-9773-96b0a71c5b1e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_cf287b1a-4f9c-49bd-af9d-1f40ec061ff5"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -264,13 +268,13 @@ runcode.copy=function(element)
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_38868fa0-4dd0-4fee-9773-96b0a71c5b1e');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cf287b1a-4f9c-49bd-af9d-1f40ec061ff5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_cf287b1a-4f9c-49bd-af9d-1f40ec061ff5');" /></p>
 <p>可以看出，一旦父级元素设置了相同的z-index，ff下“侄”元素一样无法超过“叔”元素和“堂弟”元素。</p>
 <p>我们可以试着得出这么一个结论：</p>
 <blockquote><p>对于定位元素，（不论IE还是FF）非同级关系和非父子关系元素之间的Z值大小比较，须要回溯至其为兄弟关系的两个祖先元素上，先比较这两个元素的z-index值，只有当“兄”的z-index大于“弟”的z-index值，“兄”的各个后代元素，才能超过“弟元素”及其子孙元素。</p>
 </blockquote>
 <p>我们用一个三级关系来验证一下。</p>
-<textarea class="runcode_text" id="runcode_ab81c3fb-cfa5-4833-8e66-90283e234bf8"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_dc4c6dc9-8061-48a9-8684-96dedd7e5dd7"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -310,11 +314,11 @@ runcode.copy=function(element)
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ab81c3fb-cfa5-4833-8e66-90283e234bf8');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dc4c6dc9-8061-48a9-8684-96dedd7e5dd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dc4c6dc9-8061-48a9-8684-96dedd7e5dd7');" /></p>
 <p>不论#first .father和#first .son如何设置，只有#first的z-index值大于0（second的z-index值为0）时，才能盖住#second。</p>
 <p>对于IE,元素的z-index缺省值是0，如果不另外设置“兄”，“弟”元素的z-index值，那么”兄”的z-index就无法大于“弟”的z-index。那么”兄”元素及其子孙就无法盖过”弟”元素及其子孙。而一旦“兄”的z-index大过了”弟”元素的z-index,那么情况就翻转了，“弟”元素及其子孙将无法盖过“兄”元素及其子孙。<br>而对FF,元素的z-index缺省值是auto,auto的意思是什么，就是说“随便，不关我事”，那么子孙们的z值等级就只跟他们自己本身的z-index有关了。<br>那么，IE上能否设置z-index:auto;呢？</p>
 <p>测试：</p>
-<textarea class="runcode_text" id="runcode_285e939d-00d1-4141-86ca-7de23e851268"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_dfd16327-97c5-4036-8512-d0e8b34141d1"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -353,13 +357,13 @@ runcode.copy=function(element)
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_285e939d-00d1-4141-86ca-7de23e851268');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dfd16327-97c5-4036-8512-d0e8b34141d1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dfd16327-97c5-4036-8512-d0e8b34141d1');" /></p>
 <p>可以看出，在IE下，去除#first{z-index:1}后，#first及其子孙无法盖住#second。<br>而FF下，#first .father,#first .son却盖住了整个#second。</p>
 <p>推论：</p>
 <blockquote><p>z-index:auto在ie下无效。</p>
 </blockquote>
 <p>那么在IE下，对于由定位元素构成的两个并列的嵌套结构块间的Z值大小，只存在两种情况：要么这个结构块里的所有层元素都在另一个结构块之上，要么就是那个结构块所有元素在其之上。没有可能一个元素能插在另一个结构块的父与子之间，这种情况在FF下是存在的（当然，还有其他浏览器），在FF下，父级是z-index:auto的元素，他们都是自由的，依据自己的z-index决定Z值。FF下甚至可以形成：<br>————-<br>   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">————-</span><br></pre></td></tr></table></figure><br>这么一个四层交错，但要超过四层，就无能为力了。</p>
-<textarea class="runcode_text" id="runcode_70208de6-cb4c-4566-b498-9b8dc26b55cb"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_b91fc7b2-7242-4692-8db8-2e8cd045ef6a"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -400,7 +404,7 @@ runcode.copy=function(element)
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_70208de6-cb4c-4566-b498-9b8dc26b55cb');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b91fc7b2-7242-4692-8db8-2e8cd045ef6a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b91fc7b2-7242-4692-8db8-2e8cd045ef6a');" /></p>
 
 <p>补充：关于z-index:auto的解释，在W3C的CSS说明文档中的解释是：</p>
 <blockquote><p>The stack level of the generated box in the current stacking context is the same as its parent’s box. The box does not establish a new local stacking context.</p>
@@ -420,7 +424,7 @@ runcode.copy=function(element)
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2009/04/14/HTML%E7%9A%84dir%E5%B1%9E%E6%80%A7%E5%92%8Cbdo%E6%A0%87%E7%AD%BE%E5%8F%8A%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9BCSS%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E5%B1%9E%E6%80%A7%E3%80%81%E6%BB%A4%E9%95%9C/">
+    <a class="post-nav-item-left" href="/2009/04/14/html%E7%9A%84dir%E5%B1%9E%E6%80%A7%E5%92%8Cbdo%E6%A0%87%E7%AD%BE%E5%8F%8A%E5%85%B6%E4%BB%96%E4%B8%80%E4%BA%9Bcss%E6%96%87%E5%AD%97%E6%8E%92%E7%89%88%E5%B1%9E%E6%80%A7%E3%80%81%E6%BB%A4%E9%95%9C/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -436,7 +440,7 @@ runcode.copy=function(element)
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2008/11/20/Position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
+    <a class="post-nav-item-right" href="/2008/11/20/position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"

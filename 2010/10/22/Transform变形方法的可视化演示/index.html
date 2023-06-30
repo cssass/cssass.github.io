@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -129,7 +133,7 @@ runcode.copy=function(element)
         
         <p>canvas 的变形方法transform是三个基本变形方法的结合，他们是<br>translate——移动；rotate ——旋转，在transform中分解为x，y两个方向的斜切；和scale——缩放。<br>他的参数是变形矩阵的六个数值：m11, m12, m21, m22, dx, dy<br>变形矩阵：</p>
 <p>m11	m21	dx<br>m12	m22	dy<br>0	0	1<br>对于transform方法的使用，其实很难把握，所以写了下面这个演示</p>
-<textarea class="runcode_text" id="runcode_8c96a0cc-8d71-4124-8b5c-d2c2686f077c"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_7837deb9-6b2a-47ab-994e-6591d05172ef"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -239,7 +243,7 @@ window.addEventListener("load", G.init, false);
 $id("pad").addEventListener("mousedown", G.draw, false);
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8c96a0cc-8d71-4124-8b5c-d2c2686f077c');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7837deb9-6b2a-47ab-994e-6591d05172ef');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7837deb9-6b2a-47ab-994e-6591d05172ef');" /></p>
 
       </div>
     </div>
@@ -248,7 +252,7 @@ $id("pad").addEventListener("mousedown", G.draw, false);
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/11/03/%E7%BA%AFcss%E6%89%93%E9%80%A0%E6%8A%95%E5%BD%B1%E6%95%88%E6%9E%9C%E2%80%94%E2%80%94CSS3%E5%B1%9E%E6%80%A7transform%E7%9A%84%E5%BA%94%E7%94%A8/">
+    <a class="post-nav-item-left" href="/2010/11/03/%E7%BA%AFcss%E6%89%93%E9%80%A0%E6%8A%95%E5%BD%B1%E6%95%88%E6%9E%9C%E2%80%94%E2%80%94css3%E5%B1%9E%E6%80%A7transform%E7%9A%84%E5%BA%94%E7%94%A8/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

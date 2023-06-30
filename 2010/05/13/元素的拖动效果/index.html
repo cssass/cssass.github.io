@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -108,6 +112,8 @@ runcode.copy=function(element)
           
   
     <a href="/tags/DOM/" class="post-tag">#DOM</a>
+  
+    <a href="/tags/HTML5/" class="post-tag">#HTML5</a>
   
 
 
@@ -126,7 +132,7 @@ runcode.copy=function(element)
           </div>
         
         <p>先看一下普通的拖动元素的代码</p>
-<textarea class="runcode_text" id="runcode_cf18d9c3-35c0-4943-b3be-24208f34fff7"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_121e24de-b6a2-4c15-bf74-aebf238a6856"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -160,10 +166,10 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cf18d9c3-35c0-4943-b3be-24208f34fff7');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_121e24de-b6a2-4c15-bf74-aebf238a6856');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_121e24de-b6a2-4c15-bf74-aebf238a6856');" /></p>
 <p>非常简单。</p>
 <p>考虑一下边境问题：</p>
-<textarea class="runcode_text" id="runcode_4511c135-e64b-434b-9aea-c60ccdaa3d3a"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_7fe3d253-54d0-46b7-be6e-6809af40dc45"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -210,9 +216,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4511c135-e64b-434b-9aea-c60ccdaa3d3a');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7fe3d253-54d0-46b7-be6e-6809af40dc45');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7fe3d253-54d0-46b7-be6e-6809af40dc45');" /></p>
 <p>如果拖动层内有元素不允许拖动。可以绑定一个事件，阻止拖动处理函数的执行。</p>
-<textarea class="runcode_text" id="runcode_52a9d101-645c-4c85-8a31-c9847989980b"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_8e123706-f61f-4ea1-9bd0-e45ab08a3c5e"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -248,9 +254,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_52a9d101-645c-4c85-8a31-c9847989980b');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8e123706-f61f-4ea1-9bd0-e45ab08a3c5e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8e123706-f61f-4ea1-9bd0-e45ab08a3c5e');" /></p>
 <p>图片的drag&amp;drop需要注意浏览器中在拖动图片时候会有默认动作的，拖动带链接的内容也是。所以拖动这些内容时应阻止其事件，另外加入setCapture。（下面拖动代码略有差别）</p>
-<textarea class="runcode_text" id="runcode_1a3e9665-d54b-4466-a323-ab370b131588"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_b516fb32-de5d-4346-9f6b-4b9275391b61"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -314,7 +320,7 @@ var dragF={
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1a3e9665-d54b-4466-a323-ab370b131588');" />
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b516fb32-de5d-4346-9f6b-4b9275391b61');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b516fb32-de5d-4346-9f6b-4b9275391b61');" /></p>
 
       </div>
     </div>
@@ -323,7 +329,7 @@ var dragF={
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2010/08/23/suggestion%E6%95%88%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6/">
+    <a class="post-nav-item-left" href="/2010/08/23/google-suggestion%E6%95%88%E6%9E%9C%E7%9A%84%E9%94%AE%E7%9B%98%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -334,7 +340,7 @@ var dragF={
         </svg>
         <span class="text-small">上一篇</span>
       </div>
-      <div>suggestion效果的键盘鼠标事件</div>
+      <div>google suggestion效果的键盘鼠标事件</div>
     </a>
   
   <div class="vhr"></div>

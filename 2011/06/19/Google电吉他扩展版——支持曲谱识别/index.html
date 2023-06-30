@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -128,7 +132,7 @@ runcode.copy=function(element)
           </div>
         
         <p>在6月9号Google 放出的纪念电吉他之父莱斯·保罗 96 周年诞辰的电吉他Doodle代码上，扩展了这个可播放曲谱的版本。<br>做这个扩展版的初衷是为了方便不是很熟悉键盘的童鞋。<br>童鞋们可以从网上复制曲谱进来自动播放（如果读者能自己谱曲，那真的就太棒了）。<br>曲谱中的空格及所有非法字符都表示停顿，间隔越大表示停顿越长，也可以调整曲子的整体节奏快慢。<br>同时可以开启自带的录音功能，录制之后会生产网址，可以拿来同朋友分享(由于国内网络环境的问题，网址生产可能会有限滞后)。<br>代码方面删除了不相干的部分，并做了格式整理，但由于原代码是经过压缩的，所以阅读起来还是会很费力的，很多地方处理的挺复杂，能力有限也不便做代码分析。<br>以下就是全部的代码（24k的code，1张图片，1个声音的flash文件）：</p>
- <textarea class="runcode_text" id="runcode_11344aca-4a27-4a61-870a-6257cae5378b"><!doctype html>
+ <p><textarea class="runcode_text" id="runcode_1fbe9e4d-990c-43f3-b644-75cecfb67f55"><!doctype html>
 <meta charset='utf-8' />
 <title>google电吉他扩展版——可播放曲谱</title>
 <style>
@@ -493,7 +497,7 @@ $=function(){
 Xa()
 })();
 </script>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_11344aca-4a27-4a61-870a-6257cae5378b');" />
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1fbe9e4d-990c-43f3-b644-75cecfb67f55');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1fbe9e4d-990c-43f3-b644-75cecfb67f55');" /></p>
 
 <p>可以运行以上代码，也可以访问这个链接：<a href="http://www.cssass.com/blog/resource/guitar/">http://www.cssass.com/blog/resource/guitar/</a></p>
 <p>最后罗列一些网上收集的曲谱：<br>欢乐颂：</p>
@@ -527,7 +531,7 @@ Xa()
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2011/07/28/%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAJS%E7%89%B9%E6%95%88%EF%BC%9A%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C%EF%BC%88%E6%9C%89%E5%BD%A9%E8%9B%8B%EF%BC%89/">
+    <a class="post-nav-item-left" href="/2011/07/28/%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AAjs%E7%89%B9%E6%95%88%EF%BC%9A%E6%89%93%E5%AD%97%E6%95%88%E6%9E%9C%EF%BC%88%E6%9C%89%E5%BD%A9%E8%9B%8B%EF%BC%89/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

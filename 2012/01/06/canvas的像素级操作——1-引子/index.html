@@ -41,42 +41,38 @@
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
 }
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
 	var code = document.getElementById(element).value;
 	var win = window.open("", "", "");
 	win.opener = null;
 	win.document.write(code);
 	win.document.close();
 }
-runcode.copy=function(element)
-{
+runcode.copy=function(element){
 	var codeobj = document.getElementById(element) ;
 	if (window.clipboardData)
 	{	
 		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
 	}
-	codeobj.select(); 	 
-
 }
 
 
@@ -92,7 +88,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -129,7 +133,7 @@ runcode.copy=function(element)
 <p>既然是引子，那就不能开门见山的介绍了，我们先讲讲如何复制canvas.<br>已知一个image对象，我们将其绘制进canvas的方法是什么？drawImage。（当然使用createPattern模板填充也是一个方法）。<br>那已知一个canvas对象，我们将其绘制进另一个canvas的方法呢？<br>答案还是drawImage，drawImage算是一个很辽阔的方法了，不仅可以绘image，也可以绘canvas对象，甚至还可以绘video的帧。</p>
 <p>并且他拥有大量参数：(Image [, vXSrc] [, vYSrc] [, vWSrc] [, vHSrc], vXDest, vYDest [, vWDest] [, vHDest])，这个读者可以先不管，往下看。</p>
 <p>那么，除了drawImage这个方法，还有没有其他方法呢——有，putImageData方法隆重登场。</p>
-<textarea class="runcode_text" id="runcode_de538b30-457a-4b33-8f5d-548aaccc9eaa"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa"><!DOCTYPE html>
 <html>
 <head>
 <title>canvas绘制与复制及像素级复制</title>
@@ -219,7 +223,7 @@ imgObj.addEventListener('load',function(){
 	clone();
 	cloneData();
 },false);
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_de538b30-457a-4b33-8f5d-548aaccc9eaa');" />
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa');" /></p>
 
 <p>上面的cloneData方法就是通过将源canvas中像素数据ImageData，输出(putImageData)到新的canvas中，达到复制作用。</p>
 <p>不过，我们在获取和输出ImageData的过程中，并没有对ImageData做过任何处理，而这个ImageData数据是包含{width,height,CanvasPixelArray},其中CanvasPixelArray包含了图像(canvas也可看做图像)的每一个像素的RGBA数据，可见中间的操作空间是很大的，以后我们会做重点讨论。</p>
@@ -229,7 +233,7 @@ imgObj.addEventListener('load',function(){
 <p>createImageData的参数是(w,h)可以新建一个W*H尺寸的新的ImageData【firefox3.5开始支持】，不过也可以使用参数(anotherImageData)来创建【firefox5开始支持】。</p>
 <p>getImageData的参数（x,y,w,h）表示起点x,y,尺寸w,h。可以获取canvas.context中在参数范围内的ImageData。</p>
 <p>putImageData的参数使用要着重要介绍下（和drawImage的参数可以触类旁通）：</p>
-<textarea class="runcode_text" id="runcode_bdd1c1f2-536c-445f-b66a-e1b6fb108139"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f"><!DOCTYPE html>
 <html>
 <head>
 <title>putImageData的参数</title>
@@ -262,7 +266,7 @@ imgObj.addEventListener('load',function(){
 		ctx2.putImageData(imagePix,0,0,100,100,50,50); //后面四个可选参数表示可见区范围。缺省为：0,0,ImageData.width,ImageData.height
 	}
 })()
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bdd1c1f2-536c-445f-b66a-e1b6fb108139');" />
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f');" /></p>
 
 <p>putImageData参数有(ImageData, dx, dy [, DirtyX] [, DirtyX] [, DirtyWidth] [, DirtyHeight])</p>
 <p>imageData：包含了图像的width,height,还有一个CanvasPixelArray，前面已经提了。<br>dx, dy：表示绘图起始位置。相对于canvas区域左上角。<br>后面四个可选参数：表示可见区范围。相对于起绘点，即上面的参数dx,dy表示的点。缺省为0,0,ImageData.width,ImageData.height。</p>

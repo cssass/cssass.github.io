@@ -38,49 +38,7 @@
     
   <link rel="stylesheet" type="text/css" href="/css/category.css" />
 
-  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.areaBox{position:relative;display:inline-block;width:95%;height:190px;padding-bottom:5px;background:url("images/codeCorner.gif") repeat-x scroll 100% 100% ;cursor:row-resize;}
-.fullBtn{position:absolute;top:7px;right:15px;width:16px;height:16px;background:url(images/fullscreen.png) 0 0;cursor:pointer;}
-.runcode_text {height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #66840D;}
-.runcode_button{border:1px solid #66840d;font-size:16px;font-weight:bold;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #98c513;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#e6ff00, endColorstr=#b5d702);
-	background: linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -moz-linear-gradient(top, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#e6ff00),to(#b5d702));
-	background: -webkit-linear-gradient(0 0, #e6ff00, #c3e302 ,#b5d702,#b5d702,#b5d702);
-}
-.fullScreen,.fullScreen body{height:100%;overflow:hidden;}
-.fullScreen .wrap{position:static;}
-.fullCode{position:absolute;z-index:100;top:0;left:0;width:100%;height:100%;}
-.fullCode .areaBox,.fullCode .runcode_text{width:100%;height:100% !important;}
-.fullCode .fullBtn{background-position:0 -50px;}
-</style><script type="text/javascript">var runcode={};
-runcode.open=function(element)
-{
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element)
-{
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}
-	codeobj.select(); 	 
-
-}
-
-
-
-</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+  <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
     <div class="head">
@@ -91,7 +49,15 @@ runcode.copy=function(element)
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
           
-            <a href="/blog/">博客</a>
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
           
         </div>
         <label class="nav-btn" for="navBtn"></label>
@@ -138,6 +104,23 @@ runcode.copy=function(element)
     
       <div class="post-card">
         <div class="post__head">
+          <a href="/2011/06/08/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E7%AA%97%E5%8F%A3%E9%AB%98%E5%BA%A6%E3%80%81%E9%A1%B5%E9%9D%A2%E9%AB%98%E5%BA%A6%E2%80%94%E2%80%94%E8%A7%A3%E8%AF%BB%E5%90%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%92%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E7%AA%97%E5%8F%A3%E3%80%81%E9%A1%B5%E9%9D%A2%E6%96%87%E6%A1%A3%E5%B0%BA%E5%AF%B8/" class="post-title hover-line">如何获取窗口高度、页面高度——解读各浏览器盒模型下的窗口、页面文档尺寸</a>
+        </div>
+        <div class="post__body">
+          
+          <div class="post-excerpt"></div>
+        </div>
+        <div class="post__foot">
+          <div class="post-tags">
+            
+              <a href="/tags/DOM/" class="post-tag">#DOM</a>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="post-card">
+        <div class="post__head">
           <a href="/2010/12/07/%E6%B5%AE%E5%8A%A8%E5%90%8Eblock%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-%E4%B8%8E%E6%A8%AA%E7%89%88%E5%B8%83%E5%B1%80%E7%9A%84%E9%95%BF%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94/" class="post-title hover-line">浮动后block元素的水平居中,与横版布局的长度自适应</a>
         </div>
         <div class="post__body">
@@ -166,13 +149,15 @@ runcode.copy=function(element)
             
               <a href="/tags/DOM/" class="post-tag">#DOM</a>
             
+              <a href="/tags/HTML5/" class="post-tag">#HTML5</a>
+            
           </div>
         </div>
       </div>
     
       <div class="post-card">
         <div class="post__head">
-          <a href="/2009/02/07/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84Z%E5%80%BC%E6%AF%94%E8%BE%83%E5%8F%8Az-index%E5%9C%A8%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%BD%B1%E5%93%8D/" class="post-title hover-line">定位元素间的Z值比较及z-index在不同浏览器下默认值的影响</a>
+          <a href="/2009/09/04/%E8%AF%B4%E8%AF%B4html5/" class="post-title hover-line">说说HTML5</a>
         </div>
         <div class="post__body">
           
@@ -181,9 +166,30 @@ runcode.copy=function(element)
         <div class="post__foot">
           <div class="post-tags">
             
-              <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
+              <a href="/tags/HTML/" class="post-tag">#HTML</a>
             
               <a href="/tags/DOM/" class="post-tag">#DOM</a>
+            
+              <a href="/tags/HTML5/" class="post-tag">#HTML5</a>
+            
+          </div>
+        </div>
+      </div>
+    
+      <div class="post-card">
+        <div class="post__head">
+          <a href="/2009/02/07/%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E9%97%B4%E7%9A%84z%E5%80%BC%E6%AF%94%E8%BE%83%E5%8F%8Az-index%E5%9C%A8%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E9%BB%98%E8%AE%A4%E5%80%BC%E7%9A%84%E5%BD%B1%E5%93%8D/" class="post-title hover-line">定位元素间的Z值比较及z-index在不同浏览器下默认值的影响</a>
+        </div>
+        <div class="post__body">
+          
+          <div class="post-excerpt"></div>
+        </div>
+        <div class="post__foot">
+          <div class="post-tags">
+            
+              <a href="/tags/DOM/" class="post-tag">#DOM</a>
+            
+              <a href="/tags/CSS2/" class="post-tag">#CSS2</a>
             
           </div>
         </div>
