@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -134,7 +134,7 @@ runcode.copy=function(element){
 <p>工作原理：<a target="_blank" rel="noopener" href="http://flex4jiaocheng.com/blog/280">http://flex4jiaocheng.com/blog/280</a></p>
 <p>点阵图中的每一个像素被称为“初步像素”，用与卷积矩阵同样面积的“初步像素”从左到右从上到下与卷积矩阵中相应位置的值相乘，再将得到的9个或25个中间值相加，就得到了“初步像素”矩阵中央的一个值的结果值再与Divisor（因子）相除，与Offset（偏移量）相加，最后得到终值。如下图所示：</p>
 <p>应用卷积矩阵实现特效:</p>
-<p><textarea class="runcode_text" id="runcode_09d01bca-eeb8-430c-95de-eca61e371ac3"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_17836924-5de4-43f6-8a69-445df48cfbc5"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -276,7 +276,7 @@ function Load(canvas){
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_09d01bca-eeb8-430c-95de-eca61e371ac3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_09d01bca-eeb8-430c-95de-eca61e371ac3');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_17836924-5de4-43f6-8a69-445df48cfbc5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_17836924-5de4-43f6-8a69-445df48cfbc5');" /></p>
 
 <p>上面demo中卷积的实现函数来自于在HTML 5 的 Canvas 中应用卷积矩阵对图像处理</p>
 <p>推荐一篇有趣的文章：卷积的物理意义</p>
@@ -322,6 +322,8 @@ function Load(canvas){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -372,7 +374,7 @@ function Load(canvas){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -413,7 +415,18 @@ function Load(canvas){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -136,7 +136,7 @@ runcode.copy=function(element){
         <p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<p><textarea class="runcode_text" id="runcode_51babc7d-06af-4d80-8b5c-85d651848fd2"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_155f0f29-e340-40a0-88f5-6537c173181c"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -202,9 +202,9 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_51babc7d-06af-4d80-8b5c-85d651848fd2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_51babc7d-06af-4d80-8b5c-85d651848fd2');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_155f0f29-e340-40a0-88f5-6537c173181c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_155f0f29-e340-40a0-88f5-6537c173181c');" /></p>
 <p>进一步删减</p>
-<p><textarea class="runcode_text" id="runcode_f213ef8e-b473-4654-a9fa-639c44f19203"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_c46b6459-be72-4194-a066-3b1e0fe19417"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -245,10 +245,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f213ef8e-b473-4654-a9fa-639c44f19203');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f213ef8e-b473-4654-a9fa-639c44f19203');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c46b6459-be72-4194-a066-3b1e0fe19417');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c46b6459-be72-4194-a066-3b1e0fe19417');" /></p>
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<p><textarea class="runcode_text" id="runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_663c70a7-72af-4cae-8903-658b991872b3"><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -306,10 +306,10 @@ body { background:#deddcd;margin:100px;}
     </div>
   </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1d196e4c-f0d7-4e24-9e18-4b1229b75745');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_663c70a7-72af-4cae-8903-658b991872b3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_663c70a7-72af-4cae-8903-658b991872b3');" /></p>
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<p><textarea class="runcode_text" id="runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_3decd7c6-c6e5-449b-8c99-9fcc64230d9a"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -369,7 +369,7 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_51dd1cd1-db65-4117-8de8-9d2a56b8a394');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3decd7c6-c6e5-449b-8c99-9fcc64230d9a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3decd7c6-c6e5-449b-8c99-9fcc64230d9a');" /></p>
 
       </div>
     </div>
@@ -412,6 +412,8 @@ body { background:#deddcd;margin:100px;}
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -462,7 +464,7 @@ body { background:#deddcd;margin:100px;}
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -503,7 +505,18 @@ body { background:#deddcd;margin:100px;}
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -128,7 +128,7 @@ runcode.copy=function(element){
           </div>
         
         <p>图片分享网站Pinterest（beta），在不久前获得了2700$的投资，估值已超2亿元（据说现该公司团队有8人）。该网站的一大特色就是每一张分享的图片被拟作“Pin”被钉在页面上面，每一Pin依尺寸智能排列，同时滚动页面时异步加载新Pin，极具效果。这种创新模式被在国内也被广泛copy，其中最有前途的当属Mark之，以”Mark”代”Pin”,也算有些想法。</p>
-<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc"><!doctype html>
+<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_e9db20ad-ff5f-4c41-8231-37b58f112362"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -231,9 +231,9 @@ window.onload = window.onresize = function() {
 };
 </script>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_af9cb3f3-e012-4ece-97b5-0ca926f974fc');" /></p></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e9db20ad-ff5f-4c41-8231-37b58f112362');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e9db20ad-ff5f-4c41-8231-37b58f112362');" /></p></p>
 <p>这种布局中虽然每个Pin的高度不尽相同，但是他们的宽度都是一样的。<br>那么假如，很邪恶的提出一个要求，宽度也不尽相同，只是说宽高都按比例成倍增加，那还怎么排列呢？<br>呵呵，如下：</p>
- <p><textarea class="runcode_text" id="runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352"><!doctype html>
+ <p><textarea class="runcode_text" id="runcode_1b89a90d-837a-4a6d-a73f-196ff91499e3"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -434,10 +434,10 @@ window.onresize = function(){
 </script>
 </body>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_02a1f4ce-1a2d-49c8-8994-1372c9259352');" /></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1b89a90d-837a-4a6d-a73f-196ff91499e3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1b89a90d-837a-4a6d-a73f-196ff91499e3');" /></p>
 
 <p>现在这种布局已经不能叫瀑布流了，我们称之为格子块，格子块通过算法智能堆砌。</p>
-<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551"><!doctype html>
+<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_2238f185-995c-417a-ab4b-b58fbbee4cbc"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -864,7 +864,7 @@ initDrag(myWidget);
 window.onresize = function(){box.init(myWidget)};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e344f9d5-1960-462c-b5d7-56d4d78bd551');" /></p></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2238f185-995c-417a-ab4b-b58fbbee4cbc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2238f185-995c-417a-ab4b-b58fbbee4cbc');" /></p></p>
 
       </div>
     </div>
@@ -907,6 +907,8 @@ window.onresize = function(){box.init(myWidget)};
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -957,7 +959,7 @@ window.onresize = function(){box.init(myWidget)};
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -998,7 +1000,18 @@ window.onresize = function(){box.init(myWidget)};
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

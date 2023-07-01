@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -134,145 +134,25 @@ runcode.copy=function(element){
         <p>XMLHttpRequest Level 2的功能已经大幅提升了，<br>参见：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html">http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html</a></p>
 <p>我们知道，受到浏览器”同域限制“制约，以前的xhr对象是无法完成跨域请求的，而现在只需在Server端做一个访问控制，Client端再用xhr对象请求就行了，一般情况下Client并不需要设置，当然还有些相关的方法属性可供使用的，比如setRequestHeader，withCredentials。<br>服务端设置参见： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Server-Side_Access_Control">https://developer.mozilla.org/en-US/docs/Server-Side_Access_Control</a></p>
 <p>下面我们简单的做个demo<br>Server端代码(PHP)：</p>
-<p><textarea class="runcode_text" id="runcode_d896134e-9a57-4400-afd9-73753dd2913c">if($_SERVER['HTTP_ORIGIN'] == "http://www.cssass.com")
-        {
-            header('Access-Control-Allow-Origin: http://www.cssass.com');
-            header('Content-Type: text/plain');
-            if($_SERVER['REQUEST_METHOD'] == "GET")
-            {
-                $arr = array( 
-                    'id' => '1',
-                    'name' => 'XMLHttpRequest Response' 
-                );
-                echo json_encode($arr);
-            };
-        };</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d896134e-9a57-4400-afd9-73753dd2913c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d896134e-9a57-4400-afd9-73753dd2913c');" /></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;HTTP_ORIGIN&#x27;</span>] == <span class="string">&quot;http://www.cssass.com&quot;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Access-Control-Allow-Origin: http://www.cssass.com&#x27;</span>);</span><br><span class="line">            <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Type: text/plain&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>] == <span class="string">&quot;GET&quot;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="variable">$arr</span> = <span class="keyword">array</span>( </span><br><span class="line">                    <span class="string">&#x27;id&#x27;</span> =&gt; <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;XMLHttpRequest Response&#x27;</span> </span><br><span class="line">                );</span><br><span class="line">                <span class="keyword">echo</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$arr</span>);</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
 <p>http响应头设置参见：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/HTTP_access_control#The_HTTP_response_headers">https://developer.mozilla.org/en-US/docs/HTTP_access_control#The_HTTP_response_headers</a></p>
 <p>Client端代码：</p>
-<p><textarea class="runcode_text" id="runcode_5ff877ed-cada-43f7-80cd-f0d378a4a4f3"><!doctype html>
-<meta charset="UTF-8" />
-<title>XMLHttpRequest 2演示</title>
-<a href="javascript:;" onclick="get_xhr2()">获取数据!(xhr2)</a>
-<script>
-	function get_xhr2(){
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', 'http://www.hzmilo.com/me.php?r=/xhr2/send'); //POST也支持
-		xhr.onload = function(e) { //绑定onload
-		  var data = JSON.parse(this.response); //json解析
-		  alert(data.name);
-		}
-		xhr.send();
-	};
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5ff877ed-cada-43f7-80cd-f0d378a4a4f3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5ff877ed-cada-43f7-80cd-f0d378a4a4f3');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;XMLHttpRequest 2演示&lt;/title&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_xhr2()&quot;&gt;获取数据!(xhr2)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_xhr2()&#123;</span><br><span class="line">		var xhr = new XMLHttpRequest();</span><br><span class="line">		xhr.open(&#x27;GET&#x27;, &#x27;http://www.hzmilo.com/me.php?r=/xhr2/send&#x27;); //POST也支持</span><br><span class="line">		xhr.onload = function(e) &#123; //绑定onload</span><br><span class="line">		  var data = JSON.parse(this.response); //json解析</span><br><span class="line">		  alert(data.name);</span><br><span class="line">		&#125;</span><br><span class="line">		xhr.send();</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>正如你所知，ie下是不支持XMLHttpRequest Level 2的，不过ie8引入了自己的跨域对象XDomainRequest。(同时ie8下的xhr对象也引入了 timeou属性t和ontimeout方法）<br>所以我们做下兼容（不支持ie6，ie7）：</p>
-<p><textarea class="runcode_text" id="runcode_4eb1a14d-b2fa-4813-ac28-92f2ed9f6b09"><!doctype html>
-<meta charset="UTF-8" />
-<title>XMLHttpRequest 2演示</title>
-<a href="javascript:;" onclick="get_xhr2()">获取数据!(xhr2)</a>
-<script>
-	function get_xhr2(){
-		var xr,xrName;
-		if(window.XDomainRequest){
-			xr = new XDomainRequest();
-			xrName = "XDomainRequest";
-		}else{
-			xr = new XMLHttpRequest();
-			xrName = "XMLHttpRequest";
-		}
-		xr.open('GET', 'http://www.hzmilo.com/me.php?r=/xhr2/send/&xr='+xrName);
-		xr.onload = function(e) {
-		  var data = JSON.parse(this.responseText); //json解析
-		  alert(data.name);
-		}
-		xr.send();
-	};
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4eb1a14d-b2fa-4813-ac28-92f2ed9f6b09');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4eb1a14d-b2fa-4813-ac28-92f2ed9f6b09');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;XMLHttpRequest 2演示&lt;/title&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_xhr2()&quot;&gt;获取数据!(xhr2)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_xhr2()&#123;</span><br><span class="line">		var xr,xrName;</span><br><span class="line">		if(window.XDomainRequest)&#123;</span><br><span class="line">			xr = new XDomainRequest();</span><br><span class="line">			xrName = &quot;XDomainRequest&quot;;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			xr = new XMLHttpRequest();</span><br><span class="line">			xrName = &quot;XMLHttpRequest&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">		xr.open(&#x27;GET&#x27;, &#x27;http://www.hzmilo.com/me.php?r=/xhr2/send/&amp;xr=&#x27;+xrName);</span><br><span class="line">		xr.onload = function(e) &#123;</span><br><span class="line">		  var data = JSON.parse(this.responseText); //json解析</span><br><span class="line">		  alert(data.name);</span><br><span class="line">		&#125;</span><br><span class="line">		xr.send();</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>接下来，我们来了解下JSONP这种在同域限制的情况下实现跨域请求（GET）的实现过程。<br>原理其实就是：以script标签的形式在页面中放置一个请求地址，该请求地址返回的数据格式为：</p>
 <p>jsonp1354513528560({“id”:”2″,”name”:”JSON with Padding”})</p>
 <p>如果jsonp1354513528560是一个预先定义好的JS方法，那么获取其参数（我们实际需要获取的数据）就顺理成章了。</p>
 <p>以下是Client端的实现代码:</p>
-<p><textarea class="runcode_text" id="runcode_22a8b6f9-05a6-4e6d-8e2a-d2b32d2384bf">(function(){
-        //jsonp的具体实现
-          var randomNum = (new Date).getTime(),
-              callName = null,
-              sendScriptRequest = function(url,id){
-                  //将请求地址以script标签形式插入到页面。（注定是GET请求）
-                var head = document.getElementsByTagName("head")[0];
-                var script = document.createElement("script");
-                script.id = id;
-                script.src = url;
-                script.charset = 'utf-8';
-                head.appendChild(script);
-            },
-            buildTempFunction = function(callback){
-                //创建一个全局方法，并将方法名当做请求地址的一个参数
-                callName = "jsonp" + randomNum++;
-                window[ callName ] = function(data){
-                    callback(data);
-                    window[ callName ] = undefined;
-                    try{ 
-                        delete window[ callName ];
-                        //var jsNode = document.getElementById(callName);
-                        //jsNode.parentElement.removeChild(jsNode);  //执行全局方法后，将script标签删除
-                    } catch(e){}
-                };
-                return callName;
-            },
-            $jsonp = function(url,params){
-                //生成GET请求地址
-                  params.callback = buildTempFunction(params.callback);
-                  url += (url.indexOf("?")>0 ) ? "" : "?" ;
-                  for(var i in params)
-                      url += "&" + i + "=" + params[i];
-                sendScriptRequest(url,callName);
-              };
-            //对外开放接口：$jsonp
-            /**
-            * @$jsonp JSONP方法
-            * @param {String} url 请求地址
-            * @param {Object} params 请求参数
-            */ 
-              if (!window.$jsonp)
-                   window.$jsonp = $jsonp;
-    })();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_22a8b6f9-05a6-4e6d-8e2a-d2b32d2384bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_22a8b6f9-05a6-4e6d-8e2a-d2b32d2384bf');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;</span><br><span class="line">        //jsonp的具体实现</span><br><span class="line">          var randomNum = (new Date).getTime(),</span><br><span class="line">              callName = null,</span><br><span class="line">              sendScriptRequest = function(url,id)&#123;</span><br><span class="line">                  //将请求地址以script标签形式插入到页面。（注定是GET请求）</span><br><span class="line">                var head = document.getElementsByTagName(&quot;head&quot;)[0];</span><br><span class="line">                var script = document.createElement(&quot;script&quot;);</span><br><span class="line">                script.id = id;</span><br><span class="line">                script.src = url;</span><br><span class="line">                script.charset = &#x27;utf-8&#x27;;</span><br><span class="line">                head.appendChild(script);</span><br><span class="line">            &#125;,</span><br><span class="line">            buildTempFunction = function(callback)&#123;</span><br><span class="line">                //创建一个全局方法，并将方法名当做请求地址的一个参数</span><br><span class="line">                callName = &quot;jsonp&quot; + randomNum++;</span><br><span class="line">                window[ callName ] = function(data)&#123;</span><br><span class="line">                    callback(data);</span><br><span class="line">                    window[ callName ] = undefined;</span><br><span class="line">                    try&#123; </span><br><span class="line">                        delete window[ callName ];</span><br><span class="line">                        //var jsNode = document.getElementById(callName);</span><br><span class="line">                        //jsNode.parentElement.removeChild(jsNode);  //执行全局方法后，将script标签删除</span><br><span class="line">                    &#125; catch(e)&#123;&#125;</span><br><span class="line">                &#125;;</span><br><span class="line">                return callName;</span><br><span class="line">            &#125;,</span><br><span class="line">            $jsonp = function(url,params)&#123;</span><br><span class="line">                //生成GET请求地址</span><br><span class="line">                  params.callback = buildTempFunction(params.callback);</span><br><span class="line">                  url += (url.indexOf(&quot;?&quot;)&gt;0 ) ? &quot;&quot; : &quot;?&quot; ;</span><br><span class="line">                  for(var i in params)</span><br><span class="line">                      url += &quot;&amp;&quot; + i + &quot;=&quot; + params[i];</span><br><span class="line">                sendScriptRequest(url,callName);</span><br><span class="line">              &#125;;</span><br><span class="line">            //对外开放接口：$jsonp</span><br><span class="line">            /**</span><br><span class="line">            * @$jsonp JSONP方法</span><br><span class="line">            * @param &#123;String&#125; url 请求地址</span><br><span class="line">            * @param &#123;Object&#125; params 请求参数</span><br><span class="line">            */ </span><br><span class="line">              if (!window.$jsonp)</span><br><span class="line">                   window.$jsonp = $jsonp;</span><br><span class="line">    &#125;)();</span><br></pre></td></tr></table></figure>
 <p>Server端很简单,只需拼接输出一个js的执行方法即可。</p>
-<p><textarea class="runcode_text" id="runcode_65175c83-951a-4969-9286-5983324fe78f">$jsonp = $_GET['callback']; //请求端传递的callback参数，作为输出的方法名
-        $arr = array( 
-            'id' => '2',
-            'name' => 'JSON with Padding' 
-        );
-        echo $jsonp, '(', json_encode($arr), ')';
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_65175c83-951a-4969-9286-5983324fe78f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_65175c83-951a-4969-9286-5983324fe78f');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$jsonp = $_GET[&#x27;callback&#x27;]; //请求端传递的callback参数，作为输出的方法名</span><br><span class="line">        $arr = array( </span><br><span class="line">            &#x27;id&#x27; =&gt; &#x27;2&#x27;,</span><br><span class="line">            &#x27;name&#x27; =&gt; &#x27;JSON with Padding&#x27; </span><br><span class="line">        );</span><br><span class="line">        echo $jsonp, &#x27;(&#x27;, json_encode($arr), &#x27;)&#x27;;</span><br></pre></td></tr></table></figure>
 <p>演示：</p>
-<p><textarea class="runcode_text" id="runcode_759abec6-2172-4edd-b43e-6f170a72e577"><!doctype html>
-<meta charset="UTF-8" />
-<title>jsonp演示</title>
-<script src="/public/js/extend.js"></script>
-<a href="javascript:;" onclick="get_jsonp()">获取数据!(jsonp)</a>
-<script>
-	function get_jsonp(){
-		$jsonp('http://www.hzmilo.com/me.php?r=/xhr2/send2',{"id":1001},function(data){
-				alert(data.name);
-		});
-	};
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_759abec6-2172-4edd-b43e-6f170a72e577');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_759abec6-2172-4edd-b43e-6f170a72e577');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;jsonp演示&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_jsonp()&quot;&gt;获取数据!(jsonp)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_jsonp()&#123;</span><br><span class="line">		$jsonp(&#x27;http://www.hzmilo.com/me.php?r=/xhr2/send2&#x27;,&#123;&quot;id&quot;:1001&#125;,function(data)&#123;</span><br><span class="line">				alert(data.name);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>因为大多数网站不会开启server端的访问控制，所以xhr2目前比较适用于自己所属的几个域名下网站的连结,并且放弃ie6、7。<br>JSONP应用倒是很普遍，很多网站开放API的时候，也会用jsonp的形式给js提供接口，这样一来，使得ajax也能直接调用到API，当然只限一些普通的无需授权即用的接口。</p>
 <p>然而很多网站并未开放API, 也未在服务端设置callback之类的参数，而我们也不想自己写server端代码去抓取。<br>那么我们可以试试中间代理：<a target="_blank" rel="noopener" href="http://developer.yahoo.com/yql/">http://developer.yahoo.com/yql/</a></p>
 <p>演示：我们抓取一下我很喜欢的一个电影网站（dianying.fm）的数据。</p>
-<p><textarea class="runcode_text" id="runcode_218d0e6f-e43e-40cd-a079-0245fde5526e"><!doctype html>
-<meta charset="UTF-8" />
-<title>yql演示</title>
-<script src="/public/js/extend.js"></script>
-<a href="javascript:;" onclick="get_yql()">获取数据!(jsonp代理)</a>
-<script>
-	function get_yql(){
-		$jsonp('http://query.yahooapis.com/v1/public/yql',{
-			q: "select * from json where url=\"http://dianying.fm/reflect/cannes/e30=/2\"",
-	    	format: "json"},function(data){
-				alert(data.query.results.json.html);
-			});
-	};
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_218d0e6f-e43e-40cd-a079-0245fde5526e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_218d0e6f-e43e-40cd-a079-0245fde5526e');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;yql演示&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;/public/js/extend.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;a href=&quot;javascript:;&quot; onclick=&quot;get_yql()&quot;&gt;获取数据!(jsonp代理)&lt;/a&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	function get_yql()&#123;</span><br><span class="line">		$jsonp(&#x27;http://query.yahooapis.com/v1/public/yql&#x27;,&#123;</span><br><span class="line">			q: &quot;select * from json where url=\&quot;http://dianying.fm/reflect/cannes/e30=/2\&quot;&quot;,</span><br><span class="line">	    	format: &quot;json&quot;&#125;,function(data)&#123;</span><br><span class="line">				alert(data.query.results.json.html);</span><br><span class="line">			&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
       </div>
     </div>
@@ -315,6 +195,8 @@ runcode.copy=function(element){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -365,7 +247,7 @@ runcode.copy=function(element){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -406,7 +288,18 @@ runcode.copy=function(element){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

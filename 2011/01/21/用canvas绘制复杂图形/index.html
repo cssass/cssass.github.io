@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -130,7 +130,7 @@ runcode.copy=function(element){
           </div>
         
         <p>在闪吧看见一棵树，移植到canvas+javascript里来。</p>
-<p><textarea class="runcode_text" id="runcode_bb998f5f-9ec5-4c45-8781-744057f67d57"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c7d151d7-125d-4c6b-87f9-9f3084cbf19f"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -170,10 +170,10 @@ function lzh(x, y, l, angle, n) {
 var rand=2-Math.random()*10
 lzh(300, 400, 100, 90, 6);
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bb998f5f-9ec5-4c45-8781-744057f67d57');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bb998f5f-9ec5-4c45-8781-744057f67d57');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c7d151d7-125d-4c6b-87f9-9f3084cbf19f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c7d151d7-125d-4c6b-87f9-9f3084cbf19f');" /></p>
 
 <p>用setInterval让它动起来</p>
-<p><textarea class="runcode_text" id="runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_2ffafea6-f423-4b9f-a27c-e829043e5037"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -240,12 +240,12 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b0d591f6-1e08-4cb3-9b1b-ac24f155ba90');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2ffafea6-f423-4b9f-a27c-e829043e5037');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2ffafea6-f423-4b9f-a27c-e829043e5037');" /></p>
 
 <p>补充：<br>除了setTimeout&#x2F;setInterval这两个函数控制动画外。现在很多浏览器还提供了另一个函数requestAnimationFrame，这个函数接口所拥有的优势是：</p>
 <p>对于一个侦中对DOM的所有操作，只进行一次Layout和Paint。<br>如果发生动画的元素被隐藏了，那么就不再去Paint。</p>
 <p>不过这个方法的使用只类似于递归调用，并没有一个时间停顿，所以我们一般要根据记录时间间隔来决定动画的每一帧的绘制情况。<br>下面用requestAnimationFrame来完成上面的动画。由于requestAnimationFrame的兼容性，我们需要先写一个兼容性的方法（来自three.js）：</p>
-<p><textarea class="runcode_text" id="runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6">(function() {
+<p><textarea class="runcode_text" id="runcode_fa2d277d-91c6-4533-aa68-5bf82fc2f9fe">(function() {
     /* 兼容requestAnimationFrame */
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -267,9 +267,9 @@ new Tree(300, 400, 100, 90, 6).move();
         window.cancelAnimationFrame = function(id) {
             clearTimeout(id);
         };
-}());</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6ef2d7e7-1998-4d0b-9c42-30c6c59831c6');" /></p>
+}());</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fa2d277d-91c6-4533-aa68-5bf82fc2f9fe');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fa2d277d-91c6-4533-aa68-5bf82fc2f9fe');" /></p>
 
-<p><textarea class="runcode_text" id="runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_3ae8de89-42b2-44dc-b5da-fcd32420c17b"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -364,10 +364,10 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3e3d1221-a61a-4e61-8243-305e0a7afdd7');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3ae8de89-42b2-44dc-b5da-fcd32420c17b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3ae8de89-42b2-44dc-b5da-fcd32420c17b');" /></p>
 
 <p>再画几个图形：</p>
-<p><textarea class="runcode_text" id="runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_512f6d60-5a63-4b16-96b4-d29d3f0ca08a"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -454,7 +454,7 @@ new Tad(300,200,3).move();
 new Tad(400,200,2).move();
 new Tad(500,200,1).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_84b0687b-88bb-4fcc-ab8a-524217ca2b15');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_512f6d60-5a63-4b16-96b4-d29d3f0ca08a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_512f6d60-5a63-4b16-96b4-d29d3f0ca08a');" /></p>
 
 
       </div>
@@ -498,6 +498,8 @@ new Tad(500,200,1).move();
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -548,7 +550,7 @@ new Tad(500,200,1).move();
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -589,7 +591,18 @@ new Tad(500,200,1).move();
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

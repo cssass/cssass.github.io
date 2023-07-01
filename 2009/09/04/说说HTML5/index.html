@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -158,26 +158,26 @@ runcode.copy=function(element){
 <p>好了， HTML5能做的够多了，但他还处在草案阶段，那关键是现在我们能做什么呢？</p>
 <p>我们能做什么？<br>HTML5估计能在2012年之前成为W3C的候选推荐标准，不过在这之前，只要浏览器支持，我们都可以使用html5的功能。</p>
 <ol>
-<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_7731fcfa-675b-44c0-a603-83a13bf75add"><script>
+<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_1d185aa2-a8ff-406f-9d03-c450b5d76588"><script>
 document.createElement("元素名称")
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7731fcfa-675b-44c0-a603-83a13bf75add');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7731fcfa-675b-44c0-a603-83a13bf75add');" /></p>
-创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_33c664fd-d845-4a21-b99d-7ea3ec900031">(function(){
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1d185aa2-a8ff-406f-9d03-c450b5d76588');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1d185aa2-a8ff-406f-9d03-c450b5d76588');" /></p>
+创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_4404e7db-fd33-4db6-9798-9c23998b38fc">(function(){
     if(!/*@cc_on!@*/0) return;    
     var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');   
     for(var i = 0, len = html5.length; i < len; i++ ) {       
     document.createElement(html5[i]);  
     }
 })
-();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_33c664fd-d845-4a21-b99d-7ea3ec900031');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_33c664fd-d845-4a21-b99d-7ea3ec900031');" /></p>
+();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4404e7db-fd33-4db6-9798-9c23998b38fc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4404e7db-fd33-4db6-9798-9c23998b38fc');" /></p>
 现在在IE里也可以对HTML5元素进行布局了。<br>不过，在此之前，我们还需要对这些新元素定义基本的Display style,<br>这个工作本来一般是由浏览器完成的，比如FireFox的html.css。<br>现在只能自己对引进的HTML5元素进行定义了。<br>那么哪些需要定义成display:block;哪些又是不需要呢？这个我们可以看下W3C是怎么定义的：display-types</li>
 </ol>
-<p><textarea class="runcode_text" id="runcode_d5367e3f-9fe0-432c-8d42-e77599331cd2">address, article, aside, blockquote, body, center, dd, dialog, dir,
+<p><textarea class="runcode_text" id="runcode_3b9cf426-8fef-4788-98a8-751036fcb815">address, article, aside, blockquote, body, center, dd, dialog, dir,
 div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
 hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,
-section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d5367e3f-9fe0-432c-8d42-e77599331cd2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d5367e3f-9fe0-432c-8d42-e77599331cd2');" /></p>
+section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3b9cf426-8fef-4788-98a8-751036fcb815');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3b9cf426-8fef-4788-98a8-751036fcb815');" /></p>
 
 <p>刨除HTML老元素，以下这些元素:<br>article,aside,dialog,figure,footer,header,hgroup,nav,section可以定义为{display:block;}<br>这篇针对HTML 5 Reset Stylesheet的文章也可以参考下：<a target="_blank" rel="noopener" href="http://html5doctor.com/html-5-reset-stylesheet/%E3%80%82%E6%96%87%E7%AB%A0%E5%9C%A8Eric%E7%9A%84CSS">http://html5doctor.com/html-5-reset-stylesheet/。文章在Eric的CSS</a> Reset的基础上考虑HTML5新元素及W3C规范推荐下对元素进行了style reset。当然reset CSS本身就存在争议的，一般来说，reset CSS是你自己的style，很多东西都可以按你的意愿来定，当然不要太偏离W3C的元素设计本意。<br>接下来，使用HTML5新元素进行布局就可以随心所欲了（还是悠着点好）。</p>
-<p><textarea class="runcode_text" id="runcode_3060c02b-d216-4a54-bde0-dd277e47560c"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_782d1ab8-f941-48b0-b9d7-e41b333ae34c"><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -268,9 +268,9 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 </div>
 <footer>Copyright © 2009 Cssass.com </footer>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3060c02b-d216-4a54-bde0-dd277e47560c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3060c02b-d216-4a54-bde0-dd277e47560c');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_782d1ab8-f941-48b0-b9d7-e41b333ae34c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_782d1ab8-f941-48b0-b9d7-e41b333ae34c');" /></p>
 <ol start="2">
-<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_ccc1022e-5133-4b7c-b641-c6ec509464d2"><!DOCTYPE HTML>
+<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_8a99d98e-6327-44e8-b2d6-aa490db0a99a"><!DOCTYPE HTML>
 <html>
 <head>
   <title>Drag and Drop</title>
@@ -304,13 +304,13 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
    }
   </script>
  </body>
- </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ccc1022e-5133-4b7c-b641-c6ec509464d2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ccc1022e-5133-4b7c-b641-c6ec509464d2');" /></p></li>
+ </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8a99d98e-6327-44e8-b2d6-aa490db0a99a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8a99d98e-6327-44e8-b2d6-aa490db0a99a');" /></p></li>
 <li>canvas<br>我们先看一些canvas的示例：<br><a target="_blank" rel="noopener" href="http://www.agustinfernandez.com.ar/proyectos/canvas/">http://www.agustinfernandez.com.ar/proyectos/canvas/</a><br><a target="_blank" rel="noopener" href="http://www.whatwg.org/demos/2008-sept/color/color.html">http://www.whatwg.org/demos/2008-sept/color/color.html</a><br>网上还有一些互动性蛮强的Demo.<br>canvas应用的发展无疑将威胁到也行进在富Web之路上的Flash和Silverligth这些Web插件。</li>
 </ol>
 <p>canvas在safari,firefox,opera很早就有了支持，但IE缺迟迟不予支持，尽管他在ie8中已经开始支持多个HTML5功能。MS的同志很有理由这么做:“HTML 5标准制定之前,某些功能确实已经得以实现,例如Google Gears实现了离线应用程序功能,Flash和silverlight实现了类似Canvas API的功能.在下一代HTML规范中设置这些内容未必非常必要”。要知道MS在silverlight是花了很大力气。事实上，MS在参与HTML5之事上一直非常谨慎，并且希望精简HTML5。<br>Flash的所有者，HTML5参与者之一Adobe则表现的很轻松：“canvas还很弱，HTML 5 + CSS 3 可能要 10年的时间才能定稿，在这期间，Flash 会持续发展，并提供更好的用户体验”。</p>
 <p>尽管IE没有支持canvas功能，但我们可以使用JS模拟达到：<br><a target="_blank" rel="noopener" href="http://excanvas.sourceforge.net/">http://excanvas.sourceforge.net/</a><br>这是其中的一个Demo,试试你的IE:<br>3Dcanvas_For_IE.html</p>
 <ol start="4">
-<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_44d95a46-a7ba-4ee7-96df-52183dfbb3ce"><!DOCTYPE HTML>
+<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_d34feb04-bee6-48e0-ad60-5daf1b050d39"><!DOCTYPE HTML>
 <html>
 <head>
 <title>Video</title>
@@ -325,7 +325,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 	</script>
 	<p><input type="button" value="&#x2588; &#x2588;" onclick="if (video.paused) video.play(); else video.pause()"></p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_44d95a46-a7ba-4ee7-96df-52183dfbb3ce');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_44d95a46-a7ba-4ee7-96df-52183dfbb3ce');" /></p></li>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d34feb04-bee6-48e0-ad60-5daf1b050d39');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d34feb04-bee6-48e0-ad60-5daf1b050d39');" /></p></li>
 </ol>
 <p>我们没有引入flash播放器就能播放swf。</p>
 <p>在下面这个页面里罗列了各浏览器所支持的HTML5功能：<br>Implementations in Web browsers</p>
@@ -371,6 +371,8 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -421,7 +423,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -462,7 +464,18 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

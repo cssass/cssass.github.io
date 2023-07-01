@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -131,7 +131,7 @@ runcode.copy=function(element){
         
         <p>我们开篇就提过，canvas的像素级操作相对来说是很低效的。</p>
 <p>我们试着写一个图片切割效果。</p>
-<p><textarea class="runcode_text" id="runcode_c064e006-490e-4ea8-ba42-bf6cecafb138"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_83546297-f706-46ab-a012-6c2ba6ae0414"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -176,11 +176,11 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c064e006-490e-4ea8-ba42-bf6cecafb138');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c064e006-490e-4ea8-ba42-bf6cecafb138');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_83546297-f706-46ab-a012-6c2ba6ae0414');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_83546297-f706-46ab-a012-6c2ba6ae0414');" /></p>
 
 <p>对于这个效果，因为我们并不需要操作图像的rgba数据，而只是把图像进行分割，所以利用putImageData的后四个可见区参数进行了设置就行了。<br>但是，这样做的性能却非常不理想。因为我们操作的ImageData数据实在太多了，循环执行了2750遍，相当于我们对整幅图像进行了2750次的像素级复制，而其实在可见区之外的ImageData数据并不是我们所需要的。</p>
 <p>那么，我们在对源图getImageData的时候，可以只获取我们需要的ImageData。</p>
-<p><textarea class="runcode_text" id="runcode_846fb8e7-e159-4ca4-ba10-2550317239b5"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_54b40d91-df6a-4d21-830b-f4e3b4b8b525"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -226,12 +226,12 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_846fb8e7-e159-4ca4-ba10-2550317239b5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_846fb8e7-e159-4ca4-ba10-2550317239b5');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_54b40d91-df6a-4d21-830b-f4e3b4b8b525');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_54b40d91-df6a-4d21-830b-f4e3b4b8b525');" /></p>
 
 <p>第二种做法虽然在循环的时候多运行了一个方法（共执行2750次的getImageData和putImageData方法），但因为操作的ImageData少了2750倍，所以在效率上比第一种方式高了很多。</p>
 <p>但从流程上来讲，我们只需要在刚开始的时候获取一次源图的ImageData（执行getImageData），对数据进行再排列后，最后再输出一次新的ImageData（执行putImageData）就可以了。<br>根本不需要在循环中反复调用getImageData和putImageData。所以现在的关键点是get和put之间的如何对数据进行重排列。</p>
 <p>ImageData.data可以看做一个矩形矩阵，我们已知，它的序列号（n）与ImageData.width(w),及x轴序列号(x),y轴序列号（y）的关系是：n &#x3D; ((y * w) + x) * 4; （其中的4表示了RGBA四个数据）。我们要的新的输出ImageData，其实是x加倍，y加倍，w加倍的一个新矩阵。那么新矩阵序号与原x,y,w的关系式应该是：t &#x3D; ((y * 2 * w * 2) + x * 2) * 4;</p>
-<p><textarea class="runcode_text" id="runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_873e8b34-9ed9-4945-ba87-cea7bf7974ba"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -285,7 +285,7 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7d159470-62d0-46cd-a6cf-31c583b9c7c6');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_873e8b34-9ed9-4945-ba87-cea7bf7974ba');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_873e8b34-9ed9-4945-ba87-cea7bf7974ba');" /></p>
 
 <p>第三种方法相对于第二种方法的效率提高了十几倍。第三种方法的关键点是找出新旧矩阵之间的关系，对于我们这一例来说还比较容易，复杂一点的，算法可就没这么简单了。</p>
 <p>——————————————<br>重要补充：</p>
@@ -333,6 +333,8 @@ function demo(img){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -383,7 +385,7 @@ function demo(img){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -424,7 +426,18 @@ function demo(img){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

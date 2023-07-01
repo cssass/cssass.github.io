@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -131,7 +131,7 @@ runcode.copy=function(element){
         
         <p>获取页面高度或窗口高度，是使用绝对层定位（弹出菜单定位，遮罩层尺寸设置）所经常用到的。<br>但是各个浏览器在这方面的效果却有着非常大的差异，本文将做一些总结，找出一些全兼容的方法来获取页面的高度，窗口的高度，页面文档的高度，滚动条滚过的距离，以方便今后使用。</p>
 <p>开始之前，先提一些常识性的东西：<br>documentElement的对象元素就是html节点。<br>offsetHeight包括了clientHeight和border。<br>scrollHeight包括了滚动内的高度。<br>页面文档的高度指的是页面内实际内容的高度。</p>
-<p>下面的demo中，我们将页面的内容设置为2000*1000px的尺寸。<br>此处没有对html,body做过width，height设置，否则将有所不同。<br> <p><textarea class="runcode_text" id="runcode_0c644788-fd1b-46e6-a78a-277259aa7191"><!DOCTYPE html >
+<p>下面的demo中，我们将页面的内容设置为2000*1000px的尺寸。<br>此处没有对html,body做过width，height设置，否则将有所不同。<br> <p><textarea class="runcode_text" id="runcode_dc6619dd-7b85-4fa9-8043-b03cdecb0d37"><!DOCTYPE html >
 <html>
 <head>
 <meta charset="utf-8" />
@@ -187,7 +187,7 @@ runcode.copy=function(element){
 	</div>
 	</body>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0c644788-fd1b-46e6-a78a-277259aa7191');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0c644788-fd1b-46e6-a78a-277259aa7191');" /></p></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dc6619dd-7b85-4fa9-8043-b03cdecb0d37');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dc6619dd-7b85-4fa9-8043-b03cdecb0d37');" /></p></p>
 
       </div>
     </div>
@@ -230,6 +230,8 @@ runcode.copy=function(element){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -280,7 +282,7 @@ runcode.copy=function(element){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -321,7 +323,18 @@ runcode.copy=function(element){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

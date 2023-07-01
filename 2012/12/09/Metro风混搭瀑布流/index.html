@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -133,7 +133,7 @@ runcode.copy=function(element){
         
         <p>去年做了一个自号“ 格子块的智能堆砌 ”的效果, 当时瀑布流已激发了国内的第一批模仿者，微软的Merto也刚震撼了设计界。</p>
 <p>今天把原来的效果改动优化了下，打造一个Metro风混搭瀑布流。</p>
-<p><textarea class="runcode_text" id="runcode_5b0db879-f8f1-4e59-b1e7-28114fcbe4ad"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c2d81d44-5c20-45fc-b6f5-6dfab790c49b"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -318,10 +318,10 @@ window.onscroll=function(){
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5b0db879-f8f1-4e59-b1e7-28114fcbe4ad');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5b0db879-f8f1-4e59-b1e7-28114fcbe4ad');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c2d81d44-5c20-45fc-b6f5-6dfab790c49b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c2d81d44-5c20-45fc-b6f5-6dfab790c49b');" /></p>
 
 <p>应大家要求，我将主要的sort方法取出来，再做个简单demo</p>
-<p><textarea class="runcode_text" id="runcode_a3fb88c5-bb4d-4de8-9f38-fd29b7999ab7"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_94ffa136-62de-4bdc-916b-ba692e3e294e"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -441,7 +441,7 @@ function LOG_2(n, key){
     document.getElementById("ID" + n).innerHTML +=  key + ":(" + metro.nameSpace[key] + ")<br/>";
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a3fb88c5-bb4d-4de8-9f38-fd29b7999ab7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a3fb88c5-bb4d-4de8-9f38-fd29b7999ab7');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_94ffa136-62de-4bdc-916b-ba692e3e294e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_94ffa136-62de-4bdc-916b-ba692e3e294e');" /></p>
 
       </div>
     </div>
@@ -484,6 +484,8 @@ function LOG_2(n, key){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -534,7 +536,7 @@ function LOG_2(n, key){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -575,7 +577,18 @@ function LOG_2(n, key){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

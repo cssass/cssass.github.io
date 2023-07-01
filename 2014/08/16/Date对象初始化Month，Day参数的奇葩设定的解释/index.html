@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -130,18 +130,18 @@ runcode.copy=function(element){
           </div>
         
         <p>new一个Date对象时，当以年份Y，月份M，日期D为参数传入来设定的时候，我们会发现：月份M是从0开始的，而日期D却是从1开始的。<br>即：M:0是一月，1是二月，11是十二月，但D：1 是一号，2是二号，31是三十一号。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_bc8af727-0548-46bd-b008-c0343f0f2859"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_5c9772b1-e0aa-4be5-9f26-3ebb255078ed"><script type="text/javascript">
 var t1 = new Date(2014,0,1).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t3 = new Date(2014,11,29).toLocaleString()
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bc8af727-0548-46bd-b008-c0343f0f2859');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bc8af727-0548-46bd-b008-c0343f0f2859');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5c9772b1-e0aa-4be5-9f26-3ebb255078ed');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5c9772b1-e0aa-4be5-9f26-3ebb255078ed');" /></p>
 <p>是不是觉得很别扭，很奇葩？</p>
 <p>对于习惯了以“一月”称呼“January”，“二月”称呼“February”的人来说，让”0″和”一”对应，”1″和”二”对应肯定是超级别扭啊，<br>但对于计算机从业者来说倒合情合理，第一位都是0开始数的嘛。</p>
 <p>那问题抛向了另一边，为什么Day又是从1开始呢？<br>那么我告诉你1Day其实根本不是数组的第一项，日期的初始也是0！<br>当1Day完成的时候，时间就已经过去了二十四小时，1Day已经结束了。<br>所以0Day才是days的开始，那么我们来看看0Day到底是什么时候，让我们从1Day开始往前回溯，其实我们将每一天的开始设在了前夜。<br>如果按小数来细分的话，每月1号的正午应该算是0.5号，而10号的下午6点就是九又四分之三号！</p>
-<p><textarea class="runcode_text" id="runcode_87dd4781-6556-400f-a950-8295d757334a"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_a499e2a0-0fd6-42dd-ad98-ebb3eb019b4f"><script type="text/javascript">
 var t3 = new Date(2014,11,29).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t1 = new Date(2014,0,1).toLocaleString(),
@@ -150,9 +150,9 @@ document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",0,"<br />",t0,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_87dd4781-6556-400f-a950-8295d757334a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_87dd4781-6556-400f-a950-8295d757334a');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a499e2a0-0fd6-42dd-ad98-ebb3eb019b4f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a499e2a0-0fd6-42dd-ad98-ebb3eb019b4f');" /></p>
 <p>0Day的设计，其实还有一个巨大的好处，我们调用new Date就可以轻松拿到当月的最后一号，而不用你自己去考虑大小月、闰年2月。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_61933030-62e8-41e6-8356-6d4300327b99"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_c74d2727-321c-4abf-bd36-5c3a23bcdaa1"><script type="text/javascript">
 var t1 = new Date(2014,1,0).toLocaleString(),
 	t2 = new Date(2014,2,0).toLocaleString(),
 	t3 = new Date(2014,3,0).toLocaleString(),
@@ -161,9 +161,9 @@ document.write(t1,"<br />");
 document.write(t2,"<br />");
 document.write(t3,"<br />");
 document.write(t4,"<br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_61933030-62e8-41e6-8356-6d4300327b99');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_61933030-62e8-41e6-8356-6d4300327b99');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c74d2727-321c-4abf-bd36-5c3a23bcdaa1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c74d2727-321c-4abf-bd36-5c3a23bcdaa1');" /></p>
 <p>全文结束。<br>插一个小问题，在知乎上看见有人提问javascript 里面为什么不提供date的格式化函数？其实在Firefox上是提供了一个toLocaleFormat方法的。</p>
-<p><textarea class="runcode_text" id="runcode_7ae3c08b-8330-49f7-b9be-0a323c32a51f"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_7c384496-7459-4d73-adc9-ceb16aaa84ba"><script type="text/javascript">
 (function(){
 	if(!new Date().toLocaleFormat) return alert("Date has no method 'toLocaleFormat'");
 	var t1 = new Date().toLocaleFormat("%y/%m/%d");
@@ -173,7 +173,7 @@ document.write(t4,"<br />");
 	document.write(t2,"<br />");
 	document.write(t3,"<br />");
 })();
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7ae3c08b-8330-49f7-b9be-0a323c32a51f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7ae3c08b-8330-49f7-b9be-0a323c32a51f');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7c384496-7459-4d73-adc9-ceb16aaa84ba');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7c384496-7459-4d73-adc9-ceb16aaa84ba');" /></p>
 
       </div>
     </div>
@@ -182,7 +182,7 @@ document.write(t4,"<br />");
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2018/09/19/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/">
+    <a class="post-nav-item-left" href="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -216,6 +216,8 @@ document.write(t4,"<br />");
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -266,7 +268,7 @@ document.write(t4,"<br />");
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -307,7 +309,18 @@ document.write(t4,"<br />");
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

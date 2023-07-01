@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -131,7 +131,7 @@ runcode.copy=function(element){
         
         <p>今天介绍两个小技巧，与float，margin负值有关。</p>
 <p>众所周知：<br>inline元素的水平居中可以用text-align:center;<br>block元素的水平居中可以用margin:0 auto; (设置宽度后，方显效果)。<br>block元素设置float:left;后，如果幸运，我们知道其确定的宽度值，则可以用left:50%;margin-left:-width&#x2F;2;来实现。<br>那么，当我们不确定知道block具体要达到的宽度时，该如何办呢？<br>这种情况，常见于菜单栏居中，而因为某些原因，各个菜单项的宽度很难去确定，造成菜单栏宽度的不确定。<br>当然，我们也可以使用inline元素来嵌套菜单项（即使菜单项是block元素，也未尝不可），父级使用text-align:center;来居中。<br>而下面的方法也不错，值得吸收的小技巧。</p>
-<p><textarea class="runcode_text" id="runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_3f5ed97b-74d0-446b-8fb9-b8c3af5272e7"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -177,9 +177,9 @@ runcode.copy=function(element){
 	</div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4b80f287-8c2c-4440-b10a-1634deabdf1f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3f5ed97b-74d0-446b-8fb9-b8c3af5272e7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3f5ed97b-74d0-446b-8fb9-b8c3af5272e7');" /></p>
 <p>下面介绍第二个简单的技巧。<br>它应用于横版布局的宽度自适应，因为我们同样不知道横版最终达到的宽度是多少。<br>尽管这种布局很少见，但里面的技巧其实用处很广。</p>
-<p><textarea class="runcode_text" id="runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_e4f3f0e2-5b24-4694-8eeb-30e281dc114b"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -221,10 +221,10 @@ runcode.copy=function(element){
 </ul>
 </body>
 </html>
-</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_497c0e85-2c75-49a8-a0fc-c361bdb88540');" /></p>
+</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e4f3f0e2-5b24-4694-8eeb-30e281dc114b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e4f3f0e2-5b24-4694-8eeb-30e281dc114b');" /></p>
 <p>里面的技巧其实就是个margin负值。<br>应用margin负值来完成预定的布局，往往有“柳暗花明”的效果。</p>
 <p>&#x2F;************** 额外奉送第三个小技巧 **************&#x2F;<br>文本单行居中，多行居左的效果。</p>
-<p><textarea class="runcode_text" id="runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_88859fac-ae11-495a-af21-674f1bfa0ec4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -242,7 +242,7 @@ runcode.copy=function(element){
 <span>让我们荡起双桨,小船儿推开波浪,海面倒映着美丽的白塔,四周环绕着绿树红墙~</span>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fa5e4a89-70d0-4847-b5c5-43e670e42b96');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_88859fac-ae11-495a-af21-674f1bfa0ec4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_88859fac-ae11-495a-af21-674f1bfa0ec4');" /></p>
 
 
       </div>
@@ -286,6 +286,8 @@ runcode.copy=function(element){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -336,7 +338,7 @@ runcode.copy=function(element){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -377,7 +379,18 @@ runcode.copy=function(element){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

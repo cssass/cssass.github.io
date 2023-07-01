@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -133,7 +133,7 @@ runcode.copy=function(element){
 <p>既然是引子，那就不能开门见山的介绍了，我们先讲讲如何复制canvas.<br>已知一个image对象，我们将其绘制进canvas的方法是什么？drawImage。（当然使用createPattern模板填充也是一个方法）。<br>那已知一个canvas对象，我们将其绘制进另一个canvas的方法呢？<br>答案还是drawImage，drawImage算是一个很辽阔的方法了，不仅可以绘image，也可以绘canvas对象，甚至还可以绘video的帧。</p>
 <p>并且他拥有大量参数：(Image [, vXSrc] [, vYSrc] [, vWSrc] [, vHSrc], vXDest, vYDest [, vWDest] [, vHDest])，这个读者可以先不管，往下看。</p>
 <p>那么，除了drawImage这个方法，还有没有其他方法呢——有，putImageData方法隆重登场。</p>
-<p><textarea class="runcode_text" id="runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_29de929f-143f-45f0-acf5-801976a5aa38"><!DOCTYPE html>
 <html>
 <head>
 <title>canvas绘制与复制及像素级复制</title>
@@ -223,7 +223,7 @@ imgObj.addEventListener('load',function(){
 	clone();
 	cloneData();
 },false);
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_531974e6-1c9b-4aba-bcf8-9f129bc015fa');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_29de929f-143f-45f0-acf5-801976a5aa38');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_29de929f-143f-45f0-acf5-801976a5aa38');" /></p>
 
 <p>上面的cloneData方法就是通过将源canvas中像素数据ImageData，输出(putImageData)到新的canvas中，达到复制作用。</p>
 <p>不过，我们在获取和输出ImageData的过程中，并没有对ImageData做过任何处理，而这个ImageData数据是包含{width,height,CanvasPixelArray},其中CanvasPixelArray包含了图像(canvas也可看做图像)的每一个像素的RGBA数据，可见中间的操作空间是很大的，以后我们会做重点讨论。</p>
@@ -233,7 +233,7 @@ imgObj.addEventListener('load',function(){
 <p>createImageData的参数是(w,h)可以新建一个W*H尺寸的新的ImageData【firefox3.5开始支持】，不过也可以使用参数(anotherImageData)来创建【firefox5开始支持】。</p>
 <p>getImageData的参数（x,y,w,h）表示起点x,y,尺寸w,h。可以获取canvas.context中在参数范围内的ImageData。</p>
 <p>putImageData的参数使用要着重要介绍下（和drawImage的参数可以触类旁通）：</p>
-<p><textarea class="runcode_text" id="runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_30708a03-8e05-4b25-abdc-dd47c1144a00"><!DOCTYPE html>
 <html>
 <head>
 <title>putImageData的参数</title>
@@ -266,7 +266,7 @@ imgObj.addEventListener('load',function(){
 		ctx2.putImageData(imagePix,0,0,100,100,50,50); //后面四个可选参数表示可见区范围。缺省为：0,0,ImageData.width,ImageData.height
 	}
 })()
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7a1eb40e-80c8-4ec1-bd85-b7956e7e9e2f');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_30708a03-8e05-4b25-abdc-dd47c1144a00');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_30708a03-8e05-4b25-abdc-dd47c1144a00');" /></p>
 
 <p>putImageData参数有(ImageData, dx, dy [, DirtyX] [, DirtyX] [, DirtyWidth] [, DirtyHeight])</p>
 <p>imageData：包含了图像的width,height,还有一个CanvasPixelArray，前面已经提了。<br>dx, dy：表示绘图起始位置。相对于canvas区域左上角。<br>后面四个可选参数：表示可见区范围。相对于起绘点，即上面的参数dx,dy表示的点。缺省为0,0,ImageData.width,ImageData.height。</p>
@@ -312,6 +312,8 @@ imgObj.addEventListener('load',function(){
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -362,7 +364,7 @@ imgObj.addEventListener('load',function(){
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -403,7 +405,18 @@ imgObj.addEventListener('load',function(){
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

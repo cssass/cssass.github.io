@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -134,7 +134,7 @@ runcode.copy=function(element){
         <p>mozilla developer center的关于canvas的教程集Canvas tutorial，可说是目前入门canvas教程中最棒的了。<br>教程列表：<br>Basic usage(中译：基本用法)<br>Drawing shapes(中译：绘制图形)<br>Using images(中译：使用图像)<br>Applying styles and colors(中译：运用样式与颜色)<br>Transformations(中译：变形)<br>Compositing(中译：组合)<br>Basic animations(中译：基本动画)</p>
 <p>以下是个人的一点笔记，涵盖了教程中所有知识点。但只适用于个人，存此备忘。</p>
 <p>canvas_ABC</p>
-<p><textarea class="runcode_text" id="runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_b8ae49d3-14b5-4e69-ab55-fd1c601bf609"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -206,9 +206,9 @@ con6.fillStyle='black';
 con6.fillText('hello HTML5',0,300);
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_76d42108-b2d7-4c35-ae60-8c86568a8f0d');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b8ae49d3-14b5-4e69-ab55-fd1c601bf609');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b8ae49d3-14b5-4e69-ab55-fd1c601bf609');" /></p>
 <p>canvas_DEF</p>
-<p><textarea class="runcode_text" id="runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_6eb93225-d587-4a61-aaa9-d77c2dadb5fd"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -257,10 +257,10 @@ con1.restore();
 }()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_eb390e97-aa96-4ff6-9671-6bb7a89a7c52');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6eb93225-d587-4a61-aaa9-d77c2dadb5fd');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6eb93225-d587-4a61-aaa9-d77c2dadb5fd');" /></p>
 
 <p>canvas_HIJ</p>
-<p><textarea class="runcode_text" id="runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_3accf91d-c0f6-4d33-b1ad-7c808a9005b7"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -345,7 +345,7 @@ function drawStar(con2,r){  //五角星的画法
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8c9a01c1-68eb-4434-b643-23f54f5ab48b');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3accf91d-c0f6-4d33-b1ad-7c808a9005b7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3accf91d-c0f6-4d33-b1ad-7c808a9005b7');" /></p>
       </div>
     </div>
   </article>
@@ -387,6 +387,8 @@ function drawStar(con2,r){  //五角星的画法
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -437,7 +439,7 @@ function drawStar(con2,r){  //五角星的画法
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -478,7 +480,18 @@ function drawStar(con2,r){  //五角星的画法
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 

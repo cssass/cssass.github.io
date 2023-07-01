@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
       
-        如何获取元素的尺寸和位置——两个冷门方法 | Mr.Drive2Far
+        一.如何计算年化收益——复利公式 | Mr.Drive2Far
       
     </title>
     <meta name="description" content=""/>
@@ -107,15 +107,15 @@ runcode.copy=function(element){
   <article class="post-content">
     <div class="post-inner">
       <div class="post-content__head">
-        <div class="post-title">如何获取元素的尺寸和位置——两个冷门方法</div>
+        <div class="post-title">一.如何计算年化收益——复利公式</div>
         <div class="post-info">
           
   
-    <a href="/tags/DOM/" class="post-tag">#DOM</a>
+    <a href="/tags/%E5%A4%8D%E5%88%A9/" class="post-tag">#复利</a>
   
 
 
-          <span class="post-date">2012-01-04</span>
+          <span class="post-date">2018-09-15</span>
         </div>
       </div>
       <div id="postBody" class="post-content__body">
@@ -129,78 +129,37 @@ runcode.copy=function(element){
             
           </div>
         
-        <p>获取元素的尺寸，似乎offsetWidth&#x2F;Height就可以了，还需要什么方法吗？<br>的确，一般情况下，获取元素尺寸，用offsetWidth&#x2F;Height就搞定了，但如果这个元素是display:none的呢？<br>试验一下就知道，none元素的尺寸是0。</p>
-<p>所以需要我们下面的这个方法来获取。</p>
-<p><textarea class="runcode_text" id="runcode_e03c92a5-c2f3-4924-be1e-ecfa2f79bf3a"><!doctype html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>获取display:none元素的size</title>
-<style>
-body{color:#ccc;}
-</style>
-</head>
-<body>
-	<div id="box" style="width:100px;height:100px;padding:20px;border:10px solid #ccc;display:none;">asdd</div>
-</body>
-<script type="text/javascript">
-function $id(o){
-	return document.getElementById(o);
-}
-var getSize = function(elem){
-	if(elem.offsetWidth !== 0){
-		/* 元素不是display:none的情况，这个时候是能得到尺寸的 */
-		return {'width':elem.offsetWidth,
-				'height':elem.offsetHeight
-		};
-	}
-	var old = {};
-	/* 将display:none元素设成visibility:hidden */
-	var options = { position: "absolute", visibility: "hidden", display:"block" }
-	for ( var name in options ) {
-		old[ name ] = elem.style[ name ];
-		elem.style[ name ] = options[ name ];
-	}
-	var temp = {'width':elem.offsetWidth,
-				'height':elem.offsetHeight};
-	for ( var name in options ) {
-		elem.style[ name ] = old[ name ];
-	}
-	return temp;
-};
-alert(getSize($id("box")).height)
-</script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e03c92a5-c2f3-4924-be1e-ecfa2f79bf3a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e03c92a5-c2f3-4924-be1e-ecfa2f79bf3a');" /></p>
+        <p>年化收益率的概念随着余额宝的热潮已经非常普及了。当余额宝年化收益率是5%时，就表示100万本金一年能赚5万块，这是一个非常直观的投钱指标。那为什么叫年化收益率而不叫年收益率呢？因为真实收益率本身是在波动的，你今天的收益率，明天的收益率，今年的收益率，明年的收益率都是在波动而且有一部分是不确定的。所以才有这种年化收益率的概念，它其实是一个根据当前已知收益值通过计算后给出的预估的值。</p>
+<p>如下图显示，2018&#x2F;09&#x2F;16日某货币基金的7日年化为2.9030%，它是根据过去7天的收益情况计算得出的值。</p>
+<img src="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/1.webp" class="">
 
-<p>第二个，获取元素的位置。<br>或许你经常使用offsetLeft&#x2F;Top来获取位置，不过offsetLeft&#x2F;Top是相对 offsetParent的位置（在ie6，7下是相对直接父级的),并且在firefox下还有些小bug</p>
-<p>下面这个方法提供获取元素相对于窗口（页面可视区）的距离。</p>
-<p><textarea class="runcode_text" id="runcode_934f685c-ef39-4696-aa63-c40557a80ab1"><!doctype html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>元素相对窗口左上角的值（ie下没有width，height值）</title>
-<style>
-*{padding:0;margin:0;}
-#box{position:absolute;left:200px;width:100px;height:200px;border:5px solid #ccc;background:#eee;}
-</style>
-</head>
-<body>
-	<div id="box"></div>
-</body>
-<script type="text/javascript">
-	var box = document.getElementById("box");
-	var pos = box.getBoundingClientRect();
-	box.innerHTML = "top:"+pos.top +
-					"<br />left:"+pos.left +
-					"<br />bottom:"+pos.bottom +
-					"<br />right:"+pos.right +
-					"<br />width:"+pos.width +
-					"<br />height:"+pos.height
-</script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_934f685c-ef39-4696-aa63-c40557a80ab1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_934f685c-ef39-4696-aa63-c40557a80ab1');" /></p>
 
-<p>这个方法是由ie提出的，不过在其他浏览器吸收之后，还加了width，height两个值。</p>
-<p>重复一下，这个方法是相对于页面窗口的，至于相对于整个页面文档的距离，那只需加上scrollTop这些值就行了，不做赘述。</p>
+<p>从上图中，我们还看到另一个指标值：万份收益，相比年化收益率，虽然它也是一个波动的值，但却是一个已知确定的值。7日年化收益率就是通过它去预估计算的。图中显示的万份收益是前一天的值，它是一个已确定的值，反映的是前一日的收益率，即昨天每一万元(一份值一元)赚到了0.7374元收益，日收益率即为：0.007374%。</p>
+<p>一些摘取2018&#x2F;9&#x2F;9——2018&#x2F;9&#x2F;15这7日的万份收益数据，我们看一下七日年化的计算过程：</p>
+<img src="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/2.webp" class="">
+
+<p>[0.7374, 0.7374, 1.0763, 0.7400, 0.7322, 0,7392, 0.7261]。<br>使用银行利息算法，一年的年利率计算只需7天总收益除7天再乘以365天即可：(0.7374 + 0.7374 + 1.0763 + 0.7400 + 0.7322 +  0.7392 + 0.7261) &#x2F; 7 * 365 &#x2F; 10000 &#x3D; 2.8619%。</p>
+<img src="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/3.webp" class="">
+<p>&#x3D;0.0286191<br>但是，通过对比余额宝显示的2.9030%，我们的计算结果偏低了。</p>
+<p>原因是余额宝采用了日复利计息方式，而不是银行定存的单利法计息，复利也就是通俗所说的利滚利，利息计算有两种方式，一种是单利法，只算本金的利息，不考虑利息产生的利息，第二种是就是复利法，利息算入本金一起算下一期的利息。</p>
+<p>为了方便讲解，我们先看下面的问题：</p>
+<p>有这样一个项目，100万的资金，投资三年，每年有10%的复利，到第三年期满能拿到多少钱？</p>
+<p>按照10%利息，100万第一年将增值为：100万 + 100万 * 0.1 &#x3D; 110万，到第二年增值为：110万 + 110万 * 0.1 &#x3D; 121万，等到第三年拿到回报时为：121万 + 121万*0.1 &#x3D; 133.1万。</p>
+<p>整理成公式就是：F &#x3D; P * (1+i)^n 。</p>
+<img src="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/4.webp" class="">
+
+<p>其中P是现值&#x3D;100万，i是年利率&#x3D;0.1，n是周期&#x3D;3年。重新使用公式计算，终值 F &#x3D; <a href="https://www.wolframalpha.com/input/?i=100*(1+0.1)%5E3" title="" target="">100*(1+0.1)^3 &#x3D; 133.1万</a>。</p>
+<p>以上利用复利法根据现值求终值的过程，叫做复利过程，而这个公式就是复利公式。</p>
+<p>有了复利公式，我们来算一下余额宝的10000元，在0.000078408的日复利下 (7日平均收益率 &#x3D; (0.7374 + 0.7374 + 1.0763 + 0.7400 + 0.7322 +  0.7392 + 0.7261)  &#x2F; 7 &#x2F; 10000 )，365天之后能拿到多少钱。 F &#x3D; <a href="https://www.wolframalpha.com/input?i=10000+*+(1+++0.000078408+)%5E365" title="" target="">10000 * (1 + 0.000078408 )^365 &#x3D; 10290.3</a> 。</p>
+<p>那么年化利率就好算了：(10290.3 - 10000)&#x2F;10000 &#x3D; 2.903% ，与余额宝上面的显示一致，因为这个结果是根据最近7日算出来的，所以叫做7日年化收益率。</p>
+<p>余额宝的年化收益率是平台帮你算好的，那么其他项目我们如何自己去算年化收益率呢？</p>
+<p>我们看一下这个题：周立波事件中“某某”，于2013年以公司名义斥资930万美元买入一套豪宅，与其说是一栋独立屋，不如说是一座城堡。早在1995年时，将这套房卖给某某的业主从更早一个业主手中以155万美元买入。那么这笔交易原业主在1995年至2013年这18年间的年化收益率是多少呢？</p>
+<img src="/2018/09/15/%E4%B8%80-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%B9%B4%E5%8C%96%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9%E5%85%AC%E5%BC%8F/5.webp" class="">
+
+<p>还是使用原来的复利公式：F &#x3D; P * (1+i)^n， 已知终值F，现值P，求利率i， 转换一下公式：i &#x3D; (F&#x2F;P)^(1&#x2F;n) - 1。</p>
+<p>带入公式：i &#x3D; <a href="https://www.wolframalpha.com/input/?i=((930/155)%5E(1/(2013-1995))+-1)+*+100" title="" target="">(930&#x2F;155)^(1&#x2F;(2013-1995)) - 1</a> &#x3D; 10.46%</p>
+<p>即这套房产，在1995年到2013年这18年间，每年的收益率是10.46%</p>
+<p>结语：学会复利公式之后，并不能帮大家赚钱，但能帮大家看别人赚了多少钱，可以说非常有用了。</p>
 
       </div>
     </div>
@@ -209,7 +168,7 @@ alert(getSize($id("box")).height)
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2012/01/06/canvas%E7%9A%84%E5%83%8F%E7%B4%A0%E7%BA%A7%E6%93%8D%E4%BD%9C%E2%80%94%E2%80%941-%E5%BC%95%E5%AD%90/">
+    <a class="post-nav-item-left" href="/2018/09/16/%E4%BA%8C-%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%E6%94%B6%E7%9B%8A%E2%80%94%E2%80%94%E6%8A%98%E7%8E%B0%E5%85%AC%E5%BC%8F/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"
@@ -220,12 +179,12 @@ alert(getSize($id("box")).height)
         </svg>
         <span class="text-small">上一篇</span>
       </div>
-      <div>canvas的像素级操作——1.引子</div>
+      <div>二.如何评估收益——折现公式</div>
     </a>
   
   <div class="vhr"></div>
   
-    <a class="post-nav-item-right" href="/2011/12/18/mouseenter-mouseleave%E4%BA%8B%E4%BB%B6%E5%92%8Cdelegate%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+    <a class="post-nav-item-right" href="/2014/08/16/date%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%8C%96month%EF%BC%8Cday%E5%8F%82%E6%95%B0%E7%9A%84%E5%A5%87%E8%91%A9%E8%AE%BE%E5%AE%9A%E7%9A%84%E8%A7%A3%E9%87%8A/">
       <div class="text-align">
         <span class="text-small">下一篇</span>
         <svg t="1670570876164"
@@ -237,7 +196,7 @@ alert(getSize($id("box")).height)
           <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
         </svg>
       </div>
-      mouseenter/mouseleave事件和delegate方法的实现
+      Date对象初始化Month，Day参数的奇葩设定的解释
     </a>
   
 </div>

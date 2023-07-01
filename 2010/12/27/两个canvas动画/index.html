@@ -37,7 +37,7 @@
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
   <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
 .runcode p{margin:0;}
@@ -132,7 +132,7 @@ runcode.copy=function(element){
         <p>几星期前参加ie9开发大赛做了一个《ie9大风车》（呃，我承认名字很挫）。</p>
 <p>这个小玩意的难度在于，里面的所有东西都不是图片，而是用canvas写的，之前写的贝塞尔曲线的可视化操作实现倒是帮了大忙，不过据说AI已有插件直接导出canvas绘图代码了，那我的手写代码的生产力就太落后了。</p>
 <p>支持的浏览器包括ie9,firefox,chrome,safari。在opera下有个bug,暂时无法修复。</p>
-<p><textarea class="runcode_text" id="runcode_f54f28ef-5a2b-4aff-9ea5-c8ec5947c967"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_a773f6d5-1585-4b24-882a-d46ad331a39f"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -321,11 +321,11 @@ window.onload=function(){
 };
 window.onresize=function(){drawBg();}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f54f28ef-5a2b-4aff-9ea5-c8ec5947c967');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f54f28ef-5a2b-4aff-9ea5-c8ec5947c967');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a773f6d5-1585-4b24-882a-d46ad331a39f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a773f6d5-1585-4b24-882a-d46ad331a39f');" /></p>
 
 <p>下面是另一个玩意《忍者镖》，话说是受了这个大赛（<a target="_blank" rel="noopener" href="http://js1k.com/2010-first/demos%EF%BC%89%E7%9A%84%E5%88%BA%E6%BF%80%E6%89%8D%E5%86%99%E7%9A%84%E3%80%82">http://js1k.com/2010-first/demos）的刺激才写的。</a><br>在这个大赛里，所有的Demo都必须小于1KB。</p>
 <p>于是，我就把我的代码往死里压。从这样：</p>
-<p><textarea class="runcode_text" id="runcode_990482ec-331e-4f1e-ada1-77c82291828b"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_2ac25930-2a45-4697-a776-8163bb367403"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -438,9 +438,9 @@ window.onload=function(){
 };
 window.onresize=function(){drawBg();}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_990482ec-331e-4f1e-ada1-77c82291828b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_990482ec-331e-4f1e-ada1-77c82291828b');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2ac25930-2a45-4697-a776-8163bb367403');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2ac25930-2a45-4697-a776-8163bb367403');" /></p>
 <p>斩头去尾，挖心掏肺，搞成这样：</p>
-<p><textarea class="runcode_text" id="runcode_17237622-4a14-4e65-b947-09c3ac5b9dcb"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_8729e2c9-4ad2-42a8-ac0a-600f6144968e"><!doctype html>
 <html>
 <head>
 <style>
@@ -452,7 +452,7 @@ canvas{position:absolute;top:0;left:0;}
 <script type="text/javascript">
 function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function(){function a(){function e(){if(f<Math.PI*8){f+=0.1;c.a+=d*0.1;c.b.clearRect(0,0,400,400);c.c();c.timeout=setTimeout(e,10)}else{d=-d;c.timeout=setTimeout(a,10)}}var f=0;e()}var d=1,c=b;a()};b.c=function(){var a=b.b;a.save();a.translate(200,200);a.rotate(b.a);if(b.a===0)b.a=0.0010;a.scale(b.a/10,b.a/10);a.strokeStyle="#333";a.fillStyle="#eee";a.lineWidth=1;a.beginPath();a.moveTo(20,-20);a.lineTo(80,0);a.lineTo(20,20);a.lineTo(0, 80);a.lineTo(-20,20);a.lineTo(-80,0);a.lineTo(-20,-20);a.lineTo(0,-80);a.lineTo(20,-20);a.translate(0,0);a.arc(0,0,8,0,Math.PI*2,true);a.stroke();a.fill();a.restore()};b.create=function(){var a=document.createElement("canvas");a.width=400;a.height=400;b.b=a.getContext("2d");document.body.appendChild(a)}}window.onload=function(){for(var b=0;b<10;b++)(new g).d({a:b*0.1})};
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_17237622-4a14-4e65-b947-09c3ac5b9dcb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_17237622-4a14-4e65-b947-09c3ac5b9dcb');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8729e2c9-4ad2-42a8-ac0a-600f6144968e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8729e2c9-4ad2-42a8-ac0a-600f6144968e');" /></p>
 <p>结果，我的文件大小依然超出1KB，不得不佩服那些1KB Demos啊，个顶个的又小又炫。</p>
 
       </div>
@@ -496,6 +496,8 @@ function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function()
 </div>
 
     
+    
+      <div id="gitalk-container"></div>
     
   </div>
 
@@ -546,7 +548,7 @@ function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function()
                 
                   <div class="text">
                     <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
-                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/">github</a>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
                   </div>
                 
                   <div class="text">
@@ -587,7 +589,18 @@ function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function()
       </div>
     </div>
     
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
   
   
 
