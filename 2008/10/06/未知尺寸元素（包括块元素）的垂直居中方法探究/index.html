@@ -134,7 +134,7 @@ runcode.copy=function(element){
 <li>我们一般会设置height&#x3D;line-height来使一行内文字(及inline元素)可以垂直居中，那能不能推而广之呢？遗憾，单纯设置外层height&#x3D;line-height使image等可置换元素垂直居中，在ie6下是行不通的。见小结line-height和vertical-align, image等可置换元素尚且不行，更别提div等块级元素了。</li>
 <li>利用display的一个属性：table-cell。其实这个方法用来支持垂直居中，那是舍我其谁啊，可惜的是ie8以下的浏览器并不支持display:table-cell;<br>我们可以看一下：</li>
 </ol>
-<p><textarea class="runcode_text" id="runcode_b7d3caa4-ed20-4b2b-9230-685d78188472"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_d09ef017-8f8b-4dab-b920-5620752a6e7a"><!DOCTYPE HTML>
 <html>
 <head>
 <meta  charset="utf-8" />
@@ -161,11 +161,11 @@ runcode.copy=function(element){
 	</div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b7d3caa4-ed20-4b2b-9230-685d78188472');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b7d3caa4-ed20-4b2b-9230-685d78188472');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d09ef017-8f8b-4dab-b920-5620752a6e7a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d09ef017-8f8b-4dab-b920-5620752a6e7a');" /></p>
 
 <p>我们发现以上代码在ie6，ie7之下并不能完成我们的要求。</p>
 <p>下面，在我们的新方法中，我们得引入一个空标签。</p>
-<p><textarea class="runcode_text" id="runcode_92c76147-00d1-4b42-a7a8-3dc1eb27fca3">
+<p><textarea class="runcode_text" id="runcode_ad389af6-fd1b-41c0-8045-0a10c798b9be">
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -199,9 +199,9 @@ runcode.copy=function(element){
 		<span class="edge"></span> <!-- 引入作为垂直对齐的空标签 -->
 	</div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_92c76147-00d1-4b42-a7a8-3dc1eb27fca3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_92c76147-00d1-4b42-a7a8-3dc1eb27fca3');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ad389af6-fd1b-41c0-8045-0a10c798b9be');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ad389af6-fd1b-41c0-8045-0a10c798b9be');" /></p>
 <p>这种方法在<a target="_blank" rel="noopener" href="http://www.deviantart.com/%E7%BD%91%E7%AB%99%E4%B8%8A%E5%BE%88%E6%97%A9%E5%B0%B1%E5%BA%94%E7%94%A8%E4%BA%86%E3%80%82%E4%B8%8D%E8%BF%87%EF%BC%8C%E4%BA%BA%E5%AE%B6%E9%92%88%E5%AF%B9firefox,opera%E7%AD%89%E6%94%AF%E6%8C%81table-cell%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BD%BF%E7%94%A8display:table-cell">http://www.deviantart.com/网站上很早就应用了。不过，人家针对firefox,opera等支持table-cell的浏览器使用display:table-cell</a>;<br>而只对ie6,7这两个异类使用了空标签来达到效果。</p>
-<p><textarea class="runcode_text" id="runcode_ca0e6fd3-6b82-47dc-b9ef-6bff3194d18a"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_47e88c12-f3c7-4bc2-9342-0b5f52dcf041"><!DOCTYPE HTML>
 <html>
 <head>
 <meta  charset="utf-8" />
@@ -236,7 +236,7 @@ runcode.copy=function(element){
 		<span class="edge"></span>
 	</div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ca0e6fd3-6b82-47dc-b9ef-6bff3194d18a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ca0e6fd3-6b82-47dc-b9ef-6bff3194d18a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_47e88c12-f3c7-4bc2-9342-0b5f52dcf041');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_47e88c12-f3c7-4bc2-9342-0b5f52dcf041');" /></p>
 
 
       </div>
@@ -246,7 +246,7 @@ runcode.copy=function(element){
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2008/11/20/position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
+    <a class="post-nav-item-left" href="/2008/11/20/Position%E5%AE%9A%E4%BD%8D%E5%B7%A7%E5%81%9A%E5%BD%A9%E8%99%B9%E5%AD%97%EF%BC%8C%E5%80%92%E5%BD%B1%E5%AD%97%E6%95%88%E6%9E%9C/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

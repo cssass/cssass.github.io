@@ -134,7 +134,7 @@ runcode.copy=function(element){
 <p>人们总是喜欢用这样一个类比:想象生活在三维空间中的一张二维平面画中的扁片人,不管这幅画多么丰富多彩,其中的二维人只能看到周围世界的侧面,在他们眼中,周围的人和事物都是一些长短不一的线段而已。只有当一个二维扁片人从画中飘出来,进人三维空间,再回头看那幅画,才能看到画的全貌。<br>这个类比,其实也只是进一步描述了四维感觉的不可描述。</p>
 <p>关于《三体——死神永生》里四维空间（不算时间维）的讨论，这里还有篇有意思的博文：四维世界的堵车问题</p>
 <p>好了，言归正传。<br>下面提供一个三维到二维的投影算法（from <a href="http://www.benjoffe.com）：">www.benjoffe.com）：</a></p>
-<p><textarea class="runcode_text" id="runcode_b9cdf329-2963-44a8-8bd6-6cffde77cae3">var theta = 4.2; //转角
+<p><textarea class="runcode_text" id="runcode_141307e4-d0f5-44a9-a467-33eec47ca695">var theta = 4.2; //转角
 var eleva = 0.6; //仰角
 function iso(x,y,z){
 var dist = Math.sqrt(x*x+y*y);
@@ -151,11 +151,11 @@ return {
 x: x,
 y: y
 };
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b9cdf329-2963-44a8-8bd6-6cffde77cae3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b9cdf329-2963-44a8-8bd6-6cffde77cae3');" /></p>
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_141307e4-d0f5-44a9-a467-33eec47ca695');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_141307e4-d0f5-44a9-a467-33eec47ca695');" /></p>
 
 <p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
 <p>我们应用一下：下面是一个3D球</p>
-<p><textarea class="runcode_text" id="runcode_5f1106da-ae07-49bb-8a56-4b745fbb980a"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_b0f70105-f66c-442b-8f04-40597673c3b8"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -244,11 +244,11 @@ body{background:#cbe846;}
 	};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5f1106da-ae07-49bb-8a56-4b745fbb980a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5f1106da-ae07-49bb-8a56-4b745fbb980a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b0f70105-f66c-442b-8f04-40597673c3b8');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b0f70105-f66c-442b-8f04-40597673c3b8');" /></p>
 
 <p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
 <p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
-<p><textarea class="runcode_text" id="runcode_9f5ef1c2-61ac-46d0-a8e7-c27ecb5cabf7"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -330,12 +330,12 @@ body{background:#efd5e2;}
 		}
 	}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9f5ef1c2-61ac-46d0-a8e7-c27ecb5cabf7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9f5ef1c2-61ac-46d0-a8e7-c27ecb5cabf7');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607');" /></p>
 
 <p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
 <p>x&#x3D;rsinθcosφ 　<br>y&#x3D;rsinθsinφ 　　<br>z&#x3D;rcosθ</p>
 <p>呃哦，代入iso函数后我们发现iso变的更简单了：</p>
-<p><textarea class="runcode_text" id="runcode_63c08234-bbce-4ca1-950a-3a820893808d">var theta = 4.2; //转角
+<p><textarea class="runcode_text" id="runcode_6dd038d4-9f32-437e-b08a-656784d1a6df">var theta = 4.2; //转角
 var eleva = 0.6; //仰角
 function iso(a,b,r){
 var x,y,z
@@ -351,10 +351,10 @@ return {
 x: x,
 y: y
 };
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_63c08234-bbce-4ca1-950a-3a820893808d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_63c08234-bbce-4ca1-950a-3a820893808d');" /></p>
+}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6dd038d4-9f32-437e-b08a-656784d1a6df');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6dd038d4-9f32-437e-b08a-656784d1a6df');" /></p>
 
 <p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
-<p><textarea class="runcode_text" id="runcode_849fab17-13c1-40c2-b994-3ac0f0c88db6"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -447,7 +447,7 @@ y: y
 	};
 	new Ball(2,2,1).fluc();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_849fab17-13c1-40c2-b994-3ac0f0c88db6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_849fab17-13c1-40c2-b994-3ac0f0c88db6');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a');" /></p>
 
 
 
@@ -458,7 +458,7 @@ y: y
     
     <div class="post-nav">
   
-    <a class="post-nav-item-left" href="/2011/03/09/css3%E7%BB%98%E5%88%B6%E5%AF%B9%E8%AF%9D%E6%A1%86/">
+    <a class="post-nav-item-left" href="/2011/03/09/CSS3%E7%BB%98%E5%88%B6%E5%AF%B9%E8%AF%9D%E6%A1%86/">
       <div class="text-align">
         <svg t="1670570876164"
              class="icon"

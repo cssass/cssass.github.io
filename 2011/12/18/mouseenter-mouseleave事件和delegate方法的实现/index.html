@@ -132,7 +132,7 @@ runcode.copy=function(element){
         <p>众所周知，事件onmouseover和onmouseout有一个极其不好的问题，就是在绑定元素内部的子元素上滑动会反复触发事件，及执行绑定的方法。</p>
 <p>而ie在很早的时候有提供了另一对事件：mouseenter和mouseleaver。顾名思义，就是只有当mouse滑进滑出绑定元素的时候，才会触发。</p>
 <p>但是，这本来只是ie的私有属性，虽然已属于DOM3 Event草案当中，其他浏览器的支持率并不是很高，目前看来，Opera11.10已提供支持，而Firefox到10.0会提供支持，Webkit的暂无消息。<br>所以，如果想要用，我们得自己动手。</p>
-<p>先搞一个通用的事件绑定函数：<br> <p><textarea class="runcode_text" id="runcode_bfbd1774-52c3-493a-b07c-e9613f4b2af0">var addEvent = function( target,type,fn ) {
+<p>先搞一个通用的事件绑定函数：<br> <p><textarea class="runcode_text" id="runcode_b3869fb8-4649-4b42-b78a-d417029fa966">var addEvent = function( target,type,fn ) {
     if(target.addEventListener)
     {
         target.addEventListener(type,fn,false);
@@ -152,7 +152,7 @@ var removeEvent = function(target,type,fn ) {
         target.detachEvent("on" + type,fn);
     }
 };
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bfbd1774-52c3-493a-b07c-e9613f4b2af0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bfbd1774-52c3-493a-b07c-e9613f4b2af0');" /></p><br>我们的mouseenter&#x2F;leave是通过mouseover&#x2F;out来实现的，只需屏蔽mouseover&#x2F;out在元素内部触发时的事件传播即可。<br> <p><textarea class="runcode_text" id="runcode_6ebc2ff6-03e3-4b01-be63-557824346ae2"><!DOCTYPE html>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b3869fb8-4649-4b42-b78a-d417029fa966');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b3869fb8-4649-4b42-b78a-d417029fa966');" /></p><br>我们的mouseenter&#x2F;leave是通过mouseover&#x2F;out来实现的，只需屏蔽mouseover&#x2F;out在元素内部触发时的事件传播即可。<br> <p><textarea class="runcode_text" id="runcode_9d76ed84-009f-4a90-9672-7ecbbc040417"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -251,8 +251,8 @@ events.removeEvent = function(obj,type,fn ) {
 	}
 })()
 </script>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6ebc2ff6-03e3-4b01-be63-557824346ae2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6ebc2ff6-03e3-4b01-be63-557824346ae2');" /></p><br>为了解除绑定，我们设计了一个events._mouseFn来保存绑定的方法，在解除操作时读取对应的方法进行解绑。因为事件可以绑定多个方法，我们需要保存对应的方法，以便之后对应解除。<br>当然如果这里如果按面向对象的思路实现，就可以各自保存，而不需要保持在同一个events._mouseFn对象下。但每绑定一个事件，都需实例化一个对象，显得很多余，所以不采用面向对象的模式。</p>
-<p>接下来是文章的第二部分，我们来实现下jquery中提供的delegate方法。<br>（delegate是live方法的扩展版。delegate是基于live的，live是基于bind的。在jquery1.7中又被封装进了on方法。1.7中的on方法是一个很辽阔的方法。其实封装的越厉害，效率就越差了，这也是为什么我们选择自己做简单封装的原因，而不是使用jquery已封装好的）。<br>这个方法可以将想要绑定在子级元素上的事件方法，委托绑定在其父级上，用事件传播机制来触发执行。<br>这么做的好处有：<br>1：如果子级有n个并列元素需要绑定，绑子级需要绑n次，而将其绑定在父级上则只需绑定一次，这是很高效的。<br>2：如果子级元素有动态增加的话，新增元素是没有绑定过任何事件方法的。而如果之前选择的是绑定其父级，就不会有这个问题。<br> <p><textarea class="runcode_text" id="runcode_07cbb643-1336-4d71-a4b1-67d39436165a"><!DOCTYPE html>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9d76ed84-009f-4a90-9672-7ecbbc040417');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9d76ed84-009f-4a90-9672-7ecbbc040417');" /></p><br>为了解除绑定，我们设计了一个events._mouseFn来保存绑定的方法，在解除操作时读取对应的方法进行解绑。因为事件可以绑定多个方法，我们需要保存对应的方法，以便之后对应解除。<br>当然如果这里如果按面向对象的思路实现，就可以各自保存，而不需要保持在同一个events._mouseFn对象下。但每绑定一个事件，都需实例化一个对象，显得很多余，所以不采用面向对象的模式。</p>
+<p>接下来是文章的第二部分，我们来实现下jquery中提供的delegate方法。<br>（delegate是live方法的扩展版。delegate是基于live的，live是基于bind的。在jquery1.7中又被封装进了on方法。1.7中的on方法是一个很辽阔的方法。其实封装的越厉害，效率就越差了，这也是为什么我们选择自己做简单封装的原因，而不是使用jquery已封装好的）。<br>这个方法可以将想要绑定在子级元素上的事件方法，委托绑定在其父级上，用事件传播机制来触发执行。<br>这么做的好处有：<br>1：如果子级有n个并列元素需要绑定，绑子级需要绑n次，而将其绑定在父级上则只需绑定一次，这是很高效的。<br>2：如果子级元素有动态增加的话，新增元素是没有绑定过任何事件方法的。而如果之前选择的是绑定其父级，就不会有这个问题。<br> <p><textarea class="runcode_text" id="runcode_2b6c4d27-1eb5-4ba7-ad61-4345987d9bd2"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -418,12 +418,12 @@ events.undelegate = function(obj,selector,type,fn){
 	events.delegate(outer,"#unbind","click",remove);
 })()
 </script>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_07cbb643-1336-4d71-a4b1-67d39436165a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_07cbb643-1336-4d71-a4b1-67d39436165a');" /></p><br>这里的实现思路是这样的：如果触发事件的元素，是你想要绑定的元素的子级（当然他肯定已是委托实际绑定元素的子级），就执行绑定的事件方法，否则方法就不执行，看上去就像方法没绑定过一样。<br>同实现onmouseenter一样，我们也设计了一个events._deleFn来用于后面的解绑方法undelegate的实现。<br>另外针对ie，我们还解决了两个问题：</p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2b6c4d27-1eb5-4ba7-ad61-4345987d9bd2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2b6c4d27-1eb5-4ba7-ad61-4345987d9bd2');" /></p><br>这里的实现思路是这样的：如果触发事件的元素，是你想要绑定的元素的子级（当然他肯定已是委托实际绑定元素的子级），就执行绑定的事件方法，否则方法就不执行，看上去就像方法没绑定过一样。<br>同实现onmouseenter一样，我们也设计了一个events._deleFn来用于后面的解绑方法undelegate的实现。<br>另外针对ie，我们还解决了两个问题：</p>
 <ol>
 <li>绑定方法内的this指向问题。我们用.apply执行绑定方法来解决。</li>
 <li>使用apply调用绑定方法，就必须考虑如何解绑方法。原理和_mouseFn还有_deleFn一样。</li>
 </ol>
-<p>在使用delegate时，我们同样遇到了mouseover&#x2F;out的问题。<br>我们的解决方案是：不罗嗦，直接将mouseover&#x2F;out处理成mouseenter&#x2F;leave<br> <p><textarea class="runcode_text" id="runcode_c30377c0-ac26-49fc-8ea9-856b7d80c129"><!DOCTYPE html>
+<p>在使用delegate时，我们同样遇到了mouseover&#x2F;out的问题。<br>我们的解决方案是：不罗嗦，直接将mouseover&#x2F;out处理成mouseenter&#x2F;leave<br> <p><textarea class="runcode_text" id="runcode_d3d9169d-2479-4cb9-91a5-81423ed1877a"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -617,7 +617,7 @@ events.undelegate = function(obj,selector,type,fn){
 	}
 })()
 </script>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c30377c0-ac26-49fc-8ea9-856b7d80c129');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c30377c0-ac26-49fc-8ea9-856b7d80c129');" /></p><br>最后，整理一下，封装一个支持mouseenter 和 mouseleave事件，delegate方法 及其他们的解除绑定的方法的 功能函数库。<br> <p><textarea class="runcode_text" id="runcode_a3139a30-fd70-4c0b-8134-524f9bb136ca">window.events = {}
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d3d9169d-2479-4cb9-91a5-81423ed1877a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d3d9169d-2479-4cb9-91a5-81423ed1877a');" /></p><br>最后，整理一下，封装一个支持mouseenter 和 mouseleave事件，delegate方法 及其他们的解除绑定的方法的 功能函数库。<br> <p><textarea class="runcode_text" id="runcode_dd4205ad-7e77-4a32-87e0-5457b9221dc9">window.events = {}
 events._deleFn = {}; //保存delegate所绑定的方法   
 events._mouseFn ={}; //保存“onmouseenter”和“onmouseleave”所绑定的方法
 events._ieFunc = {}; //由于保存在ie下绑定的方法
@@ -773,7 +773,7 @@ events.undelegate = function(obj,selector,type,fn){
     events.removeEvent(obj,type,fnNew);
     events._deleFn[selector][type][fn] = null;
 };
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a3139a30-fd70-4c0b-8134-524f9bb136ca');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a3139a30-fd70-4c0b-8134-524f9bb136ca');" /></p></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dd4205ad-7e77-4a32-87e0-5457b9221dc9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dd4205ad-7e77-4a32-87e0-5457b9221dc9');" /></p></p>
 
       </div>
     </div>
