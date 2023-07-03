@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -132,7 +228,7 @@ runcode.copy=function(element){
           </div>
         
         <p>先看一下普通的拖动元素的代码</p>
-<p><textarea class="runcode_text" id="runcode_47a38cb0-a082-4e53-b0ca-d4c2dc421d86"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -166,10 +262,10 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_47a38cb0-a082-4e53-b0ca-d4c2dc421d86');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_47a38cb0-a082-4e53-b0ca-d4c2dc421d86');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd');" /></p>
 <p>非常简单。</p>
 <p>考虑一下边境问题：</p>
-<p><textarea class="runcode_text" id="runcode_c5f29df8-bf83-42f8-b223-48b68c0aedbc"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -216,9 +312,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c5f29df8-bf83-42f8-b223-48b68c0aedbc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c5f29df8-bf83-42f8-b223-48b68c0aedbc');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad');" /></p>
 <p>如果拖动层内有元素不允许拖动。可以绑定一个事件，阻止拖动处理函数的执行。</p>
-<p><textarea class="runcode_text" id="runcode_5a9dfb8e-01d9-4a98-9af5-d40ece65ab31"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c7df85d7-3630-4326-a7ac-18f551a67a41"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -254,9 +350,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5a9dfb8e-01d9-4a98-9af5-d40ece65ab31');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5a9dfb8e-01d9-4a98-9af5-d40ece65ab31');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c7df85d7-3630-4326-a7ac-18f551a67a41');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c7df85d7-3630-4326-a7ac-18f551a67a41');" /></p>
 <p>图片的drag&amp;drop需要注意浏览器中在拖动图片时候会有默认动作的，拖动带链接的内容也是。所以拖动这些内容时应阻止其事件，另外加入setCapture。（下面拖动代码略有差别）</p>
-<p><textarea class="runcode_text" id="runcode_30a4ace8-1c72-4ba9-be62-067eb8a8d10e"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -320,7 +416,7 @@ var dragF={
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_30a4ace8-1c72-4ba9-be62-067eb8a8d10e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_30a4ace8-1c72-4ba9-be62-067eb8a8d10e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964');" /></p>
 
       </div>
     </div>
@@ -402,7 +498,7 @@ var dragF={
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -466,6 +562,40 @@ var dragF={
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

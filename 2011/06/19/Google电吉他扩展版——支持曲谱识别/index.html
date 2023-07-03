@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -132,7 +228,7 @@ runcode.copy=function(element){
           </div>
         
         <p>在6月9号Google 放出的纪念电吉他之父莱斯·保罗 96 周年诞辰的电吉他Doodle代码上，扩展了这个可播放曲谱的版本。<br>做这个扩展版的初衷是为了方便不是很熟悉键盘的童鞋。<br>童鞋们可以从网上复制曲谱进来自动播放（如果读者能自己谱曲，那真的就太棒了）。<br>曲谱中的空格及所有非法字符都表示停顿，间隔越大表示停顿越长，也可以调整曲子的整体节奏快慢。<br>同时可以开启自带的录音功能，录制之后会生产网址，可以拿来同朋友分享(由于国内网络环境的问题，网址生产可能会有限滞后)。<br>代码方面删除了不相干的部分，并做了格式整理，但由于原代码是经过压缩的，所以阅读起来还是会很费力的，很多地方处理的挺复杂，能力有限也不便做代码分析。<br>以下就是全部的代码（24k的code，1张图片，1个声音的flash文件）：</p>
- <p><textarea class="runcode_text" id="runcode_142f354a-0ed1-40ce-aecd-e0b42daff8d3"><!doctype html>
+ <p><textarea class="runcode_text" id="runcode_4db47acc-e512-44d5-9392-cbdbdf193443"><!doctype html>
 <meta charset='utf-8' />
 <title>google电吉他扩展版——可播放曲谱</title>
 <style>
@@ -154,7 +250,7 @@ runcode.copy=function(element){
 		<div id=hplogot>Les Paul&#39;s 96th Birthday</div>
 	</div>
 </div>
-<form name=f><textarea class='opern' name=q >3688368 77653 2226235 37753 3688368 00989 00989987 53566</textarea></form>
+<form name=f> <input class='opern' name=q value="3688368 77653 2226235 37753 3688368 00989 00989987 53566" /></form>
 <button id='play'>Play</button>
 节奏：
 <select id='speed'>
@@ -497,7 +593,7 @@ $=function(){
 Xa()
 })();
 </script>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_142f354a-0ed1-40ce-aecd-e0b42daff8d3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_142f354a-0ed1-40ce-aecd-e0b42daff8d3');" /></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4db47acc-e512-44d5-9392-cbdbdf193443');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4db47acc-e512-44d5-9392-cbdbdf193443');" /></p>
 
 <p>可以运行以上代码，也可以访问这个链接：<a href="http://www.cssass.com/blog/resource/guitar/">http://www.cssass.com/blog/resource/guitar/</a></p>
 <p>最后罗列一些网上收集的曲谱：<br>欢乐颂：</p>
@@ -604,7 +700,7 @@ Xa()
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -668,6 +764,40 @@ Xa()
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

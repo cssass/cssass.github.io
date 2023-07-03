@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -127,7 +223,25 @@ runcode.copy=function(element){
             
           </div>
         
-        <p>谁要是有塞林格在天堂的电话，请一定要告诉我，我真想打个电话向他说声我拜读了你的《麦田》，我想说你剽窃了我的一些想法——开个玩笑罢了，我知道你是开得起玩笑的。我有时候经常胡思乱想，这个症状总有上百年了吧，我是诧异老霍尔顿也有这个症状，如果你还和老霍尔顿有联系，请代我向他问好。</p>
+        <div class="douban-card-block">
+    <a class="douban-card" target="_blank" rel="noopener" href="https://book.douban.com/subject/4894485">
+        <div bg-lazy class="douban-card-bgimg" style="background-image: url('https://images.weserv.nl/?url=https://img9.doubanio.com/view/subject/s/public/s27177415.jpg');">
+        </div>
+        <div class="douban-card-left">
+            <div bg-lazy class="douban-card-img" style="background-image: url('https://images.weserv.nl/?url=https://img9.doubanio.com/view/subject/s/public/s27177415.jpg');">
+            </div>
+            <div class="douban-card-status">见字如晤</div>
+        </div>
+        <div class="douban-card-right" style="line-height: 1.7;">
+            <div class="douban-card-item"><span>书名: </span><strong>麦田里的守望者</strong></div>
+            <div class="douban-card-item"><span>作者: </span><span>[美]J.D.塞林格</span></div>
+            <div class="douban-card-item"><span>出版年份: </span><span>2010-6</span></div>
+            <div class="douban-card-item"><span>评分: </span><span>7.8</span></div>
+        </div>
+    </a>
+</div>
+
+<p>谁要是有塞林格在天堂的电话，请一定要告诉我，我真想打个电话向他说声我拜读了你的《麦田》，我想说你剽窃了我的一些想法——开个玩笑罢了，我知道你是开得起玩笑的。我有时候经常胡思乱想，这个症状总有上百年了吧，我是诧异老霍尔顿也有这个症状，如果你还和老霍尔顿有联系，请代我向他问好。</p>
 <p>你要是让我在几十年前就能有机会，我是说不管是闲情雅致的，还是消遣时间的，总之是能够让我看到这本书，哪怕是瞥到那么一个开头，我觉得我一定会死命的读上一千遍——我不是说我现在读它的时候没有死命的读，我只是没能读上个一千遍，因为你也知道，我的现在的工作不是读书，我的混账工作是挣钱呢——嘿，我估计我当时说不准也会想着计划到哪个破麦田里去做个傻里傻气的守望者，不骗你，我会的，我估计在几十年前那个时候我会的，只要能有这样的地方。</p>
 <p>可惜根本没他妈的这种地方，是吧，哪里会只有无忧无虑的小孩呢，哪里会只有小孩而只有你一个大人呢，哪里会有小孩无忧无虑却允许你一个大人混在他们里面的。你也知道没这种混账的好地方，霍尔顿也知道没这种的地方，这样他才想着到西部随便什么地方去，一个人，也不带上老菲比——那是个多可爱聪明又单纯有意思的小女孩啊，他不就想在麦田里当孩子们的守望者吗？——随便找个什么工作的——也不谈什么守望者的工作了。所以说大家都知道，根本没这种狗屁地方，也根本没这种混账工作，到麦田里的守望者都是说给自己听的鬼话罢了——或许只有我一个人在偶然的瞬间里当真了。</p>
 <p>假如真没有什么麦田守望者的岗位，我也可以先随便找个什么没有人认识的狗屁地方，找个随便什么的混账工作。说到混账工作，能有什么工作不混账呢，每天都是浑浑噩噩的消磨时间，每天都是假模假式的面对别人，提起来就能腻死一个人。所以我也可以按霍尔顿那么打算，我可以每天不说话，装成又聋又哑的，当别人问你你也别说，这样久了，别人也就以为你是个又聋又哑的。你说我这样是逃避？哦，你真是冤枉死我了，如果你走在一条让人作呕的狗屎路上，你难道不避开吗？我不是说所有路都是狗屎的，我也正在找一条没有狗屎的路呢。相信我，有这样的路我干嘛还要避着走呢。可怜的霍尔顿当时没走成，我真替他难过，我要是在那，我真的想过去安慰他。尽管我自己也没走成。</p>
@@ -214,7 +328,7 @@ runcode.copy=function(element){
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -278,6 +392,40 @@ runcode.copy=function(element){
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

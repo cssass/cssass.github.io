@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -133,7 +229,7 @@ runcode.copy=function(element){
 <p>既然是引子，那就不能开门见山的介绍了，我们先讲讲如何复制canvas.<br>已知一个image对象，我们将其绘制进canvas的方法是什么？drawImage。（当然使用createPattern模板填充也是一个方法）。<br>那已知一个canvas对象，我们将其绘制进另一个canvas的方法呢？<br>答案还是drawImage，drawImage算是一个很辽阔的方法了，不仅可以绘image，也可以绘canvas对象，甚至还可以绘video的帧。</p>
 <p>并且他拥有大量参数：(Image [, vXSrc] [, vYSrc] [, vWSrc] [, vHSrc], vXDest, vYDest [, vWDest] [, vHDest])，这个读者可以先不管，往下看。</p>
 <p>那么，除了drawImage这个方法，还有没有其他方法呢——有，putImageData方法隆重登场。</p>
-<p><textarea class="runcode_text" id="runcode_0ee3ec00-5205-4129-90b9-c7a39980742e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_036eea3c-7087-4a34-9004-cef5c0e36fb9"><!DOCTYPE html>
 <html>
 <head>
 <title>canvas绘制与复制及像素级复制</title>
@@ -223,7 +319,7 @@ imgObj.addEventListener('load',function(){
 	clone();
 	cloneData();
 },false);
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0ee3ec00-5205-4129-90b9-c7a39980742e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0ee3ec00-5205-4129-90b9-c7a39980742e');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_036eea3c-7087-4a34-9004-cef5c0e36fb9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_036eea3c-7087-4a34-9004-cef5c0e36fb9');" /></p>
 
 <p>上面的cloneData方法就是通过将源canvas中像素数据ImageData，输出(putImageData)到新的canvas中，达到复制作用。</p>
 <p>不过，我们在获取和输出ImageData的过程中，并没有对ImageData做过任何处理，而这个ImageData数据是包含{width,height,CanvasPixelArray},其中CanvasPixelArray包含了图像(canvas也可看做图像)的每一个像素的RGBA数据，可见中间的操作空间是很大的，以后我们会做重点讨论。</p>
@@ -233,7 +329,7 @@ imgObj.addEventListener('load',function(){
 <p>createImageData的参数是(w,h)可以新建一个W*H尺寸的新的ImageData【firefox3.5开始支持】，不过也可以使用参数(anotherImageData)来创建【firefox5开始支持】。</p>
 <p>getImageData的参数（x,y,w,h）表示起点x,y,尺寸w,h。可以获取canvas.context中在参数范围内的ImageData。</p>
 <p>putImageData的参数使用要着重要介绍下（和drawImage的参数可以触类旁通）：</p>
-<p><textarea class="runcode_text" id="runcode_83dffefb-df1e-48b2-9117-7131d344e504"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_89f4984f-5517-4932-a895-de4ad5104748"><!DOCTYPE html>
 <html>
 <head>
 <title>putImageData的参数</title>
@@ -266,7 +362,7 @@ imgObj.addEventListener('load',function(){
 		ctx2.putImageData(imagePix,0,0,100,100,50,50); //后面四个可选参数表示可见区范围。缺省为：0,0,ImageData.width,ImageData.height
 	}
 })()
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_83dffefb-df1e-48b2-9117-7131d344e504');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_83dffefb-df1e-48b2-9117-7131d344e504');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_89f4984f-5517-4932-a895-de4ad5104748');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_89f4984f-5517-4932-a895-de4ad5104748');" /></p>
 
 <p>putImageData参数有(ImageData, dx, dy [, DirtyX] [, DirtyX] [, DirtyWidth] [, DirtyHeight])</p>
 <p>imageData：包含了图像的width,height,还有一个CanvasPixelArray，前面已经提了。<br>dx, dy：表示绘图起始位置。相对于canvas区域左上角。<br>后面四个可选参数：表示可见区范围。相对于起绘点，即上面的参数dx,dy表示的点。缺省为0,0,ImageData.width,ImageData.height。</p>
@@ -351,7 +447,7 @@ imgObj.addEventListener('load',function(){
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -415,6 +511,40 @@ imgObj.addEventListener('load',function(){
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -131,7 +227,7 @@ runcode.copy=function(element){
         
         <p>贝塞尔曲线在数字绘图中有着非常重要的地位，你可能使用过photoshop的钢笔工具，那就是贝塞尔曲线的应用。<br>在html5的canvas中也得到了实现，即bezierCurveTo函数。<br>虽然功能不错，但是凭空使用 bezierCurveTo来绘图可不是件方便的事。<br>他的6个参数：（控制点1的坐标X，控制点1的坐标y，控制点2的坐标x，控制点2的坐标y，终点坐标x，终点坐标y）并不是你一见就能知道最终效果的。<br>黑客帝国中的那种通过没有数字视频解码器的显示设备，纯粹看代码来监视母体世界的能力，不是一时半会能够修炼的出来的。</p>
 <p>下面的demo就提供了这种类似数字解码功能，使得你可以可视化操作曲线。<br>然后，这还只是个很初级的东西，希望大家支持，我会慢慢完善的。<br>此demo仅提供了单条贝塞尔曲线的操作，可控的点有四个，暂没有拖动线条的功能。<br>和那种用HTML5实现整个photoshop功能的项目比起来。这只能算是小小的练习，希望这个练习在不久的未来能够用上。</p>
-<p><textarea class="runcode_text" id="runcode_e65b659c-a5bb-412c-86e1-25c314708ffc"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_7e24c09f-c715-4b6b-9a49-1da4c2824312"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -254,7 +350,7 @@ function draw(){
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e65b659c-a5bb-412c-86e1-25c314708ffc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e65b659c-a5bb-412c-86e1-25c314708ffc');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7e24c09f-c715-4b6b-9a49-1da4c2824312');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7e24c09f-c715-4b6b-9a49-1da4c2824312');" /></p>
 
 
       </div>
@@ -337,7 +433,7 @@ function draw(){
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -401,6 +497,40 @@ function draw(){
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -111,11 +207,11 @@ runcode.copy=function(element){
         <div class="post-info">
           
   
+    <a href="/tags/HTML/" class="post-tag">#HTML</a>
+  
     <a href="/tags/DOM/" class="post-tag">#DOM</a>
   
     <a href="/tags/HTML5/" class="post-tag">#HTML5</a>
-  
-    <a href="/tags/HTML/" class="post-tag">#HTML</a>
   
 
 
@@ -158,26 +254,26 @@ runcode.copy=function(element){
 <p>好了， HTML5能做的够多了，但他还处在草案阶段，那关键是现在我们能做什么呢？</p>
 <p>我们能做什么？<br>HTML5估计能在2012年之前成为W3C的候选推荐标准，不过在这之前，只要浏览器支持，我们都可以使用html5的功能。</p>
 <ol>
-<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_ea2208d3-1b05-44ee-9e49-b0a5d95bd4fb"><script>
+<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_580af0d6-3174-4f13-b053-bd524eca995a"><script>
 document.createElement("元素名称")
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ea2208d3-1b05-44ee-9e49-b0a5d95bd4fb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ea2208d3-1b05-44ee-9e49-b0a5d95bd4fb');" /></p>
-创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_e4574819-43fd-4b72-8790-3e07d698f712">(function(){
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_580af0d6-3174-4f13-b053-bd524eca995a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_580af0d6-3174-4f13-b053-bd524eca995a');" /></p>
+创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7">(function(){
     if(!/*@cc_on!@*/0) return;    
     var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');   
     for(var i = 0, len = html5.length; i < len; i++ ) {       
     document.createElement(html5[i]);  
     }
 })
-();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e4574819-43fd-4b72-8790-3e07d698f712');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e4574819-43fd-4b72-8790-3e07d698f712');" /></p>
+();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7');" /></p>
 现在在IE里也可以对HTML5元素进行布局了。<br>不过，在此之前，我们还需要对这些新元素定义基本的Display style,<br>这个工作本来一般是由浏览器完成的，比如FireFox的html.css。<br>现在只能自己对引进的HTML5元素进行定义了。<br>那么哪些需要定义成display:block;哪些又是不需要呢？这个我们可以看下W3C是怎么定义的：display-types</li>
 </ol>
-<p><textarea class="runcode_text" id="runcode_236315bc-4622-4f5a-980c-707e8db3cd42">address, article, aside, blockquote, body, center, dd, dialog, dir,
+<p><textarea class="runcode_text" id="runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c">address, article, aside, blockquote, body, center, dd, dialog, dir,
 div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
 hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,
-section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_236315bc-4622-4f5a-980c-707e8db3cd42');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_236315bc-4622-4f5a-980c-707e8db3cd42');" /></p>
+section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c');" /></p>
 
 <p>刨除HTML老元素，以下这些元素:<br>article,aside,dialog,figure,footer,header,hgroup,nav,section可以定义为{display:block;}<br>这篇针对HTML 5 Reset Stylesheet的文章也可以参考下：<a target="_blank" rel="noopener" href="http://html5doctor.com/html-5-reset-stylesheet/%E3%80%82%E6%96%87%E7%AB%A0%E5%9C%A8Eric%E7%9A%84CSS">http://html5doctor.com/html-5-reset-stylesheet/。文章在Eric的CSS</a> Reset的基础上考虑HTML5新元素及W3C规范推荐下对元素进行了style reset。当然reset CSS本身就存在争议的，一般来说，reset CSS是你自己的style，很多东西都可以按你的意愿来定，当然不要太偏离W3C的元素设计本意。<br>接下来，使用HTML5新元素进行布局就可以随心所欲了（还是悠着点好）。</p>
-<p><textarea class="runcode_text" id="runcode_ea49b035-57bf-4acc-bb73-6d469f7ebd7b"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc"><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -268,9 +364,9 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 </div>
 <footer>Copyright © 2009 Cssass.com </footer>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ea49b035-57bf-4acc-bb73-6d469f7ebd7b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ea49b035-57bf-4acc-bb73-6d469f7ebd7b');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc');" /></p>
 <ol start="2">
-<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_4ae92c9e-8dbf-4b0a-8301-fd6224bb614b"><!DOCTYPE HTML>
+<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_e609abc5-b325-4da4-bf28-320e541cc5cf"><!DOCTYPE HTML>
 <html>
 <head>
   <title>Drag and Drop</title>
@@ -304,13 +400,13 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
    }
   </script>
  </body>
- </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4ae92c9e-8dbf-4b0a-8301-fd6224bb614b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4ae92c9e-8dbf-4b0a-8301-fd6224bb614b');" /></p></li>
+ </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e609abc5-b325-4da4-bf28-320e541cc5cf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e609abc5-b325-4da4-bf28-320e541cc5cf');" /></p></li>
 <li>canvas<br>我们先看一些canvas的示例：<br><a target="_blank" rel="noopener" href="http://www.agustinfernandez.com.ar/proyectos/canvas/">http://www.agustinfernandez.com.ar/proyectos/canvas/</a><br><a target="_blank" rel="noopener" href="http://www.whatwg.org/demos/2008-sept/color/color.html">http://www.whatwg.org/demos/2008-sept/color/color.html</a><br>网上还有一些互动性蛮强的Demo.<br>canvas应用的发展无疑将威胁到也行进在富Web之路上的Flash和Silverligth这些Web插件。</li>
 </ol>
 <p>canvas在safari,firefox,opera很早就有了支持，但IE缺迟迟不予支持，尽管他在ie8中已经开始支持多个HTML5功能。MS的同志很有理由这么做:“HTML 5标准制定之前,某些功能确实已经得以实现,例如Google Gears实现了离线应用程序功能,Flash和silverlight实现了类似Canvas API的功能.在下一代HTML规范中设置这些内容未必非常必要”。要知道MS在silverlight是花了很大力气。事实上，MS在参与HTML5之事上一直非常谨慎，并且希望精简HTML5。<br>Flash的所有者，HTML5参与者之一Adobe则表现的很轻松：“canvas还很弱，HTML 5 + CSS 3 可能要 10年的时间才能定稿，在这期间，Flash 会持续发展，并提供更好的用户体验”。</p>
 <p>尽管IE没有支持canvas功能，但我们可以使用JS模拟达到：<br><a target="_blank" rel="noopener" href="http://excanvas.sourceforge.net/">http://excanvas.sourceforge.net/</a><br>这是其中的一个Demo,试试你的IE:<br>3Dcanvas_For_IE.html</p>
 <ol start="4">
-<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_883f44fe-ea3f-445d-8041-91f1b7907438"><!DOCTYPE HTML>
+<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee"><!DOCTYPE HTML>
 <html>
 <head>
 <title>Video</title>
@@ -325,7 +421,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 	</script>
 	<p><input type="button" value="&#x2588; &#x2588;" onclick="if (video.paused) video.play(); else video.pause()"></p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_883f44fe-ea3f-445d-8041-91f1b7907438');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_883f44fe-ea3f-445d-8041-91f1b7907438');" /></p></li>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee');" /></p></li>
 </ol>
 <p>我们没有引入flash播放器就能播放swf。</p>
 <p>在下面这个页面里罗列了各浏览器所支持的HTML5功能：<br>Implementations in Web browsers</p>
@@ -410,7 +506,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -474,6 +570,40 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

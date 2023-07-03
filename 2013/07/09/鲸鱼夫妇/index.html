@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -130,191 +226,9 @@ runcode.copy=function(element){
           </div>
         
         <p>写了个小东西，用于展示JS语言中类的模拟。已发布到chrome应用商店：安装地址，可以在chrome浏览器上添加这个扩展应用</p>
-<p><textarea class="runcode_text" id="runcode_3e158891-e348-40c2-9027-84cff601d50a">function inherit(klass,parent){
-	function F(){}
-	F.prototype = parent.prototype;
-	klass.prototype = new F();
-	klass.prototype.constructor = klass;
-	return klass;
-}
-function getRandInt(min, max) {
-	return (Math.random() * (max - min) + min) >> 0;
-}
-var family = [];
-function Whale(options){
-	var self = this;
-	(function(options) {
-		self.option = {
-			size : [240, 120],
-			pos : [0, 0],
-			speed : [6, 2],
-			spritX : [10, -3360],
-			spritY : 0
-		};
-		extendCopy(options || {}, self.options);
-	})();
-	this.gender = 'male'
-	this.init();
-}
-Whale.prototype = {
-	init : function(){
-		this.create();
-		this.play();
-		this.swim();
-		family.push(this);
-	},
-	create : function(){
-		var that = this;
-		var whaleBox = document.createElement("DIV");
-			whaleBox.className = "whale";
-			whaleBox.style.width = this.option.size[0] + "px";
-			whaleBox.style.height = this.option.size[1] + "px";
-		document.body.appendChild(whaleBox);
-		events.addEvent(whaleBox, "mousedown", function(){
-			var e = arguments[0] || window.event;
-			that._drag(e);
-		});
-		this.whaleBox = whaleBox;
-		return this;
-	},
-	_swimTimer : null,
-	swim : function(){
-		var that = this,
-			pos = this.option.pos,
-			speed = this.option.speed,
-			step = [Math.abs(this.option.speed[0]), Math.abs(this.option.speed[1])],
-			dir = [speed[0]/step[0], speed[1]/step[1]],
-			size = this.option.size;
-		var moveX = 0,
-			moveY = 0;
-		this._swimTimer = setInterval(function(){
-			moveX = dir[0] * getRandInt(1,step[0]);
-			moveY = dir[1] * getRandInt(1,step[1]);
-			if(pos[0] + moveX > Whale.windowSize[0] - size[0] || pos[0] + moveX < 0 ){
-				//边境时候掉头
-				moveX = 0;
-				speed[0] = - speed[0];
-				dir[0] = - dir[0];
-				that.option.spritY += dir[0] * size[1];
-				that.play();
-			}
-			if(pos[1] + moveX > Whale.windowSize[1] - size[1] || pos[1] + moveY < 0 ){
-				moveY = 0;
-				speed[1] = - speed[1];
-				dir[1] = - dir[1];
-			}
-			pos[0] += moveX;
-			pos[1] += moveY;
-			that.whaleBox.style.left = pos[0] + "px";
-			that.whaleBox.style.top = pos[1] + "px";
-		},200);
-	},
-	hook : function(){
-		 clearInterval(this._swimTimer);
-	},
-	_playTimer : null,
-	play : function(){
-		var that = this,
-			s = Math.abs(this.option.speed[0]),
-			spritX = this.option.spritX,
-			x = spritX[0], //sprite开始位置
-			y = this.option.spritY;
-		clearInterval(this._playTimer);
-		this._playTimer = setInterval(function(){
-			x = (x <= spritX[1]) ? spritX[0] : x;
-			that.whaleBox.style.cssText += "background-position:"+x+"px "+ y +"px;";
-			x -= that.option.size[0];
-		},1000/s/1);
-	},
-	_drag : function(e){
-		var that = this;
-		var whaleBox = that.whaleBox;
-		var sX = whaleBox.offsetLeft,
-			sY = whaleBox.offsetTop,
-			dx = e.clientX,
-			dy = e.clientY;
-		that.hook();
-		whaleBox.style.zIndex = Whale.zIndex++;
-		events.addEvent(document, 'mousemove', dragHandle);
-		events.addEvent(document, 'mouseup', cancelDragHandle);
-		var largeL = Whale.windowSize[0] -  this.option.size[0],
-			largeT = Whale.windowSize[1] -  this.option.size[1];
-		function dragHandle() {
-			var e = arguments[0] || window.event;
-			var oX = sX + (e.clientX - dx),
-				oY = sY + (e.clientY - dy);
-			if(oX > largeL || oX < 0){
-				oX = (oX < 0) ? 0 : largeL
-			}
-			if(oY > largeT || oY < 0){
-				oY = (oY < 0) ? 0 : largeT
-			}
-			that.option.pos[0] = oX;
-			that.option.pos[1] = oY;
-			whaleBox.style.left = oX + "px";
-			whaleBox.style.top = oY + "px";
-		};
-		function cancelDragHandle() {
-			events.removeEvent(document, 'mousemove', dragHandle);
-			events.removeEvent(document, 'mouseup', cancelDragHandle);
-			that.swim();
-		}
-	}
-}
-Whale.zIndex = 1000;
-Whale.windowSize = [document.documentElement.offsetWidth, Math.max(document.documentElement.clientHeight, document.body.offsetHeight)];
-Whale.mating = function(){
-	for(var i= 0 ; i< family.length; i++){
-		if(family[i].gender !== "male") continue;
-		for(var j= 0; j< family.length; j++){
-			if(family[j].gender !== "female") continue;
-			if(Math.abs(family[i].option.pos[0] - family[j].option.pos[0]) < 10 && Math.abs(family[i].option.pos[1] - family[j].option.pos[1]) < 10 && !family[j].option.gestation){
-				(function(j){
-					family[j].option.gestation = true;
-					setTimeout(function(){
-						family[j].option.gestation = false;
-					},5 * 60 * 1000);
-					new WhaleBaby({pos:[family[j].option.pos[0] + 80, family[j].option.pos[1] + 30]});
-				})(j);
-			}
-		}
-	}
-}
-function WhaleLady(options){
-	var self = this;
-	(function(options) {
-		self.option = {
-			size : [210, 100],
-			pos : [80, 200],
-			speed : [4, -2],
-			spritX : [10, -2940],
-			spritY : -300
-		};
-		extendCopy(options || {}, self.options);
-	})();
-	this.gender = "female";
-	this.gestation = false;
-	this.init();
-}
-function WhaleBaby(options){
-	var self = this;
-	(function(options) {
-		self.option = {
-			size : [120, 60],
-			pos : [0, 100],
-			speed : [7, -3],
-			spritX : [2, -1650],
-			spritY : -600
-		};
-		extendCopy(options || {}, self.option);
-	})(options);
-	this.init();
-}
-inherit(WhaleLady, Whale);
-inherit(WhaleBaby, WhaleLady);
-var bb = new WhaleLady();
-var aa = new Whale();
-setInterval(Whale.mating,1000);</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3e158891-e348-40c2-9027-84cff601d50a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3e158891-e348-40c2-9027-84cff601d50a');" /></p>
+<iframe src="/show/whale/index.html" width="95%" height="500" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><span class="line">function inherit(klass,parent)&#123;</span><br><span class="line">	function F()&#123;&#125;</span><br><span class="line">	F.prototype = parent.prototype;</span><br><span class="line">	klass.prototype = new F();</span><br><span class="line">	klass.prototype.constructor = klass;</span><br><span class="line">	return klass;</span><br><span class="line">&#125;</span><br><span class="line">function getRandInt(min, max) &#123;</span><br><span class="line">	return (Math.random() * (max - min) + min) &gt;&gt; 0;</span><br><span class="line">&#125;</span><br><span class="line">var family = [];</span><br><span class="line">function Whale(options)&#123;</span><br><span class="line">	var self = this;</span><br><span class="line">	(function(options) &#123;</span><br><span class="line">		self.option = &#123;</span><br><span class="line">			size : [240, 120],</span><br><span class="line">			pos : [0, 0],</span><br><span class="line">			speed : [6, 2],</span><br><span class="line">			spritX : [10, -3360],</span><br><span class="line">			spritY : 0</span><br><span class="line">		&#125;;</span><br><span class="line">		extendCopy(options || &#123;&#125;, self.options);</span><br><span class="line">	&#125;)();</span><br><span class="line">	this.gender = &#x27;male&#x27;</span><br><span class="line">	this.init();</span><br><span class="line">&#125;</span><br><span class="line">Whale.prototype = &#123;</span><br><span class="line">	init : function()&#123;</span><br><span class="line">		this.create();</span><br><span class="line">		this.play();</span><br><span class="line">		this.swim();</span><br><span class="line">		family.push(this);</span><br><span class="line">	&#125;,</span><br><span class="line">	create : function()&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var whaleBox = document.createElement(&quot;DIV&quot;);</span><br><span class="line">			whaleBox.className = &quot;whale&quot;;</span><br><span class="line">			whaleBox.style.width = this.option.size[0] + &quot;px&quot;;</span><br><span class="line">			whaleBox.style.height = this.option.size[1] + &quot;px&quot;;</span><br><span class="line">		document.body.appendChild(whaleBox);</span><br><span class="line">		events.addEvent(whaleBox, &quot;mousedown&quot;, function()&#123;</span><br><span class="line">			var e = arguments[0] || window.event;</span><br><span class="line">			that._drag(e);</span><br><span class="line">		&#125;);</span><br><span class="line">		this.whaleBox = whaleBox;</span><br><span class="line">		return this;</span><br><span class="line">	&#125;,</span><br><span class="line">	_swimTimer : null,</span><br><span class="line">	swim : function()&#123;</span><br><span class="line">		var that = this,</span><br><span class="line">			pos = this.option.pos,</span><br><span class="line">			speed = this.option.speed,</span><br><span class="line">			step = [Math.abs(this.option.speed[0]), Math.abs(this.option.speed[1])],</span><br><span class="line">			dir = [speed[0]/step[0], speed[1]/step[1]],</span><br><span class="line">			size = this.option.size;</span><br><span class="line">		var moveX = 0,</span><br><span class="line">			moveY = 0;</span><br><span class="line">		this._swimTimer = setInterval(function()&#123;</span><br><span class="line">			moveX = dir[0] * getRandInt(1,step[0]);</span><br><span class="line">			moveY = dir[1] * getRandInt(1,step[1]);</span><br><span class="line">			if(pos[0] + moveX &gt; Whale.windowSize[0] - size[0] || pos[0] + moveX &lt; 0 )&#123;</span><br><span class="line">				//边境时候掉头</span><br><span class="line">				moveX = 0;</span><br><span class="line">				speed[0] = - speed[0];</span><br><span class="line">				dir[0] = - dir[0];</span><br><span class="line">				that.option.spritY += dir[0] * size[1];</span><br><span class="line">				that.play();</span><br><span class="line">			&#125;</span><br><span class="line">			if(pos[1] + moveX &gt; Whale.windowSize[1] - size[1] || pos[1] + moveY &lt; 0 )&#123;</span><br><span class="line">				moveY = 0;</span><br><span class="line">				speed[1] = - speed[1];</span><br><span class="line">				dir[1] = - dir[1];</span><br><span class="line">			&#125;</span><br><span class="line">			pos[0] += moveX;</span><br><span class="line">			pos[1] += moveY;</span><br><span class="line">			that.whaleBox.style.left = pos[0] + &quot;px&quot;;</span><br><span class="line">			that.whaleBox.style.top = pos[1] + &quot;px&quot;;</span><br><span class="line">		&#125;,200);</span><br><span class="line">	&#125;,</span><br><span class="line">	hook : function()&#123;</span><br><span class="line">		 clearInterval(this._swimTimer);</span><br><span class="line">	&#125;,</span><br><span class="line">	_playTimer : null,</span><br><span class="line">	play : function()&#123;</span><br><span class="line">		var that = this,</span><br><span class="line">			s = Math.abs(this.option.speed[0]),</span><br><span class="line">			spritX = this.option.spritX,</span><br><span class="line">			x = spritX[0], //sprite开始位置</span><br><span class="line">			y = this.option.spritY;</span><br><span class="line">		clearInterval(this._playTimer);</span><br><span class="line">		this._playTimer = setInterval(function()&#123;</span><br><span class="line">			x = (x &lt;= spritX[1]) ? spritX[0] : x;</span><br><span class="line">			that.whaleBox.style.cssText += &quot;background-position:&quot;+x+&quot;px &quot;+ y +&quot;px;&quot;;</span><br><span class="line">			x -= that.option.size[0];</span><br><span class="line">		&#125;,1000/s/1);</span><br><span class="line">	&#125;,</span><br><span class="line">	_drag : function(e)&#123;</span><br><span class="line">		var that = this;</span><br><span class="line">		var whaleBox = that.whaleBox;</span><br><span class="line">		var sX = whaleBox.offsetLeft,</span><br><span class="line">			sY = whaleBox.offsetTop,</span><br><span class="line">			dx = e.clientX,</span><br><span class="line">			dy = e.clientY;</span><br><span class="line">		that.hook();</span><br><span class="line">		whaleBox.style.zIndex = Whale.zIndex++;</span><br><span class="line">		events.addEvent(document, &#x27;mousemove&#x27;, dragHandle);</span><br><span class="line">		events.addEvent(document, &#x27;mouseup&#x27;, cancelDragHandle);</span><br><span class="line">		var largeL = Whale.windowSize[0] -  this.option.size[0],</span><br><span class="line">			largeT = Whale.windowSize[1] -  this.option.size[1];</span><br><span class="line">		function dragHandle() &#123;</span><br><span class="line">			var e = arguments[0] || window.event;</span><br><span class="line">			var oX = sX + (e.clientX - dx),</span><br><span class="line">				oY = sY + (e.clientY - dy);</span><br><span class="line">			if(oX &gt; largeL || oX &lt; 0)&#123;</span><br><span class="line">				oX = (oX &lt; 0) ? 0 : largeL</span><br><span class="line">			&#125;</span><br><span class="line">			if(oY &gt; largeT || oY &lt; 0)&#123;</span><br><span class="line">				oY = (oY &lt; 0) ? 0 : largeT</span><br><span class="line">			&#125;</span><br><span class="line">			that.option.pos[0] = oX;</span><br><span class="line">			that.option.pos[1] = oY;</span><br><span class="line">			whaleBox.style.left = oX + &quot;px&quot;;</span><br><span class="line">			whaleBox.style.top = oY + &quot;px&quot;;</span><br><span class="line">		&#125;;</span><br><span class="line">		function cancelDragHandle() &#123;</span><br><span class="line">			events.removeEvent(document, &#x27;mousemove&#x27;, dragHandle);</span><br><span class="line">			events.removeEvent(document, &#x27;mouseup&#x27;, cancelDragHandle);</span><br><span class="line">			that.swim();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Whale.zIndex = 1000;</span><br><span class="line">Whale.windowSize = [document.documentElement.offsetWidth, Math.max(document.documentElement.clientHeight, document.body.offsetHeight)];</span><br><span class="line">Whale.mating = function()&#123;</span><br><span class="line">	for(var i= 0 ; i&lt; family.length; i++)&#123;</span><br><span class="line">		if(family[i].gender !== &quot;male&quot;) continue;</span><br><span class="line">		for(var j= 0; j&lt; family.length; j++)&#123;</span><br><span class="line">			if(family[j].gender !== &quot;female&quot;) continue;</span><br><span class="line">			if(Math.abs(family[i].option.pos[0] - family[j].option.pos[0]) &lt; 10 &amp;&amp; Math.abs(family[i].option.pos[1] - family[j].option.pos[1]) &lt; 10 &amp;&amp; !family[j].option.gestation)&#123;</span><br><span class="line">				(function(j)&#123;</span><br><span class="line">					family[j].option.gestation = true;</span><br><span class="line">					setTimeout(function()&#123;</span><br><span class="line">						family[j].option.gestation = false;</span><br><span class="line">					&#125;,5 * 60 * 1000);</span><br><span class="line">					new WhaleBaby(&#123;pos:[family[j].option.pos[0] + 80, family[j].option.pos[1] + 30]&#125;);</span><br><span class="line">				&#125;)(j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function WhaleLady(options)&#123;</span><br><span class="line">	var self = this;</span><br><span class="line">	(function(options) &#123;</span><br><span class="line">		self.option = &#123;</span><br><span class="line">			size : [210, 100],</span><br><span class="line">			pos : [80, 200],</span><br><span class="line">			speed : [4, -2],</span><br><span class="line">			spritX : [10, -2940],</span><br><span class="line">			spritY : -300</span><br><span class="line">		&#125;;</span><br><span class="line">		extendCopy(options || &#123;&#125;, self.options);</span><br><span class="line">	&#125;)();</span><br><span class="line">	this.gender = &quot;female&quot;;</span><br><span class="line">	this.gestation = false;</span><br><span class="line">	this.init();</span><br><span class="line">&#125;</span><br><span class="line">function WhaleBaby(options)&#123;</span><br><span class="line">	var self = this;</span><br><span class="line">	(function(options) &#123;</span><br><span class="line">		self.option = &#123;</span><br><span class="line">			size : [120, 60],</span><br><span class="line">			pos : [0, 100],</span><br><span class="line">			speed : [7, -3],</span><br><span class="line">			spritX : [2, -1650],</span><br><span class="line">			spritY : -600</span><br><span class="line">		&#125;;</span><br><span class="line">		extendCopy(options || &#123;&#125;, self.option);</span><br><span class="line">	&#125;)(options);</span><br><span class="line">	this.init();</span><br><span class="line">&#125;</span><br><span class="line">inherit(WhaleLady, Whale);</span><br><span class="line">inherit(WhaleBaby, WhaleLady);</span><br><span class="line">var bb = new WhaleLady();</span><br><span class="line">var aa = new Whale();</span><br><span class="line">setInterval(Whale.mating,1000);</span><br></pre></td></tr></table></figure>
       </div>
     </div>
   </article>
@@ -395,7 +309,7 @@ setInterval(Whale.mating,1000);</textarea><input type="button" value="Run" class
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -459,6 +373,40 @@ setInterval(Whale.mating,1000);</textarea><input type="button" value="Run" class
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

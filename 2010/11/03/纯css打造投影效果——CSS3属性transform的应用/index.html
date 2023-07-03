@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -134,7 +230,7 @@ runcode.copy=function(element){
         <p>刚在twitter上看见这个效果。<br>Getting Clever with CSS3 Shadows</p>
 <p>这个效果里，除了应用阴影属性box-shadow之外，还需要一个重要属性的支持——transform<br>其实transform算是一个混合属性，它同canvas和svg的transform一样，带有几个独立的方法：平移（translate），缩放（Scaling），旋转（Rotating），另外，还有一个斜切（Skewing）。其实，斜切和旋转是有关系的：当skewX&#x3D;-skewY时，它就是一个纯粹的Rotate。</p>
 <p>下面就是效果演示。略有改动，原demo没有考虑opera，在此补上。<br>所以，应该除了ie9以下的浏览器，其他所以用户都能看见效果。</p>
-<p><textarea class="runcode_text" id="runcode_df0bbfd2-a4f2-4af6-b04b-fcb12eae263d"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_18db98f5-9d41-4ca6-b8bc-0565b8ea6e11"><!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -177,12 +273,12 @@ runcode.copy=function(element){
 	<img src='http://www.cssass.com/blog/resource/avatar/avatar.jpg'/>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_df0bbfd2-a4f2-4af6-b04b-fcb12eae263d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_df0bbfd2-a4f2-4af6-b04b-fcb12eae263d');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_18db98f5-9d41-4ca6-b8bc-0565b8ea6e11');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_18db98f5-9d41-4ca6-b8bc-0565b8ea6e11');" /></p>
 
 <p>————几分钟之后——————<br>我们发现safari竟然不支持。<br>但千万不要怀疑safari的transform能力。——它可是支持3D变换的。<br>Visual Effects Transform Functions<br>从中可以看出，safari的transform完全应该可以达到效果的。<br>（另外，safari的Transition和Animation这两个CSS属性&#x2F;方法也是异常的强大）</p>
 <p>现在把目光转向box-shadow属性。<br>前面我们的写法是：box-shadow: 100px 0 10px 20px rgba(0,0,0,.2);<br>这里有5个属性，分别表示 X偏移offset-x，Y偏移offset-y， 模糊半径blur-radius ，延伸半径spread-radius，和 color<br>这是据MDC的说法，-moz-box-shadow。<br>除了这5个属性值之外，还有一个属性值inset——表示内阴影。另外，这个属性值组还可以设置多组，中间用逗号隔开。<br>inset值在safari下不支持，这点我们之前就有所了解。除此之外，还有没有其他差异呢？<br>请看：-webkit-box-shadow。<br>原来safari下还不支持“延伸半径”值。</p>
 <p>那么为了兼容safari，我们可以修改一下：</p>
-<p><textarea class="runcode_text" id="runcode_581d52ff-48da-4390-8712-ee5e076076b0"><!DOCTYPE HTML>
+<p><textarea class="runcode_text" id="runcode_775e1d8f-0a84-4eed-8a1f-fef57b542eb5"><!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -226,7 +322,7 @@ runcode.copy=function(element){
 	<img src='http://www.cssass.com/blog/resource/avatar/avatar.jpg'/>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_581d52ff-48da-4390-8712-ee5e076076b0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_581d52ff-48da-4390-8712-ee5e076076b0');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_775e1d8f-0a84-4eed-8a1f-fef57b542eb5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_775e1d8f-0a84-4eed-8a1f-fef57b542eb5');" /></p>
 
       </div>
     </div>
@@ -308,7 +404,7 @@ runcode.copy=function(element){
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -372,6 +468,40 @@ runcode.copy=function(element){
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

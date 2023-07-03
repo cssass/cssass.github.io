@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -136,7 +232,7 @@ runcode.copy=function(element){
         <p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<p><textarea class="runcode_text" id="runcode_00e39482-790f-4759-a203-f07642f93a28"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_0af527cf-1b3e-4663-923f-835e95afc59b"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -202,9 +298,9 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_00e39482-790f-4759-a203-f07642f93a28');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_00e39482-790f-4759-a203-f07642f93a28');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0af527cf-1b3e-4663-923f-835e95afc59b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0af527cf-1b3e-4663-923f-835e95afc59b');" /></p>
 <p>进一步删减</p>
-<p><textarea class="runcode_text" id="runcode_f96c1efb-440a-4c1f-a8d0-ea672db750a2"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_748b2076-ade2-4568-8dd5-73362082e919"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -245,10 +341,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f96c1efb-440a-4c1f-a8d0-ea672db750a2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f96c1efb-440a-4c1f-a8d0-ea672db750a2');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_748b2076-ade2-4568-8dd5-73362082e919');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_748b2076-ade2-4568-8dd5-73362082e919');" /></p>
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<p><textarea class="runcode_text" id="runcode_31f26258-9016-464e-aa35-6c3ded15723e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_35eb2ad3-7a6c-4363-9771-1f0926b73b78"><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -306,10 +402,10 @@ body { background:#deddcd;margin:100px;}
     </div>
   </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_31f26258-9016-464e-aa35-6c3ded15723e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_31f26258-9016-464e-aa35-6c3ded15723e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_35eb2ad3-7a6c-4363-9771-1f0926b73b78');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_35eb2ad3-7a6c-4363-9771-1f0926b73b78');" /></p>
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<p><textarea class="runcode_text" id="runcode_011474d5-ad67-4c91-94f1-d84ce4b6ed48"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_66b02d5b-fe7c-4d88-89af-56e366af56c2"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -369,7 +465,7 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_011474d5-ad67-4c91-94f1-d84ce4b6ed48');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_011474d5-ad67-4c91-94f1-d84ce4b6ed48');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_66b02d5b-fe7c-4d88-89af-56e366af56c2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_66b02d5b-fe7c-4d88-89af-56e366af56c2');" /></p>
 
       </div>
     </div>
@@ -451,7 +547,7 @@ body { background:#deddcd;margin:100px;}
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -515,6 +611,40 @@ body { background:#deddcd;margin:100px;}
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

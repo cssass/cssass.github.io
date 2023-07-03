@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -130,18 +226,18 @@ runcode.copy=function(element){
           </div>
         
         <p>new一个Date对象时，当以年份Y，月份M，日期D为参数传入来设定的时候，我们会发现：月份M是从0开始的，而日期D却是从1开始的。<br>即：M:0是一月，1是二月，11是十二月，但D：1 是一号，2是二号，31是三十一号。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_2c7f2597-6d46-4066-a2da-0a8273eba15f"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_e8a5df12-edef-46f1-b33e-6f34f05d9e88"><script type="text/javascript">
 var t1 = new Date(2014,0,1).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t3 = new Date(2014,11,29).toLocaleString()
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2c7f2597-6d46-4066-a2da-0a8273eba15f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2c7f2597-6d46-4066-a2da-0a8273eba15f');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e8a5df12-edef-46f1-b33e-6f34f05d9e88');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e8a5df12-edef-46f1-b33e-6f34f05d9e88');" /></p>
 <p>是不是觉得很别扭，很奇葩？</p>
 <p>对于习惯了以“一月”称呼“January”，“二月”称呼“February”的人来说，让”0″和”一”对应，”1″和”二”对应肯定是超级别扭啊，<br>但对于计算机从业者来说倒合情合理，第一位都是0开始数的嘛。</p>
 <p>那问题抛向了另一边，为什么Day又是从1开始呢？<br>那么我告诉你1Day其实根本不是数组的第一项，日期的初始也是0！<br>当1Day完成的时候，时间就已经过去了二十四小时，1Day已经结束了。<br>所以0Day才是days的开始，那么我们来看看0Day到底是什么时候，让我们从1Day开始往前回溯，其实我们将每一天的开始设在了前夜。<br>如果按小数来细分的话，每月1号的正午应该算是0.5号，而10号的下午6点就是九又四分之三号！</p>
-<p><textarea class="runcode_text" id="runcode_b3516e8d-e18a-4cf6-a2e5-48ac105c9426"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_5e0f241d-5fb2-4f3f-ba71-62ffb4494766"><script type="text/javascript">
 var t3 = new Date(2014,11,29).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t1 = new Date(2014,0,1).toLocaleString(),
@@ -150,9 +246,9 @@ document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",0,"<br />",t0,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b3516e8d-e18a-4cf6-a2e5-48ac105c9426');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b3516e8d-e18a-4cf6-a2e5-48ac105c9426');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5e0f241d-5fb2-4f3f-ba71-62ffb4494766');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5e0f241d-5fb2-4f3f-ba71-62ffb4494766');" /></p>
 <p>0Day的设计，其实还有一个巨大的好处，我们调用new Date就可以轻松拿到当月的最后一号，而不用你自己去考虑大小月、闰年2月。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_2396ce0b-01c0-43c7-a6eb-c036bb4d422d"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_d1b40e79-0f0e-4589-b436-b84ab805f284"><script type="text/javascript">
 var t1 = new Date(2014,1,0).toLocaleString(),
 	t2 = new Date(2014,2,0).toLocaleString(),
 	t3 = new Date(2014,3,0).toLocaleString(),
@@ -161,9 +257,9 @@ document.write(t1,"<br />");
 document.write(t2,"<br />");
 document.write(t3,"<br />");
 document.write(t4,"<br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2396ce0b-01c0-43c7-a6eb-c036bb4d422d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2396ce0b-01c0-43c7-a6eb-c036bb4d422d');" /></p>
-<p>全文结束。<br>插一个小问题，在知乎上看见有人提问javascript 里面为什么不提供date的格式化函数？其实在Firefox上是提供了一个toLocaleFormat方法的。</p>
-<p><textarea class="runcode_text" id="runcode_243b9727-ea15-4da5-988e-53c80cc285d1"><script type="text/javascript">
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d1b40e79-0f0e-4589-b436-b84ab805f284');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d1b40e79-0f0e-4589-b436-b84ab805f284');" /></p>
+<p>全文结束。<br>插一个小问题，在知乎上看见有人提问 <a href="http://www.zhihu.com/question/24400532/answer/29267154" title="" target="">javascript里面为什么不提供date的格式化函数？</a> 其实在Firefox上是提供了一个toLocaleFormat方法的。</p>
+<p><textarea class="runcode_text" id="runcode_18b25479-9eb6-4128-a537-176117d29b72"><script type="text/javascript">
 (function(){
 	if(!new Date().toLocaleFormat) return alert("Date has no method 'toLocaleFormat'");
 	var t1 = new Date().toLocaleFormat("%y/%m/%d");
@@ -173,7 +269,7 @@ document.write(t4,"<br />");
 	document.write(t2,"<br />");
 	document.write(t3,"<br />");
 })();
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_243b9727-ea15-4da5-988e-53c80cc285d1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_243b9727-ea15-4da5-988e-53c80cc285d1');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_18b25479-9eb6-4128-a537-176117d29b72');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_18b25479-9eb6-4128-a537-176117d29b72');" /></p>
 
       </div>
     </div>
@@ -255,7 +351,7 @@ document.write(t4,"<br />");
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -319,6 +415,40 @@ document.write(t4,"<br />");
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -130,7 +226,7 @@ runcode.copy=function(element){
           </div>
         
         <p>话说这篇文章的起源还得从1643年1月4日谈起。这一天，一位引领人类认知世界的巨人诞生了，他就是艾萨克·牛顿（Isaac Newton）。<br>扯远了，就近一点：2010年1月4日，为了纪念牛顿，google设计了一个Google Doodles<br>看这里：今日google纪念logo,典型的物理运动实现<br>进口审核剪切版：</p>
-<p><textarea class="runcode_text" id="runcode_697a1fd2-bde4-495d-a523-d5e02a781bd3"><input type="button" value="demo" onclick="demo()" />
+<p><textarea class="runcode_text" id="runcode_1b132876-47aa-4277-bcb1-3d76535ec795"><input type="button" value="demo" onclick="demo()" />
 <img id="fall" src="http://www.google.com/logos/newton09-apple.png" style="position:absolute;left:200px;top:46px"/>
 <script type="text/javascript">
 function demo(){
@@ -147,9 +243,9 @@ function demo(){
 			if(h==0){clearInterval(i);h=1;}
 		},25);
 }
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_697a1fd2-bde4-495d-a523-d5e02a781bd3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_697a1fd2-bde4-495d-a523-d5e02a781bd3');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1b132876-47aa-4277-bcb1-3d76535ec795');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1b132876-47aa-4277-bcb1-3d76535ec795');" /></p>
 <p>随后，我便模拟了一个重力环境下的抛物线运动：</p>
-<p><textarea class="runcode_text" id="runcode_606d1bad-fb22-4ec4-8a74-10e1ed91e4bb">  <!doctype html>
+<p><textarea class="runcode_text" id="runcode_eab879e2-7469-4dd0-b09c-08ba9cae7371">  <!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -213,12 +309,12 @@ var shoot=function(x,y,a,t) {
 	},t);
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_606d1bad-fb22-4ec4-8a74-10e1ed91e4bb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_606d1bad-fb22-4ec4-8a74-10e1ed91e4bb');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_eab879e2-7469-4dd0-b09c-08ba9cae7371');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_eab879e2-7469-4dd0-b09c-08ba9cae7371');" /></p>
 <p>模拟采用的公式</p>
 <p>Function: 对于运动瞬间<br>V&#x3D;V0+aT;<br>S&#x3D;S0+VT;<br>T：运动的时间间隔，是固定值。<br>这个公式有别于那种运动模拟中常用的补间动画公式（tween算法）。<br>补间动画是需要事先确定总路程，和总时间的，<br>而我们模拟的运动轨迹没有事先计算，因为我们运动中间或许还有一些变数，比如撞击，主动改变方向（键盘控制）等等，所以我觉得这个物理公式更能模拟出真实的各种运动。</p>
 <p>直至本月前两天，某同事向我展示了这个：<br>重力版google(浏览首选chrome,safari,次选opera,firefox,若是ie9以下请无视)<br>膜拜啊。js且不论，css3已经大量使用了。我还只局限用用阴影，圆角呢。</p>
 <p>不才，也做一个关于落体，撞击，摩擦的简单模拟。以表膜拜。</p>
-<p><textarea class="runcode_text" id="runcode_3af3bddf-b35d-47db-ac72-63a073f4fe03">  <!doctype html>
+<p><textarea class="runcode_text" id="runcode_0035e29f-b832-4c4c-887c-70eeff16a1fc">  <!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -301,7 +397,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3af3bddf-b35d-47db-ac72-63a073f4fe03');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3af3bddf-b35d-47db-ac72-63a073f4fe03');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0035e29f-b832-4c4c-887c-70eeff16a1fc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0035e29f-b832-4c4c-887c-70eeff16a1fc');" /></p>
 
 
       </div>
@@ -384,7 +480,7 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -448,6 +544,40 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

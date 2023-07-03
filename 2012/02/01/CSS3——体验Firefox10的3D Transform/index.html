@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -136,7 +232,7 @@ runcode.copy=function(element){
         <p>之前写了一篇CSS3的崛起——体验webkit的3D-Effect。<br>随着firefox10正式版发布，firefox也支持3D Transform了，所以补充一篇，将上篇中的代码移植过来，支持firefox。</p>
 <p>这里先穿插介绍下firefox10的新特性，firefox10除了支持3D Transform，还提供了Fullscreen API，令人兴奋吧。另外firefox10成为Mozila首个“长期支持版本”(Extended Support Release，简称“ESR”)，这种当然是市场考虑啦，至于是什么用意和市场反响我们就不探讨了。</p>
 <p>下面是演示demo，只支持firefox10。 chrome浏览器的用户可以参考上一篇。</p>
-<p><textarea class="runcode_text" id="runcode_916bb15c-d61b-463e-b568-1c6348434844"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_0c0b03ec-0d9b-4135-ae35-b8bef3e0546d"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -196,10 +292,10 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_916bb15c-d61b-463e-b568-1c6348434844');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_916bb15c-d61b-463e-b568-1c6348434844');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0c0b03ec-0d9b-4135-ae35-b8bef3e0546d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0c0b03ec-0d9b-4135-ae35-b8bef3e0546d');" /></p>
 
 <p>去除一些效果</p>
-<p><textarea class="runcode_text" id="runcode_f6e032ff-774e-4c55-8e32-477e14c15c49"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_fb6548bd-dc5f-44df-af0a-4c4880b3a319"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -240,10 +336,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f6e032ff-774e-4c55-8e32-477e14c15c49');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f6e032ff-774e-4c55-8e32-477e14c15c49');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fb6548bd-dc5f-44df-af0a-4c4880b3a319');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fb6548bd-dc5f-44df-af0a-4c4880b3a319');" /></p>
 
 <p>使用preserve-3d，实现全方位3D</p>
-<p><textarea class="runcode_text" id="runcode_07808e4e-3991-4f90-9879-0651ef43e6b9"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_16df8fc1-de65-4e24-bb29-62e3c95aabd7"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -303,11 +399,11 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_07808e4e-3991-4f90-9879-0651ef43e6b9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_07808e4e-3991-4f90-9879-0651ef43e6b9');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_16df8fc1-de65-4e24-bb29-62e3c95aabd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_16df8fc1-de65-4e24-bb29-62e3c95aabd7');" /></p>
 
 <p>最后说明一下firefox和webkit间使用的一点差别：<br>火狐10下的3D Transforms在设置perspective属性值时必须带单位px，webkit可以省略；<br>另外，webkit在用transition-property设置transform这个值时，可以不用前缀，而firefox需要写上-moz-transform;</p>
 <p>现在综合Webkit和Firefox，写一个效果，顺便也兼用下另两个属性：transition 和 animation</p>
-<p><textarea class="runcode_text" id="runcode_87b4225f-0f64-4f6b-883f-8fdbfa03122c"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c90e0d46-aea7-4ca3-a44a-b53912e0a32b"><!doctype html>
 <link href='http://fonts.googleapis.com/css?family=Ultra&v2' rel='stylesheet' type='text/css'>
 <style>
 body{background:#333;}
@@ -355,7 +451,7 @@ h1:hover .myLogo a{left: 2px;}
 		CSSASS
 		<a href="http://www.cssass.com/blog/">CSSASS</a>
 	</span>
-</h1></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_87b4225f-0f64-4f6b-883f-8fdbfa03122c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_87b4225f-0f64-4f6b-883f-8fdbfa03122c');" /></p>
+</h1></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c90e0d46-aea7-4ca3-a44a-b53912e0a32b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c90e0d46-aea7-4ca3-a44a-b53912e0a32b');" /></p>
 
       </div>
     </div>
@@ -437,7 +533,7 @@ h1:hover .myLogo a{left: 2px;}
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -501,6 +597,40 @@ h1:hover .myLogo a{left: 2px;}
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

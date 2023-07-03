@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -134,28 +230,11 @@ runcode.copy=function(element){
 <p>人们总是喜欢用这样一个类比:想象生活在三维空间中的一张二维平面画中的扁片人,不管这幅画多么丰富多彩,其中的二维人只能看到周围世界的侧面,在他们眼中,周围的人和事物都是一些长短不一的线段而已。只有当一个二维扁片人从画中飘出来,进人三维空间,再回头看那幅画,才能看到画的全貌。<br>这个类比,其实也只是进一步描述了四维感觉的不可描述。</p>
 <p>关于《三体——死神永生》里四维空间（不算时间维）的讨论，这里还有篇有意思的博文：四维世界的堵车问题</p>
 <p>好了，言归正传。<br>下面提供一个三维到二维的投影算法（from <a href="http://www.benjoffe.com）：">www.benjoffe.com）：</a></p>
-<p><textarea class="runcode_text" id="runcode_141307e4-d0f5-44a9-a467-33eec47ca695">var theta = 4.2; //转角
-var eleva = 0.6; //仰角
-function iso(x,y,z){
-var dist = Math.sqrt(x*x+y*y);
-var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
-
-x=Math.cos(angle)*dist;
-y=-Math.sin(angle)*dist;
-var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
-y=y*Math.sin(eleva) - z*Math.cos(eleva);
-x*=fact;
-y*=fact;
-
-return {
-x: x,
-y: y
-};
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_141307e4-d0f5-44a9-a467-33eec47ca695');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_141307e4-d0f5-44a9-a467-33eec47ca695');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(x,y,z)&#123;</span><br><span class="line">var dist = Math.sqrt(x*x+y*y);</span><br><span class="line">var angle = (x==0 &amp;&amp; y==0) ? 0 : Math.atan(y/x) + theta + ((x&lt;0)? Math.PI : 0);</span><br><span class="line"></span><br><span class="line">x=Math.cos(angle)*dist;</span><br><span class="line">y=-Math.sin(angle)*dist;</span><br><span class="line">var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(eleva) - z*Math.cos(eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line"></span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
 <p>我们应用一下：下面是一个3D球</p>
-<p><textarea class="runcode_text" id="runcode_b0f70105-f66c-442b-8f04-40597673c3b8"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_540a2e7c-9d9e-4aac-a11c-732efce11766"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -244,11 +323,11 @@ body{background:#cbe846;}
 	};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b0f70105-f66c-442b-8f04-40597673c3b8');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b0f70105-f66c-442b-8f04-40597673c3b8');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_540a2e7c-9d9e-4aac-a11c-732efce11766');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_540a2e7c-9d9e-4aac-a11c-732efce11766');" /></p>
 
 <p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
 <p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
-<p><textarea class="runcode_text" id="runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_c646b8a1-528c-4381-92fe-6cba89df4c37"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -330,31 +409,15 @@ body{background:#efd5e2;}
 		}
 	}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_12f63b1c-baeb-4c5d-8aac-db1a68081607');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c646b8a1-528c-4381-92fe-6cba89df4c37');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c646b8a1-528c-4381-92fe-6cba89df4c37');" /></p>
 
 <p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
-<p>x&#x3D;rsinθcosφ 　<br>y&#x3D;rsinθsinφ 　　<br>z&#x3D;rcosθ</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=rsinθcosφ 　</span><br><span class="line">y=rsinθsinφ 　　</span><br><span class="line">z=rcosθ</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>呃哦，代入iso函数后我们发现iso变的更简单了：</p>
-<p><textarea class="runcode_text" id="runcode_6dd038d4-9f32-437e-b08a-656784d1a6df">var theta = 4.2; //转角
-var eleva = 0.6; //仰角
-function iso(a,b,r){
-var x,y,z
-x=r*Math.cos(a+this.theta)*Math.sin(b);
-y=r*Math.sin(a+this.theta)*Math.sin(b);
-z=r*Math.cos(b);
-
-var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;
-y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);
-x*=fact;
-y*=fact;
-return {
-x: x,
-y: y
-};
-}</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6dd038d4-9f32-437e-b08a-656784d1a6df');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6dd038d4-9f32-437e-b08a-656784d1a6df');" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(a,b,r)&#123;</span><br><span class="line">var x,y,z</span><br><span class="line">x=r*Math.cos(a+this.theta)*Math.sin(b);</span><br><span class="line">y=r*Math.sin(a+this.theta)*Math.sin(b);</span><br><span class="line">z=r*Math.cos(b);</span><br><span class="line"></span><br><span class="line">var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
-<p><textarea class="runcode_text" id="runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -447,7 +510,7 @@ y: y
 	};
 	new Ball(2,2,1).fluc();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2bd3c662-3a5a-4957-a52e-f330233e2e7a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775');" /></p>
 
 
 
@@ -531,7 +594,7 @@ y: y
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -595,6 +658,40 @@ y: y
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

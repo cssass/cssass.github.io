@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -131,7 +227,7 @@ runcode.copy=function(element){
         
         <p>获取元素的尺寸，似乎offsetWidth&#x2F;Height就可以了，还需要什么方法吗？<br>的确，一般情况下，获取元素尺寸，用offsetWidth&#x2F;Height就搞定了，但如果这个元素是display:none的呢？<br>试验一下就知道，none元素的尺寸是0。</p>
 <p>所以需要我们下面的这个方法来获取。</p>
-<p><textarea class="runcode_text" id="runcode_a0b012d4-d98e-41b5-b740-5878ea0f0cdc"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -170,11 +266,11 @@ var getSize = function(elem){
 };
 alert(getSize($id("box")).height)
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a0b012d4-d98e-41b5-b740-5878ea0f0cdc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a0b012d4-d98e-41b5-b740-5878ea0f0cdc');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca');" /></p>
 
 <p>第二个，获取元素的位置。<br>或许你经常使用offsetLeft&#x2F;Top来获取位置，不过offsetLeft&#x2F;Top是相对 offsetParent的位置（在ie6，7下是相对直接父级的),并且在firefox下还有些小bug</p>
 <p>下面这个方法提供获取元素相对于窗口（页面可视区）的距离。</p>
-<p><textarea class="runcode_text" id="runcode_bb2295b5-ed6b-4959-9bc1-22fdc0e9bd53"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_c65ceab1-d208-40bf-8259-12f656974075"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -197,7 +293,7 @@ alert(getSize($id("box")).height)
 					"<br />width:"+pos.width +
 					"<br />height:"+pos.height
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bb2295b5-ed6b-4959-9bc1-22fdc0e9bd53');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bb2295b5-ed6b-4959-9bc1-22fdc0e9bd53');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c65ceab1-d208-40bf-8259-12f656974075');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c65ceab1-d208-40bf-8259-12f656974075');" /></p>
 
 <p>这个方法是由ie提出的，不过在其他浏览器吸收之后，还加了width，height两个值。</p>
 <p>重复一下，这个方法是相对于页面窗口的，至于相对于整个页面文档的距离，那只需加上scrollTop这些值就行了，不做赘述。</p>
@@ -282,7 +378,7 @@ alert(getSize($id("box")).height)
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -346,6 +442,40 @@ alert(getSize($id("box")).height)
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   

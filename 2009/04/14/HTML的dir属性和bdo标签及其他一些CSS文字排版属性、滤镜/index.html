@@ -1,6 +1,97 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
     <meta charset="utf8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <title>
@@ -34,6 +125,11 @@
     
     
     <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
     
     
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
@@ -82,8 +178,8 @@ runcode.copy=function(element){
   <body>
     <div class="head">
       <div class="nav">
-        <a href="/" class="nav-logo">
-          <img alt="logo" height="60px" width="60px" src="/images/logo.svg" />
+        <a id="nav-logo" href="/" class="nav-logo">
+          
         </a>
         <input id="navBtn" type="checkbox"/>
         <div class="nav-menu">
@@ -130,7 +226,7 @@ runcode.copy=function(element){
           </div>
         
         <p>先看一下HTML4.0中定义的dir属性.对应有两个值ltr(默认值)和rlt。分别表示文本从左向右显示（dir&#x3D;ltr）和文本从右向左显示（dir&#x3D;rtl）。<br>文本从右向左显示的情况（dir&#x3D;rtl）是考虑到一些特殊的文字书写方式（如古中文，希伯来文——但是我们古中文可不止是从右到左，还是从上到下书写的呢）。<br>先看一下Test</p>
-<p><textarea class="runcode_text" id="runcode_a54a5fc0-6568-45b5-ad02-d15136b89699"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_d9fe22ba-74f3-4657-998e-37f723364b02"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -142,10 +238,10 @@ runcode.copy=function(element){
  a b c<br />
 </p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a54a5fc0-6568-45b5-ad02-d15136b89699');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a54a5fc0-6568-45b5-ad02-d15136b89699');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d9fe22ba-74f3-4657-998e-37f723364b02');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d9fe22ba-74f3-4657-998e-37f723364b02');" /></p>
 <p>从这里看，觉得这和css的属性text-align:right，或则HTML中不推荐使用的属性align&#x3D;right并没有什么区别啊。</p>
 <p>这是因为受到了“各种用于语言编码的和显示的Unicode和ISO标准”的影响。整段文落都当成一个不可分割的整体了（不管是什么文字的）。<br>象数字和一些符号就能按空格分隔反排，体现出“从右向左”的显示：</p>
-<p><textarea class="runcode_text" id="runcode_7f13c0be-4570-44dc-a86d-93f68e494d40"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_00673bef-0f4c-4aab-8259-c13f634bead5"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -158,9 +254,9 @@ a b c d / ?
 11 12 13 14 / ?
 </p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7f13c0be-4570-44dc-a86d-93f68e494d40');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7f13c0be-4570-44dc-a86d-93f68e494d40');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_00673bef-0f4c-4aab-8259-c13f634bead5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_00673bef-0f4c-4aab-8259-c13f634bead5');" /></p>
 <p>除此之外，这个属性还能在ie下改变滚动条的位置，你见过滚动条显示在滚动内容的左侧的吗？<br>用ie看看下面的效果吧：</p>
-<p><textarea class="runcode_text" id="runcode_2c654826-079b-4d2a-a729-a1dd4b931e2b"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -174,9 +270,9 @@ a
 c
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2c654826-079b-4d2a-a729-a1dd4b931e2b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2c654826-079b-4d2a-a729-a1dd4b931e2b');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404');" /></p>
 <p>综上也可以看出，dir这个属性其实并不怎么好用。幸好我们也基本用不上这个属性。<br>要用我们也最好结合bdo这个标签来使用。</p>
-<p><textarea class="runcode_text" id="runcode_f3cd163d-986f-46cf-a605-e6e20d1c5ac2"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -186,10 +282,10 @@ c
 我是谁,who am I?
 </bdo>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f3cd163d-986f-46cf-a605-e6e20d1c5ac2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f3cd163d-986f-46cf-a605-e6e20d1c5ac2');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6');" /></p>
 <p>bdo标签必须要带dir属性一起使用。他产生的效果就不论是什么文字字母符号，都以单个字符为单位，颠倒顺序，从右往左显示（我们可以称为“反排效果”）,很彻底啊，我们可以看到，连连续书写的英文字母都被反写了。</p>
 <p>现如今web标准化的春风吹遍大江南北，我们也要与时俱进，贯彻落实结构和表现分离的思想方针，加快发展可扩展性良好的web建设。<br>所以，除了语义化的结构外，我们还推荐将结构之外的表现用CSS属性来实现。<br>前面提到的html属性dir和<bdo>标签所能达到的反排效果，我们也可以使用两个CSS标准属性来实现。<br>第一个CSS属性：direction : ltr | rtl | inherit ——效果对应ＨＴＭＬ属性dir。<br>第二个CSS属性：unicode-bidi : normal | bidi-override | embed——其中的bidi-override属性值效果对应<bdo>标签。</p>
-<p><textarea class="runcode_text" id="runcode_da080c6e-dc36-4443-af58-6937aadde92d"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_919808e2-6c45-4778-971c-fdb45ade25e4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -199,10 +295,10 @@ c
 我是谁,who am I?
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_da080c6e-dc36-4443-af58-6937aadde92d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_da080c6e-dc36-4443-af58-6937aadde92d');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_919808e2-6c45-4778-971c-fdb45ade25e4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_919808e2-6c45-4778-971c-fdb45ade25e4');" /></p>
 <p>之前我们还说道古中文的写法并非只是单单的从右往左书写，同时也是由上往下书写的。那么有没有html属性或css属性能达到这个效果（可以称作文字竖排效果吧）呢？<br>css属性倒的确有，还不止一个。但很遗憾，都只是MS的推荐属性，并非W3C的标准属性。所以只有IE系列（ie5.5+）浏览器支持。<br>这两个属性分别是:<br>writing-mode : lr-tb | tb-rl ;<br>layout-flow : horizontal | vertical-ideographic ;</p>
 <p>稍微演示一下</p>
-<p><textarea class="runcode_text" id="runcode_e27aa186-705d-4ce1-af6b-c8e1e16c182f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -220,10 +316,10 @@ layout-flow设置或检索对象内文本的流动和方向。
 对应的脚本特性为layoutFlow。
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e27aa186-705d-4ce1-af6b-c8e1e16c182f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e27aa186-705d-4ce1-af6b-c8e1e16c182f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4');" /></p>
 <p>个人觉得这两个属性，几乎没什么差别。。。<br>另外，当其高度不设定时。如何自适应的高度，很是令人迷惑。</p>
 <p>再提一个不标准的东西——镜像翻转滤镜——只做了解，不建议使用。<br>前面我们有一个文字反排效果，那是排版上的。而使用这个滤镜呢，不单是排版上反过来了。连文字的显示都反过来了（镜像翻转效果）。——当然只支持ie系列（ie4+）。<br>滤镜有两个，一个是水平翻转滤镜：fliph。一个事垂直翻转滤镜flipv。<br>注：使用这个滤镜需要触发haslayout.</p>
-<p><textarea class="runcode_text" id="runcode_88cefcc4-4aee-495e-a32a-a41b0991e2d0"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_62c771a3-b258-4132-b051-e496a099e1d1"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -235,10 +331,10 @@ h2{zoom:1;}
 <h2 style="filter:fliph()">左右翻转</h2>
 <h2 style="filter:flipv()">上下翻转</h2>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_88cefcc4-4aee-495e-a32a-a41b0991e2d0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_88cefcc4-4aee-495e-a32a-a41b0991e2d0');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_62c771a3-b258-4132-b051-e496a099e1d1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_62c771a3-b258-4132-b051-e496a099e1d1');" /></p>
 <p>提到这个翻转镜像效果，倒想起了自己之前的一个娱乐之作：重型7级absolute单层1像素真实web2.0渐变风格倒影字效果（全兼容） 。</p>
 <p>文章到这里，我们已经提到了关于页面，文字排版相关的html属性，html标签，CSS属性以及CSS滤镜。除此之外，可以改变文字排版方式（文字反排）的还有一个RLO符。<br>请看：</p>
-<p><textarea class="runcode_text" id="runcode_62488a35-c8c3-4b59-8f8c-ec84283b8232"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -247,10 +343,10 @@ h2{zoom:1;}
 <body>
 <input type="text" value="&#8238;我从右往左？"/>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_62488a35-c8c3-4b59-8f8c-ec84283b8232');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_62488a35-c8c3-4b59-8f8c-ec84283b8232');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1');" /></p>
 <p>这个RLO符的unicode编码是：202E 。字符实体编号是：8238<br>可以参考这篇后文：JS实现字符unicode编码信息查询</p>
 <p>最后，我们还要提一个由字体产生的文字侧倒的效果。<br>运行下如下代码：</p>
-<p><textarea class="runcode_text" id="runcode_b09926fd-5331-464e-ba4a-6381c220e5bc"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_e587419c-f424-42ff-adc1-97023a739ac4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -261,7 +357,7 @@ h2{zoom:1;}
 <br />
 <span style="font-family:'@黑体';">2我要吃饭我要吃饭我</span>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b09926fd-5331-464e-ba4a-6381c220e5bc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b09926fd-5331-464e-ba4a-6381c220e5bc');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e587419c-f424-42ff-adc1-97023a739ac4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e587419c-f424-42ff-adc1-97023a739ac4');" /></p>
 <p>这个相信一些修改过QQ聊天字体的童鞋们也发现过，选择QQ聊天字体里这类前面带@符的字体就能打出侧倒的文字。<br>不过，这浏览器下显示，会有一些差异。比如FF下不支持，（我的）safari下不支持@宋体。<br>另外，还有些人反映自己的自己上根本没有效果。</p>
 
       </div>
@@ -344,7 +440,7 @@ h2{zoom:1;}
                        width="20px"
                        src="/images/icon/icon-link+.svg"/>
                   <a class="foot-link"
-                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20Hozen.site%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
                   申请友链</a>
                 </div>
               </div>
@@ -408,6 +504,40 @@ h2{zoom:1;}
   param.id = location.pathname
   const gitalk = new Gitalk(param)
   gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 100,
+    HEIGHT = 80;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 15,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
 </script>
 
   
