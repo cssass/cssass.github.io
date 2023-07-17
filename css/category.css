@@ -25,13 +25,15 @@
   padding: 8px 10px;
   box-sizing: border-box;
 }
-.post-card {
-  display: block;
-  margin: 60px 0;
-}
 .post-list {
   max-width: 900px;
   margin: 20px auto;
+}
+.post-card {
+  display: block;
+  margin: 5px 0;
+  clear: both;
+  list-style: tibetan;
 }
 .post-title {
   text-decoration: none;
@@ -42,11 +44,16 @@
   margin-top: 4px;
 }
 .post__head {
-  margin-bottom: 10px;
+  margin: 0 10px 10px 0;
+  float: left;
 }
 .post__body {
   display: flex;
   align-items: stretch;
+}
+.paginator {
+  max-width: 900px;
+  margin: 20px auto;
 }
 .post-cover {
   display: block;
