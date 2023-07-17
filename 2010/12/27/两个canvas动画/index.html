@@ -228,7 +228,7 @@ runcode.copy=function(element){
         <p>几星期前参加ie9开发大赛做了一个《ie9大风车》（呃，我承认名字很挫）。</p>
 <p>这个小玩意的难度在于，里面的所有东西都不是图片，而是用canvas写的，之前写的贝塞尔曲线的可视化操作实现倒是帮了大忙，不过据说AI已有插件直接导出canvas绘图代码了，那我的手写代码的生产力就太落后了。</p>
 <p>支持的浏览器包括ie9,firefox,chrome,safari。在opera下有个bug,暂时无法修复。</p>
-<p><textarea class="runcode_text" id="runcode_0ddf1515-4478-49c3-ae64-118fcb2c5dc3"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_be58bf5e-b645-4f1b-abb5-b97595f89123"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -417,11 +417,11 @@ window.onload=function(){
 };
 window.onresize=function(){drawBg();}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0ddf1515-4478-49c3-ae64-118fcb2c5dc3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0ddf1515-4478-49c3-ae64-118fcb2c5dc3');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_be58bf5e-b645-4f1b-abb5-b97595f89123');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_be58bf5e-b645-4f1b-abb5-b97595f89123');" /></p>
 
 <p>下面是另一个玩意《忍者镖》，话说是受了这个大赛（<a target="_blank" rel="noopener" href="http://js1k.com/2010-first/demos">http://js1k.com/2010-first/demos</a> ）的刺激才写的。<br>在这个大赛里，所有的Demo都必须小于1KB。</p>
 <p>于是，我就把我的代码往死里压。从这样：</p>
-<p><textarea class="runcode_text" id="runcode_7e85d188-9472-45bb-ae7b-9f6fd7ddb59f"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -534,9 +534,9 @@ window.onload=function(){
 };
 window.onresize=function(){drawBg();}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7e85d188-9472-45bb-ae7b-9f6fd7ddb59f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7e85d188-9472-45bb-ae7b-9f6fd7ddb59f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2');" /></p>
 <p>斩头去尾，挖心掏肺，搞成这样：</p>
-<p><textarea class="runcode_text" id="runcode_88801070-e7ef-48a7-b726-6e998c072190"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3"><!doctype html>
 <html>
 <head>
 <style>
@@ -548,7 +548,7 @@ canvas{position:absolute;top:0;left:0;}
 <script type="text/javascript">
 function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function(){function a(){function e(){if(f<Math.PI*8){f+=0.1;c.a+=d*0.1;c.b.clearRect(0,0,400,400);c.c();c.timeout=setTimeout(e,10)}else{d=-d;c.timeout=setTimeout(a,10)}}var f=0;e()}var d=1,c=b;a()};b.c=function(){var a=b.b;a.save();a.translate(200,200);a.rotate(b.a);if(b.a===0)b.a=0.0010;a.scale(b.a/10,b.a/10);a.strokeStyle="#333";a.fillStyle="#eee";a.lineWidth=1;a.beginPath();a.moveTo(20,-20);a.lineTo(80,0);a.lineTo(20,20);a.lineTo(0, 80);a.lineTo(-20,20);a.lineTo(-80,0);a.lineTo(-20,-20);a.lineTo(0,-80);a.lineTo(20,-20);a.translate(0,0);a.arc(0,0,8,0,Math.PI*2,true);a.stroke();a.fill();a.restore()};b.create=function(){var a=document.createElement("canvas");a.width=400;a.height=400;b.b=a.getContext("2d");document.body.appendChild(a)}}window.onload=function(){for(var b=0;b<10;b++)(new g).d({a:b*0.1})};
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_88801070-e7ef-48a7-b726-6e998c072190');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_88801070-e7ef-48a7-b726-6e998c072190');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3');" /></p>
 <p>结果，我的文件大小依然超出1KB，不得不佩服那些1KB Demos啊，个顶个的又小又炫。</p>
 
       </div>
@@ -700,10 +700,10 @@ function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function()
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

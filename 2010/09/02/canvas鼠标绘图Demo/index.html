@@ -225,7 +225,7 @@ runcode.copy=function(element){
             
           </div>
         
-        <p><textarea class="runcode_text" id="runcode_df7447e4-21a2-4032-9f71-284e7a18d1b6"><!doctype html>
+        <p><textarea class="runcode_text" id="runcode_fea79fab-7001-4b86-9c4e-aeb7c3dc1ad0"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -266,10 +266,10 @@ var draw=function(e){
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_df7447e4-21a2-4032-9f71-284e7a18d1b6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_df7447e4-21a2-4032-9f71-284e7a18d1b6');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fea79fab-7001-4b86-9c4e-aeb7c3dc1ad0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fea79fab-7001-4b86-9c4e-aeb7c3dc1ad0');" /></p>
 <p>我之前用window.onload来绑定函数修改canvas的高度，这通过运行框运行open新页面，在chrome下获取document.documentElemnet.offsetHeight时会等于0，导致绘图板高度也没了。<br>另外发现，Opera下绘线同其他浏览器有点差别：单独的一个path(即同上一次的path没有瓜葛)，如果没有moveTo设置起点，一般浏览器会以第一个lineTo为起点，这在Opera下是不正确的。</p>
 <p>下面再放一个百度UEO基于canvas绘制热力图的演示：</p>
-<p><textarea class="runcode_text" id="runcode_b619a1f8-44d4-453e-a7ef-86081a79449a"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_2f6ec625-8215-46f3-a9a7-3884959cb3ba"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -361,7 +361,7 @@ var switcher = document.getElementById("switch");
 	}
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b619a1f8-44d4-453e-a7ef-86081a79449a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b619a1f8-44d4-453e-a7ef-86081a79449a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2f6ec625-8215-46f3-a9a7-3884959cb3ba');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2f6ec625-8215-46f3-a9a7-3884959cb3ba');" /></p>
       </div>
     </div>
   </article>
@@ -511,10 +511,10 @@ var switcher = document.getElementById("switch");
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

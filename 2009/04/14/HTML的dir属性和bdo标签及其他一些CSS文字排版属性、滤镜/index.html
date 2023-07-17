@@ -226,7 +226,7 @@ runcode.copy=function(element){
           </div>
         
         <p>先看一下HTML4.0中定义的dir属性.对应有两个值ltr(默认值)和rlt。分别表示文本从左向右显示（dir&#x3D;ltr）和文本从右向左显示（dir&#x3D;rtl）。<br>文本从右向左显示的情况（dir&#x3D;rtl）是考虑到一些特殊的文字书写方式（如古中文，希伯来文——但是我们古中文可不止是从右到左，还是从上到下书写的呢）。<br>先看一下Test</p>
-<p><textarea class="runcode_text" id="runcode_d9fe22ba-74f3-4657-998e-37f723364b02"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_b67e53af-5f14-43ba-840f-7f8de09578c6"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -238,10 +238,10 @@ runcode.copy=function(element){
  a b c<br />
 </p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d9fe22ba-74f3-4657-998e-37f723364b02');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d9fe22ba-74f3-4657-998e-37f723364b02');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b67e53af-5f14-43ba-840f-7f8de09578c6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b67e53af-5f14-43ba-840f-7f8de09578c6');" /></p>
 <p>从这里看，觉得这和css的属性text-align:right，或则HTML中不推荐使用的属性align&#x3D;right并没有什么区别啊。</p>
 <p>这是因为受到了“各种用于语言编码的和显示的Unicode和ISO标准”的影响。整段文落都当成一个不可分割的整体了（不管是什么文字的）。<br>象数字和一些符号就能按空格分隔反排，体现出“从右向左”的显示：</p>
-<p><textarea class="runcode_text" id="runcode_00673bef-0f4c-4aab-8259-c13f634bead5"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_d0fd0748-9c52-4a31-aeda-6e2eeda353a2"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -254,9 +254,9 @@ a b c d / ?
 11 12 13 14 / ?
 </p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_00673bef-0f4c-4aab-8259-c13f634bead5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_00673bef-0f4c-4aab-8259-c13f634bead5');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d0fd0748-9c52-4a31-aeda-6e2eeda353a2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d0fd0748-9c52-4a31-aeda-6e2eeda353a2');" /></p>
 <p>除此之外，这个属性还能在ie下改变滚动条的位置，你见过滚动条显示在滚动内容的左侧的吗？<br>用ie看看下面的效果吧：</p>
-<p><textarea class="runcode_text" id="runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_3fd1bbe6-9ceb-4849-b6f2-023a201b2186"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -270,9 +270,9 @@ a
 c
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_40a5e74c-8ffd-45d9-bc97-7d2b7670b404');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3fd1bbe6-9ceb-4849-b6f2-023a201b2186');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3fd1bbe6-9ceb-4849-b6f2-023a201b2186');" /></p>
 <p>综上也可以看出，dir这个属性其实并不怎么好用。幸好我们也基本用不上这个属性。<br>要用我们也最好结合bdo这个标签来使用。</p>
-<p><textarea class="runcode_text" id="runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_3defee47-cf67-484c-9347-bbfa53238676"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -282,10 +282,10 @@ c
 我是谁,who am I?
 </bdo>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fce535f2-9d3c-48b9-a924-41cb99699fc6');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3defee47-cf67-484c-9347-bbfa53238676');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3defee47-cf67-484c-9347-bbfa53238676');" /></p>
 <p>bdo标签必须要带dir属性一起使用。他产生的效果就不论是什么文字字母符号，都以单个字符为单位，颠倒顺序，从右往左显示（我们可以称为“反排效果”）,很彻底啊，我们可以看到，连连续书写的英文字母都被反写了。</p>
 <p>现如今web标准化的春风吹遍大江南北，我们也要与时俱进，贯彻落实结构和表现分离的思想方针，加快发展可扩展性良好的web建设。<br>所以，除了语义化的结构外，我们还推荐将结构之外的表现用CSS属性来实现。<br>前面提到的html属性dir和<bdo>标签所能达到的反排效果，我们也可以使用两个CSS标准属性来实现。<br>第一个CSS属性：direction : ltr | rtl | inherit ——效果对应ＨＴＭＬ属性dir。<br>第二个CSS属性：unicode-bidi : normal | bidi-override | embed——其中的bidi-override属性值效果对应<bdo>标签。</p>
-<p><textarea class="runcode_text" id="runcode_919808e2-6c45-4778-971c-fdb45ade25e4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_31cf632c-07fb-45aa-8a53-5e76f6c0aa80"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -295,10 +295,10 @@ c
 我是谁,who am I?
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_919808e2-6c45-4778-971c-fdb45ade25e4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_919808e2-6c45-4778-971c-fdb45ade25e4');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_31cf632c-07fb-45aa-8a53-5e76f6c0aa80');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_31cf632c-07fb-45aa-8a53-5e76f6c0aa80');" /></p>
 <p>之前我们还说道古中文的写法并非只是单单的从右往左书写，同时也是由上往下书写的。那么有没有html属性或css属性能达到这个效果（可以称作文字竖排效果吧）呢？<br>css属性倒的确有，还不止一个。但很遗憾，都只是MS的推荐属性，并非W3C的标准属性。所以只有IE系列（ie5.5+）浏览器支持。<br>这两个属性分别是:<br>writing-mode : lr-tb | tb-rl ;<br>layout-flow : horizontal | vertical-ideographic ;</p>
 <p>稍微演示一下</p>
-<p><textarea class="runcode_text" id="runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_29f5d42c-6221-47b9-bce4-68fcd7bb4500"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -316,10 +316,10 @@ layout-flow设置或检索对象内文本的流动和方向。
 对应的脚本特性为layoutFlow。
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_94dbf544-1d8c-4ebc-9d76-b8a2ea6764c4');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_29f5d42c-6221-47b9-bce4-68fcd7bb4500');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_29f5d42c-6221-47b9-bce4-68fcd7bb4500');" /></p>
 <p>个人觉得这两个属性，几乎没什么差别。。。<br>另外，当其高度不设定时。如何自适应的高度，很是令人迷惑。</p>
 <p>再提一个不标准的东西——镜像翻转滤镜——只做了解，不建议使用。<br>前面我们有一个文字反排效果，那是排版上的。而使用这个滤镜呢，不单是排版上反过来了。连文字的显示都反过来了（镜像翻转效果）。——当然只支持ie系列（ie4+）。<br>滤镜有两个，一个是水平翻转滤镜：fliph。一个事垂直翻转滤镜flipv。<br>注：使用这个滤镜需要触发haslayout.</p>
-<p><textarea class="runcode_text" id="runcode_62c771a3-b258-4132-b051-e496a099e1d1"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_ceb98bb6-2422-4c2d-a5b7-47fb8d0be5e4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -331,10 +331,10 @@ h2{zoom:1;}
 <h2 style="filter:fliph()">左右翻转</h2>
 <h2 style="filter:flipv()">上下翻转</h2>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_62c771a3-b258-4132-b051-e496a099e1d1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_62c771a3-b258-4132-b051-e496a099e1d1');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ceb98bb6-2422-4c2d-a5b7-47fb8d0be5e4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ceb98bb6-2422-4c2d-a5b7-47fb8d0be5e4');" /></p>
 <p>提到这个翻转镜像效果，倒想起了自己之前的一个娱乐之作：重型7级absolute单层1像素真实web2.0渐变风格倒影字效果（全兼容） 。</p>
 <p>文章到这里，我们已经提到了关于页面，文字排版相关的html属性，html标签，CSS属性以及CSS滤镜。除此之外，可以改变文字排版方式（文字反排）的还有一个RLO符。<br>请看：</p>
-<p><textarea class="runcode_text" id="runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_5f874020-36f8-4b1e-bd5f-785eeb65eb43"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -343,10 +343,10 @@ h2{zoom:1;}
 <body>
 <input type="text" value="&#8238;我从右往左？"/>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_da4f82f2-ddee-457b-8b71-3a94406bdee1');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5f874020-36f8-4b1e-bd5f-785eeb65eb43');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5f874020-36f8-4b1e-bd5f-785eeb65eb43');" /></p>
 <p>这个RLO符的unicode编码是：202E 。字符实体编号是：8238<br>可以参考这篇后文：JS实现字符unicode编码信息查询</p>
 <p>最后，我们还要提一个由字体产生的文字侧倒的效果。<br>运行下如下代码：</p>
-<p><textarea class="runcode_text" id="runcode_e587419c-f424-42ff-adc1-97023a739ac4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_0d0fff7f-c5b2-43f1-9f7e-e9614482a832"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -357,7 +357,7 @@ h2{zoom:1;}
 <br />
 <span style="font-family:'@黑体';">2我要吃饭我要吃饭我</span>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e587419c-f424-42ff-adc1-97023a739ac4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e587419c-f424-42ff-adc1-97023a739ac4');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0d0fff7f-c5b2-43f1-9f7e-e9614482a832');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0d0fff7f-c5b2-43f1-9f7e-e9614482a832');" /></p>
 <p>这个相信一些修改过QQ聊天字体的童鞋们也发现过，选择QQ聊天字体里这类前面带@符的字体就能打出侧倒的文字。<br>不过，这浏览器下显示，会有一些差异。比如FF下不支持，（我的）safari下不支持@宋体。<br>另外，还有些人反映自己的自己上根本没有效果。</p>
 
       </div>
@@ -509,10 +509,10 @@ h2{zoom:1;}
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

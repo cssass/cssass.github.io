@@ -227,7 +227,7 @@ runcode.copy=function(element){
         
         <p>今天介绍两个小技巧，与float，margin负值有关。</p>
 <p>众所周知：<br>inline元素的水平居中可以用text-align:center;<br>block元素的水平居中可以用margin:0 auto; (设置宽度后，方显效果)。<br>block元素设置float:left;后，如果幸运，我们知道其确定的宽度值，则可以用left:50%;margin-left:-width&#x2F;2;来实现。<br>那么，当我们不确定知道block具体要达到的宽度时，该如何办呢？<br>这种情况，常见于菜单栏居中，而因为某些原因，各个菜单项的宽度很难去确定，造成菜单栏宽度的不确定。<br>当然，我们也可以使用inline元素来嵌套菜单项（即使菜单项是block元素，也未尝不可），父级使用text-align:center;来居中。<br>而下面的方法也不错，值得吸收的小技巧。</p>
-<p><textarea class="runcode_text" id="runcode_2eed9f56-8017-459a-994d-e78ed23402b4"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_64e2cbca-b3a4-4d2e-a070-01007352b73c"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -273,9 +273,9 @@ runcode.copy=function(element){
 	</div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2eed9f56-8017-459a-994d-e78ed23402b4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2eed9f56-8017-459a-994d-e78ed23402b4');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_64e2cbca-b3a4-4d2e-a070-01007352b73c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_64e2cbca-b3a4-4d2e-a070-01007352b73c');" /></p>
 <p>下面介绍第二个简单的技巧。<br>它应用于横版布局的宽度自适应，因为我们同样不知道横版最终达到的宽度是多少。<br>尽管这种布局很少见，但里面的技巧其实用处很广。</p>
-<p><textarea class="runcode_text" id="runcode_96ad4813-bfef-4232-95a3-e9557d7b3961"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_71620c86-5171-4c81-a431-a70cc93c64f4"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -317,10 +317,10 @@ runcode.copy=function(element){
 </ul>
 </body>
 </html>
-</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_96ad4813-bfef-4232-95a3-e9557d7b3961');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_96ad4813-bfef-4232-95a3-e9557d7b3961');" /></p>
+</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_71620c86-5171-4c81-a431-a70cc93c64f4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_71620c86-5171-4c81-a431-a70cc93c64f4');" /></p>
 <p>里面的技巧其实就是个margin负值。<br>应用margin负值来完成预定的布局，往往有“柳暗花明”的效果。</p>
 <p>&#x2F;************** 额外奉送第三个小技巧 **************&#x2F;<br>文本单行居中，多行居左的效果。</p>
-<p><textarea class="runcode_text" id="runcode_c5aa40ac-87e7-4f14-a467-8b57f5bb2d8e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_932b7172-562e-4d03-bc46-119849dc694d"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -338,7 +338,7 @@ runcode.copy=function(element){
 <span>让我们荡起双桨,小船儿推开波浪,海面倒映着美丽的白塔,四周环绕着绿树红墙~</span>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c5aa40ac-87e7-4f14-a467-8b57f5bb2d8e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c5aa40ac-87e7-4f14-a467-8b57f5bb2d8e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_932b7172-562e-4d03-bc46-119849dc694d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_932b7172-562e-4d03-bc46-119849dc694d');" /></p>
 
 
       </div>
@@ -490,10 +490,10 @@ runcode.copy=function(element){
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

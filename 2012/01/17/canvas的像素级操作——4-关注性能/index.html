@@ -227,7 +227,7 @@ runcode.copy=function(element){
         
         <p>我们开篇就提过，canvas的像素级操作相对来说是很低效的。</p>
 <p>我们试着写一个图片切割效果。</p>
-<p><textarea class="runcode_text" id="runcode_d6616578-ada9-4d8a-9a3a-5f6675fc0e24"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -272,11 +272,11 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d6616578-ada9-4d8a-9a3a-5f6675fc0e24');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d6616578-ada9-4d8a-9a3a-5f6675fc0e24');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65');" /></p>
 
 <p>对于这个效果，因为我们并不需要操作图像的rgba数据，而只是把图像进行分割，所以利用putImageData的后四个可见区参数进行了设置就行了。<br>但是，这样做的性能却非常不理想。因为我们操作的ImageData数据实在太多了，循环执行了2750遍，相当于我们对整幅图像进行了2750次的像素级复制，而其实在可见区之外的ImageData数据并不是我们所需要的。</p>
 <p>那么，我们在对源图getImageData的时候，可以只获取我们需要的ImageData。</p>
-<p><textarea class="runcode_text" id="runcode_dd554a94-70c9-4f0c-b7cf-54e16d005cf7"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_351ff46e-f8b2-4093-8ac2-abc468ede720"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -322,12 +322,12 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_dd554a94-70c9-4f0c-b7cf-54e16d005cf7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_dd554a94-70c9-4f0c-b7cf-54e16d005cf7');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_351ff46e-f8b2-4093-8ac2-abc468ede720');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_351ff46e-f8b2-4093-8ac2-abc468ede720');" /></p>
 
 <p>第二种做法虽然在循环的时候多运行了一个方法（共执行2750次的getImageData和putImageData方法），但因为操作的ImageData少了2750倍，所以在效率上比第一种方式高了很多。</p>
 <p>但从流程上来讲，我们只需要在刚开始的时候获取一次源图的ImageData（执行getImageData），对数据进行再排列后，最后再输出一次新的ImageData（执行putImageData）就可以了。<br>根本不需要在循环中反复调用getImageData和putImageData。所以现在的关键点是get和put之间的如何对数据进行重排列。</p>
 <p>ImageData.data可以看做一个矩形矩阵，我们已知，它的序列号（n）与ImageData.width(w),及x轴序列号(x),y轴序列号（y）的关系是：n &#x3D; ((y * w) + x) * 4; （其中的4表示了RGBA四个数据）。我们要的新的输出ImageData，其实是x加倍，y加倍，w加倍的一个新矩阵。那么新矩阵序号与原x,y,w的关系式应该是：t &#x3D; ((y * 2 * w * 2) + x * 2) * 4;</p>
-<p><textarea class="runcode_text" id="runcode_6af1bea5-789f-4022-b27f-9bcaab8f07a5"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7c100920-a7be-4420-80aa-ec5ace268406"><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -381,7 +381,7 @@ function demo(img){
 })()
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6af1bea5-789f-4022-b27f-9bcaab8f07a5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6af1bea5-789f-4022-b27f-9bcaab8f07a5');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7c100920-a7be-4420-80aa-ec5ace268406');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7c100920-a7be-4420-80aa-ec5ace268406');" /></p>
 
 <p>第三种方法相对于第二种方法的效率提高了十几倍。第三种方法的关键点是找出新旧矩阵之间的关系，对于我们这一例来说还比较容易，复杂一点的，算法可就没这么简单了。</p>
 <p>——————————————<br>重要补充：</p>
@@ -537,10 +537,10 @@ function demo(img){
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

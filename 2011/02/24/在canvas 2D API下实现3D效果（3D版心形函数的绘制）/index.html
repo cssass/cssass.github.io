@@ -234,7 +234,7 @@ runcode.copy=function(element){
 
 <p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
 <p>我们应用一下：下面是一个3D球</p>
-<p><textarea class="runcode_text" id="runcode_540a2e7c-9d9e-4aac-a11c-732efce11766"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -323,11 +323,11 @@ body{background:#cbe846;}
 	};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_540a2e7c-9d9e-4aac-a11c-732efce11766');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_540a2e7c-9d9e-4aac-a11c-732efce11766');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b');" /></p>
 
 <p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
 <p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
-<p><textarea class="runcode_text" id="runcode_c646b8a1-528c-4381-92fe-6cba89df4c37"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_654d7577-b608-4935-9795-54b0d0ad5fd7"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -409,7 +409,7 @@ body{background:#efd5e2;}
 		}
 	}
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c646b8a1-528c-4381-92fe-6cba89df4c37');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c646b8a1-528c-4381-92fe-6cba89df4c37');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_654d7577-b608-4935-9795-54b0d0ad5fd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_654d7577-b608-4935-9795-54b0d0ad5fd7');" /></p>
 
 <p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=rsinθcosφ 　</span><br><span class="line">y=rsinθsinφ 　　</span><br><span class="line">z=rcosθ</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -417,7 +417,7 @@ body{background:#efd5e2;}
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(a,b,r)&#123;</span><br><span class="line">var x,y,z</span><br><span class="line">x=r*Math.cos(a+this.theta)*Math.sin(b);</span><br><span class="line">y=r*Math.sin(a+this.theta)*Math.sin(b);</span><br><span class="line">z=r*Math.cos(b);</span><br><span class="line"></span><br><span class="line">var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
-<p><textarea class="runcode_text" id="runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_73b0425d-027d-48b3-a50e-55a541d6aa22"><!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -510,7 +510,7 @@ body{background:#efd5e2;}
 	};
 	new Ball(2,2,1).fluc();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_34b48bab-bd5a-43a5-92a0-2b20d48d1775');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_73b0425d-027d-48b3-a50e-55a541d6aa22');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_73b0425d-027d-48b3-a50e-55a541d6aa22');" /></p>
 
 
 
@@ -663,10 +663,10 @@ body{background:#efd5e2;}
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

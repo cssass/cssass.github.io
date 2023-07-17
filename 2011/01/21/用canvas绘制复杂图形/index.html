@@ -226,7 +226,7 @@ runcode.copy=function(element){
           </div>
         
         <p>在闪吧看见一棵树，移植到canvas+javascript里来。</p>
-<p><textarea class="runcode_text" id="runcode_466016c8-e0a4-4bea-861d-3efc18560baa"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_33f94606-4d72-4256-8d42-b95949771ed0"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -266,10 +266,10 @@ function lzh(x, y, l, angle, n) {
 var rand=2-Math.random()*10
 lzh(300, 400, 100, 90, 6);
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_466016c8-e0a4-4bea-861d-3efc18560baa');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_466016c8-e0a4-4bea-861d-3efc18560baa');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_33f94606-4d72-4256-8d42-b95949771ed0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_33f94606-4d72-4256-8d42-b95949771ed0');" /></p>
 
 <p>用setInterval让它动起来</p>
-<p><textarea class="runcode_text" id="runcode_765840f9-c195-482f-8edb-17a65bc63974"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_f0af64a2-7713-4ceb-a07c-4d8e226393ee"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -336,14 +336,14 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_765840f9-c195-482f-8edb-17a65bc63974');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_765840f9-c195-482f-8edb-17a65bc63974');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f0af64a2-7713-4ceb-a07c-4d8e226393ee');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f0af64a2-7713-4ceb-a07c-4d8e226393ee');" /></p>
 
 <p>补充：<br>除了setTimeout&#x2F;setInterval这两个函数控制动画外。现在很多浏览器还提供了另一个函数requestAnimationFrame，这个函数接口所拥有的优势是：</p>
 <p>对于一个侦中对DOM的所有操作，只进行一次Layout和Paint。<br>如果发生动画的元素被隐藏了，那么就不再去Paint。</p>
 <p>不过这个方法的使用只类似于递归调用，并没有一个时间停顿，所以我们一般要根据记录时间间隔来决定动画的每一帧的绘制情况。<br>下面用requestAnimationFrame来完成上面的动画。由于requestAnimationFrame的兼容性，我们需要先写一个兼容性的方法（来自three.js）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    /* 兼容requestAnimationFrame */</span><br><span class="line">    var lastTime = 0;</span><br><span class="line">    var vendors = [&#x27;ms&#x27;, &#x27;moz&#x27;, &#x27;webkit&#x27;, &#x27;o&#x27;];</span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;</span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&#x27;RequestAnimationFrame&#x27;];</span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&#x27;CancelAnimationFrame&#x27;] </span><br><span class="line">                                   || window[vendors[x]+&#x27;RequestCancelAnimationFrame&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    if (!window.requestAnimationFrame)</span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;</span><br><span class="line">            var currTime = new Date().getTime();</span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));</span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,</span><br><span class="line">              timeToCall);</span><br><span class="line">            lastTime = currTime + timeToCall;</span><br><span class="line">            return id;</span><br><span class="line">        &#125;;</span><br><span class="line">    if (!window.cancelAnimationFrame)</span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;</span><br><span class="line">            clearTimeout(id);</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><textarea class="runcode_text" id="runcode_548fa5c7-bb9f-4dd4-9e0c-1ce20ac6ecce"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_4546ae9b-9210-45bd-9593-03c748439442"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -438,10 +438,10 @@ Tree.prototype.dw=function(ax, ay, bx, by){
 };
 new Tree(300, 400, 100, 90, 6).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_548fa5c7-bb9f-4dd4-9e0c-1ce20ac6ecce');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_548fa5c7-bb9f-4dd4-9e0c-1ce20ac6ecce');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4546ae9b-9210-45bd-9593-03c748439442');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4546ae9b-9210-45bd-9593-03c748439442');" /></p>
 
 <p>再画几个图形：</p>
-<p><textarea class="runcode_text" id="runcode_2b727a58-2bda-4b86-a364-17e33bedf831"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_ca6f11cf-5dde-4010-bfb9-d2b2398bea2e"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -528,7 +528,7 @@ new Tad(300,200,3).move();
 new Tad(400,200,2).move();
 new Tad(500,200,1).move();
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2b727a58-2bda-4b86-a364-17e33bedf831');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2b727a58-2bda-4b86-a364-17e33bedf831');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ca6f11cf-5dde-4010-bfb9-d2b2398bea2e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ca6f11cf-5dde-4010-bfb9-d2b2398bea2e');" /></p>
 
 
       </div>
@@ -680,10 +680,10 @@ new Tad(500,200,1).move();
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

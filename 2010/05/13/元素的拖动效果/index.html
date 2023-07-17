@@ -228,7 +228,7 @@ runcode.copy=function(element){
           </div>
         
         <p>先看一下普通的拖动元素的代码</p>
-<p><textarea class="runcode_text" id="runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_b4273a6f-bfb2-47a0-88ab-5079264b82c5"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -262,10 +262,10 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7dd0be3c-d18f-470f-af0e-9e34faa308dd');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b4273a6f-bfb2-47a0-88ab-5079264b82c5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b4273a6f-bfb2-47a0-88ab-5079264b82c5');" /></p>
 <p>非常简单。</p>
 <p>考虑一下边境问题：</p>
-<p><textarea class="runcode_text" id="runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_95778411-3517-4084-b4c3-c72ed19be411"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -312,9 +312,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6802ed94-a85d-4170-8ba6-6bfb6d5752ad');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_95778411-3517-4084-b4c3-c72ed19be411');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_95778411-3517-4084-b4c3-c72ed19be411');" /></p>
 <p>如果拖动层内有元素不允许拖动。可以绑定一个事件，阻止拖动处理函数的执行。</p>
-<p><textarea class="runcode_text" id="runcode_c7df85d7-3630-4326-a7ac-18f551a67a41"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_1283c7b1-ec38-44aa-a8c2-5755d06730e2"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -350,9 +350,9 @@ var drag=function(o,e){
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c7df85d7-3630-4326-a7ac-18f551a67a41');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c7df85d7-3630-4326-a7ac-18f551a67a41');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1283c7b1-ec38-44aa-a8c2-5755d06730e2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1283c7b1-ec38-44aa-a8c2-5755d06730e2');" /></p>
 <p>图片的drag&amp;drop需要注意浏览器中在拖动图片时候会有默认动作的，拖动带链接的内容也是。所以拖动这些内容时应阻止其事件，另外加入setCapture。（下面拖动代码略有差别）</p>
-<p><textarea class="runcode_text" id="runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_280a561f-14e8-4195-8263-c228c1e31673"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -416,7 +416,7 @@ var dragF={
 	}
 }
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7c4df5b4-3db6-4a6b-8050-ac2aa0893964');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_280a561f-14e8-4195-8263-c228c1e31673');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_280a561f-14e8-4195-8263-c228c1e31673');" /></p>
 
       </div>
     </div>
@@ -567,10 +567,10 @@ var dragF={
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

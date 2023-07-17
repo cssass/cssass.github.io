@@ -224,7 +224,7 @@ runcode.copy=function(element){
           </div>
         
         <p>图片分享网站Pinterest（beta），在不久前获得了2700$的投资，估值已超2亿元（据说现该公司团队有8人）。该网站的一大特色就是每一张分享的图片被拟作“Pin”被钉在页面上面，每一Pin依尺寸智能排列，同时滚动页面时异步加载新Pin，极具效果。这种创新模式被在国内也被广泛copy，其中最有前途的当属Mark之，以”Mark”代”Pin”,也算有些想法。</p>
-<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_b125dd52-64bd-456f-ac7a-cd26341f024a"><!doctype html>
+<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_f0f32e12-e360-44f7-855b-c992d1cea110"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -327,9 +327,9 @@ window.onload = window.onresize = function() {
 };
 </script>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b125dd52-64bd-456f-ac7a-cd26341f024a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b125dd52-64bd-456f-ac7a-cd26341f024a');" /></p></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f0f32e12-e360-44f7-855b-c992d1cea110');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f0f32e12-e360-44f7-855b-c992d1cea110');" /></p></p>
 <p>这种布局中虽然每个Pin的高度不尽相同，但是他们的宽度都是一样的。<br>那么假如，很邪恶的提出一个要求，宽度也不尽相同，只是说宽高都按比例成倍增加，那还怎么排列呢？<br>呵呵，如下：</p>
- <p><textarea class="runcode_text" id="runcode_7064a3b1-ab7b-4ff9-9da2-4c3a72852cca"><!doctype html>
+ <p><textarea class="runcode_text" id="runcode_45618a09-38f4-430a-8093-1b9d5114764f"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -530,10 +530,10 @@ window.onresize = function(){
 </script>
 </body>
 </html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7064a3b1-ab7b-4ff9-9da2-4c3a72852cca');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7064a3b1-ab7b-4ff9-9da2-4c3a72852cca');" /></p>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_45618a09-38f4-430a-8093-1b9d5114764f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_45618a09-38f4-430a-8093-1b9d5114764f');" /></p>
 
 <p>现在这种布局已经不能叫瀑布流了，我们称之为格子块，格子块通过算法智能堆砌。</p>
-<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_cadad73c-8bd0-4e22-9b80-f4730f57a4f5"><!doctype html>
+<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_8be3b9df-af38-46f0-978b-d00c7610e594"><!doctype html>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -960,7 +960,7 @@ initDrag(myWidget);
 window.onresize = function(){box.init(myWidget)};
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cadad73c-8bd0-4e22-9b80-f4730f57a4f5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_cadad73c-8bd0-4e22-9b80-f4730f57a4f5');" /></p></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8be3b9df-af38-46f0-978b-d00c7610e594');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8be3b9df-af38-46f0-978b-d00c7610e594');" /></p></p>
 
       </div>
     </div>
@@ -1111,10 +1111,10 @@ window.onresize = function(){box.init(myWidget)};
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

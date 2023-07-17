@@ -227,7 +227,7 @@ runcode.copy=function(element){
         
         <p>获取元素的尺寸，似乎offsetWidth&#x2F;Height就可以了，还需要什么方法吗？<br>的确，一般情况下，获取元素尺寸，用offsetWidth&#x2F;Height就搞定了，但如果这个元素是display:none的呢？<br>试验一下就知道，none元素的尺寸是0。</p>
 <p>所以需要我们下面的这个方法来获取。</p>
-<p><textarea class="runcode_text" id="runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_e12544bc-9acc-4261-8fd9-f0e486f38063"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -266,11 +266,11 @@ var getSize = function(elem){
 };
 alert(getSize($id("box")).height)
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4da1ce12-e3d8-4e1b-84cf-c4becd58e7ca');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e12544bc-9acc-4261-8fd9-f0e486f38063');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e12544bc-9acc-4261-8fd9-f0e486f38063');" /></p>
 
 <p>第二个，获取元素的位置。<br>或许你经常使用offsetLeft&#x2F;Top来获取位置，不过offsetLeft&#x2F;Top是相对 offsetParent的位置（在ie6，7下是相对直接父级的),并且在firefox下还有些小bug</p>
 <p>下面这个方法提供获取元素相对于窗口（页面可视区）的距离。</p>
-<p><textarea class="runcode_text" id="runcode_c65ceab1-d208-40bf-8259-12f656974075"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_5ed7da59-5fb9-4555-a6a5-1d6c3c001834"><!doctype html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -293,7 +293,7 @@ alert(getSize($id("box")).height)
 					"<br />width:"+pos.width +
 					"<br />height:"+pos.height
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c65ceab1-d208-40bf-8259-12f656974075');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c65ceab1-d208-40bf-8259-12f656974075');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5ed7da59-5fb9-4555-a6a5-1d6c3c001834');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5ed7da59-5fb9-4555-a6a5-1d6c3c001834');" /></p>
 
 <p>这个方法是由ie提出的，不过在其他浏览器吸收之后，还加了width，height两个值。</p>
 <p>重复一下，这个方法是相对于页面窗口的，至于相对于整个页面文档的距离，那只需加上scrollTop这些值就行了，不做赘述。</p>
@@ -447,10 +447,10 @@ alert(getSize($id("box")).height)
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;

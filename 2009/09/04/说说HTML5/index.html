@@ -207,11 +207,11 @@ runcode.copy=function(element){
         <div class="post-info">
           
   
-    <a href="/tags/HTML/" class="post-tag">#HTML</a>
-  
     <a href="/tags/DOM/" class="post-tag">#DOM</a>
   
     <a href="/tags/HTML5/" class="post-tag">#HTML5</a>
+  
+    <a href="/tags/HTML/" class="post-tag">#HTML</a>
   
 
 
@@ -254,26 +254,26 @@ runcode.copy=function(element){
 <p>好了， HTML5能做的够多了，但他还处在草案阶段，那关键是现在我们能做什么呢？</p>
 <p>我们能做什么？<br>HTML5估计能在2012年之前成为W3C的候选推荐标准，不过在这之前，只要浏览器支持，我们都可以使用html5的功能。</p>
 <ol>
-<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_580af0d6-3174-4f13-b053-bd524eca995a"><script>
+<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_a26a4ccf-c1e1-4389-a742-295a6d1d3a5e"><script>
 document.createElement("元素名称")
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_580af0d6-3174-4f13-b053-bd524eca995a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_580af0d6-3174-4f13-b053-bd524eca995a');" /></p>
-创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7">(function(){
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a26a4ccf-c1e1-4389-a742-295a6d1d3a5e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a26a4ccf-c1e1-4389-a742-295a6d1d3a5e');" /></p>
+创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_21122cda-74d3-41e9-8674-67696b95eb0f">(function(){
     if(!/*@cc_on!@*/0) return;    
     var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');   
     for(var i = 0, len = html5.length; i < len; i++ ) {       
     document.createElement(html5[i]);  
     }
 })
-();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1802b4df-e7b6-4c54-9ad7-55bddc8020e7');" /></p>
+();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_21122cda-74d3-41e9-8674-67696b95eb0f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_21122cda-74d3-41e9-8674-67696b95eb0f');" /></p>
 现在在IE里也可以对HTML5元素进行布局了。<br>不过，在此之前，我们还需要对这些新元素定义基本的Display style,<br>这个工作本来一般是由浏览器完成的，比如FireFox的html.css。<br>现在只能自己对引进的HTML5元素进行定义了。<br>那么哪些需要定义成display:block;哪些又是不需要呢？这个我们可以看下W3C是怎么定义的：display-types</li>
 </ol>
-<p><textarea class="runcode_text" id="runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c">address, article, aside, blockquote, body, center, dd, dialog, dir,
+<p><textarea class="runcode_text" id="runcode_c897de7f-8c47-40f0-834c-3947617ef0a7">address, article, aside, blockquote, body, center, dd, dialog, dir,
 div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
 hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,
-section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9ffb5cba-3569-4242-a621-69e5cef61f8c');" /></p>
+section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c897de7f-8c47-40f0-834c-3947617ef0a7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c897de7f-8c47-40f0-834c-3947617ef0a7');" /></p>
 
 <p>刨除HTML老元素，以下这些元素:<br>article,aside,dialog,figure,footer,header,hgroup,nav,section可以定义为{display:block;}<br>这篇针对HTML 5 Reset Stylesheet的文章也可以参考下：<a target="_blank" rel="noopener" href="http://html5doctor.com/html-5-reset-stylesheet/%E3%80%82%E6%96%87%E7%AB%A0%E5%9C%A8Eric%E7%9A%84CSS">http://html5doctor.com/html-5-reset-stylesheet/。文章在Eric的CSS</a> Reset的基础上考虑HTML5新元素及W3C规范推荐下对元素进行了style reset。当然reset CSS本身就存在争议的，一般来说，reset CSS是你自己的style，很多东西都可以按你的意愿来定，当然不要太偏离W3C的元素设计本意。<br>接下来，使用HTML5新元素进行布局就可以随心所欲了（还是悠着点好）。</p>
-<p><textarea class="runcode_text" id="runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_d3c0dba0-28f6-4b39-921d-a79b7804a091"><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -364,9 +364,9 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 </div>
 <footer>Copyright © 2009 Cssass.com </footer>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f277d41e-cbb6-4236-9a4f-a58ac5bbaccc');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d3c0dba0-28f6-4b39-921d-a79b7804a091');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d3c0dba0-28f6-4b39-921d-a79b7804a091');" /></p>
 <ol start="2">
-<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_e609abc5-b325-4da4-bf28-320e541cc5cf"><!DOCTYPE HTML>
+<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_9d414950-6fa3-48dc-81e9-9c920119be29"><!DOCTYPE HTML>
 <html>
 <head>
   <title>Drag and Drop</title>
@@ -400,13 +400,13 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
    }
   </script>
  </body>
- </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e609abc5-b325-4da4-bf28-320e541cc5cf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e609abc5-b325-4da4-bf28-320e541cc5cf');" /></p></li>
+ </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9d414950-6fa3-48dc-81e9-9c920119be29');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9d414950-6fa3-48dc-81e9-9c920119be29');" /></p></li>
 <li>canvas<br>我们先看一些canvas的示例：<br><a target="_blank" rel="noopener" href="http://www.agustinfernandez.com.ar/proyectos/canvas/">http://www.agustinfernandez.com.ar/proyectos/canvas/</a><br><a target="_blank" rel="noopener" href="http://www.whatwg.org/demos/2008-sept/color/color.html">http://www.whatwg.org/demos/2008-sept/color/color.html</a><br>网上还有一些互动性蛮强的Demo.<br>canvas应用的发展无疑将威胁到也行进在富Web之路上的Flash和Silverligth这些Web插件。</li>
 </ol>
 <p>canvas在safari,firefox,opera很早就有了支持，但IE缺迟迟不予支持，尽管他在ie8中已经开始支持多个HTML5功能。MS的同志很有理由这么做:“HTML 5标准制定之前,某些功能确实已经得以实现,例如Google Gears实现了离线应用程序功能,Flash和silverlight实现了类似Canvas API的功能.在下一代HTML规范中设置这些内容未必非常必要”。要知道MS在silverlight是花了很大力气。事实上，MS在参与HTML5之事上一直非常谨慎，并且希望精简HTML5。<br>Flash的所有者，HTML5参与者之一Adobe则表现的很轻松：“canvas还很弱，HTML 5 + CSS 3 可能要 10年的时间才能定稿，在这期间，Flash 会持续发展，并提供更好的用户体验”。</p>
 <p>尽管IE没有支持canvas功能，但我们可以使用JS模拟达到：<br><a target="_blank" rel="noopener" href="http://excanvas.sourceforge.net/">http://excanvas.sourceforge.net/</a><br>这是其中的一个Demo,试试你的IE:<br>3Dcanvas_For_IE.html</p>
 <ol start="4">
-<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee"><!DOCTYPE HTML>
+<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_89facd3f-1bd4-40b4-862b-6f5530b631b0"><!DOCTYPE HTML>
 <html>
 <head>
 <title>Video</title>
@@ -421,7 +421,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 	</script>
 	<p><input type="button" value="&#x2588; &#x2588;" onclick="if (video.paused) video.play(); else video.pause()"></p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c0ea334d-7269-40b9-90b7-9f0356f69eee');" /></p></li>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_89facd3f-1bd4-40b4-862b-6f5530b631b0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_89facd3f-1bd4-40b4-862b-6f5530b631b0');" /></p></li>
 </ol>
 <p>我们没有引入flash播放器就能播放swf。</p>
 <p>在下面这个页面里罗列了各浏览器所支持的HTML5功能：<br>Implementations in Web browsers</p>
@@ -575,10 +575,10 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
   
   
     <script>
-var WIDTH = 100,
-    HEIGHT = 80;
+var WIDTH = 60,
+    HEIGHT = 60;
 var scene = new THREE.Scene();
-var VIEW_ANGLE = 15,
+var VIEW_ANGLE = 11,
   ASPECT = WIDTH / HEIGHT,
   NEAR = 0.1,
   FAR = 10000;
