@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.cssass.com/2023/11/29/%E7%A7%83%E5%AD%90%E6%82%96%E8%AE%BA%E5%92%8C%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6/</loc>
+    
+    <lastmod>2023-11-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.cssass.com/2018/09/20/%E4%B8%89-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E5%85%BB%E8%80%81%E9%87%91%E2%80%94%E2%80%94%E5%B9%B4%E9%87%91%E7%8E%B0%E5%80%BC%E5%85%AC%E5%BC%8F/</loc>
     
     <lastmod>2023-07-17</lastmod>
@@ -628,6 +637,20 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://www.cssass.com/tags/%E7%A7%83%E5%AD%90%E6%82%96%E8%AE%BA/</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/tags/%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -646,6 +669,13 @@
   
   <url>
     <loc>https://www.cssass.com/categories/economic/</loc>
+    <lastmod>2023-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/categories/scientist/</loc>
     <lastmod>2023-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
