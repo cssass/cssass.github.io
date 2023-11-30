@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        在canvas 2D API下实现3D效果（3D版心形函数的绘制） | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">在canvas 2D API下实现3D效果（3D版心形函数的绘制）</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+
+
+          <span class="post-date">2011-02-24</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>html5的canvas为我们提供了浏览器原生支持的绘图API。或者说，大多数浏览器已经为我们提供了原生的绘图API：HTML5的canvas<br>目前，这个API只提供2D context，并不支持3D绘图，但是web上从来就不缺牛人，各种canvas下绘制的3D效果层出不穷，令人吱吱称赞。（补充，后来有了WebGL）<br>有3D圣诞树：<a target="_blank" rel="noopener" href="http://www.romancortes.com/blog/how-i-did-the-1kb-christmas-tree">http://www.romancortes.com/blog/how-i-did-the-1kb-christmas-tree</a><br>有3D的FPS：使用 HTML 5 canvas 和光线投影算法创建伪 3D 游戏<br>还有3D俄罗斯：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/games/torus/">http://www.benjoffe.com/code/games/torus/</a><br>不胜枚举…</p>
+<p>其实，无论canvas是否提供API，在我们目前这种二维显示设备下显示，势必都要将3维形状投影到2维平面坐标上。无论多炫的3D效果也只是二维平面上的投影。<br>对于此，读过《三体》特别是第三部《死神永生》的同学或许会大有感触吧。</p>
+<p>人们总是喜欢用这样一个类比:想象生活在三维空间中的一张二维平面画中的扁片人,不管这幅画多么丰富多彩,其中的二维人只能看到周围世界的侧面,在他们眼中,周围的人和事物都是一些长短不一的线段而已。只有当一个二维扁片人从画中飘出来,进人三维空间,再回头看那幅画,才能看到画的全貌。<br>这个类比,其实也只是进一步描述了四维感觉的不可描述。</p>
+<p>关于《三体——死神永生》里四维空间（不算时间维）的讨论，这里还有篇有意思的博文：四维世界的堵车问题</p>
+<p>好了，言归正传。<br>下面提供一个三维到二维的投影算法（from <a href="http://www.benjoffe.com）：">www.benjoffe.com）：</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(x,y,z)&#123;</span><br><span class="line">var dist = Math.sqrt(x*x+y*y);</span><br><span class="line">var angle = (x==0 &amp;&amp; y==0) ? 0 : Math.atan(y/x) + theta + ((x&lt;0)? Math.PI : 0);</span><br><span class="line"></span><br><span class="line">x=Math.cos(angle)*dist;</span><br><span class="line">y=-Math.sin(angle)*dist;</span><br><span class="line">var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(eleva) - z*Math.cos(eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line"></span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输入是x,y,z三个三维坐标下的值，输出是x，y两个二维坐标值。</p>
+<p>我们应用一下：下面是一个3D球</p>
+<p><textarea class="runcode_text" id="runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>2D canvas API下的3D效果</title>
+<style>
+body{background:#cbe846;}
+</style>
+</head>
+<body title='拖到鼠标'>
+<canvas id="pad" width="800" height="800"><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	/* 一个插值算法(无关紧要) */
+	function Cubic(t,b,c,d){
+		return c*(t/=d)*t*t + b;
+	}
+	var ctx = g('pad').getContext('2d');
+		ctx.scale(100,100);
+		ctx.translate(3,3);
+	var theta = 4.2; //转角
+	var eleva = 0.6; //仰角
+	/* 投影算法（from: www.benjoffe.com） */
+	function iso(x,y,z){
+		var dist = Math.sqrt(x*x+y*y);
+		var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
+		x=Math.cos(angle)*dist;
+		y=-Math.sin(angle)*dist;
+		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
+		y=y*Math.sin(eleva) - z*Math.cos(eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	/* 球方程 x^2+y^2+z^2=r^2 */
+	function sphere(r){
+		var x,y,z;
+		var t;
+		z=-r;
+		while(z<r){
+			x=-Math.sqrt(r*r-z*z);
+			y=0;
+			t=1;
+			co = iso(x,y,z); ctx.moveTo(co.x, co.y);
+			while(true){
+				y=Math.sqrt((r*r-x*x-z*z))*t;
+				if(isNaN(y)){  /* 此时，x值为极值,y的绝对值已经不能再小 */
+					if(t==1) {t=-t; x=Math.sqrt(r*r-z*z); continue;} /* x值达到最大 */
+					else break;
+				};
+				co = iso(x,y,z); ctx.lineTo(co.x, co.y);
+				x+=0.1*t;
+			}
+			ctx.closePath();
+			z=Cubic(1,z,2*r,4); //应用插值算法（分布均匀些）
+		}
+	}
+	function preview(){
+		ctx.clearRect(-3,-3,10,10);
+		ctx.lineWidth=0.001;
+		ctx.lineJoin = "round";
+		ctx.strokeStyle = 'rgba(0,0,100,0.8)';
+		var co;
+		ctx.beginPath();
+		sphere(2);
+		ctx.stroke();
+	}
+	preview();
+	/* 鼠标控制 */
+	g('pad').onmousedown=function(e){
+		var x0 = e.clientX, y0 = e.clientY;
+		document.onmousemove=function(e){
+				theta -= (x0 - (x0=e.clientX))/100;
+				eleva -= (y0 - (y0=e.clientY))/100;
+				theta%=Math.PI*2; if (theta<0) theta+=Math.PI*2;
+				eleva%=Math.PI*2; if (eleva<0) eleva+=Math.PI*2;
+				preview();
+		}
+		document.onmouseup=function(e){
+			document.onmousemove=null;
+		}
+	};
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_462de8a6-818e-4030-b6bf-0972efbdfe9b');" /></p>
+
+<p>以上代码是对球面的方程 x^2+y^2+z^2&#x3D;r^2进行求解，将解（x,y,z）代入iso方法，最后根据输出二维坐标进行绘图。<br>对于这个球面方程的解法，也是各有各的写法。<br>（这里有个Functions 3D的应用，用来将方程式输出成3D图形：<a target="_blank" rel="noopener" href="http://www.benjoffe.com/code/tools/functions3d/%EF%BC%89">http://www.benjoffe.com/code/tools/functions3d/）</a></p>
+<p>如果你看到过我这篇文章的话：笛卡尔情书的秘密——心形函数的绘制<br>我相信你也很可能知道网上还有一个3D版是心形函数：(x^2 + (9&#x2F;4)y^2 + z^2 – 1)^3 – x^2<em>z^3 – (9&#x2F;80)y^2</em>z^3 &#x3D; 0<br>下面我将使用上面的iso方法在canvas中将其绘制出来，你可以拖到鼠标来看3D效果。</p>
+<p><textarea class="runcode_text" id="runcode_654d7577-b608-4935-9795-54b0d0ad5fd7"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>3D LOVE in canvas</title>
+<style>
+body{background:#efd5e2;}
+</style>
+</head>
+<body  title='拖到鼠标'>
+<canvas id="pad" width="800" height="800" ><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	var theta = -0.4; //转角
+	var eleva = -0.1; //仰角
+	var pad = g('pad');
+	var ctx = pad.getContext('2d');
+		ctx.translate(200,200);
+		ctx.scale(82,82);
+	/* 将三维投射到二维（三维直角坐标系转平面直角坐标系） */
+	function iso(x,y,z){
+		var dist = Math.sqrt(x*x+y*y);
+		var angle = (x==0 && y==0) ? 0 : Math.atan(y/x) + theta + ((x<0)? Math.PI : 0);
+		x=Math.cos(angle)*dist;
+		y=-Math.sin(angle)*dist;
+		var fact = (y*Math.cos(eleva) + z*Math.sin(eleva)+8)/8;
+		y=y*Math.sin(eleva) - z*Math.cos(eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	/* 方程式: (x^2 + (9/4)y^2 + z^2 - 1)^3 - x^2*z^3 - (9/80)y^2*z^3 < 0 */
+	function love(){
+		var x,y,z,m,t=3;
+		for(z=-3;z<=3;){
+			for(y=-3;y<=3;){
+				for(x=-3;x<=3;){
+					m=(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1)*(x*x + (9/4)*y*y + z*z - 1) - x*x*z*z*z - (9/80)*y*y*z*z*z;
+					if(m<0){
+						co = iso(x,y,z);
+						ctx.strokeRect(co.x, co.y,0.02,0.02);
+						ctx.closePath();
+					}
+					x+=0.11;
+				}
+				y+=0.11;
+			}
+			z+=0.11;
+		}
+	}
+	function preview(){
+		ctx.clearRect(-10,-10,20,20);
+		ctx.lineWidth=0.008;
+		ctx.lineJoin = "round";
+		ctx.strokeStyle = 'rgba(150,0,100,0.3)';
+		var co;
+		ctx.beginPath();
+		love();
+		ctx.stroke();
+	};
+	preview();
+	/* 鼠标拖动控制 */
+	pad.onmousedown=function(e){
+		var x0 = e.clientX, y0 = e.clientY;
+		document.onmousemove=function(e){
+				theta -= (x0 - (x0=e.clientX))/100;
+				eleva -= (y0 - (y0=e.clientY))/100;
+				theta%=Math.PI*2; if (theta<0) theta+=Math.PI*2;
+				eleva%=Math.PI*2; if (eleva<0) eleva+=Math.PI*2;
+				preview();
+		}
+		document.onmouseup=function(e){
+			document.onmousemove=null;
+		}
+	}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_654d7577-b608-4935-9795-54b0d0ad5fd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_654d7577-b608-4935-9795-54b0d0ad5fd7');" /></p>
+
+<p>我们知道，三维空间下的坐标系不止直角坐标一种，还有 圆柱坐标系，球坐标系等等。<br>下面我们将iso方法转换一下，是输入使用球坐标系值（θ,Φ,r）——转角，仰角，球半径。<br>首先我们先要知道，三维直角坐标系于球坐标系的换算式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=rsinθcosφ 　</span><br><span class="line">y=rsinθsinφ 　　</span><br><span class="line">z=rcosθ</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>呃哦，代入iso函数后我们发现iso变的更简单了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var theta = 4.2; //转角</span><br><span class="line">var eleva = 0.6; //仰角</span><br><span class="line">function iso(a,b,r)&#123;</span><br><span class="line">var x,y,z</span><br><span class="line">x=r*Math.cos(a+this.theta)*Math.sin(b);</span><br><span class="line">y=r*Math.sin(a+this.theta)*Math.sin(b);</span><br><span class="line">z=r*Math.cos(b);</span><br><span class="line"></span><br><span class="line">var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;</span><br><span class="line">y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);</span><br><span class="line">x*=fact;</span><br><span class="line">y*=fact;</span><br><span class="line">return &#123;</span><br><span class="line">x: x,</span><br><span class="line">y: y</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>下面是我们使用球坐标系绘制的三维图形（三维投射到二维的图形）</p>
+<p><textarea class="runcode_text" id="runcode_73b0425d-027d-48b3-a50e-55a541d6aa22"><!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>球坐标系投影到二维直角坐标系</title>
+<style>
+	body{background:#666;}
+</style>
+</head>
+<body>
+<canvas id="pad" width="800" height="800"><a href='http://www.cssass.com'>cssass.com</a>提醒您：本例使用了HTML5的canvas标签。ie9以下用户请一边惭愧去吧</canvas>
+</body>
+<script type="text/javascript" >
+	function g(e){
+		return document.getElementById(e);
+	}
+	var random=function(){
+		return (Math.random()*10>>0)/10;
+	}
+	var ctx = g('pad').getContext('2d');
+		ctx.scale(100,100);
+		ctx.lineWidth=0.002;
+		ctx.lineJoin = "round";
+	var Ball=function(x,y,r){
+		this.theta = 0; //球坐标转角
+		this.eleva = 0; //球坐标仰角
+		this.radius= r || 1; //球坐标半径
+		this.pos={ //球坐标原点
+			x:x || 2,
+			y:y || 2
+		};
+		this.co={ //二维上的投影坐标
+			x:0,
+			y:0
+		};
+		this.col={ //颜色
+			r:255,
+			g:255,
+			b:255,
+			a:0.6
+		};
+		this.init=function(){
+			ctx.translate(this.pos.x,this.pos.y);
+			this.preview();
+		};
+		this.init();
+	};
+	/* 球坐标系转平面直角坐标系 */
+	Ball.prototype.iso=function(a,b,r){
+		var x,y,z
+		x=r*Math.cos(a+this.theta)*Math.sin(b);
+		y=r*Math.sin(a+this.theta)*Math.sin(b);
+		z=r*Math.cos(b);
+		var fact = (y*Math.cos(this.eleva) + z*Math.sin(this.eleva)+8)/8;
+		y=y*Math.sin(this.eleva) + z*Math.cos(this.eleva);
+		x*=fact;
+		y*=fact;
+		return {
+			x: x,
+			y: y
+		};
+	}
+	Ball.prototype.preview=function(){
+		ctx.strokeStyle = 'rgba('+this.col.r+','+this.col.g+','+this.col.b+','+this.col.a+')';
+		ctx.clearRect(-2,-2,4,4);
+		ctx.beginPath();
+		this.sphere();
+		ctx.stroke();
+	}
+	Ball.prototype.sphere=function(){
+		var a,b;
+		for(a=0; a<2*Math.PI; a+=Math.PI/12){
+			for(b=0; b<2*Math.PI; b+=Math.PI/12){
+				if(b ==0 || b*100>>0 == Math.PI*100>>0 || b*100>>0 == 2*Math.PI*100>>0)  continue; /* 排除一些仰角(接近)为0/PI/2PI的点.  */
+				this.co = this.iso(0,0,0);
+				ctx.moveTo(this.co.x, this.co.y);
+				this.co = this.iso(a,b,this.radius);
+				ctx.lineTo(this.co.x, this.co.y);
+			}
+		}
+	}
+	Ball.prototype.fluc=function(){
+		var that=this;
+		setInterval(function(){
+			that.theta+=random()/20;
+			that.eleva+=random()/20;
+			that.radius+=(random()/10-0.05);
+			if(that.radius<0.5 || that.radius>2) that.radius=1;
+			that.preview();
+		},100)
+	};
+	new Ball(2,2,1).fluc();
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_73b0425d-027d-48b3-a50e-55a541d6aa22');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_73b0425d-027d-48b3-a50e-55a541d6aa22');" /></p>
+
+
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2011/03/09/CSS3%E7%BB%98%E5%88%B6%E5%AF%B9%E8%AF%9D%E6%A1%86/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>CSS3绘制对话框</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2011/01/21/%E7%94%A8canvas%E7%BB%98%E5%88%B6%E5%A4%8D%E6%9D%82%E5%9B%BE%E5%BD%A2/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      用canvas绘制复杂图形
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

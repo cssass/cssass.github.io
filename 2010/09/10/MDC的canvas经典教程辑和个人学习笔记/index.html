@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        MDC的canvas经典教程辑和个人学习笔记 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">MDC的canvas经典教程辑和个人学习笔记</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+    <a href="/tags/MDC/" class="post-tag">#MDC</a>
+  
+
+
+          <span class="post-date">2010-09-10</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>mozilla developer center的关于canvas的教程集Canvas tutorial，可说是目前入门canvas教程中最棒的了。<br>教程列表：<br>Basic usage(中译：基本用法)<br>Drawing shapes(中译：绘制图形)<br>Using images(中译：使用图像)<br>Applying styles and colors(中译：运用样式与颜色)<br>Transformations(中译：变形)<br>Compositing(中译：组合)<br>Basic animations(中译：基本动画)</p>
+<p>以下是个人的一点笔记，涵盖了教程中所有知识点。但只适用于个人，存此备忘。</p>
+<p>canvas_ABC</p>
+<p><textarea class="runcode_text" id="runcode_a6bb8ac6-64e4-43a6-8376-263ee5d64d26"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='800' height="500" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<script type="text/javascript">
+var c=document.getElementById("myCanvas");
+var con=c.getContext('2d');   //-----画矩形框
+var grd=con.createLinearGradient(10,10,150,10);
+grd.addColorStop(0,"#f00");  //起色
+grd.addColorStop(1,"#0f0");  //终色
+con.fillStyle=grd;   //渐变填充
+con.rect(0, 0, 180,100)   //矩形1
+con.fillRect(10,10,150,75);  //矩形2
+con.clearRect(20,20,80,40);  //清除出一个矩形3
+con.lineWidth=2;
+con.lineCap ='round';  //线端点，默认butt; square和round会多出一半宽度的长度
+con.lineJoin = 'round';  //折线连接点样式，默认miter延伸来连接；（round磨圆, beve削平） ；miter有miterLimit做限制，超过则应用beve
+con.strokeStyle = '#00f';
+con.strokeRect(30,30,20,20);  //矩形边框
+var con2=c.getContext('2d');  //-------画折线
+con2.moveTo(20,10); //起点位置
+con2.lineTo(45,80);  //点
+con2.lineTo(20,50);  //点
+con2.lineTo(40,30);
+con2.stroke();  //描边
+// con2.fill(); //填充
+var con3=c.getContext('2d');  //-------画圆
+var radi=con3.createRadialGradient(290,50,10,295,60,30);  // 径向渐变（x1,y1,r1,x2,y2,r2）
+radi.addColorStop(0, '#A7D30C');
+radi.addColorStop(0.9, '#019F62');
+//radi.addColorStop(1, 'rgba(1,159,98,0)');
+con3.fillStyle = radi;
+con3.beginPath();  //初始化路径
+con3.arc(290,50,50,0,Math.PI*2,true);   //（x,y,radius,起，末弧度，逆，顺时针）
+con3.closePath();  //终止路径
+con3.stroke();
+con3.fill();
+var con4=c.getContext('2d');  //-------应用图片
+var img=new Image();
+img.src='http://bbs.blueidea.com/images/default/logo.gif';
+img.onload=function(){
+	con4.drawImage(img,10,90,200,200);  //图片对象，位置，[尺寸]，
+	var ptrn = con4.createPattern(img,'repeat');  //图案填充
+	con4.fillStyle = ptrn;
+	con4.fillRect(0,350,150,150);
+}
+//var con4_2=c.getContext('2d');
+//var img2=new Image();
+//img2.src='https://developer.mozilla.org/samples/canvas-tutorial/images/rhino.jpg';
+//con4_2.drawImage(document.getElementById('source'),33,71,104,124);
+//con4_2.drawImage(document.getElementById('source'),0,0,20,100,0,90,120,124);
+var con5=c.getContext('2d');  //二次，三次贝赛尔曲线
+con5.moveTo(200,0)  //起点
+con5.quadraticCurveTo(20, 20, 200, 200);  //（1个）控制点，终点
+con5.stroke();
+con5.moveTo(200,100)  //起点
+con5.bezierCurveTo(250, 250, 350, 350, 220, 220); //（2个）控制点，终点
+con5.stroke();
+var con6=c.getContext('2d');  //文字阴影
+con6.shadowOffsetX=2;
+con6.shadowOffsetY=2;
+con6.shadowBlur=2;
+con6.shadowColor='rgba(0,0,0,0.5)';
+con6.font='20px Times New Roman';
+con6.fillStyle='black';
+con6.fillText('hello HTML5',0,300);
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a6bb8ac6-64e4-43a6-8376-263ee5d64d26');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a6bb8ac6-64e4-43a6-8376-263ee5d64d26');" /></p>
+<p>canvas_DEF</p>
+<p><textarea class="runcode_text" id="runcode_372862fc-1f59-4cdb-86aa-2dc1b8dfcd2e"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='1000' height="600" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<script type="text/javascript">
+var c=document.getElementById("myCanvas");
+var con1=c.getContext('2d');   //-----用于保存一些状态属性。
+  con1.fillRect(0,0,40,40);
+  con1.save();
+  con1.fillStyle = 'blue'
+  con1.globalAlpha = 0.1;
+  con1.translate(50,0);  //【平移】圆点位置（位置1）
+  con1.fillRect(0,0,40,40);
+  con1.save();            //注意：圆点位置状态也会被保存
+  con1.fillStyle = 'red'
+  con1.globalAlpha = 1;
+  con1.translate(50,0);
+  con1.fillRect(0,0,40,40);
+  con1.restore();   //恢复到位置1状态
+  con1.translate(100,0); //从位置1开始移动100
+  con1.fillRect(0,0,40,40);
+  con1.restore();
+  con1.save();
+  con1.translate(200,0);
+  con1.rotate(Math.PI*2/6);  //以圆点（200，0）为中心，【旋转】六分之一个角度
+  con1.fillRect(0,0,40,40);
+con1.restore();
+con1.save();
+con1.scale(1,0.25);  //【缩放】
+con1.translate(250,0);
+con1.fillRect(0,0,40,40);
+con1.restore();
+~function draw() {  //【变形】示例：http://www.html5.jp/blog/contents/HTML5-Tech-Talk-201001/transform-jquery.html
+  con1.translate(200, 200);
+  var sin = Math.sin(Math.PI/6);
+  var cos = Math.cos(Math.PI/6);
+  for (var i=0; i <= 12; i++) {
+    con1.fillRect(0, 0, 100, 10);
+    con1.transform(cos, sin, -sin, cos, 0, 0);  // (m11, m12, m21, m22, dx, dy) 水平缩放，垂直斜切，水平斜切，垂直缩放，水平平移，垂直平移。
+  }
+  con1.setTransform(1,0.5 , 0, 1,0, 0);  //set重置后设置。
+  con1.fillRect(300,300, 100, 100);
+}()
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_372862fc-1f59-4cdb-86aa-2dc1b8dfcd2e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_372862fc-1f59-4cdb-86aa-2dc1b8dfcd2e');" /></p>
+
+<p>canvas_HIJ</p>
+<p><textarea class="runcode_text" id="runcode_b3326ca1-01e3-4c6a-abf1-1c2284d4b2b3"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<canvas id="myCanvas2" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<br />
+<select id='types' onchange='comp();'>
+	<option value='source-over' selected>source-over</option>
+	<option value='source-in'>source-in</option>
+	<option value='source-out'>source-out</option>
+	<option value='source-atop'>source-atop</option>
+	<option value='destination-over'>destination-over</option>
+	<option value='destination-in'>destination-in</option>
+	<option value='destination-out'>destination-out</option>
+	<option value='destination-atop'>destination-atop</option>
+	<option value='lighter'>lighter</option>
+	<option value='darker'>darker</option>
+	<option value='copy'>copy</option>
+	<option value='xor'>xor</option>
+</select>
+<script type="text/javascript">
+var $id=function(n){
+	return document.getElementById(n) || n;
+}
+//组合
+var con1=$id("myCanvas").getContext('2d');
+function comp(){
+	con1.save();
+	con1.clearRect(0,0,200,300);
+    con1.fillStyle = "#09f";
+    con1.fillRect(15,15,70,70);
+    con1.globalCompositeOperation =$id('types').value; //对所以绘制的图形均起作用。
+    con1.fillStyle = "#f30";
+    con1.beginPath();
+    con1.arc(75,75,35,0,Math.PI*2,true);
+    con1.fill();
+	con1.restore();
+	con1.font='20px Times New Roman';
+	con1.fillText($id('types').value,0,200)
+}
+comp();
+//clip
+var con2=$id("myCanvas2").getContext('2d');
+function draw() {
+  con2.save();
+  con2.translate(100,100);
+  con2.fillRect(0,0,150,150);
+  con2.translate(75,75);
+  con2.beginPath();
+  con2.arc(0,0,60,0,Math.PI*2,true);
+  con2.clip();
+  con2.fillStyle = '#143778';
+  con2.fillRect(-75,-75,150,150);
+  for (j=1;j<50;j++){
+    con2.save();
+    con2.fillStyle = '#fff';
+    con2.translate(75-Math.floor(Math.random()*150),75-Math.floor(Math.random()*150));
+	drawStar(con2,Math.floor(Math.random()*4)+2);
+    con2.restore();
+  }
+  con2.restore();
+}
+draw();
+function drawStar(con2,r){  //五角星的画法
+  con2.save();
+  con2.beginPath()
+  con2.moveTo(r,0);
+  for (i=0;i<9;i++){
+    con2.rotate(Math.PI/5);
+    if(i%2 == 0) {
+      con2.lineTo((r/0.525731)*0.200811,0);
+    } else {
+      con2.lineTo(r,0);
+    }
+  }
+  con2.closePath();
+  con2.fill();
+  con2.restore();
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b3326ca1-01e3-4c6a-abf1-1c2284d4b2b3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b3326ca1-01e3-4c6a-abf1-1c2284d4b2b3');" /></p>
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/09/16/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C%E5%AE%9E%E7%8E%B0%E2%80%94%E2%80%94Photoshop%E9%92%A2%E7%AC%94%E5%B7%A5%E5%85%B7%E7%9A%84%E5%88%9D%E7%BA%A7%E6%A8%A1%E6%8B%9F/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>贝塞尔曲线的可视化操作实现——Photoshop钢笔工具的初级模拟</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/09/02/canvas%E9%BC%A0%E6%A0%87%E7%BB%98%E5%9B%BEDemo/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      canvas鼠标绘图Demo
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

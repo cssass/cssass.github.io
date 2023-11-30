@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        canvas模拟繁花曲线规 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">canvas模拟繁花曲线规</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+
+
+          <span class="post-date">2012-12-05</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>不算难，就是几个相对运动。</p>
+<p><textarea class="runcode_text" id="runcode_0129edb2-0b68-40ba-823c-05255b250beb"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>繁花曲线规</title>
+<style>
+*{padding:0;margin:0;}
+body{background:#eee;overflow-x:hidden;}
+#operationBar{position: fixed;z-index:10000;bottom:0;width:100%;text-align:center;background:#FBFDFE;border-top:2px solid #CC0F16;padding:5px 0;}
+.optText{width:35px;}
+.dialog_Wrap{background:#666;border: 1px solid #585858;border-top:0;border-radius: 0 0 8px 8px;box-shadow: 1px 1px 2px #aaa; overflow: hidden;}
+.dialog_Head{background:#000;height:26px;line-height:26px;padding: 0 5px;border-top:2px solid #CC0F16;cursor:move;color:#fff;font-size:12px;}
+.dialog_close{text-decoration:none;color:#fff; display:inline-block;width:15px;height:15px;font-size:12px;text-align:center;line-height:15px;font-family:'Comic Sans MS';}
+.dialog_Head .dialog_Opts{position:absolute;right:5px;top:0;height:21px;cursor:default;}
+.dialog_Body{overflow:auto;}
+</style>
+<script src="/public/js/extend.js"></script>
+<script src="/public/js/litewin.js"></script>
+</head>
+<body>
+<div id="operationBar">
+	<label><input class="opt" id="showCricle" type="checkbox" />圈</label>
+	<label><input class="opt" id="showLine" type="checkbox" checked/>线</label>
+	<label><input class="opt" id="showPoint" type="checkbox" />点</label>
+	<label><input class="opt" id="showColor" type="checkbox" checked />变色</label>
+	<label><input class="opt" id="isRefresh" type="checkbox" />刷新</label>
+	<label>外圈半径:<input class="opt optText" id="bigRadius" type="text" value="133" /></label>
+	<label>内圈半径:<input class="opt optText" id="smallRadius" type="text" value="140" /></label>
+	<label>线长:<input class="opt optText" id="lineLength" type="text" value="123" /></label>
+	<label><input id="runBtn" type="button" value="新建"/></label>
+</div>
+</body>
+<script>
+function Toy(options){
+	this.setOptions(options);
+	this.createPad();
+	this.draw(true);
+}
+Toy.prototype = {
+	setOptions: function(options) {
+		this.options = {
+			R:	133, //大圈半径
+			r:	140, //小圈半径
+			l:	123, //线长
+			showPoint: false, //显示小点
+			showCricle: false, //显示小圈
+			showLine: true, //显示线条
+			isRefresh: false, //每次清屏
+			showColor : true, //颜色变化
+			count : 1500 //绘制次数
+		};
+		extendCopy(options || {}, this.options);
+		//实际占用区域半径的计算
+		var delta = 0;
+		if(this.options.R > this.options.r){
+			delta = (this.options.r > this.options.l) ? 0 : this.options.l - this.options.r;
+			this.radius = this.options.R + delta;
+		}else{
+			delta = (this.options.r > this.options.l) ? this.options.r - this.options.R : this.options.l - this.options.R;
+			this.radius = this.options.r + delta;
+		}
+		this.radius += 10;
+		this.color = {
+			r : 0,
+			g : 0,
+			b : 255,
+			a : 0.5
+		};
+		this.v =  20;
+		this.colorValue = "rgba("+this.color.r+","+this.color.g+","+this.color.b+","+this.color.a+")";
+		this.angle = 0;
+		this.timePlay = null;
+  	},
+  	changeColor : function(){
+  		//颜色变换模式1
+  		this.color.r += this.v;
+  		if(this.color.r > 255){
+  			this.color.r = 0;
+  			this.color.g += this.v;
+  		}
+  		if(this.color.g > 255){
+  			this.color.r = 0;
+  			this.color.g = 0;
+  			this.color.b += this.v;
+  		}
+  		if(this.color.b > 255){
+  			this.color.r = 0;
+  			this.color.g = 0;
+  			this.color.b = 0;
+  		}
+  		this.colorValue = "rgba("+this.color.r+","+this.color.g+","+this.color.b+","+this.color.a+")";
+  	},
+  	changeColor2 : function(){
+  		//颜色变换模式2
+  		if(Toy.isIn(this.color.r + this.v, -1, 255)){
+  			this.color.r += this.v;
+  		}else{
+  			if(Toy.isIn(this.color.g + this.v, -1, 255)){
+  				this.color.g += this.v;
+  			}else{
+  				if(Toy.isIn(this.color.b + this.v, -1, 255)){
+  					this.color.b += this.v;
+  				}else{
+  					this.v = -this.v;
+  				}
+  			}
+  		}
+  		this.colorValue = "rgba("+this.color.r+","+this.color.g+","+this.color.b+","+this.color.a+")";
+  	},
+	createPad : function(isReset){
+				if(!isReset){
+					this.pad = document.createElement("canvas");
+				}
+				this.pad.width =  this.radius * 2;
+				this.pad.height = this.radius * 2;
+				this.ctx = this.pad.getContext('2d');
+				this.ctx.lineJoin = 'round';
+				this.ctx.lineCap = 'round';
+				this.ctx.lineWidth=.5;
+				this.ctx.strokeStyle = this.colorValue;
+				this.ctx.fillStyle = this.colorValue;
+				if(!isReset){
+					var dialogs = $class("myDialog"),
+						lastOne = dialogs[dialogs.length - 1],
+						pos = [0,0],
+						scrollT = document.body.scrollTop || document.documentElement.scrollTop;
+					if(lastOne){
+						var rect = lastOne.getBoundingClientRect();
+						if (rect.right > document.documentElement.offsetWidth - lastOne.offsetWidth) {
+							pos = [rect.bottom + 10 + scrollT, 0];
+						}else{
+							pos = [rect.top + scrollT, rect.right+ 10];
+						}
+					}
+					this.myPad = Win.open({
+						title : "Pad - " + Toy.t++,
+						html : "",
+						width : this.pad.width +10,
+						height : this.pad.height + 35,
+						onclose : this.stop
+					}).position("leftTop").css("top:"+pos[0]+"px;left:"+ pos[1] +"px;");
+					$class("dialog_Cont",this.myPad.dom)[0].appendChild(this.pad);
+				}
+			},
+	draw : function(isFirst){
+				this.ctx.save();
+				if(this.options.showColor){
+					this.changeColor2();
+					this.ctx.strokeStyle = this.colorValue;
+					this.ctx.fillStyle = this.colorValue;
+				}
+				//大圆
+				this.ctx.translate(this.radius, this.radius);
+				if(isFirst){
+					this.ctx.beginPath();
+					this.ctx.arc(0,0,this.options.R,0,Math.PI*2,true);
+					this.ctx.closePath();
+					this.ctx.stroke();
+				}
+				//小圆
+				this.ctx.rotate(-this.angle);
+				this.ctx.translate(this.options.R-this.options.r,0);
+				if(this.options.showCricle || isFirst){
+					this.ctx.beginPath();
+					this.ctx.arc(0,0,this.options.r,0,Math.PI*2,true);
+					this.ctx.closePath();
+					this.ctx.stroke();
+				}
+				//线
+				this.ctx.rotate(this.angle * this.options.R/this.options.r);
+				if(this.options.showLine || isFirst){
+					this.ctx.beginPath();
+					this.ctx.moveTo(0,0);
+					this.ctx.lineTo(this.options.l,0);
+					this.ctx.stroke();
+				}
+				//小点
+				if(this.options.showPoint || isFirst){
+					this.ctx.translate(this.options.l,0);
+					this.ctx.beginPath();
+					this.ctx.arc(0,0,1,0,Math.PI*2,true);
+					this.ctx.fill();
+				}
+				this.ctx.restore();
+				this.angle += 0.2;
+				return this;
+			},
+	move : function(){
+			var that = this,
+				count = 0,
+				_s = function(){
+					that.clear(count == 0).draw();
+					count ++;
+					that.timePlay = setTimeout(_s,50);
+					if(that.options.count < count) {
+						clearTimeout(that.timePlay)
+					};
+				}
+				_s();
+				return this;
+		},
+	stop : function(){
+		clearTimeout(this.timePlay);
+		return this;
+	},
+	clear : function(isInit){
+		if(this.options.isRefresh || isInit){
+			this.ctx.clearRect(0,0,this.radius * 2,this.radius * 2);
+			this.ctx.font = '10px Helvetica';
+			this.ctx.fillStyle = '#fff';
+			this.ctx.fillText("R: "+this.options.R, this.radius * 2 - 35, this.radius * 2-24 );
+			this.ctx.fillText("r : "+this.options.r, this.radius * 2 - 35, this.radius * 2 - 12);
+			this.ctx.fillText("l : "+this.options.l, this.radius * 2 - 35, this.radius * 2 );
+		}
+		return this;
+	},
+	reset : function(options){
+		this.setOptions(options);
+		this.createPad(true);
+		this.draw(true);
+		return this;
+	}
+}
+Toy.isIn = function(v,min,max){
+	return (v > min && v < max)
+};
+Toy.t = new Date();
+function getOpt(){
+	return {
+		R : $id("bigRadius").value - 0 || 133,
+		r : $id("smallRadius").value - 0 || 140,
+		l : $id("lineLength").value - 0 || 123,
+		showPoint: $id("showPoint").checked,
+		showCricle: $id("showCricle").checked,
+		showLine: $id("showLine").checked,
+		isRefresh: $id("isRefresh").checked,
+		showColor : $id("showColor").checked
+	}
+}
+window.onload = function(){
+	var opt = getOpt();
+	var temp1 = new Toy(opt),
+		temp2 = new Toy(opt).move(),
+	temp3 = new Toy({R:103,r:40,l:50}).move(),
+	temp4 = new Toy({R:113,r:140,l:123}).move();
+	var inputs = $class("opt");
+	for (var i = inputs.length - 1; i >= 0; i--) {
+		inputs[i].onchange = function(){
+			temp1.reset(getOpt());
+		}
+	};
+	events.addEvent($id("runBtn"),'click', function(){
+		new Toy(getOpt()).move();
+	});
+}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0129edb2-0b68-40ba-823c-05255b250beb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0129edb2-0b68-40ba-823c-05255b250beb');" /></p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2012/12/09/Metro%E9%A3%8E%E6%B7%B7%E6%90%AD%E7%80%91%E5%B8%83%E6%B5%81/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>Metro风混搭瀑布流</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2012/12/03/XMLHttpRequest%20Level%202%E7%9A%84%E8%B7%A8%E5%9F%9F%E5%8A%9F%E8%83%BD/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      XMLHttpRequest Level 2的跨域功能
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

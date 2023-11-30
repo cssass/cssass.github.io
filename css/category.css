@@ -30,7 +30,6 @@
   margin: 20px auto;
 }
 .post-card {
-  display: block;
   margin: 5px 0;
   clear: both;
   list-style: tibetan;
@@ -48,7 +47,7 @@
   float: left;
 }
 .post__body {
-  display: flex;
+  display: none;
   align-items: stretch;
 }
 .paginator {

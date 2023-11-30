@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        两个canvas动画 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">两个canvas动画</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+
+
+          <span class="post-date">2010-12-27</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>几星期前参加ie9开发大赛做了一个《ie9大风车》（呃，我承认名字很挫）。</p>
+<p>这个小玩意的难度在于，里面的所有东西都不是图片，而是用canvas写的，之前写的贝塞尔曲线的可视化操作实现倒是帮了大忙，不过据说AI已有插件直接导出canvas绘图代码了，那我的手写代码的生产力就太落后了。</p>
+<p>支持的浏览器包括ie9,firefox,chrome,safari。在opera下有个bug,暂时无法修复。</p>
+<p><textarea class="runcode_text" id="runcode_be58bf5e-b645-4f1b-abb5-b97595f89123"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>IE9 Pinwheel</title>
+<style>
+/*
+*	IE9大风车
+*	author: ONEBOYS
+*	blog: http://www.cssass.com
+*	谢谢观赏
+*/
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;text-align:center;}
+#middle{position:relative;z-index:2;width:750px;margin:0 auto;}
+#middle canvas{position:relative;}
+#bg{position:absolute;z-index:1;top:0;left:0;}
+</style>
+</head>
+<body >
+	<canvas id="bg"></canvas>
+	<div id='middle'></div>
+</body>
+<script type="text/javascript">
+var G={}
+G.$=function(n){
+	return document.getElementById(n) || n;
+}
+G.scrW=function(){return document.body.offsetWidth;}
+G.scrH=function(){return document.body.offsetHeight;}
+function Pad(){
+	var m=1, sign=1, lineWidth=3;
+	this.init = function(o){
+		this.create(o.name);
+		this.S= o.size || 150; //pad尺寸
+		this.radius = this.S/3; //logo半径
+		this.posX = this.S/2; //logo原点位置
+		this.posY = this.S/2;
+		this.turn = o.turn || 8;	//补间时限
+		this.con = G.$(o.name).getContext('2d');
+		this.timeout = null;
+		this.radi=this.con.createRadialGradient(-this.radius * 0.1,-this.radius * 0.2, this.radius * 0.5 , 0 , -this.radius * 0.1, this.radius *1.1);  //logo渐变
+		this.radi.addColorStop(0, 'rgba(126,226,253,1)');
+		this.radi.addColorStop(0.6, 'rgba(69,182,239,1)');
+		this.radi.addColorStop(1, 'rgba(20,133,211,1)');
+		this.radi2= this.con.createLinearGradient(this.radius * 2.2 , this.radius * 0.2 , this.radius * 0.2 , this.radius * 2.2); //光环渐变
+		this.radi2.addColorStop(0, 'rgba(255,187,44,.9)');
+		this.radi2.addColorStop(0.5, 'rgba(255,242,102,.9)');
+		this.radi2.addColorStop(1, 'rgba(255,187,44,.9)');
+		G.$(o.name).width=this.S;
+		G.$(o.name).height=this.S;
+		this.run();
+	};
+	this.create = function(n){ //创建canvas
+		var temp=document.createElement('canvas');
+		var that = this;
+		temp.id=n;
+		var bind=function(){
+			clearTimeout(that.timeout);
+			that.turn = 3;
+			that.run();
+		};
+		var drag=function(){
+			var o=this,e=arguments[0];
+			var tX=parseInt(o.style.left) || 0,
+				tY=parseInt(o.style.top) || 0,
+				dx=e.clientX,
+				dy=e.clientY;
+			document.onmousemove=function(e){
+				o.style.left=tX+e.clientX-dx+"px";
+				o.style.top=tY+e.clientY-dy+"px";
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+		};
+		temp.addEventListener("mousedown",drag,false); //拖动
+		temp.addEventListener("mouseover",bind,false); //划过
+		temp.addEventListener("touchstart",bind,false); //iOS触屏。（抱歉，由于本人没钱买iPad，还没测试过）
+		G.$('middle').appendChild(temp);
+	};
+	this.run = function(){  //转动
+		var that = this;
+		var _slide=function(){
+			var b=-1 ,t=0, c=2, d=that.turn;
+			function _run(){
+				if(t<d){ //半圈补间动画
+					t++;
+					m = - sign * easeInOut(t,b,c,d);
+					that.con.clearRect(0, 0, that.S, that.S);
+					that.drawLogo();
+					that.drawHalo();
+					that.timeout=setTimeout(_run, 10);
+				}
+				else{  //完成半圈
+					sign=-sign;
+					that.turn++;
+					that.timeout=setTimeout(_slide, 10);
+				};
+			};
+			_run();
+		 };
+		_slide();
+	};
+	this.drawLogo=function(){ //绘logo
+		this.con.save();
+		this.con.translate(this.posX,this.posY);
+		if(m === 0) {m = 0.1;}
+		this.con.scale(m, 1);
+		this.con.beginPath();
+		this.con.strokeStyle='#135b9f';
+		this.con.fillStyle=this.radi;
+		this.con.lineWidth=lineWidth;
+		this.con.save();
+		this.con.translate(0,-this.radius/8);
+		this.con.moveTo(0,0);
+		this.con.arc(0,0, this.radius/2 ,0,Math.PI*2/2,true);
+		this.con.lineTo(0,0);
+		this.con.restore();
+		this.con.save();
+		this.con.translate(0,this.radius/8);
+		this.con.moveTo(this.radius,0);
+		this.con.lineTo(-this.radius/2,0)
+		this.con.arc(0, 0, this.radius/2 ,Math.PI*2/2,Math.PI*4/24,true);
+		var y1=this.radius/2 * Math.sin(Math.PI*4/24) ;
+		var x1=Math.sqrt(Math.pow(this.radius,2) - Math.pow(y1+ this.radius/8,2));
+		this.con.lineTo(x1,y1);
+		this.con.restore();
+		var ang1=Math.asin(this.radius/8/this.radius);
+		var ang2=Math.acos(x1/this.radius);
+		this.con.arc(0, 0, this.radius, ang2, ang1, false);
+		this.con.stroke();
+		this.con.fill();
+		this.con.restore();
+	};
+	this.drawHalo = function(){  //绘光环
+		this.con.save();
+		this.con.fillStyle=this.radi2;
+		this.con.beginPath();
+		this.con.translate(this.posX,this.posY);
+		var n=this.radius/105;
+		this.con.moveTo(90 * n,-70 * n);
+		this.con.bezierCurveTo(125 * n,-202* n,-140* n,-65* n,-128* n,87* n);
+		this.con.bezierCurveTo(-125* n,105* n,-105* n,115* n,-60* n,88* n);
+		this.con.bezierCurveTo(-59* n,79* n,-108* n,118* n,-114* n,78* n);
+		this.con.bezierCurveTo(-115* n,-33* n,117* n,-183* n,88* n,-70* n);
+		this.con.fill();
+		this.con.restore();
+	};
+};
+var drawBg=function(){ //绘背景
+	var bg=G.$("bg").getContext('2d');
+	G.$('bg').width=G.scrW() ;
+	G.$('bg').height=G.scrH() ;
+	var lineBg = bg.createLinearGradient(1000,0,0,800);
+	lineBg.addColorStop(0,'#98ff5a');
+	lineBg.addColorStop(0.4,'#64dbc5');
+	lineBg.addColorStop(0.8,'#00b8fe');
+	lineBg.addColorStop(1,'#0034bb');
+	bg.save();
+	bg.fillStyle=lineBg;
+	bg.fillRect(0,0,G.scrW(),G.scrH());
+	bg.fillStyle='#fff';
+	bg.transform(-1,0,0,1,G.scrW(),0);
+	for (var i=20;i>0;i--){
+      bg.beginPath();
+	  bg.scale(1,0.95);
+		if(i % 2 === 0){bg.globalAlpha = 0.05;}
+		else{bg.globalAlpha = 0.03;}
+      bg.arc(i*i*1.2 ,200 + i*5, 80+i*i, 0, Math.PI*2, true);
+      bg.fill();
+	}
+	bg.restore();
+}
+function easeInOut(t,b,c,d){ //补间算法
+	if ((t/=d/2) < 1) return c/2*t*t + b;
+	return -c/2 * ((--t)*(t-2) - 1) + b;
+}
+window.onload=function(){
+	drawBg();
+	var max=20;
+	//var size=Math.max(G.scrW()/Math.sqrt(max),G.scrH()/Math.sqrt(max));
+	for(var i=0 ; i<max; i++ ){
+		new Pad().init({name:'pad'+i, turn: i+5});
+	}
+};
+window.onresize=function(){drawBg();}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_be58bf5e-b645-4f1b-abb5-b97595f89123');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_be58bf5e-b645-4f1b-abb5-b97595f89123');" /></p>
+
+<p>下面是另一个玩意《忍者镖》，话说是受了这个大赛（<a target="_blank" rel="noopener" href="http://js1k.com/2010-first/demos">http://js1k.com/2010-first/demos</a> ）的刺激才写的。<br>在这个大赛里，所有的Demo都必须小于1KB。</p>
+<p>于是，我就把我的代码往死里压。从这样：</p>
+<p><textarea class="runcode_text" id="runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>忍者镖</title>
+<style>
+*{padding:0;margin:0;}
+html,body{height:100%;overflow:hidden;text-align:center;}
+#middle{position:relative;z-index:2;height:100%;}
+#middle canvas{position:absolute;top:0;left:0;}
+#bg{position:absolute;z-index:1;top:0;left:0;}
+</style>
+</head>
+<body >
+	<canvas id="bg"></canvas>
+	<div id='middle'></div>
+</body>
+<script type="text/javascript">
+var G={}
+G.$=function(n){
+	return document.getElementById(n) || n;
+}
+G.scrW=function(){return document.body.offsetWidth;}
+G.scrH=function(){return document.body.offsetHeight;}
+function Pad(){};
+Pad.prototype.init = function(o){
+		this.create(o.name);
+		this.S= o.size || 400;
+		this.posX = this.S/2;
+		this.posY = this.S/2;
+		this.con = G.$(o.name).getContext('2d');
+		G.$(o.name).width=this.S;
+		G.$(o.name).height=this.S;
+		this.m = o.m || 0;
+		this.run();
+	};
+Pad.prototype.run = function(){
+		var sign=1;
+		var that = this;
+		var _slide=function(){
+			var t=0;
+			function _run(){
+				if(t<Math.PI*6){
+					t += 0.1;
+					that.m += sign * 0.1;
+					that.con.clearRect(0, 0, that.S, that.S);
+					that.draw();
+					that.timeout=setTimeout(_run, 10);
+				}
+				else{
+					sign=-sign;
+					that.timeout=setTimeout(_slide, 10);
+				}
+			};
+			_run();
+		 };
+		_slide();
+	};
+Pad.prototype.draw=function(){
+		this.con.save();
+		this.con.translate(this.posX,this.posY);
+		this.con.rotate(this.m);
+		if(this.m === 0) {this.m = 0.001;}
+		this.con.scale(this.m/10,this.m/10);
+		this.con.strokeStyle='#3E392E';
+		this.con.fillStyle="#F9F9FA";
+		this.con.lineWidth=1;
+		this.drawNinja()
+		this.con.restore();
+	}
+Pad.prototype.create = function(n){
+		var temp=document.createElement('canvas');
+		var that = this;
+		temp.id=n;
+		G.$('middle').appendChild(temp);
+};
+Pad.prototype.drawNinja=function(){
+	this.con.beginPath();
+	this.con.moveTo(20,-20);
+	this.con.lineTo(80,0);
+	this.con.lineTo(20,20);
+	this.con.lineTo(0,80);
+	this.con.lineTo(-20,20);
+	this.con.lineTo(-80,0);
+	this.con.lineTo(-20,-20);
+	this.con.lineTo(0,-80);
+	this.con.lineTo(20,-20);
+	this.con.translate(0,0);
+	this.con.arc(0,0,8,0,Math.PI*2,true);
+	this.con.stroke();
+	this.con.fill();
+};
+var drawBg=function(){
+	var bg=G.$("bg").getContext('2d');
+	G.$('bg').width=G.scrW() ;
+	G.$('bg').height=G.scrH() ;
+	var lineBg = bg.createLinearGradient(1000,0,0,800);
+	lineBg.addColorStop(0,'#eee');
+	lineBg.addColorStop(0.4,'#818181');
+	lineBg.addColorStop(0.8,'#434343');
+	lineBg.addColorStop(1,'#141414');
+	bg.fillStyle=lineBg;
+	bg.fillRect(0,0,G.scrW(),G.scrH());
+}
+window.onload=function(){
+	var max=10;
+	for(var i=0 ; i<max; i++ ){
+		new Pad().init({name:'pad'+i, m:i*0.1});
+	}
+	drawBg();
+};
+window.onresize=function(){drawBg();}
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5feda0bb-0bd0-4e59-9f05-5240e5bb7df2');" /></p>
+<p>斩头去尾，挖心掏肺，搞成这样：</p>
+<p><textarea class="runcode_text" id="runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3"><!doctype html>
+<html>
+<head>
+<style>
+body{overflow:hidden;background:#666;}
+canvas{position:absolute;top:0;left:0;}
+</style>
+</head>
+<body></body>
+<script type="text/javascript">
+function g(){var b=this;b.d=function(a){b.create();b.a=a.a;b.e()};b.e=function(){function a(){function e(){if(f<Math.PI*8){f+=0.1;c.a+=d*0.1;c.b.clearRect(0,0,400,400);c.c();c.timeout=setTimeout(e,10)}else{d=-d;c.timeout=setTimeout(a,10)}}var f=0;e()}var d=1,c=b;a()};b.c=function(){var a=b.b;a.save();a.translate(200,200);a.rotate(b.a);if(b.a===0)b.a=0.0010;a.scale(b.a/10,b.a/10);a.strokeStyle="#333";a.fillStyle="#eee";a.lineWidth=1;a.beginPath();a.moveTo(20,-20);a.lineTo(80,0);a.lineTo(20,20);a.lineTo(0, 80);a.lineTo(-20,20);a.lineTo(-80,0);a.lineTo(-20,-20);a.lineTo(0,-80);a.lineTo(20,-20);a.translate(0,0);a.arc(0,0,8,0,Math.PI*2,true);a.stroke();a.fill();a.restore()};b.create=function(){var a=document.createElement("canvas");a.width=400;a.height=400;b.b=a.getContext("2d");document.body.appendChild(a)}}window.onload=function(){for(var b=0;b<10;b++)(new g).d({a:b*0.1})};
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_9a0153b3-812b-4261-b8fc-9ebada38aaf3');" /></p>
+<p>结果，我的文件大小依然超出1KB，不得不佩服那些1KB Demos啊，个顶个的又小又炫。</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2011/01/21/%E7%94%A8canvas%E7%BB%98%E5%88%B6%E5%A4%8D%E6%9D%82%E5%9B%BE%E5%BD%A2/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>用canvas绘制复杂图形</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/12/07/%E6%B5%AE%E5%8A%A8%E5%90%8Eblock%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-%E4%B8%8E%E6%A8%AA%E7%89%88%E5%B8%83%E5%B1%80%E7%9A%84%E9%95%BF%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      浮动后block元素的水平居中,与横版布局的长度自适应
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

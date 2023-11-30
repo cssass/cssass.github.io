@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        CSS3的崛起——体验webkit的3D-Effect | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">CSS3的崛起——体验webkit的3D-Effect</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/CSS3/" class="post-tag">#CSS3</a>
+  
+    <a href="/tags/3D/" class="post-tag">#3D</a>
+  
+    <a href="/tags/Transform/" class="post-tag">#Transform</a>
+  
+
+
+          <span class="post-date">2010-11-16</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
+<p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
+<p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
+<p><textarea class="runcode_text" id="runcode_8dfdb41c-97c1-4ee7-befd-caf631eeccf2"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;}
+body { background-color:#deddcd;}
+#movieposters { list-style:none; margin:100px;}
+#movieposters li {float:left;
+	-webkit-perspective: 500;
+	/*
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition-property: perspective;
+	-webkit-transition-duration: 0.5s;
+	*/
+}
+/*
+#movieposters li:hover { -webkit-perspective: 5000; }
+*/
+#movieposters li img { border:10px solid #fcfafa;-webkit-box-shadow:0 3px 10px #888;
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {-webkit-transform: rotateY(0deg); }
+.movieinfo {border:10px solid #fcfafa; padding:0 10px; width:120px; height:100px; background-color:#deddcd; margin:-125px 0 0 55px; position:absolute;-webkit-box-shadow:0 10px 20px #888;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, box-shadow, margin;
+	-webkit-transition-duration: 0.5s; }
+#movieposters li:hover .movieinfo {-webkit-box-shadow:0 5px 10px #888; margin:-105px 0 0 30px;
+	-webkit-transform: rotateY(0deg); }
+.movieinfo h3 {color:#7a3f3a;font-family:Georgia; text-align:center; }
+.movieinfo p {padding:10px 0;}
+.movieinfo a { display:block; background:#7a3f3a; padding:3px 0; color:#eee; text-decoration:none; text-align:center; margin:0 auto;-webkit-border-radius:5px; }
+.movieinfo a:hover, .movieinfo a:focus { background-color:#6a191f; color:#fff; }
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			<h3>Avatar 2</h3>
+			<p>You like a baby</p>
+			<a href="http://www.cssass.com" title="I see you">More info</a>
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8dfdb41c-97c1-4ee7-befd-caf631eeccf2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8dfdb41c-97c1-4ee7-befd-caf631eeccf2');" /></p>
+<p>进一步删减</p>
+<p><textarea class="runcode_text" id="runcode_3ff03f02-e183-45d3-94fa-48908275a6ca"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;list-style:none; }
+body { background:#deddcd;margin:100px;}
+#movieposters li {float:left;
+	-webkit-perspective: 500;
+}
+#movieposters li img {
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {
+	-webkit-transform: rotateY(0deg);
+}
+.movieinfo {
+	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, margin;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover .movieinfo {
+	margin:-105px 0 0 40px;
+	-webkit-transform: rotateY(0deg);
+}
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3ff03f02-e183-45d3-94fa-48908275a6ca');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3ff03f02-e183-45d3-94fa-48908275a6ca');" /></p>
+<p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
+<p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
+<p><textarea class="runcode_text" id="runcode_8c7c1365-9547-4ad1-8bb7-4d948a984c1a"><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Explaining transform-style</title>
+  <style>
+    #container {
+      position: relative;
+      height: 300px;
+      width: 300px;
+      margin: 50px 100px;
+      border: 2px solid blue;
+      -webkit-perspective: 500;
+    }
+    #parent {
+      margin: 10px;
+      width: 280px;
+      height: 280px;
+      background-color: #844BCA;
+      opacity: 0.8;
+      -webkit-transform-style: preserve-3d;
+      -webkit-animation: spin 10s infinite linear;
+    }
+    #container:hover #parent {
+      -webkit-transform-style: flat;
+    }
+    @-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+    #parent > div {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      width: 200px;
+      height: 200px;
+      padding: 10px;
+      -webkit-box-sizing: border-box;
+    }
+    #parent > :first-child {
+      background-color: #49DC93;
+      -webkit-transform: translateZ(-100px) rotateY(45deg);
+    }
+    #parent > :last-child {
+      background-color: #FF6;
+      -webkit-transform: translateZ(50px) rotateX(20deg);
+      -webkit-transform-origin: 50% top;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="parent">
+      <div>-webkit-transform: translateZ(-100px) rotateY(45deg);</div>
+      <div>-webkit-transform: translateZ(50px) rotateX(20deg);</div>
+    </div>
+  </div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8c7c1365-9547-4ad1-8bb7-4d948a984c1a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8c7c1365-9547-4ad1-8bb7-4d948a984c1a');" /></p>
+<p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
+<p>参照上面的Demo，我们对原demo也做个修改，</p>
+<p><textarea class="runcode_text" id="runcode_377aa83a-84d2-47b4-9050-32d1726b19bf"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>cssass.com</title>
+<style>
+*{padding:0;margin:0;list-style:none; }
+body { background:#deddcd;margin:100px;}
+#movieposters{
+	-webkit-perspective: 1000;
+}
+#movieposters li {float:left;
+	-webkit-animation: spin 10s infinite linear;
+}
+#movieposters li.first{
+	-webkit-transform-style: preserve-3d;
+}
+#movieposters li.second{
+	-webkit-transform-style: plat;
+}
+ @-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(360deg); }
+    }
+#movieposters li img {
+	-webkit-transform: rotateY(30deg);
+	-webkit-transition-property: transform;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover img {
+	-webkit-transform: rotateY(0deg);
+}
+.movieinfo {
+	position:absolute; width:120px; height:100px; background:#fff; margin:-125px 0 0 55px;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, margin;
+	-webkit-transition-duration: 0.5s;
+}
+#movieposters li:hover .movieinfo {
+	margin:-105px 0 0 40px;
+	-webkit-transform: rotateY(0deg);
+}
+</style>
+</head>
+<body>
+<ul id="movieposters">
+	<li class='first'>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+	<li class='second'>
+		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		<div class="movieinfo">
+			Avatar 2
+		</div>
+	</li>
+</ul>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_377aa83a-84d2-47b4-9050-32d1726b19bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_377aa83a-84d2-47b4-9050-32d1726b19bf');" /></p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/12/07/%E6%B5%AE%E5%8A%A8%E5%90%8Eblock%E5%85%83%E7%B4%A0%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD-%E4%B8%8E%E6%A8%AA%E7%89%88%E5%B8%83%E5%B1%80%E7%9A%84%E9%95%BF%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>浮动后block元素的水平居中,与横版布局的长度自适应</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/11/03/%E7%BA%AFcss%E6%89%93%E9%80%A0%E6%8A%95%E5%BD%B1%E6%95%88%E6%9E%9C%E2%80%94%E2%80%94CSS3%E5%B1%9E%E6%80%A7transform%E7%9A%84%E5%BA%94%E7%94%A8/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      纯css打造投影效果——CSS3属性transform的应用
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

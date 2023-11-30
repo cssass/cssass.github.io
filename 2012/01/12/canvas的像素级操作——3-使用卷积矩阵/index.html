@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        canvas的像素级操作——3.使用卷积矩阵 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">canvas的像素级操作——3.使用卷积矩阵</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+
+
+          <span class="post-date">2012-01-12</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>利用卷积矩阵(Convolution Matrix)操作像素，我们可以很方便的得到诸如模糊、边缘检测、锐化、浮雕和斜角这样的效果。</p>
+<p>常用的矩阵类型是 3 x 3 矩阵，另外还有5 x 5的矩阵。</p>
+<p>工作原理：<a target="_blank" rel="noopener" href="http://flex4jiaocheng.com/blog/280">http://flex4jiaocheng.com/blog/280</a></p>
+<p>点阵图中的每一个像素被称为“初步像素”，用与卷积矩阵同样面积的“初步像素”从左到右从上到下与卷积矩阵中相应位置的值相乘，再将得到的9个或25个中间值相加，就得到了“初步像素”矩阵中央的一个值的结果值再与Divisor（因子）相除，与Offset（偏移量）相加，最后得到终值。如下图所示：</p>
+<p>应用卷积矩阵实现特效:</p>
+<p><textarea class="runcode_text" id="runcode_b8c9f489-0af2-4da6-b5ac-1303881d9860"><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>利用卷积矩阵实现特效</title>
+</head>
+<body>
+<canvas id="canvas1" width="200" height="200" title="浮雕效果"></canvas>
+<canvas id="canvas2" width="200" height="200" title="边缘检测"></canvas>
+<canvas id="canvas3" width="200" height="200" title="锐化"></canvas>
+<canvas id="canvas4" width="200" height="200" title="基本模糊"></canvas>
+<canvas id="canvas5" width="200" height="200" ></canvas>
+<script type="text/javascript">
+function convolution(imgPixels, matrix, divisor, offset){
+	/* 卷积矩阵应用函数 */
+    var w = imgPixels.width,
+		h = imgPixels.height,
+		d = imgPixels.data;
+	var canvas = document.createElement('canvas'),
+		ctx = canvas.getContext('2d'),
+		newImgPixels = ctx.createImageData(w,h);
+	for (var y = 1; y < h-1; y++) {
+			for (var x = 1; x < w-1; x++) {
+				for (var c = 0; c < 3; c++) {
+					/* RGB通道 */
+					var i = (y*w + x)*4 + c;
+					newImgPixels.data[i]=(matrix[0]*d[i-(w+1)*4] + matrix[1]*d[i-w*4] + matrix[2]*d[i-(w-1)*4]
+										+ matrix[3]*d[i-4]       + matrix[4]*d[i]     + matrix[5]*d[i+4]
+										+ matrix[6]*d[i+(w-1)*4] + matrix[7]*d[i+w*4] + matrix[8]*d[i+(w+1)*4])
+										/ divisor + offset;
+				}
+				newImgPixels.data[(y*w + x)*4 + 3] = 255;
+			}
+		}
+    return newImgPixels;
+}
+(function(){
+	/* demo */
+	var imgObj = new Image();
+		imgObj.src = '/blog/resource/avatar/avatar_s.jpg';
+	var embossing = {
+		/* 浮雕效果 */
+			matrix : [-2, -1, 0,
+					  -1,  1, 1,
+					   0,  1, 2],
+			divisor: 1,
+			offset : 0
+		},
+		edge = {
+		/* 边缘检测 */
+			matrix : [0, -1, 0,
+					 -1,  4, -1,
+					  0, -1, 0],
+			divisor: 1,
+			offset : 0
+		},
+		sharpening = {
+		/* 锐化 */
+			matrix : [ 0, -1, 0,
+					  -1,  5, -1,
+					  0,  -1, 0],
+			divisor: 1,
+			offset : 0
+		},
+		blur = {
+		/* 基本模糊 */
+			matrix : [0, 1, 0,
+					  1, 1, 1,
+					  0, 1, 0],
+			divisor: 5,
+			offset : 0
+		},
+		oneboys = {
+		/* 胡诌的一个矩阵 */
+			matrix : [ 0, 1, 4,
+					  -1,  5, -1,
+					  3,  -1, 2],
+			divisor: 5,
+			offset : 0
+		};
+	function process(obj,effect){
+		var context = document.getElementById(obj).getContext('2d');
+			context.drawImage(imgObj, 0, 0);
+		var imgPixels = context.getImageData(0, 0, imgObj.width, imgObj.height);
+		imgPixels = convolution(imgPixels, effect.matrix, effect.divisor, effect.offset)
+		context.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+	}
+	var canvas = document.getElementsByTagName('canvas');
+	for(var i = 0, l = canvas.length; i < l; i++ ){
+		var loadObj = new Load(canvas[i]);
+		(function(obj){
+			obj.loading();
+			imgObj.addEventListener('load',obj.loaded,false);
+		})(loadObj);
+	};
+	imgObj.addEventListener('load',function(){
+		process('canvas1',embossing);
+		process('canvas2',edge);
+		process('canvas3',sharpening);
+		process('canvas4',blur);
+		process('canvas5',oneboys);
+	},false);
+})()
+/* 以下与示例代码无关 */
+function Load(canvas){
+	/* canvas Loading 效果 */
+	var backCtx = canvas.getContext('2d');
+		backWidth = canvas.width;
+		backHeight = canvas.height;
+	var drawIntervalID,
+		spokes = 7;
+	var	drawPad = document.createElement('canvas');
+		drawPad.width = 30;
+		drawPad.height = 30;
+	var	drawCtx = drawPad.getContext('2d');
+		drawCtx.translate(drawPad.width/2, drawPad.height/2);
+		drawCtx.lineWidth = 5;
+		drawCtx.lineCap = "round";
+		drawCtx.strokeStyle = "rgba(0,0,0,0.1)";
+		drawCtx.fillStyle = "#fff";
+	var draw = function(){
+		drawCtx.fillRect(0,0, drawPad.width ,drawPad.height);
+		drawCtx.rotate(Math.PI*2/spokes);
+		for (var i=0; i<spokes; i++) {
+			drawCtx.rotate(Math.PI*2/spokes);
+			drawCtx.beginPath();
+			drawCtx.moveTo(0,8);
+			drawCtx.lineTo(0,10);
+			drawCtx.stroke();
+		}
+		backCtx.drawImage(drawPad,(backWidth - drawPad.width)/2, (backHeight - drawPad.height)/2);
+	}
+	this.loading = function(){
+		 drawIntervalID = setInterval(draw,200);
+	}
+	this.loaded = function(){
+		clearInterval(drawIntervalID);
+		backCtx.clearRect((backWidth - drawPad.width)/2, (backHeight - drawPad.height)/2, drawPad.width ,drawPad.height);
+	}
+}
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b8c9f489-0af2-4da6-b5ac-1303881d9860');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b8c9f489-0af2-4da6-b5ac-1303881d9860');" /></p>
+
+<p>上面demo中卷积的实现函数来自于在HTML 5 的 Canvas 中应用卷积矩阵对图像处理</p>
+<p>推荐一篇有趣的文章：卷积的物理意义</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2012/01/17/canvas%E7%9A%84%E5%83%8F%E7%B4%A0%E7%BA%A7%E6%93%8D%E4%BD%9C%E2%80%94%E2%80%944-%E5%85%B3%E6%B3%A8%E6%80%A7%E8%83%BD/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>canvas的像素级操作——4.关注性能</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2012/01/06/canvas%E7%9A%84%E5%83%8F%E7%B4%A0%E7%BA%A7%E6%93%8D%E4%BD%9C%E2%80%94%E2%80%941-%E5%BC%95%E5%AD%90/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      canvas的像素级操作——1.引子
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        google suggestion效果的键盘鼠标事件 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">google suggestion效果的键盘鼠标事件</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/google/" class="post-tag">#google</a>
+  
+    <a href="/tags/JS/" class="post-tag">#JS</a>
+  
+
+
+          <span class="post-date">2010-08-23</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>google的suggestion功能是一个非常棒的用户体验创新，相信你之前也已经使用过了。由于某些原因，国内现在却不能使用这个功能了。<br>不过,你还可以在baidu上使用相同的功能。对于好点子好创意，模仿学习并不是件坏事。</p>
+<p><textarea class="runcode_text" id="runcode_07ba201f-3ac5-4a98-9e2d-413109984017"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<style type='text/css'>
+.sugg{position:relative;font-size:12px;}
+.sugg a{text-decoration:none;}
+.sugg .text{width:210px;height:18px;padding:3px;color:#474747;border:1px solid #ADCAD8;}
+#suggestion{display:none;position:absolute;top:26px;left:0;width:216px;border:1px solid #3890d0;border-top:0;background:#fff;}
+#suggestion a{display:block;height:25px;line-height:25px;padding:0 5px;color:#000;}
+#suggestion a img{vertical-align:middle;}
+#suggestion #hover{background:#378ece;color:#fff;}
+</style>
+</head>
+<body>
+<div class='sugg'>
+	<form id='suggF' action="http://www.baidu.com/baidu" onsubmit="document.charset='GBK';sug.hide()" accept-charset='GBK' target="_blank">
+		<input class='text' type=text name=wd autocomplete="off" onkeydown="pressKey(this,event)" />
+		<input id='sub' type="submit" value="搜索" />
+	</form>
+	<div id='suggestion'>
+		<a href='javascript:;' onmouseover="sug.hover(this);" onclick="sug.select();">思思</a>
+		<a href='javascript:;' onmouseover="sug.hover(this);" onclick="sug.select();">芊芊</a>
+		<a href='javascript:;' onmouseover="sug.hover(this);" onclick="sug.select();">cssass</a>
+		<a href='javascript:;' onmouseover="sug.hover(this);" onclick="sug.select();">敏敏</a>
+		<a href='javascript:;' onmouseover="sug.hover(this);" onclick="sug.select();">黎黎</a>
+	</div>
+</div>
+suggestion显示之后，使用方向键或鼠标进行选择。
+</body>
+<script type='text/javascript'>
+var $id=function(o){
+	return document.getElementById(o) || o;
+}
+var pressKey=function(o,e){
+	var e = e ? e : window.event;
+	var k = e.keyCode;
+	switch(k){
+		case 9 :  //tab键
+		case 13 : return false; //回车键
+		default : sug.show(o,k); break;
+	}
+}
+var sug={
+	show:function(o,k){
+		/* 此时动态读取suggestion数据（略）*/
+		document.getElementById('suggestion').style.display='block';
+		document.onclick=function(){sug.hide()};
+		if (k != 38 && k != 40 && k != 39 && k != 37) { //非方向键
+			 sug.i = -1;
+		}
+		sug.i = sug.i || 0;
+		var list = $id('suggestion').getElementsByTagName("a");
+		var prev = '';
+		switch(k){
+			case 38:
+				sug.clear();
+				if (sug.i < 1) {
+					sug.i = list.length
+				}
+				sug.i--;
+				list[sug.i].id = "hover";
+				o.value = list[sug.i].innerHTML;
+				return false;
+			case 40:
+				sug.clear();
+				if (sug.i == list.length - 1) {
+					sug.i = -1
+				}
+				sug.i++;
+				list[sug.i].id = "hover";
+				o.value = list[sug.i].innerHTML;
+				return false;
+			default : break;
+		}
+		sug.hover=function(othis){ //鼠标划过
+			sug.clear();
+			for(i=0;i<list.length;i++){
+				if(othis==list[i]){
+					sug.i=i;
+					list[sug.i].id="hover";
+					o.value = othis.innerHTML;
+					return ;
+				}
+			}
+		}
+		sug.clear=function(){
+			prev = $id('hover');
+			if (prev) prev.id = '';
+		}
+		sug.select=function(){ //鼠标选中
+			document.charset='GBK';
+			$id('suggF').submit();
+		}
+	},
+	hide:function(){
+		$id('suggestion').style.display='none';
+	}
+};
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_07ba201f-3ac5-4a98-9e2d-413109984017');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_07ba201f-3ac5-4a98-9e2d-413109984017');" /></p>
+<p>下面是加入google的数据（墙内也有几率可以看到效果）</p>
+<p><textarea class="runcode_text" id="runcode_d8f8df38-87f9-426d-b0f3-eb33578835a8"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<style type='text/css'>
+.sugg{position:relative;font-size:12px;}
+.sugg a{text-decoration:none;}
+.sugg .text{width:210px;height:18px;padding:3px;color:#474747;border:1px solid #ADCAD8;}
+#suggestion{display:none;position:absolute;top:26px;left:0;width:216px;border:1px solid #3890d0;border-top:0;background:#fff;}
+.listitem{display:block;height:25px;line-height:25px;padding:0 5px;color:#000;cursor:pointer;}
+.itemhover{background:#378ece;color:#fff;}
+</style>
+<script type="text/javascript" src="/public/js/extend.js"></script>
+</head>
+<body>
+<div class='sugg'>
+	<form id="searchForm" method="GET"  action="http://www.baidu.com/baidu">
+		<input class='text' type=text name=wd autocomplete="off"  id="keyInput" />
+	</form>
+	<div id='suggestion'></div>
+</div>
+</body>
+<script type='text/javascript'>
+function Suggest(inputer, shower){
+	this.global = {
+		keyElm : inputer,
+		showElm : shower,
+		ajaxURL : 'https://www.google.com/complete/search',
+		ajaxData : {
+			'client' : 'hp',
+			'xhr' : 't'
+		},
+		index : -1
+	}
+	this.bind();
+};
+Suggest.prototype = {
+	bind: function(){
+		var that = this;
+		events.addEvent(this.global.keyElm, "keyup", function(){
+			var e = arguments[0] || window.event,
+				k = e.keyCode;
+			switch(k){
+				case 9 :  //tab键
+				case 13 : //回车键
+					that.hide();
+					return false;
+				case 37 :
+				case 38 :
+				case 39 :
+				case 40 :
+					 that.select(k); //方向键
+					 break;
+				default :
+					 that.show(k);
+			}
+		});
+		events.delegate(this.global.showElm, ".listitem", "mouseover", function(){
+			var e = arguments[0] || window.event,
+				target = e.srcElement || e.target;
+			that.hover(target);
+		});
+		events.addEvent(this.global.showElm,"click", function(){
+			$id("searchForm").submit();
+		});
+		events.addEvent(document, 'click', function(){
+			that.hide();
+		});
+	},
+	show: function(k){
+		var that = this;
+		this.global.ajaxData.q = this.global.keyElm.value;
+		$jsonp(this.global.ajaxURL, this.global.ajaxData, function(msg){
+			var list = msg[1],
+				html = '';
+			if(!list.length ){
+				that.hide();
+			}else{
+				for(var i = 0 ; i< list.length; i++){
+					html += "<span class='listitem' idx="+i+">"+list[i][0]+"</span>";
+				};
+				that.global.showElm.style.display='block';
+			}
+			that.global.showElm.innerHTML = html;
+		});
+	},
+	hide: function(){
+		$id('suggestion').style.display='none';
+	},
+	select: function(k){
+		var list = $tag("span", $id('suggestion'));
+		if(list.length < 1) return false;
+		switch(k){
+			case 38:
+				this.global.index --;
+				if (this.global.index < 0) {
+					this.global.index = list.length - 1;
+				}
+				break;
+			case 40:
+				this.global.index ++;
+				if (this.global.index > list.length - 1) {
+					this.global.index = 0
+				}
+				break;
+			default :
+				return false;
+		}
+		this.setValue(list[this.global.index]);
+	},
+	hover : function(target){
+		this.global.index = target.getAttribute("idx");
+		this.setValue(target);
+	},
+	setValue : function(o){
+		removeClass($class("itemhover"), "itemhover");
+		addClass(o, "itemhover");
+		this.global.keyElm.value = o.innerText || o.textContent;
+	}
+}
+new Suggest($id("keyInput"), $id("suggestion"));
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d8f8df38-87f9-426d-b0f3-eb33578835a8');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d8f8df38-87f9-426d-b0f3-eb33578835a8');" /></p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2010/08/28/%E6%A8%A1%E6%8B%9F%E5%BC%95%E5%8A%9B%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>模拟引力环境下的运动轨迹</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2010/05/13/%E5%85%83%E7%B4%A0%E7%9A%84%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      元素的拖动效果
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>

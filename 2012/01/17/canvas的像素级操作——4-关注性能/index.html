@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><!-- hexo injector head_begin start --><style type="text/css">.douban-card-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-height: 400px;
+}
+
+.douban-card {
+    display: flex;
+    margin: 30px 10px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+.douban-card:hover {
+    text-decoration: none;
+}
+
+.douban-card-bgimg {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    filter: blur(15px) brightness(0.6);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-img {
+    position: relative;
+    height: 130px;
+    width: 80px;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.douban-card-left:hover .douban-card-img {
+    filter: blur(5px) brightness(0.6);
+    transform: perspective(800px) rotateX(180deg);
+}
+
+.douban-card-left .douban-card-img {
+    transition: all 500ms ease;
+}
+
+.douban-card-left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.douban-card-left .douban-card-status {
+    height: 130px;
+    width: 80px;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: rotateX(180deg);
+    backface-visibility: hidden;
+    transition: all 500ms ease;
+}
+
+.douban-card-left:hover .douban-card-status {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+.douban-card-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.3;
+    color: antiquewhite;
+}
+
+.douban-card-item {
+    margin-top: 4px;
+}
+</style><!-- hexo injector head_begin end -->
+    <meta charset="utf8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <title>
+      
+        canvas的像素级操作——4.关注性能 | Mr.Drive2Far
+      
+    </title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    
+      <link rel="apple-touch-icon"
+            sizes="180x180"
+            href="/images/apple-touch-icon.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/images/favicon-32x32.png"/>
+    
+    
+      <link rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/images/favicon-16x16.png"/>
+    
+    
+      <link rel="mask-icon"
+            href="/images/logo.svg"
+            color=""/>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    
+    
+    <script type="text/javascript" charset="utf-8" src="https://www.cssass.com/public/js/three.min.js"></script>
+    
+
+    
+    
+  <link rel="stylesheet" type="text/css" href="/css/post.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
+
+  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
+
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+</head>
+  <body>
+    <div class="head">
+      <div class="nav">
+        <a id="nav-logo" href="/" class="nav-logo">
+          
+        </a>
+        <input id="navBtn" type="checkbox"/>
+        <div class="nav-menu">
+          
+            
+              <a class="nav-menu-item" href="/developer">Developer</a>
+            
+              <a class="nav-menu-item" href="/scientist">Scientist</a>
+            
+              <a class="nav-menu-item" href="/economic">Economic</a>
+            
+              <a class="nav-menu-item" href="/essay">闲情偶寄</a>
+            
+          
+        </div>
+        <label class="nav-btn" for="navBtn"></label>
+      </div>
+    </div>
+    <div class="body">
+      
+  <article class="post-content">
+    <div class="post-inner">
+      <div class="post-content__head">
+        <div class="post-title">canvas的像素级操作——4.关注性能</div>
+        <div class="post-info">
+          
+  
+    <a href="/tags/canvas/" class="post-tag">#canvas</a>
+  
+
+
+          <span class="post-date">2012-01-17</span>
+        </div>
+      </div>
+      <div id="postBody" class="post-content__body">
+        <div id="tocAnchor" class="toc-anchor">
+          <ol id="toc" class="post-toc">
+            
+          </ol>
+        </div>
+        
+          <div class="post-gallery">
+            
+          </div>
+        
+        <p>我们开篇就提过，canvas的像素级操作相对来说是很低效的。</p>
+<p>我们试着写一个图片切割效果。</p>
+<p><textarea class="runcode_text" id="runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65"><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>效率相关</title>
+</head>
+<body>
+<canvas id="board" width="100" height="110"></canvas>
+<script type="text/javascript">
+function splinter(ctx,imgPixels){
+	var round = 0; //统计循环次数
+	for(var y = 0; y < imgPixels.height; y++){
+		for(var x = 0; x < imgPixels.width; x++){
+			/* 虽然只调用了putImageData一个方法，但是操作的data非常多 */
+			ctx.putImageData(imgPixels, x, y, x, y, 1 ,1); //后四个参数控制显示区域
+			round ++ ;
+		}
+	}
+	return round;
+}
+function demo(img){
+	var w = img.width,
+		h = img.height;
+	var temp = document.createElement('canvas');
+		temp.width = w;
+		temp.height = h;
+	var tempCtx = temp.getContext('2d');
+		tempCtx.drawImage(img, 0, 0, w, h);
+	var ctx = document.getElementById('board').getContext('2d');
+	var imgPixels = tempCtx.getImageData(0, 0, w, h);
+	return splinter(ctx,imgPixels);
+}
+(function(){
+	var img = new Image();
+		img.src = "/blog/resource/avatar/avatar_s.jpg";
+		img.width = 50;
+		img.height = 55;
+		img.onload = function(){
+			var d = new Date();
+			var func = demo(img);
+			alert("耗时：" + (new Date() - d) + "(ms)，\n共执行了" + func + "次的putImageData");
+		}
+})()
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f530ce1d-1874-4bd3-bc44-e53b78b53a65');" /></p>
+
+<p>对于这个效果，因为我们并不需要操作图像的rgba数据，而只是把图像进行分割，所以利用putImageData的后四个可见区参数进行了设置就行了。<br>但是，这样做的性能却非常不理想。因为我们操作的ImageData数据实在太多了，循环执行了2750遍，相当于我们对整幅图像进行了2750次的像素级复制，而其实在可见区之外的ImageData数据并不是我们所需要的。</p>
+<p>那么，我们在对源图getImageData的时候，可以只获取我们需要的ImageData。</p>
+<p><textarea class="runcode_text" id="runcode_351ff46e-f8b2-4093-8ac2-abc468ede720"><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>效率相关</title>
+</head>
+<body>
+<canvas id="board" width="100" height="110"></canvas>
+<script type="text/javascript">
+function splinter(ctx,tempCtx, w, h){
+	var newData = [];
+	var round = 0; //统计循环次数
+	for(var y = 0; y < h; y++){
+		newData[y] = [];
+		for(var x = 0; x < w; x++){
+			newData[y][x] = tempCtx.getImageData(x, y, 1, 1); //分开获取所需要的ImageData
+			ctx.putImageData(newData[y][x], x*2, y*2);
+			round ++ ;
+		}
+	}
+	return round;
+}
+function demo(img){
+	var w = img.width,
+		h = img.height;
+	var temp = document.createElement('canvas');
+		temp.width = w;
+		temp.height = h;
+	var tempCtx = temp.getContext('2d');
+		tempCtx.drawImage(img, 0, 0, w, h);
+	var ctx =  document.getElementById('board').getContext('2d');
+	return round = splinter(ctx,tempCtx, w, h);
+}
+(function(){
+	var img = new Image();
+		img.src = "/blog/resource/avatar/avatar_s.jpg";
+		img.width = 50;
+		img.height = 55;
+		img.onload = function(){
+			var d = new Date();
+			var func = demo(img);
+			alert("耗时：" + (new Date() - d) + "(ms)，\n共执行了" + func + "次的getImageData和putImageData");
+		}
+})()
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_351ff46e-f8b2-4093-8ac2-abc468ede720');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_351ff46e-f8b2-4093-8ac2-abc468ede720');" /></p>
+
+<p>第二种做法虽然在循环的时候多运行了一个方法（共执行2750次的getImageData和putImageData方法），但因为操作的ImageData少了2750倍，所以在效率上比第一种方式高了很多。</p>
+<p>但从流程上来讲，我们只需要在刚开始的时候获取一次源图的ImageData（执行getImageData），对数据进行再排列后，最后再输出一次新的ImageData（执行putImageData）就可以了。<br>根本不需要在循环中反复调用getImageData和putImageData。所以现在的关键点是get和put之间的如何对数据进行重排列。</p>
+<p>ImageData.data可以看做一个矩形矩阵，我们已知，它的序列号（n）与ImageData.width(w),及x轴序列号(x),y轴序列号（y）的关系是：n &#x3D; ((y * w) + x) * 4; （其中的4表示了RGBA四个数据）。我们要的新的输出ImageData，其实是x加倍，y加倍，w加倍的一个新矩阵。那么新矩阵序号与原x,y,w的关系式应该是：t &#x3D; ((y * 2 * w * 2) + x * 2) * 4;</p>
+<p><textarea class="runcode_text" id="runcode_7c100920-a7be-4420-80aa-ec5ace268406"><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>效率相关</title>
+</head>
+<body>
+<canvas id="board" width="100" height="110"></canvas>
+<script type="text/javascript">
+function splinter(ctx,imgPixels){
+	var round = 0; //统计循环次数
+	var n = 0,
+		w = imgPixels.width,
+		h = imgPixels.height,
+		newdata = ctx.createImageData(w*2, h*2);
+	for(var y = 0; y < h; y++){
+		for(var x = 0; x < w; x++){
+			n = ((y * w) + x) * 4; /* data序号n与x,y,w的关系 */
+			t = ((y * 2 * w * 2) + x * 2) * 4; /* 分割后，y,x,w都变大了一倍 */
+			newdata.data[t] =  imgPixels.data[n];
+			newdata.data[t + 1] =  imgPixels.data[n + 1];
+			newdata.data[t + 2] =  imgPixels.data[n + 2];
+			newdata.data[t + 3] =  imgPixels.data[n + 3];
+			round ++ ;
+		}
+	}
+	ctx.putImageData(newdata, 0, 0);
+	return round;
+}
+function demo(img){
+	var w = img.width,
+		h = img.height;
+	var temp = document.createElement('canvas');
+		temp.width = w;
+		temp.height = h;
+	var tempCtx = temp.getContext('2d');
+		tempCtx.drawImage(img, 0, 0, w, h);
+	var ctx = document.getElementById('board').getContext('2d');
+	var imgPixels = tempCtx.getImageData(0, 0, w, h);
+	return splinter(ctx,imgPixels);
+}
+(function(){
+	var img = new Image();
+		img.src = "/blog/resource/avatar/avatar_s.jpg";
+		img.width = 50;
+		img.height = 55;
+		img.onload = function(){
+			var d = new Date();
+			var func = demo(img);
+			alert("耗时：" + (new Date() - d) + "(ms)，\n共循环了" + func + "次,循环内不执行getImageData和putImageData方法");
+		}
+})()
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7c100920-a7be-4420-80aa-ec5ace268406');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7c100920-a7be-4420-80aa-ec5ace268406');" /></p>
+
+<p>第三种方法相对于第二种方法的效率提高了十几倍。第三种方法的关键点是找出新旧矩阵之间的关系，对于我们这一例来说还比较容易，复杂一点的，算法可就没这么简单了。</p>
+<p>——————————————<br>重要补充：</p>
+<p>我们先总结下三种方法：第一种：效率低差，但理解起来最简单。第三种，算法复杂，但效率最高。第二种，折中。<br>然而，如果使用的是webkit，opera浏览器，我们会发现第一种方法的效率比之第三种方法居然差不了多少！<br>可以看出webkit,opera对putImageData做过优化。对于putImageData(imgdata, x, y, x, y, 1 ,1)方法，webkit,opera只对（x,y,1,1）这个1平方px区域内的数据进行了put操作，区域外的数据并没有进行操作，这样在效率上会有很大的提高。<br>可惜的是firefox(9)就没有做过优化。要加油啊，Mozila！<br>最新测试了下ie9，结果显示第一种方法的效率的确很低，而第二种方法比第一种方法的效率还要低一倍。看来ie9果然也没用对putImageData进行优化，而且ie9下的getImageData也没用像其他浏览器下那么优化。对于getImageData(x,y,1,1)的获取，它操作的整个图像的像素数据的，而不是那个1平方px内的数据。</p>
+<p>目前来说，考虑到各个浏览器原生方法的效率问题，第三种方法是最优的，即不要反复调用getImageData和putmageData，因为某些浏览器下一旦调用就是操作全部imageData的，而不会看你的参数。不过在未来，各个浏览器肯定会对原生方法进行优化的，在考虑第一种方法的时候就不用有所顾忌了！</p>
+
+      </div>
+    </div>
+  </article>
+  <div class="post__foot">
+    
+    <div class="post-nav">
+  
+    <a class="post-nav-item-left" href="/2012/02/01/CSS3%E2%80%94%E2%80%94%E4%BD%93%E9%AA%8CFirefox10%E7%9A%843D%20Transform/">
+      <div class="text-align">
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+        <span class="text-small">上一篇</span>
+      </div>
+      <div>CSS3——体验Firefox10的3D Transform</div>
+    </a>
+  
+  <div class="vhr"></div>
+  
+    <a class="post-nav-item-right" href="/2012/01/12/canvas%E7%9A%84%E5%83%8F%E7%B4%A0%E7%BA%A7%E6%93%8D%E4%BD%9C%E2%80%94%E2%80%943-%E4%BD%BF%E7%94%A8%E5%8D%B7%E7%A7%AF%E7%9F%A9%E9%98%B5/">
+      <div class="text-align">
+        <span class="text-small">下一篇</span>
+        <svg t="1670570876164"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             transform="scale(-1,-1)"
+             width="16"
+             height="16">
+          <path d="M384 512L731.733333 202.666667c17.066667-14.933333 19.2-42.666667 4.266667-59.733334-14.933333-17.066667-42.666667-19.2-59.733333-4.266666l-384 341.333333c-10.666667 8.533333-14.933333 19.2-14.933334 32s4.266667 23.466667 14.933334 32l384 341.333333c8.533333 6.4 19.2 10.666667 27.733333 10.666667 12.8 0 23.466667-4.266667 32-14.933333 14.933333-17.066667 14.933333-44.8-4.266667-59.733334L384 512z" p-id="14596"/>
+        </svg>
+      </div>
+      canvas的像素级操作——3.使用卷积矩阵
+    </a>
+  
+</div>
+
+    
+    
+      <div id="gitalk-container"></div>
+    
+  </div>
+
+    </div>
+    <div class="foot">
+      <div class="foot-inner">
+        <div class="foot__head">
+          
+            <div class="foot-line">
+              <div class="matts">海</div><div class="matts">内</div><div class="matts">存</div><div class="matts">知</div><div class="matts">己</div>
+            </div>
+          
+            <div class="foot-line">
+              <div class="matts">天</div><div class="matts">涯</div><div class="matts">若</div><div class="matts">比</div><div class="matts">邻</div>
+            </div>
+          
+        </div>
+        <div class="foot__body">
+          
+            <div class="foot-item">
+              <div class="foot-item__head">朋友</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link"
+                         height="20px"
+                         width="20px"
+                         src="/images/icon/icon-link.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">Theme Tranquility</a>
+                  </div>
+                
+                <div class="text">
+                  <img alt="link"
+                       height="20px"
+                       width="20px"
+                       src="/images/icon/icon-link+.svg"/>
+                  <a class="foot-link"
+                     href="mailto:neoxone2@gmail.com?subject=%E7%94%B3%E8%AF%B7%20开过头先生的主页%20%E7%9A%84%E5%8F%8B%E9%93%BE%E4%BD%8D%E7%BD%AE">
+                  申请友链</a>
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="foot-item">
+              <div class="foot-item__head">账号</div>
+              <div class="foot-item__body">
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-github.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://github.com/neoxone2">github</a>
+                  </div>
+                
+                  <div class="text">
+                    <img alt="link" height="20px" width="20px" src="/images/logo-zh.svg"/>
+                    <a class="foot-link" target="_blank" rel="noopener" href="https://www.zhihu.com/people/neoxone">知乎</a>
+                  </div>
+                
+              </div>
+            </div>
+          
+          <div class="foot-item">
+            <div class="foot-item__head">联系</div>
+            <div class="foot-item__body">
+              <div class="text">
+                <img alt="link"
+                     height="20px"
+                     width="20px"
+                     src="/images/icon/icon-email.svg"/>
+                <a class="foot-link" href="mailto:neoxone2@gmail.com">neoxone2@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <a href="https://www.cssass.com">Mr.Drive2Far</a> &nbsp;|&nbsp;由&nbsp;<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>&nbsp;及&nbsp;
+          <svg width="20" height="20" viewBox="0 0 725 725">
+            <path fill-rule="evenodd" fill="rgb(221, 221, 221)"
+            d="M145.870,236.632 L396.955,103.578 L431.292,419.44 L156.600,522.53 L145.870,236.632 Z" />
+            <path fill-rule="evenodd" fill="rgb(159, 159, 159)"
+            d="M396.955,103.578 L564.345,234.486 L611.558,513.469 L431.292,419.44 L396.955,103.578 Z" />
+            <path fill-rule="evenodd" fill="rgb(0, 0, 0)"
+            d="M431.292,419.44 L611.558,513.469 L358.327,595.18 L156.600,522.53 L431.292,419.44 Z" />
+          </svg>
+          <a target="_blank" rel="noopener" href="https://github.com/hooozen/hexo-theme-tranquility">致远</a>&nbsp;驱动
+          &nbsp;&nbsp;
+          <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">浙ICP备09004927号</a>
+        </div>
+      </div>
+    </div>
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+  const param = JSON.parse('{"enable":true,"owner":"neoxone2","admin":"neoxone2","repo":"https://github.com/neoxone2/hexo_comments.git","clientID":"bc87b42f6b10a638d798","clientSecret":"bf741d0c9c429f37a79b88c8cabc3955ab64af41","distractionFreeMode":false,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN"}')
+  param.id = location.pathname
+  const gitalk = new Gitalk(param)
+  gitalk.render('gitalk-container')
+</script>
+
+  
+  
+    <script>
+var WIDTH = 60,
+    HEIGHT = 60;
+var scene = new THREE.Scene();
+var VIEW_ANGLE = 11,
+  ASPECT = WIDTH / HEIGHT,
+  NEAR = 0.1,
+  FAR = 10000;
+var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); 
+  camera.position.set(0, 0, 1000); 
+  scene.add(camera);
+var geometry = new THREE.CubeGeometry( 100, 100, 100 ),
+  material = new THREE.MeshLambertMaterial( { color: 0xeeeeee} );
+var cube = new THREE.Mesh(geometry, material);
+  cube.rotation.set(10,20,10); 
+  scene.add(cube);
+/* 灯光 */
+var light = new THREE.DirectionalLight(0xFFFFFF); 
+  light.position.set(-200, 500, 500).normalize();
+  scene.add(light);
+/* 渲染器 */
+var renderer = new THREE.WebGLRenderer(); 
+  renderer.setSize(WIDTH , HEIGHT);
+  document.querySelector('#nav-logo').appendChild(renderer.domElement);
+
+(function anime(){
+  cube.rotation.x += 0.01;
+  renderer.render(scene, camera); 
+  return requestAnimationFrame(anime);
+})()
+</script>
+
+  
+  
+
+  </body>
+</html>
