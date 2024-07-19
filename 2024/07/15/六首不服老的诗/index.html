@@ -233,6 +233,7 @@ runcode.copy=function(element){
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
 		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -258,9 +259,12 @@ function getarraykey(s, v) {
 	}
 };
 
-window.onload = window.onresize = function() {
+setTimeout(sort,100)
+window.onload  = function() {
 	sort();
-};</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
+	
+};
+</script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
     <div class="head">
@@ -370,7 +374,7 @@ window.onload = window.onresize = function() {
 		<pre>春来春去催人老，老夫争肯输年少。
 醉后少年狂，白髭殊未妨。
 插花还起舞，管领风光处。
-把酒共留春，莫教花笑人。</pre>
+把酒共留春，莫教花笑人</pre>
 	</div>
 </li>
 
