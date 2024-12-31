@@ -260,10 +260,7 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
-window.onload  = function() {
-	sort();
-	
-};
+
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
   <body>
@@ -319,7 +316,7 @@ window.onload  = function() {
           </div>
         
         <p>这两天在xiaonei的个人状态里看见很多人添加有一些特殊字符，如҉ (据说叫菊花，囧nz)。当然这种字符也还没什么稀奇，这个符号是cyrillic里百万的标识。另外有见到一个能将文字反排显示的不可见字符,比较有趣。如下：</p>
-<p><textarea class="runcode_text" id="runcode_ac8f896b-635f-47c3-a9e1-739ef358cecf"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_e47f312d-1b14-4283-a1b8-5c6c9d8639d6"><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -328,11 +325,11 @@ window.onload  = function() {
 <body>
 <input type="text" value="&#8238;我从右往左？"/>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ac8f896b-635f-47c3-a9e1-739ef358cecf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ac8f896b-635f-47c3-a9e1-739ef358cecf');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e47f312d-1b14-4283-a1b8-5c6c9d8639d6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e47f312d-1b14-4283-a1b8-5c6c9d8639d6');" /></p>
 <p>   此RLO字符的效果就是将文字反排（效果有点类似<bdo dir=rtl>啊。参见：HTML的dir属性和<bdo>标签及其他一些CSS文字排版属性、滤镜 不过bdo这个是需要浏览器解释后才能看见效果的，而此RLO不需要浏览器解释，当然上面代码里使用的是html字符实体编号,这个是需要浏览器解释的。）</p>
 <p>   在UCS（Unicode Character Set）当中，每个字符都有一个unicode编码——不过，拥有unicode码的不一定是字符，也可以是设备控制符。<br>   应该说，很多形式的字符编码都是基于unicode编码的，如URL-encode,ASCll码,HTML Character Entities编号。特别是HTML Character Entities编号，与unicode可以说是一一对应的，只要浏览器支持，charset包含，“&amp;#”+十进制标号+“；”的编码就能在html中使用所有unicode中定义字符。<br>   以上面的RLO字符分析，虽然RLO符看不见，但也是可以被copy的，而且，必然的有一个对应的unicode码。RLO的unicode对应的16进制编号是：202e；10进制是：8238。要在html中使用这个字符，除了copy这个字符过来外，我们可以使用Character Entities References(HTML Entities)：&amp;#+8238+;(不包括+号)，或Numeric Character Reference(NCR):&amp;#+x202e+;。<br>关于如何查到某个字符的unicode编码，每种程序语言应该都有函数可以用来解码为unicode，这里有一个php的解码应用：convert-to-html。这是直接解成html实体编码的。它同unicode的关系只是十进制与十六进制的关系（实质是一样的）。要看16进制unicode只需做下进制转码就行了。知道了16进制编码，我们就可以在这里查询字符的信息：unicode.org</p>
 <p>下面是js写的转码工具：</p>
-<p><textarea class="runcode_text" id="runcode_c1c09989-448f-40f8-b4eb-8c2db622d2d1"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_d3920298-7295-4158-a57e-9d1ebbe30fa6"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -377,7 +374,7 @@ function escapeCode(){
 			decArray.push(decCode);
 			entityCode += '&#'+decCode+'; ';
 			outList+="<ul><li>"+hexArray[i]+"</li><li>"+decArray[i]+"</li><li>\"&#"+decCode+";\"</li>";
-			outList+="<li><form enctype='application/x-www-form-urlencoded' action='http://www.unicode.org/cgi-bin/Code2Chart.pl' method='post' target='_blank'>";
+			outList+="<li><form enctype='application/x-www-form-urlencoded' action='//www.unicode.org/charts/cgi-bin/Code2Chart' method='post' target='_blank'>";
 			outList+="<input type='hidden'  maxlength='8' size='8' name='HexCode' value="+hexArray[i]+" />";
 			outList+="<input type='submit' value='Go' name='submit'/></form></li></ul>";
 		}
@@ -406,10 +403,10 @@ function escapeCode(){
 	<div id="outView"></div>
 </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c1c09989-448f-40f8-b4eb-8c2db622d2d1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c1c09989-448f-40f8-b4eb-8c2db622d2d1');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d3920298-7295-4158-a57e-9d1ebbe30fa6');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d3920298-7295-4158-a57e-9d1ebbe30fa6');" /></p>
 <p>可以解开任意字符的unicode码，并生成字符实体码，而且可以链接到unicode官网查询该字符的信息。<br>js中escape这个函数能直接将字符串转成unicode码，不过有部分属于ASCll编码的字符不会解开。<br>而charCodeAt函数则能解开任何字符的unicode码。</p>
 <p>JS中解码的函数还有encodeURI——这个解开的unicode码我们会经常看见，地址栏里的字符串即出自于此。<br>另外在写了个简单的进制转换工具，支持10进制与16进制之间的互转，比较常用啊。</p>
-<p><textarea class="runcode_text" id="runcode_6f91ce5b-129f-4a3c-9f2b-8923f7a86b4a"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_db92b69c-8d56-4450-8909-e71fbfacee7c"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -461,7 +458,7 @@ events.addEvent($id("decCode"),'keyup',function(){
 	change("D2H");
 })
 </script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6f91ce5b-129f-4a3c-9f2b-8923f7a86b4a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6f91ce5b-129f-4a3c-9f2b-8923f7a86b4a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_db92b69c-8d56-4450-8909-e71fbfacee7c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_db92b69c-8d56-4450-8909-e71fbfacee7c');" /></p>
 
 
       </div>
