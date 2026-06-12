@@ -135,45 +135,7 @@
   <link rel="stylesheet" type="text/css" href="/css/post.css"/>
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"/>
 
-  <!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
+  <!-- hexo injector head_end start --><style type="text/css">
 #postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
@@ -260,6 +222,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
