@@ -122,11 +122,7 @@
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
 	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
 }
 </style><script type="text/javascript">var runcode = {};
 runcode.open=function(element){
@@ -137,12 +133,12 @@ runcode.open=function(element){
 	win.document.close();
 }
 runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
+	var codeobj = document.getElementById(element);
+	if (navigator.clipboard && window.isSecureContext) {
+		navigator.clipboard.writeText(codeobj.value);
+	} else {
+		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
+		codeobj.select();
 		codeobj.setSelectionRange(0, codeobj.value.length);
 		document.execCommand('copy');
 		setTimeout(function(){
@@ -154,7 +150,7 @@ runcode.copy=function(element){
 
 
 </script><style type="text/css">
-#postBody{position:relative;zoom:1;margin:0px auto;}
+.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -171,7 +167,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -203,17 +199,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}</style><script type="text/javascript">function sort(){
+}
+</style><script type="text/javascript">function layout(el){
 	var h = [];
-	var box = document.getElementsByClassName("pin");
+	var box = el.children;
 	if(!box[0]) return;
-	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
-		
+		el.style.cssText = "position:relative;overflow:hidden;"
+
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -228,6 +224,13 @@ runcode.copy=function(element){
 			box[i].style.top = minH + 'px';
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
+	}
+	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
+};
+function sort(){
+	var wraps = document.getElementsByClassName("hexo-pin-wrap");
+	for(var i = 0; i < wraps.length; i++) {
+		layout(wraps[i]);
 	}
 };
 /* 返回数组中某一值的对应项数 */
@@ -298,141 +301,141 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2008.08.26</span>
       <span class="accent">#CSS2</span>
-      <span>约 4 分钟</span>
+      <span>约 8 分钟</span>
     </div>
     <div class="article-content"><p>利用margin-bottom负值与padding-bottom抵消法。<br>两列情况:</p>
-<p><textarea class="runcode_text" id="runcode_38cb5e1d-657c-4c39-9de7-497a3f2c6b87"><!DOCTYPE html>
-<head>
-<title>左右两列高度互适应</title>
-<style type="text/css">
+<p><textarea class="runcode_text" id="runcode_952b3d4a-afd2-429f-9836-468172d5dcc4">&lt;!DOCTYPE html>
+&lt;head>
+&lt;title>左右两列高度互适应&lt;/title>
+&lt;style type="text/css">
 #wrap{width:600px;margin:0 auto;overflow: hidden}
 #left{width:300px;float:left;background:green;}
 #right{width:300px;float:left;background:gray;}
 .row{margin-bottom:-1000em;padding-bottom:1000em;}
 #footer{width:600px;margin:0 auto;text-align:left;background:#f4dcd8;}
-</style>
-</head>
-<body>
-<div id="wrap">
-<div id="left" class="row">
-左侧</div>
-<div id="right" class="row">
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-右侧<br />
-</div>
-</div>
-<div id="footer">底部</div>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_38cb5e1d-657c-4c39-9de7-497a3f2c6b87');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_38cb5e1d-657c-4c39-9de7-497a3f2c6b87');" /></p>
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;div id="wrap">
+&lt;div id="left" class="row">
+左侧&lt;/div>
+&lt;div id="right" class="row">
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+右侧&lt;br />
+&lt;/div>
+&lt;/div>
+&lt;div id="footer">底部&lt;/div>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_952b3d4a-afd2-429f-9836-468172d5dcc4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_952b3d4a-afd2-429f-9836-468172d5dcc4');" /></p>
 
 
 
 <p>多列多模块</p>
-<p><textarea class="runcode_text" id="runcode_e45292c9-009e-4e8a-8fa1-37e01c293b36"><!DOCTYPE html>
-<head>
-<meta charset="utf-8" />
-<title>多列多模块高度自适应</title>
-<style type="text/css">
+<p><textarea class="runcode_text" id="runcode_3d3c67e5-7b95-4268-be1e-a439bb8d1dfb">&lt;!DOCTYPE html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>多列多模块高度自适应&lt;/title>
+&lt;style type="text/css">
 .main {overflow: hidden; width: 800px; margin: 0 auto;}
 .left, .center, .right{float: left; width: 250px; overflow: hidden; margin-left:5px; }
 .equal {padding-bottom: 1000em; margin-bottom: -1000em;zoom:1;}
 .box {background: #f4dcd8; border: 1px #FB9D51 solid; padding-left:10px; }
 .mt5 {margin-top: 5px;}
 .bor_top { height:1px; background:#FB9D51; overflow:hidden; }
-</style>
-</head>
-<body>
-<div class="main">
-<div class="left  equal">
-  <div class="box">
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;div class="main">
+&lt;div class="left  equal">
+  &lt;div class="box">
    Left NO.1
-  </div>
-  <div class="box mt5">
+  &lt;/div>
+  &lt;div class="box mt5">
    Left NO.2
-  </div>
-  <div class="box mt5">
+  &lt;/div>
+  &lt;div class="box mt5">
    Left NO.3
-  </div>
-<div class="equal mt5 box">
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
-   Left NO.4<br />
- </div>
-</div>
-  <div class="center equal">
-  <div class="box">
-   center NO.1<br />
-   center NO.1<br />
-   center NO.1<br />
-  </div>
-  <div class="box mt5">
-   center NO.2<br />
-  </div>
-<div class="equal mt5 box">
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-   center NO.3<br />
-  </div>
-</div>
-<div class="equal right">
-  <div class="box">
+  &lt;/div>
+&lt;div class="equal mt5 box">
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+   Left NO.4&lt;br />
+ &lt;/div>
+&lt;/div>
+  &lt;div class="center equal">
+  &lt;div class="box">
+   center NO.1&lt;br />
+   center NO.1&lt;br />
+   center NO.1&lt;br />
+  &lt;/div>
+  &lt;div class="box mt5">
+   center NO.2&lt;br />
+  &lt;/div>
+&lt;div class="equal mt5 box">
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+   center NO.3&lt;br />
+  &lt;/div>
+&lt;/div>
+&lt;div class="equal right">
+  &lt;div class="box">
    right NO.1
-  </div>
-  <div class="box mt5">
-   right NO.2<br />
-   right NO.2<br />
-   right NO.2<br />
-  </div>
-  <div class="box mt5">
-   right NO.3<br />
-   right NO.3<br />
-   right NO.3<br />
-   right NO.3<br />
-   right NO.3<br />
-   right NO.3<br />
-  </div>
-  <div class="equal mt5 box">
-   right NO.4<br />
-   right NO.4<br />
-   right NO.4<br />
-   right NO.4<br />
-   right NO.4<br />
-   right NO.4<br />
-   right NO.4<br />
-  </div>
-</div>
-</div>
-<div class="main"><div class="left bor_top"></div><div class="center bor_top"></div><div class="right bor_top"></div></div>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e45292c9-009e-4e8a-8fa1-37e01c293b36');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e45292c9-009e-4e8a-8fa1-37e01c293b36');" /></p>
+  &lt;/div>
+  &lt;div class="box mt5">
+   right NO.2&lt;br />
+   right NO.2&lt;br />
+   right NO.2&lt;br />
+  &lt;/div>
+  &lt;div class="box mt5">
+   right NO.3&lt;br />
+   right NO.3&lt;br />
+   right NO.3&lt;br />
+   right NO.3&lt;br />
+   right NO.3&lt;br />
+   right NO.3&lt;br />
+  &lt;/div>
+  &lt;div class="equal mt5 box">
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+   right NO.4&lt;br />
+  &lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div class="main">&lt;div class="left bor_top">&lt;/div>&lt;div class="center bor_top">&lt;/div>&lt;div class="right bor_top">&lt;/div>&lt;/div>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3d3c67e5-7b95-4268-be1e-a439bb8d1dfb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3d3c67e5-7b95-4268-be1e-a439bb8d1dfb');" /></p>
 
 </div>
     <div class="article__end">

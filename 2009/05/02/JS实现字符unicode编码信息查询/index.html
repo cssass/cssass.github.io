@@ -122,11 +122,7 @@
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
 	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
 }
 </style><script type="text/javascript">var runcode = {};
 runcode.open=function(element){
@@ -137,12 +133,12 @@ runcode.open=function(element){
 	win.document.close();
 }
 runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
+	var codeobj = document.getElementById(element);
+	if (navigator.clipboard && window.isSecureContext) {
+		navigator.clipboard.writeText(codeobj.value);
+	} else {
+		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
+		codeobj.select();
 		codeobj.setSelectionRange(0, codeobj.value.length);
 		document.execCommand('copy');
 		setTimeout(function(){
@@ -154,7 +150,7 @@ runcode.copy=function(element){
 
 
 </script><style type="text/css">
-#postBody{position:relative;zoom:1;margin:0px auto;}
+.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -171,7 +167,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -203,17 +199,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}</style><script type="text/javascript">function sort(){
+}
+</style><script type="text/javascript">function layout(el){
 	var h = [];
-	var box = document.getElementsByClassName("pin");
+	var box = el.children;
 	if(!box[0]) return;
-	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
-		
+		el.style.cssText = "position:relative;overflow:hidden;"
+
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -228,6 +224,13 @@ runcode.copy=function(element){
 			box[i].style.top = minH + 'px';
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
+	}
+	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
+};
+function sort(){
+	var wraps = document.getElementsByClassName("hexo-pin-wrap");
+	for(var i = 0; i < wraps.length; i++) {
+		layout(wraps[i]);
 	}
 };
 /* 返回数组中某一值的对应项数 */
@@ -298,35 +301,35 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2009.05.02</span>
       <span class="accent">#JS</span><span class="accent">#unicode</span>
-      <span>约 7 分钟</span>
+      <span>约 14 分钟</span>
     </div>
     <div class="article-content"><p>这两天在xiaonei的个人状态里看见很多人添加有一些特殊字符，如҉ (据说叫菊花，囧nz)。当然这种字符也还没什么稀奇，这个符号是cyrillic里百万的标识。另外有见到一个能将文字反排显示的不可见字符,比较有趣。如下：</p>
-<p><textarea class="runcode_text" id="runcode_902ca68e-ba43-4ce7-ae43-a7d72ed37dea"><!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>RLO(right-to-left override)字符的演示</title>
-</head>
-<body>
-<input type="text" value="&#8238;我从右往左？"/>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_902ca68e-ba43-4ce7-ae43-a7d72ed37dea');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_902ca68e-ba43-4ce7-ae43-a7d72ed37dea');" /></p>
+<p><textarea class="runcode_text" id="runcode_df1c3d09-5e57-4d7c-872f-bc774279632c">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+&lt;title>RLO(right-to-left override)字符的演示&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;input type="text" value="&amp;#8238;我从右往左？"/>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_df1c3d09-5e57-4d7c-872f-bc774279632c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_df1c3d09-5e57-4d7c-872f-bc774279632c');" /></p>
 <p>   此RLO字符的效果就是将文字反排（效果有点类似<bdo dir=rtl>啊。参见：HTML的dir属性和<bdo>标签及其他一些CSS文字排版属性、滤镜 不过bdo这个是需要浏览器解释后才能看见效果的，而此RLO不需要浏览器解释，当然上面代码里使用的是html字符实体编号,这个是需要浏览器解释的。）</p>
 <p>   在UCS（Unicode Character Set）当中，每个字符都有一个unicode编码——不过，拥有unicode码的不一定是字符，也可以是设备控制符。<br>   应该说，很多形式的字符编码都是基于unicode编码的，如URL-encode,ASCll码,HTML Character Entities编号。特别是HTML Character Entities编号，与unicode可以说是一一对应的，只要浏览器支持，charset包含，“&amp;#”+十进制标号+“；”的编码就能在html中使用所有unicode中定义字符。<br>   以上面的RLO字符分析，虽然RLO符看不见，但也是可以被copy的，而且，必然的有一个对应的unicode码。RLO的unicode对应的16进制编号是：202e；10进制是：8238。要在html中使用这个字符，除了copy这个字符过来外，我们可以使用Character Entities References(HTML Entities)：&amp;#+8238+;(不包括+号)，或Numeric Character Reference(NCR):&amp;#+x202e+;。<br>关于如何查到某个字符的unicode编码，每种程序语言应该都有函数可以用来解码为unicode，这里有一个php的解码应用：convert-to-html。这是直接解成html实体编码的。它同unicode的关系只是十进制与十六进制的关系（实质是一样的）。要看16进制unicode只需做下进制转码就行了。知道了16进制编码，我们就可以在这里查询字符的信息：unicode.org</p>
 <p>下面是js写的转码工具：</p>
-<p><textarea class="runcode_text" id="runcode_2afba17f-3e1b-49b1-b999-c4cf8e5a6236"><!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>字符的unicode码信息查询</title>
-<style type="text/css">
+<p><textarea class="runcode_text" id="runcode_f8edd7c8-222f-4eea-9c89-592141e47404">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>字符的unicode码信息查询&lt;/title>
+&lt;style type="text/css">
   body{font-size:13px;background:#ccc;}
   #codeShow{display:none;}
   #codeShow .showBox{width:800px;}
   #codeShow ul{overflow:hidden;zoom:1;}
   #codeShow li{float:left;width:220px;text-align:center;list-style:none;}
-</style>
-<script type="text/javascript">
+&lt;/style>
+&lt;script type="text/javascript">
 function $id(o)
 {
   return document.getElementById(o) || o;
@@ -339,10 +342,10 @@ function escapeCode(){
 		inTXT = $id('inputValue').value,
 		outTXT='',
 		entityCode='',
-		outList="<ul><li>Unicode Character Code编码</li><li>HTML Character Entities编号</li><li>字符显示</li><li>unicode信息查询</li></ul>";
+		outList="&lt;ul>&lt;li>Unicode Character Code编码&lt;/li>&lt;li>HTML Character Entities编号&lt;/li>&lt;li>字符显示&lt;/li>&lt;li>unicode信息查询&lt;/li>&lt;/ul>";
 		//if($id('convAll').checked){  //true,转换a-z,A-Z等字符的unicode编码
 		  var character;
-		  for(i=0; i<inTXT.length; i++){
+		  for(i=0; i&lt;inTXT.length; i++){
 			character = inTXT.charCodeAt(i).toString(16).toUpperCase();   //法1：使用charCodeAt逐字转码
 			outTXT += character+' ';
 			hexArray.push(character);
@@ -357,80 +360,80 @@ function escapeCode(){
 			hexArray[i] = hexArray[i].slice(0,4);     //截取数组项中前四个字符。（消除a-z,A-Z等不解码产生的影响）
 			decCode = parseInt(hexArray[i],16).toString(10);
 			decArray.push(decCode);
-			entityCode += '&#'+decCode+'; ';
-			outList+="<ul><li>"+hexArray[i]+"</li><li>"+decArray[i]+"</li><li>\"&#"+decCode+";\"</li>";
-			outList+="<li><form enctype='application/x-www-form-urlencoded' action='//www.unicode.org/charts/cgi-bin/Code2Chart' method='post' target='_blank'>";
-			outList+="<input type='hidden'  maxlength='8' size='8' name='HexCode' value="+hexArray[i]+" />";
-			outList+="<input type='submit' value='Go' name='submit'/></form></li></ul>";
+			entityCode += '&amp;#'+decCode+'; ';
+			outList+="&lt;ul>&lt;li>"+hexArray[i]+"&lt;/li>&lt;li>"+decArray[i]+"&lt;/li>&lt;li>\"&amp;#"+decCode+";\"&lt;/li>";
+			outList+="&lt;li>&lt;form enctype='application/x-www-form-urlencoded' action='//www.unicode.org/charts/cgi-bin/Code2Chart' method='post' target='_blank'>";
+			outList+="&lt;input type='hidden'  maxlength='8' size='8' name='HexCode' value="+hexArray[i]+" />";
+			outList+="&lt;input type='submit' value='Go' name='submit'/>&lt;/form>&lt;/li>&lt;/ul>";
 		}
 		$id('outUnicode').value = outTXT;   //输出unicode码，以%u或%开头。
 		$id('outEnticode').value = entityCode;  //输出字符实体编码
 		$id('outView').innerHTML = outList;  //输出编码值，并有unicode信息查询链接。
 		$id('codeShow').style.display='block';
 	 }
-</script>
-</head>
-<body>
-<h2>字符转unicode码</h2>
-（<a href="http://www.cssass.com/blog/index.php/convert_characters_to_unicode" target="_blank">Read  in my Blog</a>）
-<div>
-	<input type="text" id="inputValue" value="输入字符:如&#1161;" style="width:180px;height:25px;padding:2px;"/><label>
-	<!-- <input id="convAll" type="checkbox" />a-z,A-Z,0-9,@,/,.,+,-,_等字符也加入转码.</label> -->
-	<br />
-	<input type="button" value="转为unicode码" onclick="escapeCode();"/>
-	<p>
-</div>
-<div id="codeShow">
-	16进制Unicode：<br />
-	<input class="showBox" id="outUnicode" /><br />
-	10进制Enticode：<br />
-	<input class="showBox" id="outEnticode" />
-	<div id="outView"></div>
-</div>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2afba17f-3e1b-49b1-b999-c4cf8e5a6236');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2afba17f-3e1b-49b1-b999-c4cf8e5a6236');" /></p>
+&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;h2>字符转unicode码&lt;/h2>
+（&lt;a href="http://www.cssass.com/blog/index.php/convert_characters_to_unicode" target="_blank">Read  in my Blog&lt;/a>）
+&lt;div>
+	&lt;input type="text" id="inputValue" value="输入字符:如&amp;#1161;" style="width:180px;height:25px;padding:2px;"/>&lt;label>
+	&lt;!-- &lt;input id="convAll" type="checkbox" />a-z,A-Z,0-9,@,/,.,+,-,_等字符也加入转码.&lt;/label> -->
+	&lt;br />
+	&lt;input type="button" value="转为unicode码" onclick="escapeCode();"/>
+	&lt;p>
+&lt;/div>
+&lt;div id="codeShow">
+	16进制Unicode：&lt;br />
+	&lt;input class="showBox" id="outUnicode" />&lt;br />
+	10进制Enticode：&lt;br />
+	&lt;input class="showBox" id="outEnticode" />
+	&lt;div id="outView">&lt;/div>
+&lt;/div>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f8edd7c8-222f-4eea-9c89-592141e47404');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f8edd7c8-222f-4eea-9c89-592141e47404');" /></p>
 <p>可以解开任意字符的unicode码，并生成字符实体码，而且可以链接到unicode官网查询该字符的信息。<br>js中escape这个函数能直接将字符串转成unicode码，不过有部分属于ASCll编码的字符不会解开。<br>而charCodeAt函数则能解开任何字符的unicode码。</p>
 <p>JS中解码的函数还有encodeURI——这个解开的unicode码我们会经常看见，地址栏里的字符串即出自于此。<br>另外在写了个简单的进制转换工具，支持10进制与16进制之间的互转，比较常用啊。</p>
-<p><textarea class="runcode_text" id="runcode_d879b95a-b0ee-4656-9bac-f1f2be64b0e0"><!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>16进制，10进制互转</title>
-<style type="text/css">
+<p><textarea class="runcode_text" id="runcode_17c8a2e3-1466-4740-a712-881ca07aeacc">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>16进制，10进制互转&lt;/title>
+&lt;style type="text/css">
 body{font-size:13px;background:#ccc;}
 #codeShow{width:230px;overflow:hidden;}
 .codeWrap{float:left;width:110px;}
 .codeWrap textarea{width:100px;height:300px;}
-</style>
-<script src="/public/js/extend.js"></script>
-</head>
-<body>
-<h2>十进制与十六进制互转</h2>
-<div id="codeShow">
-	<div class="codeWrap">
-		16进制<br />
-		<textarea id="hexCode" ></textarea>
-	</div>
-	<div class="codeWrap">
-		10进制<br />
-		<textarea id="decCode" ></textarea>
-	</div>
-</div>
-</body>
-<script>
+&lt;/style>
+&lt;script src="/public/js/extend.js">&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;h2>十进制与十六进制互转&lt;/h2>
+&lt;div id="codeShow">
+	&lt;div class="codeWrap">
+		16进制&lt;br />
+		&lt;textarea id="hexCode" >&lt;/textarea>
+	&lt;/div>
+	&lt;div class="codeWrap">
+		10进制&lt;br />
+		&lt;textarea id="decCode" >&lt;/textarea>
+	&lt;/div>
+&lt;/div>
+&lt;/body>
+&lt;script>
 function change(code){
 	var outs = '';
 	var a=[];
 	if(code == "H2D"){
 		var vals = $id("hexCode").value.split(/[,， ]/);
-		for(var i=0; i <vals.length; i++){
+		for(var i=0; i &lt;vals.length; i++){
 			outs += parseInt(vals[i],16).toString(10) + ',' ;
 		}
 		$id("decCode").value = outs;
 	}
 	else if(code == "D2H"){
 		var vals = $id("decCode").value.split(/[,， ]/);
-		for(var i=0; i <vals.length; i++){
+		for(var i=0; i &lt;vals.length; i++){
 			outs += parseInt(vals[i]).toString(16) + ',' ;
 		}
 		$id("hexCode").value = outs;
@@ -442,8 +445,8 @@ events.addEvent($id("hexCode"),'keyup',function(){
 events.addEvent($id("decCode"),'keyup',function(){
 	change("D2H");
 })
-</script>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d879b95a-b0ee-4656-9bac-f1f2be64b0e0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d879b95a-b0ee-4656-9bac-f1f2be64b0e0');" /></p>
+&lt;/script>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_17c8a2e3-1466-4740-a712-881ca07aeacc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_17c8a2e3-1466-4740-a712-881ca07aeacc');" /></p>
 
 </div>
     <div class="article__end">

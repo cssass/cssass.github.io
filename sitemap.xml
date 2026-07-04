@@ -504,6 +504,13 @@
   </url>
   
   <url>
+    <loc>https://www.cssass.com/tags/HTML/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.cssass.com/tags/DOM/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -518,7 +525,7 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/HTML/</loc>
+    <loc>https://www.cssass.com/tags/CSS3/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -567,34 +574,6 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/3D/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cssass.com/tags/threejs/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cssass.com/tags/Transform/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cssass.com/tags/CSS3/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.cssass.com/tags/Math/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -616,14 +595,14 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/transform/</loc>
+    <loc>https://www.cssass.com/tags/3D/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/Metro/</loc>
+    <loc>https://www.cssass.com/tags/threejs/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -637,14 +616,35 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/%E5%A4%8D%E5%88%A9/</loc>
+    <loc>https://www.cssass.com/tags/Metro/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/%E5%B9%B4%E9%87%91/</loc>
+    <loc>https://www.cssass.com/tags/Transform/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/tags/transform/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/tags/%E5%8F%A4%E8%AF%97/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/tags/%E5%A4%8D%E5%88%A9/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -665,7 +665,7 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/%E5%8F%A4%E8%AF%97/</loc>
+    <loc>https://www.cssass.com/tags/%E5%B9%B4%E9%87%91/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

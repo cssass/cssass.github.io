@@ -122,11 +122,7 @@
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
 	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
 }
 </style><script type="text/javascript">var runcode = {};
 runcode.open=function(element){
@@ -137,12 +133,12 @@ runcode.open=function(element){
 	win.document.close();
 }
 runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
+	var codeobj = document.getElementById(element);
+	if (navigator.clipboard && window.isSecureContext) {
+		navigator.clipboard.writeText(codeobj.value);
+	} else {
+		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
+		codeobj.select();
 		codeobj.setSelectionRange(0, codeobj.value.length);
 		document.execCommand('copy');
 		setTimeout(function(){
@@ -154,7 +150,7 @@ runcode.copy=function(element){
 
 
 </script><style type="text/css">
-#postBody{position:relative;zoom:1;margin:0px auto;}
+.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -171,7 +167,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -203,17 +199,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}</style><script type="text/javascript">function sort(){
+}
+</style><script type="text/javascript">function layout(el){
 	var h = [];
-	var box = document.getElementsByClassName("pin");
+	var box = el.children;
 	if(!box[0]) return;
-	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
-		
+		el.style.cssText = "position:relative;overflow:hidden;"
+
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -228,6 +224,13 @@ runcode.copy=function(element){
 			box[i].style.top = minH + 'px';
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
+	}
+	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
+};
+function sort(){
+	var wraps = document.getElementsByClassName("hexo-pin-wrap");
+	for(var i = 0; i < wraps.length; i++) {
+		layout(wraps[i]);
 	}
 };
 /* 返回数组中某一值的对应项数 */
@@ -297,18 +300,18 @@ setTimeout(sort,100)
     <h1 class="article__title">CSS3的崛起——体验webkit的3D-Effect</h1>
     <div class="article__meta mono">
       <span>2010.11.16</span>
-      <span class="accent">#3D</span><span class="accent">#Transform</span><span class="accent">#CSS3</span>
-      <span>约 14 分钟</span>
+      <span class="accent">#CSS3</span><span class="accent">#3D</span><span class="accent">#Transform</span>
+      <span>约 19 分钟</span>
     </div>
     <div class="article-content"><p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<p><textarea class="runcode_text" id="runcode_99fa78ae-474b-45ab-b335-a3d99ff4d4ee"><!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>cssass.com</title>
-<style>
+<p><textarea class="runcode_text" id="runcode_c5191d4a-504a-439c-8f98-26fcc8af2b0a">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>cssass.com&lt;/title>
+&lt;style>
 *{padding:0;margin:0;}
 body { background-color:#deddcd;}
 #movieposters { list-style:none; margin:100px;}
@@ -339,44 +342,44 @@ body { background-color:#deddcd;}
 .movieinfo p {padding:10px 0;}
 .movieinfo a { display:block; background:#7a3f3a; padding:3px 0; color:#eee; text-decoration:none; text-align:center; margin:0 auto;-webkit-border-radius:5px; }
 .movieinfo a:hover, .movieinfo a:focus { background-color:#6a191f; color:#fff; }
-</style>
-</head>
-<body>
-<ul id="movieposters">
-	<li>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
-			<h3>Avatar 2</h3>
-			<p>You like a baby</p>
-			<a href="http://www.cssass.com" title="I see you">More info</a>
-		</div>
-	</li>
-	<li>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
-			<h3>Avatar 2</h3>
-			<p>You like a baby</p>
-			<a href="http://www.cssass.com" title="I see you">More info</a>
-		</div>
-	</li>
-	<li>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
-			<h3>Avatar 2</h3>
-			<p>You like a baby</p>
-			<a href="http://www.cssass.com" title="I see you">More info</a>
-		</div>
-	</li>
-</ul>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_99fa78ae-474b-45ab-b335-a3d99ff4d4ee');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_99fa78ae-474b-45ab-b335-a3d99ff4d4ee');" /></p>
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;ul id="movieposters">
+	&lt;li>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
+			&lt;h3>Avatar 2&lt;/h3>
+			&lt;p>You like a baby&lt;/p>
+			&lt;a href="http://www.cssass.com" title="I see you">More info&lt;/a>
+		&lt;/div>
+	&lt;/li>
+	&lt;li>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
+			&lt;h3>Avatar 2&lt;/h3>
+			&lt;p>You like a baby&lt;/p>
+			&lt;a href="http://www.cssass.com" title="I see you">More info&lt;/a>
+		&lt;/div>
+	&lt;/li>
+	&lt;li>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
+			&lt;h3>Avatar 2&lt;/h3>
+			&lt;p>You like a baby&lt;/p>
+			&lt;a href="http://www.cssass.com" title="I see you">More info&lt;/a>
+		&lt;/div>
+	&lt;/li>
+&lt;/ul>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c5191d4a-504a-439c-8f98-26fcc8af2b0a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c5191d4a-504a-439c-8f98-26fcc8af2b0a');" /></p>
 <p>进一步删减</p>
-<p><textarea class="runcode_text" id="runcode_a4b4d87c-bd57-4996-93fa-d9fd61c23a59"><!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>cssass.com</title>
-<style>
+<p><textarea class="runcode_text" id="runcode_ec183cd5-33d7-475b-b76d-ee56c2125de4">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>cssass.com&lt;/title>
+&lt;style>
 *{padding:0;margin:0;list-style:none; }
 body { background:#deddcd;margin:100px;}
 #movieposters li {float:left;
@@ -400,27 +403,27 @@ body { background:#deddcd;margin:100px;}
 	margin:-105px 0 0 40px;
 	-webkit-transform: rotateY(0deg);
 }
-</style>
-</head>
-<body>
-<ul id="movieposters">
-	<li>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;ul id="movieposters">
+	&lt;li>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
 			Avatar 2
-		</div>
-	</li>
-</ul>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a4b4d87c-bd57-4996-93fa-d9fd61c23a59');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a4b4d87c-bd57-4996-93fa-d9fd61c23a59');" /></p>
+		&lt;/div>
+	&lt;/li>
+&lt;/ul>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ec183cd5-33d7-475b-b76d-ee56c2125de4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ec183cd5-33d7-475b-b76d-ee56c2125de4');" /></p>
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<p><textarea class="runcode_text" id="runcode_57cf687b-521b-4299-b84b-698bf3819d16"><!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Explaining transform-style</title>
-  <style>
+<p><textarea class="runcode_text" id="runcode_4f16ed9c-eafc-4694-b3fd-adcb879ae33a">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;title>Explaining transform-style&lt;/title>
+  &lt;style>
     #container {
       position: relative;
       height: 300px;
@@ -463,25 +466,25 @@ body { background:#deddcd;margin:100px;}
       -webkit-transform: translateZ(50px) rotateX(20deg);
       -webkit-transform-origin: 50% top;
     }
-  </style>
-</head>
-<body>
-  <div id="container">
-    <div id="parent">
-      <div>-webkit-transform: translateZ(-100px) rotateY(45deg);</div>
-      <div>-webkit-transform: translateZ(50px) rotateX(20deg);</div>
-    </div>
-  </div>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_57cf687b-521b-4299-b84b-698bf3819d16');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_57cf687b-521b-4299-b84b-698bf3819d16');" /></p>
+  &lt;/style>
+&lt;/head>
+&lt;body>
+  &lt;div id="container">
+    &lt;div id="parent">
+      &lt;div>-webkit-transform: translateZ(-100px) rotateY(45deg);&lt;/div>
+      &lt;div>-webkit-transform: translateZ(50px) rotateX(20deg);&lt;/div>
+    &lt;/div>
+  &lt;/div>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4f16ed9c-eafc-4694-b3fd-adcb879ae33a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4f16ed9c-eafc-4694-b3fd-adcb879ae33a');" /></p>
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<p><textarea class="runcode_text" id="runcode_34033053-9e38-422d-b442-618ea54e8700"><!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>cssass.com</title>
-<style>
+<p><textarea class="runcode_text" id="runcode_8e6fc944-cac2-4458-8387-eb0f74c18d51">&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+&lt;meta charset="utf-8" />
+&lt;title>cssass.com&lt;/title>
+&lt;style>
 *{padding:0;margin:0;list-style:none; }
 body { background:#deddcd;margin:100px;}
 #movieposters{
@@ -518,25 +521,25 @@ body { background:#deddcd;margin:100px;}
 	margin:-105px 0 0 40px;
 	-webkit-transform: rotateY(0deg);
 }
-</style>
-</head>
-<body>
-<ul id="movieposters">
-	<li class='first'>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;ul id="movieposters">
+	&lt;li class='first'>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
 			Avatar 2
-		</div>
-	</li>
-	<li class='second'>
-		<img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
-		<div class="movieinfo">
+		&lt;/div>
+	&lt;/li>
+	&lt;li class='second'>
+		&lt;img src='http://www.cssass.com/blog/resource/avatar/avatar_m.jpg' width='200' />
+		&lt;div class="movieinfo">
 			Avatar 2
-		</div>
-	</li>
-</ul>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_34033053-9e38-422d-b442-618ea54e8700');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_34033053-9e38-422d-b442-618ea54e8700');" /></p>
+		&lt;/div>
+	&lt;/li>
+&lt;/ul>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8e6fc944-cac2-4458-8387-eb0f74c18d51');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8e6fc944-cac2-4458-8387-eb0f74c18d51');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>

@@ -122,11 +122,7 @@
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
 	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
 }
 </style><script type="text/javascript">var runcode = {};
 runcode.open=function(element){
@@ -137,12 +133,12 @@ runcode.open=function(element){
 	win.document.close();
 }
 runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
+	var codeobj = document.getElementById(element);
+	if (navigator.clipboard && window.isSecureContext) {
+		navigator.clipboard.writeText(codeobj.value);
+	} else {
+		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
+		codeobj.select();
 		codeobj.setSelectionRange(0, codeobj.value.length);
 		document.execCommand('copy');
 		setTimeout(function(){
@@ -154,7 +150,7 @@ runcode.copy=function(element){
 
 
 </script><style type="text/css">
-#postBody{position:relative;zoom:1;margin:0px auto;}
+.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -171,7 +167,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -203,17 +199,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}</style><script type="text/javascript">function sort(){
+}
+</style><script type="text/javascript">function layout(el){
 	var h = [];
-	var box = document.getElementsByClassName("pin");
+	var box = el.children;
 	if(!box[0]) return;
-	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
-		
+		el.style.cssText = "position:relative;overflow:hidden;"
+
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -228,6 +224,13 @@ runcode.copy=function(element){
 			box[i].style.top = minH + 'px';
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
+	}
+	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
+};
+function sort(){
+	var wraps = document.getElementsByClassName("hexo-pin-wrap");
+	for(var i = 0; i < wraps.length; i++) {
+		layout(wraps[i]);
 	}
 };
 /* 返回数组中某一值的对应项数 */
@@ -300,7 +303,7 @@ setTimeout(sort,100)
       <span class="accent">#古诗</span>
       <span>约 2 分钟</span>
     </div>
-    <div class="article-content"><li class="pin" >
+    <div class="article-content"><ul class="hexo-pin-wrap"><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《蝶恋花》</div>
 		<div class="desc">王国维</div>
@@ -309,19 +312,14 @@ setTimeout(sort,100)
 待把相思灯下诉，一缕新欢，旧恨千千缕。
 最是人间留不住，朱颜辞镜花辞树。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《题旅店》</div>
 		<div class="desc">【清】王九龄</div>
 		<pre>晓觉茅檐片月低，依稀乡国梦中迷。
 世间何物催人老，半是鸡声半马蹄。</pre>
 	</div>
-</li>
-
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《自叹》</div>
 		<div class="desc">【元】王和卿</div>
@@ -329,9 +327,7 @@ setTimeout(sort,100)
 花到三春颜色消，月过十五光明少，
 月残花落。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《一剪梅》</div>
 		<div class="desc">【宋】蒋捷</div>
@@ -340,9 +336,7 @@ setTimeout(sort,100)
 何日归家洗客袍？银字笙调，心字香烧。
 流光容易把人抛，红了樱桃，绿了芭蕉。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《鹧鸪天》</div>
 		<div class="desc">【宋】晏几道</div>
@@ -351,9 +345,7 @@ setTimeout(sort,100)
 云渺渺，水茫茫，征人归路许多长。
 相思本是无凭语，莫向花笺费泪行。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《浣溪沙》</div>
 		<div class="desc">【宋】晏殊</div>
@@ -362,9 +354,7 @@ setTimeout(sort,100)
 无可奈何花落去，似曾相识燕归来。
 小园香径独徘徊。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《子夜歌》</div>
 		<div class="desc">【南唐】李煜</div>
@@ -373,9 +363,7 @@ setTimeout(sort,100)
 高楼谁与上？长记秋晴望。
 往事已成空，还如一梦中。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《代悲白头翁》（选摘）</div>
 		<div class="desc">【唐】刘希夷</div>
@@ -386,9 +374,7 @@ setTimeout(sort,100)
 古人无复洛城东，今人还对落花风。
 年年岁岁花相似，岁岁年年人不同。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《与诸子登岘山》</div>
 		<div class="desc">【唐】孟浩然</div>
@@ -397,9 +383,7 @@ setTimeout(sort,100)
 水落鱼梁浅，天寒梦泽深。
 羊公碑尚在，读罢泪沾襟。</pre>
 	</div>
-</li>
-
-<li class="pin" >
+</li><li class="pin" >
 	<div class="boxCont">
 		<div class="title">《春中田园作》</div>
 		<div class="desc">【唐】王维</div>
@@ -408,7 +392,7 @@ setTimeout(sort,100)
 归燕识故巢，旧人看新历。
 临觞忽不御，惆怅远行客。</pre>
 	</div>
-</li>
+</li></ul>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>

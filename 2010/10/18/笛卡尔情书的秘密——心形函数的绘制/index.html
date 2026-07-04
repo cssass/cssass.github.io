@@ -122,11 +122,7 @@
 	border-radius:3px;
 	text-shadow:1px 1px 0 #eee;
 	box-shadow:1px 0 1px #999;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
-	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
-	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
-	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
 }
 </style><script type="text/javascript">var runcode = {};
 runcode.open=function(element){
@@ -137,12 +133,12 @@ runcode.open=function(element){
 	win.document.close();
 }
 runcode.copy=function(element){
-	var codeobj = document.getElementById(element) ;
-	if (window.clipboardData)
-	{	
-		window.clipboardData.setData("Text", codeobj.value);
-	}else{
-		codeobj.select(); 	
+	var codeobj = document.getElementById(element);
+	if (navigator.clipboard && window.isSecureContext) {
+		navigator.clipboard.writeText(codeobj.value);
+	} else {
+		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
+		codeobj.select();
 		codeobj.setSelectionRange(0, codeobj.value.length);
 		document.execCommand('copy');
 		setTimeout(function(){
@@ -154,7 +150,7 @@ runcode.copy=function(element){
 
 
 </script><style type="text/css">
-#postBody{position:relative;zoom:1;margin:0px auto;}
+.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -171,7 +167,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -203,17 +199,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}</style><script type="text/javascript">function sort(){
+}
+</style><script type="text/javascript">function layout(el){
 	var h = [];
-	var box = document.getElementsByClassName("pin");
+	var box = el.children;
 	if(!box[0]) return;
-	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
-		
+		el.style.cssText = "position:relative;overflow:hidden;"
+
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -228,6 +224,13 @@ runcode.copy=function(element){
 			box[i].style.top = minH + 'px';
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
+	}
+	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
+};
+function sort(){
+	var wraps = document.getElementsByClassName("hexo-pin-wrap");
+	for(var i = 0; i < wraps.length; i++) {
+		layout(wraps[i]);
 	}
 };
 /* 返回数组中某一值的对应项数 */
@@ -298,7 +301,7 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2010.10.18</span>
       <span class="accent">#Math</span>
-      <span>约 6 分钟</span>
+      <span>约 11 分钟</span>
     </div>
     <div class="article-content"><blockquote><p>r&#x3D;a(1-sinθ)</p>
 </blockquote>
@@ -310,15 +313,15 @@ setTimeout(sort,100)
 </blockquote>
 
 <p>而我们将借助canvas的arc方法，为你揭开这行字的秘密：</p>
-<p><textarea class="runcode_text" id="runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf"><!doctype html>
-<html>
-<head>
-<meta charset='UTF-8' />
-<title>Cardioid</title>
-</head>
-<body style="text-align:center;">
-<canvas id="pad" width='500' height='500'>你不换一个浏览器，比如chrome，将无法知道这个秘密。</a></canvas>
-<script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_0355beb3-6e1b-4c5c-b875-a76169c1c301">&lt;!doctype html>
+&lt;html>
+&lt;head>
+&lt;meta charset='UTF-8' />
+&lt;title>Cardioid&lt;/title>
+&lt;/head>
+&lt;body style="text-align:center;">
+&lt;canvas id="pad" width='500' height='500'>你不换一个浏览器，比如chrome，将无法知道这个秘密。&lt;/a>&lt;/canvas>
+&lt;script type="text/javascript">
 var $id=function(n){
 	return document.getElementById(n) || n;
 }
@@ -329,7 +332,7 @@ var con=$id("pad").getContext('2d');
 function draw(){
 	var r=0 , a=100 , start = 0 , end= 0;
 	con.rotate(Math.PI);
-	for(var q=0; q<500; q++){
+	for(var q=0; q&lt;500; q++){
 		start +=  Math.PI * 2 /500;
 		end = start + Math.PI * 2 /500;
 		r=a * (1-Math.sin(start));  //心形极坐标表示法
@@ -337,9 +340,9 @@ function draw(){
 }
 con.fill();
 }
-</script>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf');" /></p>
+&lt;/script>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0355beb3-6e1b-4c5c-b875-a76169c1c301');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0355beb3-6e1b-4c5c-b875-a76169c1c301');" /></p>
 
 <blockquote><p>不久之后那位国王死了，克丽丝汀继承王位， 登基之后她马上派人在欧洲四处寻找迪卡尔的踪迹，可惜人已故。。。</p>
 </blockquote>
@@ -348,15 +351,15 @@ con.fill();
 <p>除了使用arc方法，bezierCurveTo方法来绘制各种曲线图形也不在话下，但那并不是通过心形函数本身绘制的。</p>
 <p>好吧其实r&#x3D;a(1-sinθ)是极坐标系方程，而不是笛卡尔坐标系(直角坐标系)方程式。<br>关于心形函数的一些资料</p>
 <p>话说，极坐标公式是非常利于绘制图形的。<br>比如玫瑰线公式：r(θ) &#x3D; a sin kθ<br>阿基米德螺线公式：r(θ) &#x3D; a+bθ</p>
-<p><textarea class="runcode_text" id="runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65"><!doctype html>
-<html>
-<head>
-<meta charset='UTF-8' />
-<title>Rose</title>
-</head>
-<body>
-<canvas id="pad" width='500' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
-<script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_2d1303f8-bcc5-4b91-96e9-044ee7c31250">&lt;!doctype html>
+&lt;html>
+&lt;head>
+&lt;meta charset='UTF-8' />
+&lt;title>Rose&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;canvas id="pad" width='500' height='500'>&lt;a href='http://www.cssass.com'>cssass.com&lt;/a>提醒您：ie低版本用户请更新你的浏览器&lt;/canvas>
+&lt;script type="text/javascript">
 var $id=function(n){
 	return document.getElementById(n) || n;
 }
@@ -366,7 +369,7 @@ var con=$id("pad").getContext('2d');
 	con.translate(100,100);
 function draw(){
 	var r=0 , a=100 , start = 0 , end= 0 , k=4; //可以改变k值试试
-	for(var q=0; q<500; q++){
+	for(var q=0; q&lt;500; q++){
 		start +=  Math.PI * 2 /500;
 		end = start + Math.PI * 2 /500;
 		r =Math.abs(a *(Math.cos( k * start)))  //玫瑰线公式r(θ) = a sin kθ
@@ -374,19 +377,19 @@ function draw(){
 }
 con.stroke();
 }
-</script>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65');" /></p>
+&lt;/script>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2d1303f8-bcc5-4b91-96e9-044ee7c31250');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2d1303f8-bcc5-4b91-96e9-044ee7c31250');" /></p>
 
-<p><textarea class="runcode_text" id="runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140"><!doctype html>
-<html>
-<head>
-<meta charset='UTF-8' />
-<title>Archimedean spiral</title>
-</head>
-<body>
-<canvas id="pad" width='500' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
-<script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_d4de2766-573f-4880-a6d6-c38ac97b5998">&lt;!doctype html>
+&lt;html>
+&lt;head>
+&lt;meta charset='UTF-8' />
+&lt;title>Archimedean spiral&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;canvas id="pad" width='500' height='500'>&lt;a href='http://www.cssass.com'>cssass.com&lt;/a>提醒您：ie低版本用户请更新你的浏览器&lt;/canvas>
+&lt;script type="text/javascript">
 var $id=function(n){
 	return document.getElementById(n) || n;
 }
@@ -396,7 +399,7 @@ var con=$id("pad").getContext('2d');
 	con.translate(100,100);
 function draw(){
 	var r=0 , a=20 , start = 0 , end= 0 , k=2;
-	for(var q=0; q<500; q++){
+	for(var q=0; q&lt;500; q++){
 		start +=  Math.PI * 2 /100;
 		end = start + Math.PI * 2 /100;
 		r =a + k * start  //阿基米德螺线
@@ -404,19 +407,19 @@ function draw(){
 }
 con.stroke();
 }
-</script>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140');" /></p>
+&lt;/script>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d4de2766-573f-4880-a6d6-c38ac97b5998');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d4de2766-573f-4880-a6d6-c38ac97b5998');" /></p>
 <p>另外，出于审美需求，我们的心型图形往往是这样的：<br>17(x^2+y^2)-16*abs(x)<em>y&#x3D;225<br>但是这里所用到的坐标系是直角坐标系，我们可以先转换成极坐标方程，如下：<br>r&#x3D;sqrt(225&#x2F;(17-16sinθ</em>sqrt((cosθ)^2)))<br>绘制如下：</p>
-<p><textarea class="runcode_text" id="runcode_79502138-8180-495d-b0ea-e3f62404c782"><!doctype html>
-<html>
-<head>
-<meta charset='UTF-8' />
-<title>LOVE</title>
-</head>
-<body style="text-align:center;">
-<canvas id="pad" width='300' height='500'><a href='http://www.cssass.com'>cssass.com</a>提醒您：ie低版本用户请更新你的浏览器</canvas>
-<script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_bf6bfd05-143a-49ff-9216-42f02b084bd7">&lt;!doctype html>
+&lt;html>
+&lt;head>
+&lt;meta charset='UTF-8' />
+&lt;title>LOVE&lt;/title>
+&lt;/head>
+&lt;body style="text-align:center;">
+&lt;canvas id="pad" width='300' height='500'>&lt;a href='http://www.cssass.com'>cssass.com&lt;/a>提醒您：ie低版本用户请更新你的浏览器&lt;/canvas>
+&lt;script type="text/javascript">
 var $id=function(n){
 	return document.getElementById(n) || n;
 }
@@ -427,7 +430,7 @@ var con=$id("pad").getContext('2d');
 function draw(){
 	var r=0 , a=20 , start = 0 , end= 0;
 	con.rotate(Math.PI);
-	for(var q=0; q<1000; q++){
+	for(var q=0; q&lt;1000; q++){
 		start +=  Math.PI * 2 /1000;
 		end = start + Math.PI * 2 /1000;
 		r=a*Math.sqrt(225/(17-16*Math.sin(start)*Math.sqrt(Math.cos(start)*Math.cos(start))))
@@ -435,9 +438,9 @@ function draw(){
 }
 con.fill();
 }
-</script>
-</body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_79502138-8180-495d-b0ea-e3f62404c782');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_79502138-8180-495d-b0ea-e3f62404c782');" /></p>
+&lt;/script>
+&lt;/body>
+&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bf6bfd05-143a-49ff-9216-42f02b084bd7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bf6bfd05-143a-49ff-9216-42f02b084bd7');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>
