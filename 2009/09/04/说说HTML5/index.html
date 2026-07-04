@@ -297,7 +297,7 @@ setTimeout(sort,100)
     <h1 class="article__title">说说HTML5</h1>
     <div class="article__meta mono">
       <span>2009.09.04</span>
-      <span class="accent">#HTML</span><span class="accent">#DOM</span><span class="accent">#HTML5</span>
+      <span class="accent">#DOM</span><span class="accent">#HTML5</span><span class="accent">#HTML</span>
       <span>约 28 分钟</span>
     </div>
     <div class="article-content"><p>html5如何而来？<br>HTML isn’t a very good language！它亟待改进。<br>因此，1999年W3C停止了HTML的工作，2000年发布xhtml的第一个推荐版本。<br>2002年W3C发布XHTML 2.0第一个草案，令人吃惊的是：XHTML2.0不是向后兼容的（Web 的未来：XHTML 2.0(2003.1.1)）。<br>随着XHTML的越来越火，绝大多数人都认为它将是web的未来。然而终于有些人坐不住了，面对W3C对HTML的持续冷淡，2004年，由Apple, Mozilla Foundation 和Opera Software组成了The Web Hypertext Application Technology Working Group (WHATWG)，致力于发展HTML和创建Web applications所需的APIs。他们开始制定Web Applications 1.0 规范，这也就是后来HTML5。<br>WHATWG的努力没有白费，这份规范的草案在2007年通过了W3C的审核。<br>W3C组织了HTML工作组，并在2008年1月22日公开了第一份草案。<br>2009年7月2日，W3C宣布在年内停止XHTML 2的工作，而将资源投入转向HTML5工作组。（XHTML 2 Working Group Expected to Stop Work End of 2009, W3C to Increase Resources on HTML 5）<br>在标准化的春风吹满神州之际，xhtml2却溘然而止,HTML5取代上位，我们广大的web工作者是不是需要做什么呢？</p>
@@ -325,26 +325,26 @@ setTimeout(sort,100)
 <p>好了， HTML5能做的够多了，但他还处在草案阶段，那关键是现在我们能做什么呢？</p>
 <p>我们能做什么？<br>HTML5估计能在2012年之前成为W3C的候选推荐标准，不过在这之前，只要浏览器支持，我们都可以使用html5的功能。</p>
 <ol>
-<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_1276aad0-af8c-47c4-ae26-814eaa606a57"><script>
+<li>HTML5新元素布局。<br>除了ie系列浏览器外，其它大多数浏览器都能识别HTML5的那些新元素标签，可以对其进行style，这就意味着它们可以使用HTML5的新元素标签进行页面布局。<br>但问题是ie系列浏览器是无法对其不承认的元素添加样式的，而缺少了IE的支持，大多数人都会束手束脚。解决这个问题的方法早已经了:HTML5 Shiv<br>很简单:<p><textarea class="runcode_text" id="runcode_15b86319-cd42-4366-a6ba-1d948f0aa29e"><script>
 document.createElement("元素名称")
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1276aad0-af8c-47c4-ae26-814eaa606a57');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1276aad0-af8c-47c4-ae26-814eaa606a57');" /></p>
-创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_d2d90cc6-0b24-4aa0-89dd-ffaa23adab7d">(function(){
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_15b86319-cd42-4366-a6ba-1d948f0aa29e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_15b86319-cd42-4366-a6ba-1d948f0aa29e');" /></p>
+创建文档元素。<br>批量创建的方法:<p><textarea class="runcode_text" id="runcode_c8c10739-2a59-4486-a92c-79158d196a9e">(function(){
     if(!/*@cc_on!@*/0) return;    
     var html5 = "abbr,article,aside,audio,bb,canvas,datagrid,datalist,details,dialog,event,source,figure,footer,hgroup,header,mark,menu,meter,nav,output,progress,section,time,video".split(',');   
     for(var i = 0, len = html5.length; i < len; i++ ) {       
     document.createElement(html5[i]);  
     }
 })
-();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d2d90cc6-0b24-4aa0-89dd-ffaa23adab7d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d2d90cc6-0b24-4aa0-89dd-ffaa23adab7d');" /></p>
+();</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c8c10739-2a59-4486-a92c-79158d196a9e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c8c10739-2a59-4486-a92c-79158d196a9e');" /></p>
 现在在IE里也可以对HTML5元素进行布局了。<br>不过，在此之前，我们还需要对这些新元素定义基本的Display style,<br>这个工作本来一般是由浏览器完成的，比如FireFox的html.css。<br>现在只能自己对引进的HTML5元素进行定义了。<br>那么哪些需要定义成display:block;哪些又是不需要呢？这个我们可以看下W3C是怎么定义的：display-types</li>
 </ol>
-<p><textarea class="runcode_text" id="runcode_27ae2c98-b30c-4592-8a65-854e6c6f9bbc">address, article, aside, blockquote, body, center, dd, dialog, dir,
+<p><textarea class="runcode_text" id="runcode_e1d7397f-9f35-4914-870f-65fdb4676beb">address, article, aside, blockquote, body, center, dd, dialog, dir,
 div, dl, dt, figure, footer, form, h1, h2, h3, h4, h5, h6, header,
 hgroup, hr, html, legend, listing, menu, nav, ol, p, plaintext, pre,
-section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_27ae2c98-b30c-4592-8a65-854e6c6f9bbc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_27ae2c98-b30c-4592-8a65-854e6c6f9bbc');" /></p>
+section, ul, xmp { display: block; }</textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e1d7397f-9f35-4914-870f-65fdb4676beb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e1d7397f-9f35-4914-870f-65fdb4676beb');" /></p>
 
 <p>刨除HTML老元素，以下这些元素:<br>article,aside,dialog,figure,footer,header,hgroup,nav,section可以定义为{display:block;}<br>这篇针对HTML 5 Reset Stylesheet的文章也可以参考下：<a target="_blank" rel="noopener" href="http://html5doctor.com/html-5-reset-stylesheet/%E3%80%82%E6%96%87%E7%AB%A0%E5%9C%A8Eric%E7%9A%84CSS">http://html5doctor.com/html-5-reset-stylesheet/。文章在Eric的CSS</a> Reset的基础上考虑HTML5新元素及W3C规范推荐下对元素进行了style reset。当然reset CSS本身就存在争议的，一般来说，reset CSS是你自己的style，很多东西都可以按你的意愿来定，当然不要太偏离W3C的元素设计本意。<br>接下来，使用HTML5新元素进行布局就可以随心所欲了（还是悠着点好）。</p>
-<p><textarea class="runcode_text" id="runcode_f6177b03-1d37-4f14-a736-e3c93572686f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_901a0ee2-125c-4c59-bf19-a8f179cab30b"><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -435,9 +435,9 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 </div>
 <footer>Copyright © 2009 Cssass.com </footer>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f6177b03-1d37-4f14-a736-e3c93572686f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f6177b03-1d37-4f14-a736-e3c93572686f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_901a0ee2-125c-4c59-bf19-a8f179cab30b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_901a0ee2-125c-4c59-bf19-a8f179cab30b');" /></p>
 <ol start="2">
-<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_64745eb9-fa7f-4539-b938-570db9e7c95a"><!DOCTYPE HTML>
+<li>Drag &amp; drop<br>Drag &amp; drop是浏览器支持度比较高的HTML5内容：<p><textarea class="runcode_text" id="runcode_7ad432ae-5689-4cda-a2ac-89d744e6d61f"><!DOCTYPE HTML>
 <html>
 <head>
   <title>Drag and Drop</title>
@@ -471,13 +471,13 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
    }
   </script>
  </body>
- </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_64745eb9-fa7f-4539-b938-570db9e7c95a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_64745eb9-fa7f-4539-b938-570db9e7c95a');" /></p></li>
+ </html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7ad432ae-5689-4cda-a2ac-89d744e6d61f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7ad432ae-5689-4cda-a2ac-89d744e6d61f');" /></p></li>
 <li>canvas<br>我们先看一些canvas的示例：<br><a target="_blank" rel="noopener" href="http://www.agustinfernandez.com.ar/proyectos/canvas/">http://www.agustinfernandez.com.ar/proyectos/canvas/</a><br><a target="_blank" rel="noopener" href="http://www.whatwg.org/demos/2008-sept/color/color.html">http://www.whatwg.org/demos/2008-sept/color/color.html</a><br>网上还有一些互动性蛮强的Demo.<br>canvas应用的发展无疑将威胁到也行进在富Web之路上的Flash和Silverligth这些Web插件。</li>
 </ol>
 <p>canvas在safari,firefox,opera很早就有了支持，但IE缺迟迟不予支持，尽管他在ie8中已经开始支持多个HTML5功能。MS的同志很有理由这么做:“HTML 5标准制定之前,某些功能确实已经得以实现,例如Google Gears实现了离线应用程序功能,Flash和silverlight实现了类似Canvas API的功能.在下一代HTML规范中设置这些内容未必非常必要”。要知道MS在silverlight是花了很大力气。事实上，MS在参与HTML5之事上一直非常谨慎，并且希望精简HTML5。<br>Flash的所有者，HTML5参与者之一Adobe则表现的很轻松：“canvas还很弱，HTML 5 + CSS 3 可能要 10年的时间才能定稿，在这期间，Flash 会持续发展，并提供更好的用户体验”。</p>
 <p>尽管IE没有支持canvas功能，但我们可以使用JS模拟达到：<br><a target="_blank" rel="noopener" href="http://excanvas.sourceforge.net/">http://excanvas.sourceforge.net/</a><br>这是其中的一个Demo,试试你的IE:<br>3Dcanvas_For_IE.html</p>
 <ol start="4">
-<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_b9debbad-fc53-4e36-bf56-3f7b7abf1acc"><!DOCTYPE HTML>
+<li>audio and video<br>使用FireFox3.5看看下面这个Video Demo。<p><textarea class="runcode_text" id="runcode_4a5dff5b-e554-45eb-b775-903482f838d5"><!DOCTYPE HTML>
 <html>
 <head>
 <title>Video</title>
@@ -492,7 +492,7 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
 	</script>
 	<p><input type="button" value="&#x2588; &#x2588;" onclick="if (video.paused) video.play(); else video.pause()"></p>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b9debbad-fc53-4e36-bf56-3f7b7abf1acc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b9debbad-fc53-4e36-bf56-3f7b7abf1acc');" /></p></li>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4a5dff5b-e554-45eb-b775-903482f838d5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4a5dff5b-e554-45eb-b775-903482f838d5');" /></p></li>
 </ol>
 <p>我们没有引入flash播放器就能播放swf。</p>
 <p>在下面这个页面里罗列了各浏览器所支持的HTML5功能：<br>Implementations in Web browsers</p>
@@ -541,6 +541,8 @@ for(var i = 0, len = html5.length; i < len; i++ ) {document.createElement(html5[
       <div class="site-footer__col-label mono">朋友</div>
       
       <a href="https://www.neoxmind.com/" target="_blank" rel="noopener">Neo 的数字花园 ↗</a>
+      
+      <a href="https://github.com/NeoWangs/hexo-theme-heibai" target="_blank" rel="noopener">HeiBai · 黑白双式主题 ↗</a>
       
       <a href="mailto:neoxone2@gmail.com" target="_blank" rel="noopener">申请友链 ↗</a>
       
