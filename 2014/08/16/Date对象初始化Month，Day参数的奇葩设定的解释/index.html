@@ -301,18 +301,18 @@ setTimeout(sort,100)
       <span>约 5 分钟</span>
     </div>
     <div class="article-content"><p>new一个Date对象时，当以年份Y，月份M，日期D为参数传入来设定的时候，我们会发现：月份M是从0开始的，而日期D却是从1开始的。<br>即：M:0是一月，1是二月，11是十二月，但D：1 是一号，2是二号，31是三十一号。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_69eb2c26-94e9-4a6a-bd17-2ce49a28a383"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_c24b56eb-48b1-44a9-b02b-c0022bce83f9"><script type="text/javascript">
 var t1 = new Date(2014,0,1).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t3 = new Date(2014,11,29).toLocaleString()
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_69eb2c26-94e9-4a6a-bd17-2ce49a28a383');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_69eb2c26-94e9-4a6a-bd17-2ce49a28a383');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c24b56eb-48b1-44a9-b02b-c0022bce83f9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c24b56eb-48b1-44a9-b02b-c0022bce83f9');" /></p>
 <p>是不是觉得很别扭，很奇葩？</p>
 <p>对于习惯了以“一月”称呼“January”，“二月”称呼“February”的人来说，让”0″和”一”对应，”1″和”二”对应肯定是超级别扭啊，<br>但对于计算机从业者来说倒合情合理，第一位都是0开始数的嘛。</p>
 <p>那问题抛向了另一边，为什么Day又是从1开始呢？<br>那么我告诉你1Day其实根本不是数组的第一项，日期的初始也是0！<br>当1Day完成的时候，时间就已经过去了二十四小时，1Day已经结束了。<br>所以0Day才是days的开始，那么我们来看看0Day到底是什么时候，让我们从1Day开始往前回溯，其实我们将每一天的开始设在了前夜。<br>如果按小数来细分的话，每月1号的正午应该算是0.5号，而10号的下午6点就是九又四分之三号！</p>
-<p><textarea class="runcode_text" id="runcode_41bffc14-cb84-4efa-a0b9-d330df7d4e9d"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_6166ce4e-3138-4fcd-84ae-a760ecdc61d2"><script type="text/javascript">
 var t3 = new Date(2014,11,29).toLocaleString(),
 	t2 = new Date(2014,1,2).toLocaleString(),
 	t1 = new Date(2014,0,1).toLocaleString(),
@@ -321,9 +321,9 @@ document.write(2014,"&nbsp;",11,"&nbsp;",29,"<br />",t3,"<br /><br />");
 document.write(2014,"&nbsp;",1,"&nbsp;",2,"<br />",t2,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",1,"<br />",t1,"<br /><br />");
 document.write(2014,"&nbsp;",0,"&nbsp;",0,"<br />",t0,"<br /><br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_41bffc14-cb84-4efa-a0b9-d330df7d4e9d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_41bffc14-cb84-4efa-a0b9-d330df7d4e9d');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6166ce4e-3138-4fcd-84ae-a760ecdc61d2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6166ce4e-3138-4fcd-84ae-a760ecdc61d2');" /></p>
 <p>0Day的设计，其实还有一个巨大的好处，我们调用new Date就可以轻松拿到当月的最后一号，而不用你自己去考虑大小月、闰年2月。<br>如下：</p>
-<p><textarea class="runcode_text" id="runcode_6a844ff8-faab-479a-867c-37e2972303df"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_83573cb6-4a4d-4e8d-9333-97e159f20ad9"><script type="text/javascript">
 var t1 = new Date(2014,1,0).toLocaleString(),
 	t2 = new Date(2014,2,0).toLocaleString(),
 	t3 = new Date(2014,3,0).toLocaleString(),
@@ -332,9 +332,9 @@ document.write(t1,"<br />");
 document.write(t2,"<br />");
 document.write(t3,"<br />");
 document.write(t4,"<br />");
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6a844ff8-faab-479a-867c-37e2972303df');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6a844ff8-faab-479a-867c-37e2972303df');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_83573cb6-4a4d-4e8d-9333-97e159f20ad9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_83573cb6-4a4d-4e8d-9333-97e159f20ad9');" /></p>
 <p>全文结束。<br>插一个小问题，在知乎上看见有人提问 <a href="http://www.zhihu.com/question/24400532/answer/29267154" title="" target="">javascript里面为什么不提供date的格式化函数？</a> 其实在Firefox上是提供了一个toLocaleFormat方法的。</p>
-<p><textarea class="runcode_text" id="runcode_062d2600-bfc8-4451-9a19-b69001644187"><script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_eeb4f19b-06bf-43ca-9f3d-37f6dd8cb08e"><script type="text/javascript">
 (function(){
 	if(!new Date().toLocaleFormat) return alert("Date has no method 'toLocaleFormat'");
 	var t1 = new Date().toLocaleFormat("%y/%m/%d");
@@ -344,7 +344,7 @@ document.write(t4,"<br />");
 	document.write(t2,"<br />");
 	document.write(t3,"<br />");
 })();
-</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_062d2600-bfc8-4451-9a19-b69001644187');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_062d2600-bfc8-4451-9a19-b69001644187');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_eeb4f19b-06bf-43ca-9f3d-37f6dd8cb08e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_eeb4f19b-06bf-43ca-9f3d-37f6dd8cb08e');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>

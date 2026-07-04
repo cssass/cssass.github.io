@@ -504,13 +504,6 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/CSS3/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.cssass.com/tags/DOM/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -595,7 +588,7 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/transform/</loc>
+    <loc>https://www.cssass.com/tags/CSS3/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -623,7 +616,7 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/google/</loc>
+    <loc>https://www.cssass.com/tags/transform/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -637,7 +630,7 @@
   </url>
   
   <url>
-    <loc>https://www.cssass.com/tags/%E5%8F%A4%E8%AF%97/</loc>
+    <loc>https://www.cssass.com/tags/google/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -666,6 +659,13 @@
   
   <url>
     <loc>https://www.cssass.com/tags/%E5%87%80%E7%8E%B0%E5%80%BC/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.cssass.com/tags/%E5%8F%A4%E8%AF%97/</loc>
     <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

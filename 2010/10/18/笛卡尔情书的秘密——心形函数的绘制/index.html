@@ -310,7 +310,7 @@ setTimeout(sort,100)
 </blockquote>
 
 <p>而我们将借助canvas的arc方法，为你揭开这行字的秘密：</p>
-<p><textarea class="runcode_text" id="runcode_3edec8c6-ff9d-4cbf-87ed-b30c91f94bf1"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -339,7 +339,7 @@ con.fill();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3edec8c6-ff9d-4cbf-87ed-b30c91f94bf1');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3edec8c6-ff9d-4cbf-87ed-b30c91f94bf1');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3c6b407d-4318-40ba-9cd4-a928fb9a71bf');" /></p>
 
 <blockquote><p>不久之后那位国王死了，克丽丝汀继承王位， 登基之后她马上派人在欧洲四处寻找迪卡尔的踪迹，可惜人已故。。。</p>
 </blockquote>
@@ -348,7 +348,7 @@ con.fill();
 <p>除了使用arc方法，bezierCurveTo方法来绘制各种曲线图形也不在话下，但那并不是通过心形函数本身绘制的。</p>
 <p>好吧其实r&#x3D;a(1-sinθ)是极坐标系方程，而不是笛卡尔坐标系(直角坐标系)方程式。<br>关于心形函数的一些资料</p>
 <p>话说，极坐标公式是非常利于绘制图形的。<br>比如玫瑰线公式：r(θ) &#x3D; a sin kθ<br>阿基米德螺线公式：r(θ) &#x3D; a+bθ</p>
-<p><textarea class="runcode_text" id="runcode_da87231f-bbff-4410-a41e-1b8784d328cb"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -376,9 +376,9 @@ con.stroke();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_da87231f-bbff-4410-a41e-1b8784d328cb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_da87231f-bbff-4410-a41e-1b8784d328cb');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f3ec3844-1a38-4895-a49a-94ba6c1f1f65');" /></p>
 
-<p><textarea class="runcode_text" id="runcode_606b9203-dc71-478d-a796-11275ac8e922"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -406,9 +406,9 @@ con.stroke();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_606b9203-dc71-478d-a796-11275ac8e922');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_606b9203-dc71-478d-a796-11275ac8e922');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f21c5658-3b92-4fc4-aa0a-6beac2829140');" /></p>
 <p>另外，出于审美需求，我们的心型图形往往是这样的：<br>17(x^2+y^2)-16*abs(x)<em>y&#x3D;225<br>但是这里所用到的坐标系是直角坐标系，我们可以先转换成极坐标方程，如下：<br>r&#x3D;sqrt(225&#x2F;(17-16sinθ</em>sqrt((cosθ)^2)))<br>绘制如下：</p>
-<p><textarea class="runcode_text" id="runcode_ede5677f-a35e-43a0-81aa-f9dcafc8b908"><!doctype html>
+<p><textarea class="runcode_text" id="runcode_79502138-8180-495d-b0ea-e3f62404c782"><!doctype html>
 <html>
 <head>
 <meta charset='UTF-8' />
@@ -437,7 +437,7 @@ con.fill();
 }
 </script>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ede5677f-a35e-43a0-81aa-f9dcafc8b908');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ede5677f-a35e-43a0-81aa-f9dcafc8b908');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_79502138-8180-495d-b0ea-e3f62404c782');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_79502138-8180-495d-b0ea-e3f62404c782');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>
