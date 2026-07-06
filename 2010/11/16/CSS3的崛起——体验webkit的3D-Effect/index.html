@@ -303,7 +303,7 @@ runcode.copy=function(element){
     <div class="article-content"><p>在性能保证的前提下，向更高更炫的效果发起冲击是未来Web的一大需求，而CSS必将借此大展抱负，崛起于未来的web技术之林，独树一帜，无可撼动。而在这条道路上，Apple公司无疑是一位先驱：他们要将web交互推入3D时代。目前，不仅W3C通过了3d-transforms的工作草案，在webkit上3d-transforms也已经实现了。</p>
 <p>本文意在体验，浅析3d-transforms，读者如对3d-transforms有技术方面的兴趣，可以阅读以下文档：<br>W3C的 css3-3d-transforms (工作草案)<br>Apple的 CSS Visual Effects Guide —— transforms （指南）<br>Apple的 Visual Effects Transform Functions （属性方法介绍）<br>westciv.com的 3Dtransforms （可视化演示）<br>webkit.org的 3D Transforms (有Demo讲解)</p>
 <p>警告：以下所有Demo效果须使用safari5，开源的chrominm浏览器进行体验，而即使是在chrome12下的效果也会大打折扣。<br>下面这个demo来自marcofolio.net：3d animation using pure CSS3<br>以下是代码删减版</p>
-<p><textarea class="runcode_text" id="runcode_84fda18a-56e3-4860-ac69-32f2c9a3609f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7bff5138-012e-4445-a20e-fa69207421c9"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -369,9 +369,9 @@ body { background-color:#deddcd;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_84fda18a-56e3-4860-ac69-32f2c9a3609f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_84fda18a-56e3-4860-ac69-32f2c9a3609f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7bff5138-012e-4445-a20e-fa69207421c9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7bff5138-012e-4445-a20e-fa69207421c9');" /></p>
 <p>进一步删减</p>
-<p><textarea class="runcode_text" id="runcode_3be22afe-3b77-456e-baca-42892b1b0581"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_841a6235-4ae4-49cc-811a-d478f88782a5"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -412,10 +412,10 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3be22afe-3b77-456e-baca-42892b1b0581');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3be22afe-3b77-456e-baca-42892b1b0581');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_841a6235-4ae4-49cc-811a-d478f88782a5');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_841a6235-4ae4-49cc-811a-d478f88782a5');" /></p>
 <p>上面的Demo中，我们一直没有应用-webkit-transform-style: preserve-3d;这个属性。<br>事实上，上面的Demo仅仅是”伪3D”,只是我们面对的是屏幕这样一个2D平面，上面的Demo还无法区分出真3D和伪3D。</p>
 <p>我们再看看下面这个真3D的Demo——来自webkit.org</p>
-<p><textarea class="runcode_text" id="runcode_f38d7c30-184e-4f94-9b1c-466502adf83e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_5eb31c46-0c4e-4bc0-ba70-822d2d38643d"><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -473,10 +473,10 @@ body { background:#deddcd;margin:100px;}
     </div>
   </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f38d7c30-184e-4f94-9b1c-466502adf83e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f38d7c30-184e-4f94-9b1c-466502adf83e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5eb31c46-0c4e-4bc0-ba70-822d2d38643d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5eb31c46-0c4e-4bc0-ba70-822d2d38643d');" /></p>
 <p>hover状态下transform-style值是flat;未hover状态下是preserve-3d —— 两者的效果差异一目了然。<br>在上面的Demo中，不仅应用了transform属性，还使用了webkit css中另一个很牛的属性——animation<br>（而我们最前面的Demo也使用了webkit css中第三个很牛的属性——transition）</p>
 <p>参照上面的Demo，我们对原demo也做个修改，</p>
-<p><textarea class="runcode_text" id="runcode_42915284-9eaa-45f8-b227-4a18b2a71f9e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_662d4940-1f6d-42a0-b7ea-3d97d6fab727"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -536,7 +536,7 @@ body { background:#deddcd;margin:100px;}
 	</li>
 </ul>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_42915284-9eaa-45f8-b227-4a18b2a71f9e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_42915284-9eaa-45f8-b227-4a18b2a71f9e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_662d4940-1f6d-42a0-b7ea-3d97d6fab727');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_662d4940-1f6d-42a0-b7ea-3d97d6fab727');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>

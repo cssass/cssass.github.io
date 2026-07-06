@@ -94,8 +94,8 @@
 </style><!-- hexo injector head_begin end -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>如何获取窗口高度、页面高度——解读各浏览器盒模型下的窗口、页面文档尺寸 - Mr.Drive2Far</title>
-<meta name="description" content="如何获取窗口高度、页面高度——解读各浏览器盒模型下的窗口、页面文档尺寸">
+<title>我的哲学气质 - Mr.Drive2Far</title>
+<meta name="description" content="我的哲学气质">
 <link rel="icon" href="/images/favicon-32x32.png" sizes="32x32">
 <link rel="icon" href="/images/favicon-16x16.png" sizes="16x16">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
@@ -292,73 +292,76 @@ runcode.copy=function(element){
   <div class="article-main__aside">天行有常，不为尧存，不为桀亡</div>
   <article class="article">
     
-    <a class="article__back mono" href="/developer/">← DEVELOPER</a>
+    <a class="article__back mono" href="/essay/">← ESSAY</a>
     
-    <h1 class="article__title">如何获取窗口高度、页面高度——解读各浏览器盒模型下的窗口、页面文档尺寸</h1>
+    <h1 class="article__title">我的哲学气质</h1>
     <div class="article__meta mono">
-      <span>2011.06.08</span>
-      <span class="accent">#DOM</span>
+      <span>2018.11.17</span>
+      <span class="accent">#哲学</span><span class="accent">#H5</span><span class="accent">#网易</span>
       <span>约 4 分钟</span>
     </div>
-    <div class="article-content"><p>获取页面高度或窗口高度，是使用绝对层定位（弹出菜单定位，遮罩层尺寸设置）所经常用到的。<br>但是各个浏览器在这方面的效果却有着非常大的差异，本文将做一些总结，找出一些全兼容的方法来获取页面的高度，窗口的高度，页面文档的高度，滚动条滚过的距离，以方便今后使用。</p>
-<p>开始之前，先提一些常识性的东西：<br>documentElement的对象元素就是html节点。<br>offsetHeight包括了clientHeight和border。<br>scrollHeight包括了滚动内的高度。<br>页面文档的高度指的是页面内实际内容的高度。</p>
-<p>下面的demo中，我们将页面的内容设置为2000*1000px的尺寸。<br>此处没有对html,body做过width，height设置，否则将有所不同。<br> <p><textarea class="runcode_text" id="runcode_d51c2102-7e84-4c6c-af15-9c21d19aec6f"><!DOCTYPE html >
-<html>
-<head>
-<meta charset="utf-8" />
-<title>各种浏览器盒模型下的窗口尺寸,页面文档尺寸</title>
-<meta name="author" content="http://www.cssass.com/blog/index.php/2011/1048.html" />
-<style type="text/css">
-	*{padding:0;margin:0;}
-	body{font-size:14px;line-height:1.8}
-	h3{padding-top:15px;}
-	b{color:#c00;}
-	em{font-style:normal;text-decoration:underline;font-size:16px;}
-	strong{font-size:16px;}
-</style>
-	</head>
-	<body >
-	<div style='height:1000px;width:2000px;'>
-		<h3>取得窗口的宽度：</h3>
-		<p>试试body的offsetWidth
-		<button onclick="alert(document.body.offsetWidth)">body节点的offsetWidth</button>
-		<p>但<b>ie6</b>下body的offsetWidth值并不是窗口宽度，还包括了滚动条，成了整个页面的宽度——ie6的Box模型特殊。
-		<p>所以通用的是<em>documentElement的offsetWidth</em>
-		<button onclick="alert(document.documentElement.offsetWidth)"><strong>&lt;html&gt;的offsetWidth</strong></button>
-		<h3>取得页面文档的宽度：</h3>
-		<p>试试body的scrollWidth
-		<button onclick="alert(document.body.scrollWidth)">body的scrollWidth</button>
-		<p>但在<b>firefox</b>和<b>opera</b>下body的scrollWidth却等于窗口宽度，并不是整个页面的宽度。
-		<p>所以通用的是<em>documentElement的scrollWidth</em>
-		<button onclick="alert(document.documentElement.scrollWidth)"><strong>&lt;html&gt;的scrollWidth</strong></button>
-		<h3>取得窗口的高度：</h3>
-		<p>先使用body的offsetHeight
-		<button onclick="alert(document.body.offsetHeight)">body的offsetHeight</button>
-		<p><b>所有浏览器</b>都表示这是页面文档的高度。
-		<p>使用documentElement的offsetHeight
-		<button onclick="alert(document.documentElement.offsetHeight)">html的offsetHeight</button>
-		<p>除<b>ie之外，所有浏览器</b>仍然表示这是页面文档的高度
-		<p>试试documentElement的clientHeight<button onclick="alert(document.documentElement.clientHeight)"><strong>&lt;html&gt;的clientHeight</strong></button>
-		没错，窗口高度就得使用<em>documentElement的clientHeight</em>
-		<h3>取得页面文档的高度(注意，页面文档高度可以小于窗口高度)：</h3>
-		<p><button onclick="alert(document.body.offsetHeight)">body的offsetHeight</button>
-		<button onclick="alert(document.body.scrollHeight)">body的scrollHeight</button>
-		<button onclick="alert(document.documentElement.scrollHeight)">html的scrollHeight</button>
-		<p>似乎三者都等于页面高度,但当页面文档高度小于窗口尺寸时，<b>ie8</b>下html的scrollHeight,<b>webkit</b>下body的scrollHeight的值会等于窗口的高度。（这里的demo就不写了）
-		<p>所以需使用<em>body的offsetHeight</em><button onclick="alert(document.body.offsetHeight)"><strong>&lt;body&gt;的offsetHeight</strong></button>
-		<p>（假如你想获取的是整个页面的高度，而不是说只是页面文档的高度，那可以在窗口高度<em>documentElement.clientHeight和页面文档高度body.offsetHeight之间取较大值</em>。）
-		<h3>取得窗口滚过的高度/宽度</h3>
-		<p>先用documentElement的scrollTop
-		<button onclick="window.scrollTo(100,200);alert(document.documentElement.scrollTop)">documentElement的scrollTop</button>
-		<p>发现webkit内核的浏览器<b>chrome</b>和<b>safari</b>下的值始终为0，其他浏览器如我所愿。
-		<p>使用body的scrollTop
-		<button onclick="window.scrollTo(100,200);alert(document.body.scrollTop)">body的scrollTop</button>
-		<p>浏览器表现则恰恰相反
-		<p>所以需要兼容二者<button onclick="window.scrollTo(100,200);alert(document.body.scrollTop || document.documentElement.scrollTop)"><strong>document.body.scrollTop || document.documentElement.scrollTop</strong></button>
-	</div>
-	</body>
-</html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d51c2102-7e84-4c6c-af15-9c21d19aec6f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d51c2102-7e84-4c6c-af15-9c21d19aec6f');" /></p></p>
+    <div class="article-content"><p>2018世界哲学日，网易发布过一个 「我的哲学气质」的H5 测试。原版已经下线，需要测试的话可以访问我扒下来的程序：<a target="_blank" rel="noopener" href="https://show.cssass.com/PhilTemp.html">网易“哲学气质”答案解析</a>。</p>
+<p>说它是测试，其实有点像说星座是统计学。它当然没有什么严肃的心理测量学意义，但它很有意思：十道题，每个选项背后对应若干个哲学气质。你选一次，就给那些气质各加一分，最后按得分排序。它不是那种“第一题选 A 就进入理想主义路线”的分支树，而更像一张小小的投票表。你每做一次选择，都把自己往几个词上轻轻推了一下。</p>
+<p>我的选择如下：</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>我的选择</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>你所经历的一切是？</td>
+<td>B：由你过去的选择决定的</td>
+</tr>
+<tr>
+<td>七年前的你和现在的你是同一个人吗？</td>
+<td>A：是</td>
+</tr>
+<tr>
+<td>金鱼被放入搅拌机，你会？</td>
+<td>D：阻止</td>
+</tr>
+<tr>
+<td>博物馆的纯红色画，你认为是？</td>
+<td>C：不是艺术品</td>
+</tr>
+<tr>
+<td>乌鸦都是黑色的吗？</td>
+<td>A：是</td>
+</tr>
+<tr>
+<td>哪件物品最能代表你的人生？</td>
+<td>B：滚动的骰子</td>
+</tr>
+<tr>
+<td>你宁愿做一个？</td>
+<td>B：不快乐的人</td>
+</tr>
+<tr>
+<td>你认为死亡是一场？</td>
+<td>A：昏睡</td>
+</tr>
+<tr>
+<td>选一句最喜欢的？</td>
+<td>D：我们都生活在阴沟，但仍有人仰望星空</td>
+</tr>
+<tr>
+<td>你会选择？</td>
+<td>B：继续现在的人生</td>
+</tr>
+</tbody></table>
+<p>算出来排在最前面的四个气质是：实用主义-务实，集体主义-克己，理性主义-理性，马克思主义-思辨。</p>
+<p>这个结果看起来还挺像我，至少像某个时期的我。</p>
+<p>我不太相信“命中注定”那一套，但我也不觉得人可以从零开始随意创造自己。人更像在已经走过的路上继续走路，身后有选择留下的痕迹，脚下有现实给出的摩擦。于是第一题我选“由过去的选择决定”，最后一题又选“继续现在的人生”。这两个答案合起来，差不多就是实用主义的骨架：别把人生想得太玄，也别总想着如果重来。能处理的先处理，能承担的先承担，能往前挪一点就先挪一点。</p>
+<p>“滚动的骰子”也很贴切。它不是一张空白的纸，也不是一个来回摆动的钟摆。空白的纸太轻，钟摆又太宿命。骰子有随机性，但它每一次落下都有一个结果。人生大概就是这样：你不能完全控制它，但你仍然要对落点负责。听起来有点不浪漫，不过务实主义大概本来就不太负责浪漫。</p>
+<p>集体主义-克己排在前面，我一开始觉得有点意外。后来想想，也不完全意外。这里的“克己”未必是口号式的牺牲，而是承认自己不是唯一的尺度。金鱼被放进搅拌机，我会阻止；快乐的狗和不快乐的人之间，我会选不快乐的人。这里面有一种很朴素的判断：不能只按舒服不舒服来决定自己是谁，也不能只按我想不想来决定要不要出手。</p>
+<p>理性主义-理性也不难理解。七年前的我和现在的我是同一个人，这个回答多少有点倔。身体换过细胞，想法换过一轮又一轮，经历也把人磨得不像原来的样子，可如果说“不是同一个人”，责任、记忆和承诺就都会变得太轻。理性有时候不是为了证明自己正确，而是为了让一些东西有连续性。它像一根线，未必能把人生缝得多漂亮，但至少不至于散成一地。</p>
+<p>至于马克思主义-思辨，放在这里也很有意思。它和实用主义并不冲突。真正的务实不是不思考，恰恰是要问清楚条件、结构、关系和后果。只说“我想怎样”太容易，只说“世界就是这样”也太容易。难的是在两者之间来回看：我为什么会这样想，事情为什么会这样发生，我还能不能改变一点什么。</p>
+<p>所以这四个词连起来，像一张不太华丽但还算诚实的自画像：务实，是因为知道人不能只靠愿望活着；克己，是因为知道自己不是世界的中心；理性，是因为还想给混乱找一点秩序；思辨，是因为不甘心只把现实当成现实。</p>
+<p>当然，这毕竟只是一个 H5。它的可爱之处不在于测得有多准，而在于它把十个问题摆到你面前，让你在很短的时间里暴露一些偏好。你以为自己只是在选 A、B、C、D，其实每个选项都在问：你如何看待因果，如何看待身份，如何看待艺术、生命、死亡、快乐和重来一次的机会。</p>
+<p>最后我选了“继续现在的人生”。这大概是整个测试里最像答案的答案。</p>
+<p>不是因为现在的人生已经好到不需要重来，也不是因为我对过去毫无遗憾。只是如果一个人真的由过去的选择塑成，那么抹掉那些选择，也就差不多抹掉了自己。与其去做另一个可能更好也可能更糟的人，不如继续做这个已经滚到这里、还想仰望一下星空的人。</p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>
@@ -383,15 +386,15 @@ runcode.copy=function(element){
 
 <div class="post-nav">
   
-  <a class="post-nav__item post-nav__item--prev" href="/2011/06/19/Google%E7%94%B5%E5%90%89%E4%BB%96%E6%89%A9%E5%B1%95%E7%89%88%E2%80%94%E2%80%94%E6%94%AF%E6%8C%81%E6%9B%B2%E8%B0%B1%E8%AF%86%E5%88%AB/">
+  <a class="post-nav__item post-nav__item--prev" href="/2023/11/29/%E7%A7%83%E5%AD%90%E6%82%96%E8%AE%BA%E5%92%8C%E6%A8%A1%E7%B3%8A%E6%95%B0%E5%AD%A6/">
     <div class="post-nav__label mono">← 上一篇</div>
-    <div class="post-nav__title">Google电吉他扩展版——支持曲谱识别</div>
+    <div class="post-nav__title">秃子悖论和模糊数学</div>
   </a>
   
   
-  <a class="post-nav__item" href="/2011/03/16/%E6%B5%85%E6%9E%90%E5%9C%86%E5%BD%A2%E7%89%A9%E4%BD%93%E7%9A%84%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B%E5%8F%8A%E5%BA%94%E7%94%A8/">
+  <a class="post-nav__item" href="/2018/10/14/%E5%9B%9B-%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E6%88%BF%E8%B4%B7%E2%80%94%E2%80%94%E5%A4%8D%E5%88%A9-%E6%8A%98%E7%8E%B0-%E5%B9%B4%E9%87%91%E5%85%AC%E5%BC%8F/">
     <div class="post-nav__label mono">下一篇 →</div>
-    <div class="post-nav__title">浅析圆形物体的碰撞检测及应用</div>
+    <div class="post-nav__title">四.如何计算房贷——复利/折现/年金公式</div>
   </a>
   
 </div>
