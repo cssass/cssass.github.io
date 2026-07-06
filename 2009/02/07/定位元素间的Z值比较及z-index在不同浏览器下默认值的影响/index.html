@@ -306,7 +306,7 @@ runcode.copy=function(element){
 <blockquote><p>正常情况下：兄弟（同级）元素后者居上，父子之间子高于父。</p>
 </blockquote>
 
-<p><textarea class="runcode_text" id="runcode_5346ba82-5e13-4985-8332-f3f64f24cfa0"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_1c0f949f-17c0-4ff4-a142-0f2108d0f6f0"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -336,10 +336,10 @@ runcode.copy=function(element){
 		 </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5346ba82-5e13-4985-8332-f3f64f24cfa0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5346ba82-5e13-4985-8332-f3f64f24cfa0');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1c0f949f-17c0-4ff4-a142-0f2108d0f6f0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1c0f949f-17c0-4ff4-a142-0f2108d0f6f0');" /></p>
 <p>可以看出z的等级：子级2（“堂弟”）&gt;父级2（“叔叔”）&gt;子级1（“子”）&gt;父级1（“父”）。</p>
 <p>如果我们想要父盖过子，兄罩着弟只需设置其z-index便可。z-index值越大，给予的z值就越大。<br>那么这个设置能否改变叔侄之间，堂兄弟之间的Z呢？<br>先试试看：</p>
-<p><textarea class="runcode_text" id="runcode_58f12964-84de-4ce5-a641-562b2e2f414f"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_7b835d4c-d23a-4daf-b769-e997996fd7ec"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -369,11 +369,11 @@ runcode.copy=function(element){
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_58f12964-84de-4ce5-a641-562b2e2f414f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_58f12964-84de-4ce5-a641-562b2e2f414f');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7b835d4c-d23a-4daf-b769-e997996fd7ec');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7b835d4c-d23a-4daf-b769-e997996fd7ec');" /></p>
 
 <p>看上去一样有效，是吧？子级1盖过了父级2和子级2。</p>
 <p>但是，再看看下面这个例子，假如各级元素都是定位元素(设置了position),情况就有些不同了（之后的讨论，都是基于这个条件之下的。我觉得position定位的应用非常广泛，基于此的研究也非常有必要）。</p>
-<p><textarea class="runcode_text" id="runcode_d36814a4-d324-4cc2-923f-67deee71961e"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_6e289c9b-e614-47f2-8316-cd34576724de"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -404,9 +404,9 @@ runcode.copy=function(element){
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d36814a4-d324-4cc2-923f-67deee71961e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d36814a4-d324-4cc2-923f-67deee71961e');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6e289c9b-e614-47f2-8316-cd34576724de');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6e289c9b-e614-47f2-8316-cd34576724de');" /></p>
 <p>son1设置z-index:1000后，在FF下的z值级别就高于其叔与其堂弟father2,son2。但是在ie下这个设置却还是不行。<br>这时候，我们回过头看最前面的结论：z-index在ie下缺省为：z-index:0; 而FF下则缺省为：z-index:auto;<br>那么再写一个Test，将父级的z-index固定为0:</p>
-<p><textarea class="runcode_text" id="runcode_bf0b29cb-cbef-4f6a-b37e-3417a97d9557"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_ca296b34-aa2f-4b2e-bed6-73dc6f26aaed"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -437,13 +437,13 @@ runcode.copy=function(element){
 		 </div>
     </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_bf0b29cb-cbef-4f6a-b37e-3417a97d9557');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_bf0b29cb-cbef-4f6a-b37e-3417a97d9557');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ca296b34-aa2f-4b2e-bed6-73dc6f26aaed');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ca296b34-aa2f-4b2e-bed6-73dc6f26aaed');" /></p>
 <p>可以看出，一旦父级元素设置了相同的z-index，ff下“侄”元素一样无法超过“叔”元素和“堂弟”元素。</p>
 <p>我们可以试着得出这么一个结论：</p>
 <blockquote><p>对于定位元素，（不论IE还是FF）非同级关系和非父子关系元素之间的Z值大小比较，须要回溯至其为兄弟关系的两个祖先元素上，先比较这两个元素的z-index值，只有当“兄”的z-index大于“弟”的z-index值，“兄”的各个后代元素，才能超过“弟元素”及其子孙元素。</p>
 </blockquote>
 <p>我们用一个三级关系来验证一下。</p>
-<p><textarea class="runcode_text" id="runcode_3bc5c588-587c-447d-8fed-7bd1f5ce4b1a"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_2be5dc30-eb6e-4106-ad96-72546ed52594"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -483,11 +483,11 @@ runcode.copy=function(element){
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3bc5c588-587c-447d-8fed-7bd1f5ce4b1a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3bc5c588-587c-447d-8fed-7bd1f5ce4b1a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2be5dc30-eb6e-4106-ad96-72546ed52594');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2be5dc30-eb6e-4106-ad96-72546ed52594');" /></p>
 <p>不论#first .father和#first .son如何设置，只有#first的z-index值大于0（second的z-index值为0）时，才能盖住#second。</p>
 <p>对于IE,元素的z-index缺省值是0，如果不另外设置“兄”，“弟”元素的z-index值，那么”兄”的z-index就无法大于“弟”的z-index。那么”兄”元素及其子孙就无法盖过”弟”元素及其子孙。而一旦“兄”的z-index大过了”弟”元素的z-index,那么情况就翻转了，“弟”元素及其子孙将无法盖过“兄”元素及其子孙。<br>而对FF,元素的z-index缺省值是auto,auto的意思是什么，就是说“随便，不关我事”，那么子孙们的z值等级就只跟他们自己本身的z-index有关了。<br>那么，IE上能否设置z-index:auto;呢？</p>
 <p>测试：</p>
-<p><textarea class="runcode_text" id="runcode_ccd3c082-2714-491a-b5b1-388e2231b49a"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_f9fe15bb-0d67-49f4-a165-8d37f99748f7"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -526,13 +526,13 @@ runcode.copy=function(element){
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ccd3c082-2714-491a-b5b1-388e2231b49a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ccd3c082-2714-491a-b5b1-388e2231b49a');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_f9fe15bb-0d67-49f4-a165-8d37f99748f7');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_f9fe15bb-0d67-49f4-a165-8d37f99748f7');" /></p>
 <p>可以看出，在IE下，去除#first{z-index:1}后，#first及其子孙无法盖住#second。<br>而FF下，#first .father,#first .son却盖住了整个#second。</p>
 <p>推论：</p>
 <blockquote><p>z-index:auto在ie下无效。</p>
 </blockquote>
 <p>那么在IE下，对于由定位元素构成的两个并列的嵌套结构块间的Z值大小，只存在两种情况：要么这个结构块里的所有层元素都在另一个结构块之上，要么就是那个结构块所有元素在其之上。没有可能一个元素能插在另一个结构块的父与子之间，这种情况在FF下是存在的（当然，还有其他浏览器），在FF下，父级是z-index:auto的元素，他们都是自由的，依据自己的z-index决定Z值。FF下甚至可以形成：<br>111111<br>   222222<br>111111<br>   222222<br>这么一个四层交错，但要超过四层，就无能为力了。</p>
-<p><textarea class="runcode_text" id="runcode_0cf7cbef-d50a-4b94-a689-3c79b1f48829"><!DOCTYPE html>
+<p><textarea class="runcode_text" id="runcode_32147c09-0f67-41d6-b521-2ffc42f46102"><!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -573,7 +573,7 @@ runcode.copy=function(element){
     </div>
  </div>
 </body>
-</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0cf7cbef-d50a-4b94-a689-3c79b1f48829');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0cf7cbef-d50a-4b94-a689-3c79b1f48829');" /></p>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_32147c09-0f67-41d6-b521-2ffc42f46102');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_32147c09-0f67-41d6-b521-2ffc42f46102');" /></p>
 
 <p>补充：关于z-index:auto的解释，在W3C的CSS说明文档中的解释是：</p>
 <blockquote><p>The stack level of the generated box in the current stacking context is the same as its parent’s box. The box does not establish a new local stacking context.</p>
