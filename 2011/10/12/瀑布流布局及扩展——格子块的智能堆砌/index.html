@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,15 +298,15 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2011.10.12</span>
       
-      <span>约 55 分钟</span>
+      <span>约 28 分钟</span>
     </div>
     <div class="article-content"><p>图片分享网站Pinterest（beta），在不久前获得了2700$的投资，估值已超2亿元（据说现该公司团队有8人）。该网站的一大特色就是每一张分享的图片被拟作“Pin”被钉在页面上面，每一Pin依尺寸智能排列，同时滚动页面时异步加载新Pin，极具效果。这种创新模式被在国内也被广泛copy，其中最有前途的当属Mark之，以”Mark”代”Pin”,也算有些想法。</p>
-<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_ba73f0a6-78e2-447c-9eee-1945c32958dc">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>等宽格子堆砌&lt;/title>
-&lt;style>
+<p>以下是利用豆瓣API数据做的效果：完整效果<br>部分代码：<br> <p><textarea class="runcode_text" id="runcode_805e7bb2-6c47-47b7-817c-2b6278f59aab"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>等宽格子堆砌</title>
+<style>
 *{padding:0;margin:0;}
 #wrap{position:relative;zoom:1;margin:0px auto;}
 #wrap li{width:250px;float:left;list-style:none;}
@@ -357,12 +354,12 @@ setTimeout(sort,100)
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
 }
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;ul id="wrap">&lt;/ul>
-&lt;/body>
-&lt;script type="text/javascript">
+</style>
+</head>
+<body>
+<ul id="wrap"></ul>
+</body>
+<script type="text/javascript">
 var $id = function(o){ return document.getElementById(o) || o};
 function sort(el){
 	var h = [];
@@ -372,9 +369,9 @@ function sort(el){
 		boxH,
 		n = document.documentElement.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
 	el.style.width = n * boxW + "px";
-	for(var i = 0; i &lt; box.length; i++) {
+	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
-		if(i &lt; n) { //第一行Pin以浮动排列，不需绝对定位
+		if(i < n) { //第一行Pin以浮动排列，不需绝对定位
 			h[i] = boxh;
 			box[i].style.position = '';
 		} else {
@@ -397,24 +394,24 @@ function getarraykey(s, v) {
 };
 /* 随机创建Pin */
 var pin = '';
-for(i = 0; i &lt; 30; i++) {
+for(i = 0; i < 30; i++) {
 	height = Math.floor(Math.random()*200 + 200);
-	pin += '&lt;li>&lt;div class="boxCont" style="height:' + height + 'px;">&lt;/div>&lt;/li>';
+	pin += '<li><div class="boxCont" style="height:' + height + 'px;"></div></li>';
 };
 $id("wrap").innerHTML = pin;
 window.onload = window.onresize = function() {
 	sort($id("wrap"));
 };
-&lt;/script>
-&lt;/html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_ba73f0a6-78e2-447c-9eee-1945c32958dc');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_ba73f0a6-78e2-447c-9eee-1945c32958dc');" /></p></p>
+</script>
+</html>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_805e7bb2-6c47-47b7-817c-2b6278f59aab');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_805e7bb2-6c47-47b7-817c-2b6278f59aab');" /></p></p>
 <p>这种布局中虽然每个Pin的高度不尽相同，但是他们的宽度都是一样的。<br>那么假如，很邪恶的提出一个要求，宽度也不尽相同，只是说宽高都按比例成倍增加，那还怎么排列呢？<br>呵呵，如下：</p>
- <p><textarea class="runcode_text" id="runcode_416e52c9-0914-49aa-a133-8ede1924c275">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>宽高尺寸不同的格子堆砌&lt;/title>
-&lt;style>
+ <p><textarea class="runcode_text" id="runcode_3036a018-3a9e-4101-b09a-f9f8551bf705"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>宽高尺寸不同的格子堆砌</title>
+<style>
 body{background:#F6F7F8;}
 .myWidget{position:relative;overflow:hidden;zoom:1;margin:0 auto;}
 .MBox{float:left;}
@@ -431,8 +428,8 @@ body{background:#F6F7F8;}
 	background: -webkit-gradient(linear, 0 0, 0 100% , from(#fefefe),to(#e0e0e2));
 	background: -webkit-linear-gradient(0 0, #fefefe, #f6f6f6 ,#f3f3f3,#f2f2f2,#e0e0e2);
 }
-&lt;/style>
-&lt;script>
+</style>
+<script>
 var $id = function(o){ return document.getElementById(o) || o ;};
 var getElementsByClassName = function(className,parent,tag) {
 	parent = parent || document;
@@ -445,7 +442,7 @@ var getElementsByClassName = function(className,parent,tag) {
         className = className.replace(/\-/g, "\\-");
         var pattern = new RegExp("(^|\\s)"+className+"(\\s|$)");
 		var i = 0;
-        while(i &lt; els.length){
+        while(i < els.length){
             if (pattern.test(els[i].className) ) {
                 returnElements.push(els[i]);
             }
@@ -466,7 +463,7 @@ box.init=function(el){
 	box.row = document.documentElement.offsetWidth / box.gen.w >> 0;  //每行标准格数
 	el.style.width = box.row * box.gen.w + "px";
 	var i = 0 , nx, ny;
-	while( i &lt; this.mbox.length){
+	while( i < this.mbox.length){
 		if( getElementsByClassName("bigBox",this.mbox[i],'div').length > 0 ){
 			nx=Math.ceil(this.mbox[i].offsetWidth / this.gen.w);
 			nx=(nx > this.row) ? this.row : nx; //大小超出限制
@@ -483,7 +480,7 @@ box.setIfr=function(el){  //大格子初始化
  	var ifr = getElementsByClassName("bigBox",el,'div');;
    	if(ifr.length==0) return false;
 	var i = 0, nx, ny, theifr;
-	while(i &lt; ifr.length){
+	while(i < ifr.length){
 		theifr =  getElementsByClassName("innerBox",ifr[i],'div');
 		nx=Math.ceil(theifr[0].offsetWidth / this.gen.w); //bigBox横向占的块数
 		ny=Math.ceil(theifr[0].offsetHeight / this.gen.h);
@@ -494,7 +491,7 @@ box.setIfr=function(el){  //大格子初始化
 };
 box.sort=function(el){
 	var y=0, x=0, temp={x:Infinity, y:Infinity}, flag=Infinity, name;
-	for(var n=0; n &lt; this.size.length ; n++){
+	for(var n=0; n < this.size.length ; n++){
 		if(flag == 0){
 			x=temp.x;
 			y=temp.y;
@@ -508,7 +505,7 @@ box.sort=function(el){
 		if(this.hasN(name)) {  //判断属性名是否存在
 			n--;
 			x++;
-			if(flag&lt;Infinity) flag=flag+1;
+			if(flag<Infinity) flag=flag+1;
 			continue;
 		}
 		if(!this.size[n].length){  //普通格子
@@ -521,7 +518,7 @@ box.sort=function(el){
 					temp.y = y;
 					temp.x = x;
 				}
-				if(temp.y &lt; Infinity){
+				if(temp.y < Infinity){
 					flag=1;
 				}
 				n--;
@@ -552,11 +549,11 @@ box.hasN=function(n){
 box.over=function(x,y,n){  //判断是否会重叠
 	var name;
 	if(x+this.size[n][0] > this.row) return true; //超出显示范围
-	for(var k=1; k&lt;this.size[n][1];k++){
+	for(var k=1; k<this.size[n][1];k++){
 		name=x+'_'+(y-0+k);
 		if(this.hasN(name)) {return true;}  //左侧一列有无重叠
 	}
-	for(k=1; k&lt;this.size[n][0];k++){
+	for(k=1; k<this.size[n][0];k++){
 		name=(x-0+k)+'_'+y;
 		if(this.hasN(name)) {return true;}  //上侧一行有无重叠
 	}
@@ -565,38 +562,38 @@ box.over=function(x,y,n){  //判断是否会重叠
 box.apply=function(x,y,n){  //大格子中多占的位置
 	var posX=x, //大格子左上角位置
 		posY=y;
-	for(var t=0; t&lt;this.size[n][0]; t++) {
-		for(var k=0; k&lt;this.size[n][1]; k++){
+	for(var t=0; t<this.size[n][0]; t++) {
+		for(var k=0; k<this.size[n][1]; k++){
 			name=(posX+t)+'_'+(posY+k);
-			if(t==0 &amp;&amp; k==0) { continue; }
+			if(t==0 && k==0) { continue; }
 			this.obj[name]=0;   //多占的格子无坐标值
 		}
 	}
 };
 box.put=function(el){
 	var x,y;
-	for(var i =0;i&lt; this.oArray.length; i++){
+	for(var i =0;i< this.oArray.length; i++){
 		x=box.gen.w*this.oArray[i][0];
 		y=box.gen.h*this.oArray[i][1];
 		box.mbox[i].style.cssText = "position:absolute;left:"+ x +"px;top:" + y + "px;";
 	}
 	el.style.height= box.gen.h*(box.maxY+1) +'px';
 };
-&lt;/script>
-&lt;/head>
-&lt;body>
-&lt;div id="myWidget" class="myWidget">&lt;/div>
-&lt;script>
+</script>
+</head>
+<body>
+<div id="myWidget" class="myWidget"></div>
+<script>
 var myWidget = $id("myWidget");
 //创建随机内容
 var content = '';
-for(i = 0; i &lt; 30; i++) {
+for(i = 0; i < 30; i++) {
 	if(!(Math.random()*3 >> 0)){
 		height = Math.floor(Math.random()*300 + 100);
 		width = Math.floor(Math.random()*200 + 100);
-		content += '&lt;div class="MBox">&lt;div class="widgetBox bigBox">&lt;div style="width:' + width +'px;height:' + height +'px;margin:0 auto;" class="innerBox">&lt;/div>&lt;/div>&lt;/div>';
+		content += '<div class="MBox"><div class="widgetBox bigBox"><div style="width:' + width +'px;height:' + height +'px;margin:0 auto;" class="innerBox"></div></div></div>';
 	}else{
-		content += '&lt;div class="MBox">&lt;div class="widgetBox">&lt;/div>&lt;/div>';
+		content += '<div class="MBox"><div class="widgetBox"></div></div>';
 	}
 };
 myWidget.innerHTML = content;
@@ -607,18 +604,18 @@ window.onload = function(){
 window.onresize = function(){
 	box.init(myWidget);
 };
-&lt;/script>
-&lt;/body>
-&lt;/html>
- </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_416e52c9-0914-49aa-a133-8ede1924c275');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_416e52c9-0914-49aa-a133-8ede1924c275');" /></p>
+</script>
+</body>
+</html>
+ </textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3036a018-3a9e-4101-b09a-f9f8551bf705');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3036a018-3a9e-4101-b09a-f9f8551bf705');" /></p>
 
 <p>现在这种布局已经不能叫瀑布流了，我们称之为格子块，格子块通过算法智能堆砌。</p>
-<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_297841d7-3f78-4cf7-92cc-a5eb57a847ad">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>宽高尺寸不同的格子堆砌(可拖动换位)&lt;/title>
-&lt;style>
+<p>支持一下拖动交换：<br> <p><textarea class="runcode_text" id="runcode_745519a8-7958-4481-90c7-3a63056dd740"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>宽高尺寸不同的格子堆砌(可拖动换位)</title>
+<style>
 body{background:#F6F7F8;}
 .myWidget{position:relative;overflow:hidden;zoom:1;margin:0 auto;}
 .MBox{float:left;}
@@ -635,8 +632,8 @@ body{background:#F6F7F8;}
 	background: -webkit-gradient(linear, 0 0, 0 100% , from(#fefefe),to(#e0e0e2));
 	background: -webkit-linear-gradient(0 0, #fefefe, #f6f6f6 ,#f3f3f3,#f2f2f2,#e0e0e2);
 }
-&lt;/style>
-&lt;script>
+</style>
+<script>
 var $id = function(o){ return document.getElementById(o) || o ;};
 var getElementsByClassName = function(className,parent,tag) {
 	parent = parent || document;
@@ -649,7 +646,7 @@ var getElementsByClassName = function(className,parent,tag) {
         className = className.replace(/\-/g, "\\-");
         var pattern = new RegExp("(^|\\s)"+className+"(\\s|$)");
 		var i = 0;
-        while(i &lt; els.length){
+        while(i < els.length){
             if (pattern.test(els[i].className) ) {
                 returnElements.push(els[i]);
             }
@@ -673,7 +670,7 @@ Util.bindFunction = function (el, fucName) {
     };
 };
 Util.re_calcOff = function (el) {
-    for (var i = 0; i &lt; Util.dragArray.length; i++) {
+    for (var i = 0; i < Util.dragArray.length; i++) {
         var ele = Util.dragArray[i];
         ele.elm.pagePosLeft = Util.getOffset(ele.elm, true);
         ele.elm.pagePosTop = Util.getOffset(ele.elm, false);
@@ -742,7 +739,7 @@ function when_Drag(clientX, clientY) {
     }
     found = null;
     var max_distance = 100000000;
-    for (var i = 0; i &lt; Util.dragArray.length; i++) {
+    for (var i = 0; i < Util.dragArray.length; i++) {
         var ele = Util.dragArray[i];
         var distance = Math.sqrt(Math.pow(clientX - ele.elm.pagePosLeft, 2) + Math.pow(clientY -  ele.elm.offsetTop, 2));
         if (ele == this) {
@@ -751,14 +748,14 @@ function when_Drag(clientX, clientY) {
         if (isNaN(distance)) {
             continue;
         }
-        if (distance &lt; max_distance) {
+        if (distance < max_distance) {
             max_distance = distance;
            	 found = ele;
         }
     };
     var _ghostElement = getGhostElement();
     if (found != null) {
-    	if(this.elm.pagePosLeft &lt; clientX){
+    	if(this.elm.pagePosLeft < clientX){
     		found.elm.parentNode.insertBefore(_ghostElement, found.elm.nextSibling);
     	}else{
     		found.elm.parentNode.insertBefore(_ghostElement, found.elm);
@@ -826,14 +823,14 @@ var Drag = {
     		var element = Drag.obj;
 		    var _clientX = event.clientY;
 			var _clientY = event.clientX;
-		    if (element.lastMouseX == _clientY &amp;&amp; element.lastMouseY == _clientX) {
+		    if (element.lastMouseX == _clientY && element.lastMouseY == _clientX) {
 				return false;
 			};
-			if(_clientX + document.documentElement.scrollTop + document.body.scrollTop &lt; 0 ||  _clientX > document.documentElement.offsetHeight){
+			if(_clientX + document.documentElement.scrollTop + document.body.scrollTop < 0 ||  _clientX > document.documentElement.offsetHeight){
 				return false;
 			};
 			var sTo=0;
-			if( _clientX &lt; 0 ){
+			if( _clientX < 0 ){
 				sTo=_clientX;
 			};
 			if((_clientX - document.documentElement.clientHeight) > 0){
@@ -881,7 +878,7 @@ var initDrag = function (el) {
     Util.elem = Util.rootElement.children;
     Util.dragArray = new Array();
     var counter = 0;
-    for (var i = 0; i &lt; Util.elem.length; i++) {
+    for (var i = 0; i < Util.elem.length; i++) {
     	var elem = Util.elem[i];
 		Util.dragArray[counter] = new draggable(elem);
 		counter++;
@@ -901,7 +898,7 @@ box.init=function(el){
 	box.row = document.documentElement.offsetWidth / box.gen.w >> 0;  //每行标准格数
 	el.style.width = box.row * box.gen.w + "px";
 	var i = 0 , nx, ny;
-	while( i &lt; this.mbox.length){
+	while( i < this.mbox.length){
 		if( getElementsByClassName("bigBox",this.mbox[i],'div').length > 0 ){
 			nx=Math.ceil(this.mbox[i].offsetWidth / this.gen.w);
 			nx=(nx > this.row) ? this.row : nx; //大小超出限制
@@ -918,7 +915,7 @@ box.setIfr=function(el){  //大格子初始化
  	var ifr = getElementsByClassName("bigBox",el,'div');;
    	if(ifr.length==0) return false;
 	var i = 0, nx, ny, theifr;
-	while(i &lt; ifr.length){
+	while(i < ifr.length){
 		theifr =  getElementsByClassName("innerBox",ifr[i],'div');
 		nx=Math.ceil(theifr[0].offsetWidth / this.gen.w); //bigBox横向占的块数
 		ny=Math.ceil(theifr[0].offsetHeight / this.gen.h);
@@ -929,7 +926,7 @@ box.setIfr=function(el){  //大格子初始化
 };
 box.sort=function(el){
 	var y=0, x=0, temp={x:Infinity, y:Infinity}, flag=Infinity, name;
-	for(var n=0; n &lt; this.size.length ; n++){
+	for(var n=0; n < this.size.length ; n++){
 		if(flag == 0){
 			x=temp.x;
 			y=temp.y;
@@ -943,7 +940,7 @@ box.sort=function(el){
 		if(this.hasN(name)) {  //判断属性名是否存在
 			n--;
 			x++;
-			if(flag&lt;Infinity) flag=flag+1;
+			if(flag<Infinity) flag=flag+1;
 			continue;
 		}
 		if(!this.size[n].length){  //普通格子
@@ -956,7 +953,7 @@ box.sort=function(el){
 					temp.y = y;
 					temp.x = x;
 				}
-				if(temp.y &lt; Infinity){
+				if(temp.y < Infinity){
 					flag=1;
 				}
 				n--;
@@ -987,11 +984,11 @@ box.hasN=function(n){
 box.over=function(x,y,n){  //判断是否会重叠
 	var name;
 	if(x+this.size[n][0] > this.row) return true; //超出显示范围
-	for(var k=1; k&lt;this.size[n][1];k++){
+	for(var k=1; k<this.size[n][1];k++){
 		name=x+'_'+(y-0+k);
 		if(this.hasN(name)) {return true;}  //左侧一列有无重叠
 	}
-	for(k=1; k&lt;this.size[n][0];k++){
+	for(k=1; k<this.size[n][0];k++){
 		name=(x-0+k)+'_'+y;
 		if(this.hasN(name)) {return true;}  //上侧一行有无重叠
 	}
@@ -1000,47 +997,47 @@ box.over=function(x,y,n){  //判断是否会重叠
 box.apply=function(x,y,n){  //大格子中多占的位置
 	var posX=x, //大格子左上角位置
 		posY=y;
-	for(var t=0; t&lt;this.size[n][0]; t++) {
-		for(var k=0; k&lt;this.size[n][1]; k++){
+	for(var t=0; t<this.size[n][0]; t++) {
+		for(var k=0; k<this.size[n][1]; k++){
 			name=(posX+t)+'_'+(posY+k);
-			if(t==0 &amp;&amp; k==0) { continue; }
+			if(t==0 && k==0) { continue; }
 			this.obj[name]=0;   //多占的格子无坐标值
 		}
 	}
 };
 box.put=function(el){
 	var x,y;
-	for(var i =0;i&lt; this.oArray.length; i++){
+	for(var i =0;i< this.oArray.length; i++){
 		x=box.gen.w*this.oArray[i][0];
 		y=box.gen.h*this.oArray[i][1];
 		box.mbox[i].style.cssText = "position:absolute;left:"+ x +"px;top:" + y + "px;";
 	};
 	el.style.height= box.gen.h*(box.maxY+1) +'px';
 };
-&lt;/script>
-&lt;/head>
-&lt;body>
-&lt;div id="myWidget" class="myWidget">&lt;/div>
-&lt;script>
+</script>
+</head>
+<body>
+<div id="myWidget" class="myWidget"></div>
+<script>
 var myWidget = $id("myWidget");
 //创建随机内容
 var content = '';
-for(i = 0; i &lt; 20; i++) {
+for(i = 0; i < 20; i++) {
 	if(!(Math.random()*5 >> 0)){
 		height = Math.floor(Math.random()*200 + 100);
 		width = Math.floor(Math.random()*200 + 100);
-		content += '&lt;div class="MBox">&lt;div class="widgetBox bigBox">&lt;div style="width:' + width +'px;height:' + height +'px;margin:0 auto;" class="innerBox">'+ i +'&lt;/div>&lt;/div>&lt;/div>';
+		content += '<div class="MBox"><div class="widgetBox bigBox"><div style="width:' + width +'px;height:' + height +'px;margin:0 auto;" class="innerBox">'+ i +'</div></div></div>';
 	}else{
-		content += '&lt;div class="MBox">&lt;div class="widgetBox">'+ i +'&lt;/div>&lt;/div>';
+		content += '<div class="MBox"><div class="widgetBox">'+ i +'</div></div>';
 	}
 };
 myWidget.innerHTML = content;
 //绑定拖动元素
 initDrag(myWidget);
 window.onresize = function(){box.init(myWidget)};
-&lt;/script>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_297841d7-3f78-4cf7-92cc-a5eb57a847ad');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_297841d7-3f78-4cf7-92cc-a5eb57a847ad');" /></p></p>
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_745519a8-7958-4481-90c7-3a63056dd740');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_745519a8-7958-4481-90c7-3a63056dd740');" /></p></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>

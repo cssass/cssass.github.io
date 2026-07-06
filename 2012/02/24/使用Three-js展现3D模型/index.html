@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,21 +298,21 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2012.02.24</span>
       <span class="accent">#3D</span><span class="accent">#threejs</span>
-      <span>约 9 分钟</span>
+      <span>约 8 分钟</span>
     </div>
     <div class="article-content"><p>CSS3的3d-Transform，Canvas，SVG，WebGL等等技术的出现和发展，正将网页的3D化慢慢变得简单友好，但是3D建模毕竟有其很高的专业性，所以如果拥有一个内心强大，接口简洁的库就能使我们得心应手许多。Three.js便是备受推崇的一个，尽管API的变动，简陋的文档会让我们的上手比较困难。</p>
 <p>下面我提供一个入门Demo，及一个用Three.js展示通用的3D模型格式的Demo。（注意：确保你使用的浏览器支持了Canvas，及WebGL。拥有一个先进的浏览器，将为你带来更好的上网体验。Test）</p>
 <p>下面是入门Demo，加了注释。详细入门教程可以到这里Getting Started with Three.js</p>
-<p><textarea class="runcode_text" id="runcode_3292946d-dbb5-4060-9255-b006543d3386">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>立方体&lt;/title>
-    &lt;script type="text/javascript" charset="utf-8" src="/public/js/three.min.js">&lt;/script>
-	&lt;style>body{overflow:hidden;}&lt;/style>
-&lt;/head>
-&lt;body>&lt;/body>
-	&lt;script>
+<p><textarea class="runcode_text" id="runcode_fe092d63-1601-4f30-9d59-178cfb22ff86"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>立方体</title>
+    <script type="text/javascript" charset="utf-8" src="/public/js/three.min.js"></script>
+	<style>body{overflow:hidden;}</style>
+</head>
+<body></body>
+	<script>
 	/* 场景 */
 	var WIDTH = document.documentElement.offsetWidth || 800,
 		HEIGHT = document.documentElement.clientHeight || 600;
@@ -348,23 +345,23 @@ setTimeout(sort,100)
 		renderer.render(scene, camera); //开始渲染
 		return requestAnimationFrame(anime);
 	})()
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_3292946d-dbb5-4060-9255-b006543d3386');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_3292946d-dbb5-4060-9255-b006543d3386');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fe092d63-1601-4f30-9d59-178cfb22ff86');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fe092d63-1601-4f30-9d59-178cfb22ff86');" /></p>
 
 <p>考虑到Opera还不支持WebGL，上面使用了Canvas模式渲染。但WebGL的渲染模式要比Canvas快的要多的多。</p>
 <p>下面是一个展示机器人MGA-411 Mangusa模型的Demo。<br>Three.js可以调用以Json格式存储模型信息的js文件来创建模型。模型你可以自己在3D软件上建模完成，或在网上下载。至于模型格式，你可以通过three.js提供的插件在Blender这款开源3D制作软件中将一些3D模型格式，如3ds，obj等，转换成符合three.js标准的js格式。</p>
-<p><textarea class="runcode_text" id="runcode_a80d7b79-44d6-4889-abf8-a24e7b653965">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>MGA-411 Mangusa&lt;/title>
-    &lt;script type="text/javascript" charset="utf-8" src="/blog/resource/threejs/three.min.js">&lt;/script>
-	&lt;style>body{overflow:hidden;background:#000}&lt;/style>
-&lt;/head>
-&lt;body>
-	&lt;div id="Loading" style="color:#fff">Loading...&lt;/div>
-&lt;/body>
-	&lt;script>
+<p><textarea class="runcode_text" id="runcode_4874ec08-49e3-4873-803e-c6dda68ed82e"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>MGA-411 Mangusa</title>
+    <script type="text/javascript" charset="utf-8" src="/blog/resource/threejs/three.min.js"></script>
+	<style>body{overflow:hidden;background:#000}</style>
+</head>
+<body>
+	<div id="Loading" style="color:#fff">Loading...</div>
+</body>
+	<script>
 	/* 场景 */
 	var WIDTH = document.documentElement.offsetWidth || 800,
 		HEIGHT = document.documentElement.clientHeight || 600;
@@ -403,8 +400,8 @@ setTimeout(sort,100)
 			return requestAnimationFrame(anime);
 		})();
 	});
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a80d7b79-44d6-4889-abf8-a24e7b653965');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a80d7b79-44d6-4889-abf8-a24e7b653965');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_4874ec08-49e3-4873-803e-c6dda68ed82e');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_4874ec08-49e3-4873-803e-c6dda68ed82e');" /></p>
 
 
 </div>

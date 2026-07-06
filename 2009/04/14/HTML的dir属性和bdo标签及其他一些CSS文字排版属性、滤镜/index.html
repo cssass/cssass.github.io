@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,141 +298,141 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2009.04.14</span>
       <span class="accent">#HTML</span>
-      <span>约 10 分钟</span>
+      <span>约 5 分钟</span>
     </div>
     <div class="article-content"><p>先看一下HTML4.0中定义的dir属性.对应有两个值ltr(默认值)和rlt。分别表示文本从左向右显示（dir&#x3D;ltr）和文本从右向左显示（dir&#x3D;rtl）。<br>文本从右向左显示的情况（dir&#x3D;rtl）是考虑到一些特殊的文字书写方式（如古中文，希伯来文——但是我们古中文可不止是从右到左，还是从上到下书写的呢）。<br>先看一下Test</p>
-<p><textarea class="runcode_text" id="runcode_805d2fc4-7815-4122-af00-0e60ea4dcd72">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body>
-&lt;p dir="rtl">
- 一二三&lt;br />
- abc&lt;br/>
- a b c&lt;br />
-&lt;/p>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_805d2fc4-7815-4122-af00-0e60ea4dcd72');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_805d2fc4-7815-4122-af00-0e60ea4dcd72');" /></p>
+<p><textarea class="runcode_text" id="runcode_a70e7630-c89f-4b01-8f67-8974af595adb"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<p dir="rtl">
+ 一二三<br />
+ abc<br/>
+ a b c<br />
+</p>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a70e7630-c89f-4b01-8f67-8974af595adb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a70e7630-c89f-4b01-8f67-8974af595adb');" /></p>
 <p>从这里看，觉得这和css的属性text-align:right，或则HTML中不推荐使用的属性align&#x3D;right并没有什么区别啊。</p>
 <p>这是因为受到了“各种用于语言编码的和显示的Unicode和ISO标准”的影响。整段文落都当成一个不可分割的整体了（不管是什么文字的）。<br>象数字和一些符号就能按空格分隔反排，体现出“从右向左”的显示：</p>
-<p><textarea class="runcode_text" id="runcode_7825f7af-90fb-4ee1-a1f9-8d9b0c4bea98">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body>
-&lt;p dir="rtl">
+<p><textarea class="runcode_text" id="runcode_8621ffd1-b99e-4772-85ee-afa276ef5472"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<p dir="rtl">
 a b c d / ?
-&lt;/p>
-&lt;p dir="rtl">
+</p>
+<p dir="rtl">
 11 12 13 14 / ?
-&lt;/p>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_7825f7af-90fb-4ee1-a1f9-8d9b0c4bea98');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_7825f7af-90fb-4ee1-a1f9-8d9b0c4bea98');" /></p>
+</p>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8621ffd1-b99e-4772-85ee-afa276ef5472');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8621ffd1-b99e-4772-85ee-afa276ef5472');" /></p>
 <p>除此之外，这个属性还能在ie下改变滚动条的位置，你见过滚动条显示在滚动内容的左侧的吗？<br>用ie看看下面的效果吧：</p>
-<p><textarea class="runcode_text" id="runcode_d2c34b86-6c28-4ea1-b0e5-f3d7b2652409">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body  >
-&lt;div dir="rtl" style="height:200px;width:500px;overflow:auto;border:1px solid #ccc;">
+<p><textarea class="runcode_text" id="runcode_36205938-280c-478e-b557-c41297084397"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body  >
+<div dir="rtl" style="height:200px;width:500px;overflow:auto;border:1px solid #ccc;">
 a
-&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />
-&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />
-&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />&lt;br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 c
-&lt;/div>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d2c34b86-6c28-4ea1-b0e5-f3d7b2652409');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d2c34b86-6c28-4ea1-b0e5-f3d7b2652409');" /></p>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_36205938-280c-478e-b557-c41297084397');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_36205938-280c-478e-b557-c41297084397');" /></p>
 <p>综上也可以看出，dir这个属性其实并不怎么好用。幸好我们也基本用不上这个属性。<br>要用我们也最好结合bdo这个标签来使用。</p>
-<p><textarea class="runcode_text" id="runcode_e700046a-f051-492d-bd70-c66cd761935c">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body>
-&lt;bdo dir=rtl >
+<p><textarea class="runcode_text" id="runcode_101c6403-8d9f-41b1-9b81-612979e52a0f"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<bdo dir=rtl >
 我是谁,who am I?
-&lt;/bdo>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e700046a-f051-492d-bd70-c66cd761935c');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e700046a-f051-492d-bd70-c66cd761935c');" /></p>
+</bdo>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_101c6403-8d9f-41b1-9b81-612979e52a0f');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_101c6403-8d9f-41b1-9b81-612979e52a0f');" /></p>
 <p>bdo标签必须要带dir属性一起使用。他产生的效果就不论是什么文字字母符号，都以单个字符为单位，颠倒顺序，从右往左显示（我们可以称为“反排效果”）,很彻底啊，我们可以看到，连连续书写的英文字母都被反写了。</p>
 <p>现如今web标准化的春风吹遍大江南北，我们也要与时俱进，贯彻落实结构和表现分离的思想方针，加快发展可扩展性良好的web建设。<br>所以，除了语义化的结构外，我们还推荐将结构之外的表现用CSS属性来实现。<br>前面提到的html属性dir和<bdo>标签所能达到的反排效果，我们也可以使用两个CSS标准属性来实现。<br>第一个CSS属性：direction : ltr | rtl | inherit ——效果对应ＨＴＭＬ属性dir。<br>第二个CSS属性：unicode-bidi : normal | bidi-override | embed——其中的bidi-override属性值效果对应<bdo>标签。</p>
-<p><textarea class="runcode_text" id="runcode_5f4c1ac1-bee3-4a21-bb33-91214930b442">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body>
-&lt;div style="direction:rtl; unicode-bidi:bidi-override;">
+<p><textarea class="runcode_text" id="runcode_62d8c5c9-f2aa-407d-a12d-4a20cc4ee80b"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<div style="direction:rtl; unicode-bidi:bidi-override;">
 我是谁,who am I?
-&lt;/div>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_5f4c1ac1-bee3-4a21-bb33-91214930b442');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_5f4c1ac1-bee3-4a21-bb33-91214930b442');" /></p>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_62d8c5c9-f2aa-407d-a12d-4a20cc4ee80b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_62d8c5c9-f2aa-407d-a12d-4a20cc4ee80b');" /></p>
 <p>之前我们还说道古中文的写法并非只是单单的从右往左书写，同时也是由上往下书写的。那么有没有html属性或css属性能达到这个效果（可以称作文字竖排效果吧）呢？<br>css属性倒的确有，还不止一个。但很遗憾，都只是MS的推荐属性，并非W3C的标准属性。所以只有IE系列（ie5.5+）浏览器支持。<br>这两个属性分别是:<br>writing-mode : lr-tb | tb-rl ;<br>layout-flow : horizontal | vertical-ideographic ;</p>
 <p>稍微演示一下</p>
-<p><textarea class="runcode_text" id="runcode_61900c80-e50f-457d-b582-29ed092cf63a">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;/head>
-&lt;body>
-&lt;div style="writing-mode:tb-rl;text-align:left;border:1px solid red;">
+<p><textarea class="runcode_text" id="runcode_2a38a9e1-252f-4ee5-a476-8be574eac7bd"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+<div style="writing-mode:tb-rl;text-align:left;border:1px solid red;">
 writing-mode设置或检索对象内文本的流动和方向。
 当此属性值发生变化时，text-align属性与vertical-align属性的作用也将发生变化。
 对应的脚本特性为layoutFlow。
-&lt;/div>
-&lt;br />
-&lt;div style="layout-flow:vertical-ideographic;text-align:right;border:1px solid green;">
+</div>
+<br />
+<div style="layout-flow:vertical-ideographic;text-align:right;border:1px solid green;">
 layout-flow设置或检索对象内文本的流动和方向。
 当此属性值发生变化时，text-align属性与vertical-align属性的作用也将发生变化。
 对应的脚本特性为layoutFlow。
-&lt;/div>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_61900c80-e50f-457d-b582-29ed092cf63a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_61900c80-e50f-457d-b582-29ed092cf63a');" /></p>
+</div>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_2a38a9e1-252f-4ee5-a476-8be574eac7bd');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_2a38a9e1-252f-4ee5-a476-8be574eac7bd');" /></p>
 <p>个人觉得这两个属性，几乎没什么差别。。。<br>另外，当其高度不设定时。如何自适应的高度，很是令人迷惑。</p>
 <p>再提一个不标准的东西——镜像翻转滤镜——只做了解，不建议使用。<br>前面我们有一个文字反排效果，那是排版上的。而使用这个滤镜呢，不单是排版上反过来了。连文字的显示都反过来了（镜像翻转效果）。——当然只支持ie系列（ie4+）。<br>滤镜有两个，一个是水平翻转滤镜：fliph。一个事垂直翻转滤镜flipv。<br>注：使用这个滤镜需要触发haslayout.</p>
-<p><textarea class="runcode_text" id="runcode_04ecf1a7-aea4-4db5-adf8-34f49de0e8a4">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_70c8f19d-d283-436c-93f7-d1733479d160"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
 h2{zoom:1;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;h2 style="filter:fliph()">左右翻转&lt;/h2>
-&lt;h2 style="filter:flipv()">上下翻转&lt;/h2>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_04ecf1a7-aea4-4db5-adf8-34f49de0e8a4');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_04ecf1a7-aea4-4db5-adf8-34f49de0e8a4');" /></p>
+</style>
+</head>
+<body>
+<h2 style="filter:fliph()">左右翻转</h2>
+<h2 style="filter:flipv()">上下翻转</h2>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_70c8f19d-d283-436c-93f7-d1733479d160');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_70c8f19d-d283-436c-93f7-d1733479d160');" /></p>
 <p>提到这个翻转镜像效果，倒想起了自己之前的一个娱乐之作：重型7级absolute单层1像素真实web2.0渐变风格倒影字效果（全兼容） 。</p>
 <p>文章到这里，我们已经提到了关于页面，文字排版相关的html属性，html标签，CSS属性以及CSS滤镜。除此之外，可以改变文字排版方式（文字反排）的还有一个RLO符。<br>请看：</p>
-<p><textarea class="runcode_text" id="runcode_57d4c8b4-9c14-4ea5-88c5-b673ed448d9a">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;title>RLO(right-to-left override)字符的演示&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;input type="text" value="&amp;#8238;我从右往左？"/>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_57d4c8b4-9c14-4ea5-88c5-b673ed448d9a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_57d4c8b4-9c14-4ea5-88c5-b673ed448d9a');" /></p>
+<p><textarea class="runcode_text" id="runcode_569da9f0-771b-4a52-b97c-bd0d39b18774"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>RLO(right-to-left override)字符的演示</title>
+</head>
+<body>
+<input type="text" value="&#8238;我从右往左？"/>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_569da9f0-771b-4a52-b97c-bd0d39b18774');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_569da9f0-771b-4a52-b97c-bd0d39b18774');" /></p>
 <p>这个RLO符的unicode编码是：202E 。字符实体编号是：8238<br>可以参考这篇后文：JS实现字符unicode编码信息查询</p>
 <p>最后，我们还要提一个由字体产生的文字侧倒的效果。<br>运行下如下代码：</p>
-<p><textarea class="runcode_text" id="runcode_1e901651-4ca6-4fa4-9a04-03432ea154dd">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;title>文字侧倒&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;div style="font-family:'@宋体';" >1要吃饭我要吃饭&lt;/div>
-&lt;br />
-&lt;span style="font-family:'@黑体';">2我要吃饭我要吃饭我&lt;/span>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_1e901651-4ca6-4fa4-9a04-03432ea154dd');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_1e901651-4ca6-4fa4-9a04-03432ea154dd');" /></p>
+<p><textarea class="runcode_text" id="runcode_6c36231e-1b3f-493e-a088-4671d660b90b"><!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>文字侧倒</title>
+</head>
+<body>
+<div style="font-family:'@宋体';" >1要吃饭我要吃饭</div>
+<br />
+<span style="font-family:'@黑体';">2我要吃饭我要吃饭我</span>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6c36231e-1b3f-493e-a088-4671d660b90b');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6c36231e-1b3f-493e-a088-4671d660b90b');" /></p>
 <p>这个相信一些修改过QQ聊天字体的童鞋们也发现过，选择QQ聊天字体里这类前面带@符的字体就能打出侧倒的文字。<br>不过，这浏览器下显示，会有一些差异。比如FF下不支持，（我的）safari下不支持@宋体。<br>另外，还有些人反映自己的自己上根本没有效果。</p>
 </div>
     <div class="article__end">

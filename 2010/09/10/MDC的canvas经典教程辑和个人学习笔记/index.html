@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,20 +298,20 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2010.09.10</span>
       <span class="accent">#canvas</span><span class="accent">#MDC</span>
-      <span>约 17 分钟</span>
+      <span>约 12 分钟</span>
     </div>
     <div class="article-content"><p>mozilla developer center的关于canvas的教程集Canvas tutorial，可说是目前入门canvas教程中最棒的了。<br>教程列表：<br>Basic usage(中译：基本用法)<br>Drawing shapes(中译：绘制图形)<br>Using images(中译：使用图像)<br>Applying styles and colors(中译：运用样式与颜色)<br>Transformations(中译：变形)<br>Compositing(中译：组合)<br>Basic animations(中译：基本动画)</p>
 <p>以下是个人的一点笔记，涵盖了教程中所有知识点。但只适用于个人，存此备忘。</p>
 <p>canvas_ABC</p>
-<p><textarea class="runcode_text" id="runcode_37e64f58-3870-4d2a-a466-4be4e1568466">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset='UTF-8' />
-&lt;title>cssass.com&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;canvas id="myCanvas" width='800' height="500" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行&lt;/canvas>
-&lt;script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_e4276328-597e-4925-984e-025aea4951ae"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='800' height="500" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<script type="text/javascript">
 var c=document.getElementById("myCanvas");
 var con=c.getContext('2d');   //-----画矩形框
 var grd=con.createLinearGradient(10,10,150,10);
@@ -376,19 +373,19 @@ con6.shadowColor='rgba(0,0,0,0.5)';
 con6.font='20px Times New Roman';
 con6.fillStyle='black';
 con6.fillText('hello HTML5',0,300);
-&lt;/script>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_37e64f58-3870-4d2a-a466-4be4e1568466');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_37e64f58-3870-4d2a-a466-4be4e1568466');" /></p>
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e4276328-597e-4925-984e-025aea4951ae');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e4276328-597e-4925-984e-025aea4951ae');" /></p>
 <p>canvas_DEF</p>
-<p><textarea class="runcode_text" id="runcode_52b45b12-d4f8-4ade-bbe5-4d87851ca1d9">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset='UTF-8' />
-&lt;title>cssass.com&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;canvas id="myCanvas" width='1000' height="600" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行&lt;/canvas>
-&lt;script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_cd806c66-63e0-4da1-af7b-d207a8c9e622"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='1000' height="600" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<script type="text/javascript">
 var c=document.getElementById("myCanvas");
 var con1=c.getContext('2d');   //-----用于保存一些状态属性。
   con1.fillRect(0,0,40,40);
@@ -420,43 +417,43 @@ con1.restore();
   con1.translate(200, 200);
   var sin = Math.sin(Math.PI/6);
   var cos = Math.cos(Math.PI/6);
-  for (var i=0; i &lt;= 12; i++) {
+  for (var i=0; i <= 12; i++) {
     con1.fillRect(0, 0, 100, 10);
     con1.transform(cos, sin, -sin, cos, 0, 0);  // (m11, m12, m21, m22, dx, dy) 水平缩放，垂直斜切，水平斜切，垂直缩放，水平平移，垂直平移。
   }
   con1.setTransform(1,0.5 , 0, 1,0, 0);  //set重置后设置。
   con1.fillRect(300,300, 100, 100);
 }()
-&lt;/script>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_52b45b12-d4f8-4ade-bbe5-4d87851ca1d9');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_52b45b12-d4f8-4ade-bbe5-4d87851ca1d9');" /></p>
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_cd806c66-63e0-4da1-af7b-d207a8c9e622');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_cd806c66-63e0-4da1-af7b-d207a8c9e622');" /></p>
 
 <p>canvas_HIJ</p>
-<p><textarea class="runcode_text" id="runcode_b75379e9-28f4-403e-88c0-6cfa6aefc8e2">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset='UTF-8' />
-&lt;title>cssass.com&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;canvas id="myCanvas" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行&lt;/canvas>
-&lt;canvas id="myCanvas2" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行&lt;/canvas>
-&lt;br />
-&lt;select id='types' onchange='comp();'>
-	&lt;option value='source-over' selected>source-over&lt;/option>
-	&lt;option value='source-in'>source-in&lt;/option>
-	&lt;option value='source-out'>source-out&lt;/option>
-	&lt;option value='source-atop'>source-atop&lt;/option>
-	&lt;option value='destination-over'>destination-over&lt;/option>
-	&lt;option value='destination-in'>destination-in&lt;/option>
-	&lt;option value='destination-out'>destination-out&lt;/option>
-	&lt;option value='destination-atop'>destination-atop&lt;/option>
-	&lt;option value='lighter'>lighter&lt;/option>
-	&lt;option value='darker'>darker&lt;/option>
-	&lt;option value='copy'>copy&lt;/option>
-	&lt;option value='xor'>xor&lt;/option>
-&lt;/select>
-&lt;script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_a33328c2-349e-467d-a291-8c77993e88df"><!doctype html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>cssass.com</title>
+</head>
+<body>
+<canvas id="myCanvas" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<canvas id="myCanvas2" width='350' height="300" style="border:1px solid #c3c3c3;">ie（有ie9求测试）用户请绕行</canvas>
+<br />
+<select id='types' onchange='comp();'>
+	<option value='source-over' selected>source-over</option>
+	<option value='source-in'>source-in</option>
+	<option value='source-out'>source-out</option>
+	<option value='source-atop'>source-atop</option>
+	<option value='destination-over'>destination-over</option>
+	<option value='destination-in'>destination-in</option>
+	<option value='destination-out'>destination-out</option>
+	<option value='destination-atop'>destination-atop</option>
+	<option value='lighter'>lighter</option>
+	<option value='darker'>darker</option>
+	<option value='copy'>copy</option>
+	<option value='xor'>xor</option>
+</select>
+<script type="text/javascript">
 var $id=function(n){
 	return document.getElementById(n) || n;
 }
@@ -489,7 +486,7 @@ function draw() {
   con2.clip();
   con2.fillStyle = '#143778';
   con2.fillRect(-75,-75,150,150);
-  for (j=1;j&lt;50;j++){
+  for (j=1;j<50;j++){
     con2.save();
     con2.fillStyle = '#fff';
     con2.translate(75-Math.floor(Math.random()*150),75-Math.floor(Math.random()*150));
@@ -503,7 +500,7 @@ function drawStar(con2,r){  //五角星的画法
   con2.save();
   con2.beginPath()
   con2.moveTo(r,0);
-  for (i=0;i&lt;9;i++){
+  for (i=0;i<9;i++){
     con2.rotate(Math.PI/5);
     if(i%2 == 0) {
       con2.lineTo((r/0.525731)*0.200811,0);
@@ -515,9 +512,9 @@ function drawStar(con2,r){  //五角星的画法
   con2.fill();
   con2.restore();
 }
-&lt;/script>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b75379e9-28f4-403e-88c0-6cfa6aefc8e2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b75379e9-28f4-403e-88c0-6cfa6aefc8e2');" /></p></div>
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_a33328c2-349e-467d-a291-8c77993e88df');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_a33328c2-349e-467d-a291-8c77993e88df');" /></p></div>
     <div class="article__end">
       <div class="article__end-mark">完</div>
     </div>

@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,18 +298,18 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2010.08.28</span>
       <span class="accent">#Math</span>
-      <span>约 14 分钟</span>
+      <span>约 8 分钟</span>
     </div>
     <div class="article-content"><p>话说这篇文章的起源还得从1643年1月4日谈起。这一天，一位引领人类认知世界的巨人诞生了，他就是艾萨克·牛顿（Isaac Newton）。<br>扯远了，就近一点：2010年1月4日，为了纪念牛顿，google设计了一个Google Doodles<br>看这里：今日google纪念logo,典型的物理运动实现<br>进口审核剪切版：</p>
-<p><textarea class="runcode_text" id="runcode_df23ec64-317c-4a4a-9b86-82a5438eb9bf">&lt;input type="button" value="demo" onclick="demo()" />
-&lt;img id="fall" src="http://www.google.com/logos/newton09-apple.png" style="position:absolute;left:200px;top:46px"/>
-&lt;script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_82098654-8ed1-4edb-9e76-23418b2f2c48"><input type="button" value="demo" onclick="demo()" />
+<img id="fall" src="http://www.google.com/logos/newton09-apple.png" style="position:absolute;left:200px;top:46px"/>
+<script type="text/javascript">
 function demo(){
 	var h=1,k=-0.5,f=document.getElementById('fall'),
 		i=setInterval(function(){
 			if(f){
 				var y=parseInt(f.style.top) + h;
-				if(y&lt;210) {h+=2}
+				if(y<210) {h+=2}
 				else{
 					h*=(h>1)?k:0
 				}
@@ -321,14 +318,14 @@ function demo(){
 			if(h==0){clearInterval(i);h=1;}
 		},25);
 }
-&lt;/script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_df23ec64-317c-4a4a-9b86-82a5438eb9bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_df23ec64-317c-4a4a-9b86-82a5438eb9bf');" /></p>
+</script></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_82098654-8ed1-4edb-9e76-23418b2f2c48');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_82098654-8ed1-4edb-9e76-23418b2f2c48');" /></p>
 <p>随后，我便模拟了一个重力环境下的抛物线运动：</p>
-<p><textarea class="runcode_text" id="runcode_8c85b57e-94f4-4c2c-83a4-d52fbe3ca830">  &lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;title>模拟重力环境下的抛物运动（假使1px==1mm）&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_b57b4cf1-5838-4b2c-9142-0f61cd5331d3">  <!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>模拟重力环境下的抛物运动（假使1px==1mm）</title>
+<style type="text/css">
 	*{padding:0;margin:0;}
 	html,body{height:100%;overflow:hidden;}
 	p{margin:2px;font-size:12px;}
@@ -336,20 +333,20 @@ function demo(){
 	input{width:80px;}
 	.wrap{position:relative;width:800px;height:500px;margin:5px;border:1px solid #ccc;}
 	#fall{width:20px;font-size:0;height:20px;background:orange;position:absolute;top:0;left:0;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;p>&lt;label>横向初速度：&lt;/label>&lt;input id="Vx" type="text" value="3" />px/ms&lt;/p>
-&lt;p>&lt;label>纵向初速度：&lt;/label>&lt;input id="Vy" type="text" value="0" />px/ms&lt;/p>
-&lt;p>&lt;label>重力加速度：&lt;/label>&lt;input id="a" type="text" value="0.0098" />px/平方ms&lt;/p>
-&lt;p>（如果这个加速度是一个随时间变化的值，就能达到其他非匀加速运动的效果了。）&lt;/p>
-&lt;p>&lt;label>单位时间：&lt;/label>&lt;input id="t" type="text" value="10" />（记录运动的时间间隔）
-&lt;p>&lt;button type="button"  onclick="demo()">演示&lt;/button>&lt;/p>
-&lt;div class="wrap">
-&lt;div id="fall">o&lt;/div>
-&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</style>
+</head>
+<body>
+<p><label>横向初速度：</label><input id="Vx" type="text" value="3" />px/ms</p>
+<p><label>纵向初速度：</label><input id="Vy" type="text" value="0" />px/ms</p>
+<p><label>重力加速度：</label><input id="a" type="text" value="0.0098" />px/平方ms</p>
+<p>（如果这个加速度是一个随时间变化的值，就能达到其他非匀加速运动的效果了。）</p>
+<p><label>单位时间：</label><input id="t" type="text" value="10" />（记录运动的时间间隔）
+<p><button type="button"  onclick="demo()">演示</button></p>
+<div class="wrap">
+<div id="fall">o</div>
+</div>
+</body>
+<script type="text/javascript">
 var $id=function(o) {
 	return document.getElementById(o) || o;
 }
@@ -386,36 +383,36 @@ var shoot=function(x,y,a,t) {
 		}
 	},t);
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_8c85b57e-94f4-4c2c-83a4-d52fbe3ca830');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_8c85b57e-94f4-4c2c-83a4-d52fbe3ca830');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_b57b4cf1-5838-4b2c-9142-0f61cd5331d3');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_b57b4cf1-5838-4b2c-9142-0f61cd5331d3');" /></p>
 <p>模拟采用的公式</p>
 <p>Function: 对于运动瞬间<br>V&#x3D;V0+aT;<br>S&#x3D;S0+VT;<br>T：运动的时间间隔，是固定值。<br>这个公式有别于那种运动模拟中常用的补间动画公式（tween算法）。<br>补间动画是需要事先确定总路程，和总时间的，<br>而我们模拟的运动轨迹没有事先计算，因为我们运动中间或许还有一些变数，比如撞击，主动改变方向（键盘控制）等等，所以我觉得这个物理公式更能模拟出真实的各种运动。</p>
 <p>直至本月前两天，某同事向我展示了这个：<br>重力版google(浏览首选chrome,safari,次选opera,firefox,若是ie9以下请无视)<br>膜拜啊。js且不论，css3已经大量使用了。我还只局限用用阴影，圆角呢。</p>
 <p>不才，也做一个关于落体，撞击，摩擦的简单模拟。以表膜拜。</p>
-<p><textarea class="runcode_text" id="runcode_c22c84d3-36fa-4bf9-b99b-d935219712cb">  &lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="utf-8" />
-&lt;title>模拟引力环境下的撞击、摩擦、落体运动&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_0113e5cc-1084-4c86-9c78-c1a7c60a591d">  <!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>模拟引力环境下的撞击、摩擦、落体运动</title>
+<style type="text/css">
 	*{padding:0;margin:0;}
 	html,body{height:100%;overflow:hidden;}
 	p{margin:2px;font-size:12px;}
 	label{display:inline-block;width:80px;text-align:right;}
 	input{width:80px;}
 	#fall{width:20px;font-size:0;height:20px;background:orange;position:absolute;top:50px;left:400px;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;p>&lt;label>横向初速度：&lt;/label>&lt;input id="Vx" type="text" value="3" />px/ms&lt;/p>
-&lt;p>&lt;label>纵向初速度：&lt;/label>&lt;input id="Vy" type="text" value="0" />px/ms&lt;/p>
-&lt;p>&lt;label>重力加速度：&lt;/label>&lt;input id="a" type="text" value="0.01" />px/平方ms&lt;/p>
-&lt;p>&lt;label>单位时间：&lt;/label>&lt;input id="t" type="text" value="10" />（记录运动的时间间隔）
-&lt;p>(摩擦，碰撞的消耗并没有按公式进行计算，纯属于杜撰，是不符合规律的，仅仅是模拟。)&lt;/p>
-&lt;p>&lt;button type="button"  onclick="demo()">演示&lt;/button> &lt;button type="button"  onclick="$id('fall').style.cssText = 'top:50px;left:400px;'">重置(可拖动放置)&lt;/button>&lt;/p>
-&lt;div id="fall" onmousedown='drag(this,event)'>o&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</style>
+</head>
+<body>
+<p><label>横向初速度：</label><input id="Vx" type="text" value="3" />px/ms</p>
+<p><label>纵向初速度：</label><input id="Vy" type="text" value="0" />px/ms</p>
+<p><label>重力加速度：</label><input id="a" type="text" value="0.01" />px/平方ms</p>
+<p><label>单位时间：</label><input id="t" type="text" value="10" />（记录运动的时间间隔）
+<p>(摩擦，碰撞的消耗并没有按公式进行计算，纯属于杜撰，是不符合规律的，仅仅是模拟。)</p>
+<p><button type="button"  onclick="demo()">演示</button> <button type="button"  onclick="$id('fall').style.cssText = 'top:50px;left:400px;'">重置(可拖动放置)</button></p>
+<div id="fall" onmousedown='drag(this,event)'>o</div>
+</body>
+<script type="text/javascript">
 var $id=function(o) {
 	return document.getElementById(o) || o;
 }
@@ -444,13 +441,13 @@ var shoot=function(x,y,a,t) {
 			h+=Vy*t;
 			if(h>=document.documentElement.offsetHeight-f.offsetHeight) {  //底部
 				h=document.documentElement.offsetHeight-f.offsetHeight;
-				Vx=(Math.abs(Vx)-0.005 &lt; 0) ? 0 : Vx/Math.abs(Vx) * (Math.abs(Vx)-0.005)   //摩擦消耗x速度
-				Vy=(Math.abs(Vy)-0.1 &lt; 0) ? 0 : -(Math.abs(Vy)-0.1);                   //撞击消耗y速度
-				if(Math.abs(Vy)==0 &amp;&amp; Math.abs(Vx)==0 ) {clearInterval(i);}            //x,y速度为0时，clear
+				Vx=(Math.abs(Vx)-0.005 < 0) ? 0 : Vx/Math.abs(Vx) * (Math.abs(Vx)-0.005)   //摩擦消耗x速度
+				Vy=(Math.abs(Vy)-0.1 < 0) ? 0 : -(Math.abs(Vy)-0.1);                   //撞击消耗y速度
+				if(Math.abs(Vy)==0 && Math.abs(Vx)==0 ) {clearInterval(i);}            //x,y速度为0时，clear
 			}
-			if(l&lt;0 || l>document.documentElement.offsetWidth-f.offsetWidth) {  //左右两侧
-				Sx=(l&lt;0) ? 0 : document.documentElement.offsetWidth-f.offsetWidth;
-				Vx=(Math.abs(Vx)-0.1 &lt; 0) ? 0 : -Vx/Math.abs(Vx) * (Math.abs(Vx)-0.1)  //撞击消耗x速度
+			if(l<0 || l>document.documentElement.offsetWidth-f.offsetWidth) {  //左右两侧
+				Sx=(l<0) ? 0 : document.documentElement.offsetWidth-f.offsetWidth;
+				Vx=(Math.abs(Vx)-0.1 < 0) ? 0 : -Vx/Math.abs(Vx) * (Math.abs(Vx)-0.1)  //撞击消耗x速度
 			}
 			f.style.left=l+'px';
 			f.style.top=h+'px';
@@ -474,8 +471,8 @@ var drag=function(o,e){ //拖曳位置，与运动模拟无关
 		document.onmouseup=null;
 	}
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c22c84d3-36fa-4bf9-b99b-d935219712cb');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c22c84d3-36fa-4bf9-b99b-d935219712cb');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0113e5cc-1084-4c86-9c78-c1a7c60a591d');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0113e5cc-1084-4c86-9c78-c1a7c60a591d');" /></p>
 
 </div>
     <div class="article__end">

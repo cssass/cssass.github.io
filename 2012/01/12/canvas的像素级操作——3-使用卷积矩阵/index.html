@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,26 +298,26 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2012.01.12</span>
       <span class="accent">#canvas</span>
-      <span>约 11 分钟</span>
+      <span>约 2 分钟</span>
     </div>
     <div class="article-content"><p>利用卷积矩阵(Convolution Matrix)操作像素，我们可以很方便的得到诸如模糊、边缘检测、锐化、浮雕和斜角这样的效果。</p>
 <p>常用的矩阵类型是 3 x 3 矩阵，另外还有5 x 5的矩阵。</p>
 <p>工作原理：<a target="_blank" rel="noopener" href="http://flex4jiaocheng.com/blog/280">http://flex4jiaocheng.com/blog/280</a></p>
 <p>点阵图中的每一个像素被称为“初步像素”，用与卷积矩阵同样面积的“初步像素”从左到右从上到下与卷积矩阵中相应位置的值相乘，再将得到的9个或25个中间值相加，就得到了“初步像素”矩阵中央的一个值的结果值再与Divisor（因子）相除，与Offset（偏移量）相加，最后得到终值。如下图所示：</p>
 <p>应用卷积矩阵实现特效:</p>
-<p><textarea class="runcode_text" id="runcode_38fd1d62-f06b-4571-9605-314ab4b205df">&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-	&lt;meta charset="utf-8">
-	&lt;title>利用卷积矩阵实现特效&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;canvas id="canvas1" width="200" height="200" title="浮雕效果">&lt;/canvas>
-&lt;canvas id="canvas2" width="200" height="200" title="边缘检测">&lt;/canvas>
-&lt;canvas id="canvas3" width="200" height="200" title="锐化">&lt;/canvas>
-&lt;canvas id="canvas4" width="200" height="200" title="基本模糊">&lt;/canvas>
-&lt;canvas id="canvas5" width="200" height="200" >&lt;/canvas>
-&lt;script type="text/javascript">
+<p><textarea class="runcode_text" id="runcode_e84302ed-ddea-414c-9057-9320f8436d7a"><!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>利用卷积矩阵实现特效</title>
+</head>
+<body>
+<canvas id="canvas1" width="200" height="200" title="浮雕效果"></canvas>
+<canvas id="canvas2" width="200" height="200" title="边缘检测"></canvas>
+<canvas id="canvas3" width="200" height="200" title="锐化"></canvas>
+<canvas id="canvas4" width="200" height="200" title="基本模糊"></canvas>
+<canvas id="canvas5" width="200" height="200" ></canvas>
+<script type="text/javascript">
 function convolution(imgPixels, matrix, divisor, offset){
 	/* 卷积矩阵应用函数 */
     var w = imgPixels.width,
@@ -329,9 +326,9 @@ function convolution(imgPixels, matrix, divisor, offset){
 	var canvas = document.createElement('canvas'),
 		ctx = canvas.getContext('2d'),
 		newImgPixels = ctx.createImageData(w,h);
-	for (var y = 1; y &lt; h-1; y++) {
-			for (var x = 1; x &lt; w-1; x++) {
-				for (var c = 0; c &lt; 3; c++) {
+	for (var y = 1; y < h-1; y++) {
+			for (var x = 1; x < w-1; x++) {
+				for (var c = 0; c < 3; c++) {
 					/* RGB通道 */
 					var i = (y*w + x)*4 + c;
 					newImgPixels.data[i]=(matrix[0]*d[i-(w+1)*4] + matrix[1]*d[i-w*4] + matrix[2]*d[i-(w-1)*4]
@@ -396,7 +393,7 @@ function convolution(imgPixels, matrix, divisor, offset){
 		context.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
 	}
 	var canvas = document.getElementsByTagName('canvas');
-	for(var i = 0, l = canvas.length; i &lt; l; i++ ){
+	for(var i = 0, l = canvas.length; i < l; i++ ){
 		var loadObj = new Load(canvas[i]);
 		(function(obj){
 			obj.loading();
@@ -431,7 +428,7 @@ function Load(canvas){
 	var draw = function(){
 		drawCtx.fillRect(0,0, drawPad.width ,drawPad.height);
 		drawCtx.rotate(Math.PI*2/spokes);
-		for (var i=0; i&lt;spokes; i++) {
+		for (var i=0; i<spokes; i++) {
 			drawCtx.rotate(Math.PI*2/spokes);
 			drawCtx.beginPath();
 			drawCtx.moveTo(0,8);
@@ -448,9 +445,9 @@ function Load(canvas){
 		backCtx.clearRect((backWidth - drawPad.width)/2, (backHeight - drawPad.height)/2, drawPad.width ,drawPad.height);
 	}
 }
-&lt;/script>
-&lt;/body>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_38fd1d62-f06b-4571-9605-314ab4b205df');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_38fd1d62-f06b-4571-9605-314ab4b205df');" /></p>
+</script>
+</body>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_e84302ed-ddea-414c-9057-9320f8436d7a');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_e84302ed-ddea-414c-9057-9320f8436d7a');" /></p>
 
 <p>上面demo中卷积的实现函数来自于在HTML 5 的 Canvas 中应用卷积矩阵对图像处理</p>
 <p>推荐一篇有趣的文章：卷积的物理意义</p>

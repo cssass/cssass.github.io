@@ -115,42 +115,8 @@
 })();
 </script>
 
-<!-- hexo injector head_end start --><style type="text/css">.runcode {zoom:1;}
-.runcode p{margin:0;}
-.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
-.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
-	border-radius:3px;
-	text-shadow:1px 1px 0 #eee;
-	box-shadow:1px 0 1px #999;
-	background: linear-gradient(to bottom, #eee, #ccc, #aaa, #aaa, #aaa);
-}
-</style><script type="text/javascript">var runcode = {};
-runcode.open=function(element){
-	var code = document.getElementById(element).value;
-	var win = window.open("", "", "");
-	win.opener = null;
-	win.document.write(code);
-	win.document.close();
-}
-runcode.copy=function(element){
-	var codeobj = document.getElementById(element);
-	if (navigator.clipboard && window.isSecureContext) {
-		navigator.clipboard.writeText(codeobj.value);
-	} else {
-		// 非安全上下文（http）下 navigator.clipboard 不可用，回退到旧方案
-		codeobj.select();
-		codeobj.setSelectionRange(0, codeobj.value.length);
-		document.execCommand('copy');
-		setTimeout(function(){
-			codeobj.blur()
-		},300);
-	}
-}
-
-
-
-</script><style type="text/css">
-.hexo-pin-wrap{position:relative;zoom:1;margin:0px auto;padding:0;list-style:none;}
+<!-- hexo injector head_end start --><style type="text/css">
+#postBody{position:relative;zoom:1;margin:0px auto;}
 .pin{width:295px;float:left;list-style:none;}
 .boxCont{
 	position:relative;margin:15px;padding:10px;min-height:120px;border:1px solid #ccc;background:#eee;
@@ -167,7 +133,7 @@ runcode.copy=function(element){
 }
 .boxCont .title{font-size: 18px;color:#19537D;}
 .boxCont .desc{font-size: 12px;color: #65645F;}
-.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';color:rgb(24, 23, 19);}
+.boxCont pre{background:transparent;margin:0;line-height: 200%;white-space:break-spaces;font-size:15px;font-family: 'PingFang SC';}
 .boxCont:before{
 	content: '';
 	width: 50px;
@@ -199,17 +165,17 @@ runcode.copy=function(element){
 	-moz-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	-o-transform: rotate(2deg) translate(20px,25px) skew(20deg);
 	transform: rotate(2deg) translate(20px,25px) skew(20deg);
-}
-</style><script type="text/javascript">function layout(el){
+}</style><script type="text/javascript">function sort(){
 	var h = [];
-	var box = el.children;
+	var box = document.getElementsByClassName("pin");
 	if(!box[0]) return;
+	var el = box[0].parentElement;
 	var minH = box[0].offsetHeight,
 		boxW = box[0].offsetWidth,
 		boxH,
 		n = el.offsetWidth / boxW | 0;  //计算页面能排下多少Pin
-		el.style.cssText = "position:relative;overflow:hidden;"
-
+		el.style.cssText = "height:500px;overflow-x:hidden;overflow-y:auto;"
+		
 	// el.style.width = n * boxW + "px";
 	for(var i = 0; i < box.length; i++) {
 		boxh = box[i].offsetHeight; //获取每个Pin的高度
@@ -225,13 +191,6 @@ runcode.copy=function(element){
 			box[i].style.left = (minKey * boxW) + 'px';
 		}
 	}
-	el.style.height = (h.length ? Math.max.apply({}, h) : 0) + 'px'; //容器高度跟随各列中最高的一列，不再写死
-};
-function sort(){
-	var wraps = document.getElementsByClassName("hexo-pin-wrap");
-	for(var i = 0; i < wraps.length; i++) {
-		layout(wraps[i]);
-	}
 };
 /* 返回数组中某一值的对应项数 */
 function getarraykey(s, v) {
@@ -243,6 +202,44 @@ function getarraykey(s, v) {
 };
 
 setTimeout(sort,100)
+
+</script><style type="text/css">.runcode {zoom:1;}
+.runcode p{margin:0;}
+.runcode_text {display: block;height: 180px;width: 100%;color:#ccc;overflow-x:hidden;letter-spacing:1px;text-shadow:1px 1px 1px #111;font-family:Consolas,Fixedsys;padding:2px;font-size:13px;line-height:1.5em;background:#404040;border:3px inset #eee;}
+.runcode_button{border:1px solid #ccc;font-size:16px;font-weight:bold;cursor: pointer;
+	border-radius:3px;
+	text-shadow:1px 1px 0 #eee;
+	box-shadow:1px 0 1px #999;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#eee, endColorstr=#aaa);
+	background: linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -moz-linear-gradient(top, #eee, #ccc ,#aaa,#aaa,#aaa);
+	background: -webkit-gradient(linear, 0 0, 0 100% , from(#eee),to(#aaa));
+	background: -webkit-linear-gradient(0 0, #eee, #ccc ,#aaa,#aaa,#aaa);
+}
+</style><script type="text/javascript">var runcode = {};
+runcode.open=function(element){
+	var code = document.getElementById(element).value;
+	var win = window.open("", "", "");
+	win.opener = null;
+	win.document.write(code);
+	win.document.close();
+}
+runcode.copy=function(element){
+	var codeobj = document.getElementById(element) ;
+	if (window.clipboardData)
+	{	
+		window.clipboardData.setData("Text", codeobj.value);
+	}else{
+		codeobj.select(); 	
+		codeobj.setSelectionRange(0, codeobj.value.length);
+		document.execCommand('copy');
+		setTimeout(function(){
+			codeobj.blur()
+		},300);
+	}
+}
+
+
 
 </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Mr.Drive2Far" type="application/atom+xml">
 </head>
@@ -301,26 +298,26 @@ setTimeout(sort,100)
     <div class="article__meta mono">
       <span>2010.05.13</span>
       <span class="accent">#DOM</span><span class="accent">#HTML5</span>
-      <span>约 13 分钟</span>
+      <span>约 8 分钟</span>
     </div>
     <div class="article-content"><p>先看一下普通的拖动元素的代码</p>
-<p><textarea class="runcode_text" id="runcode_35e02b9a-e6b9-43b3-800e-d486b1dfa7b0">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>简单拖曳&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_6bc7d02a-69bb-4cbf-abec-3b1e79e5dd22"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
 *{padding:0;margin:0;}
 html,body{height:100%;overflow:hidden;}
 .tips{position:absolute;background:#eee;width:100px;height:100px;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;div class="tips" onmousedown="drag(this,event);">
+</style>
+</head>
+<body>
+<div class="tips" onmousedown="drag(this,event);">
 	拖动框
-&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</div>
+</body>
+<script type="text/javascript">
 var drag=function(o,e){
 	var e = e ? e : window.event;
 	var tX=o.offsetLeft,
@@ -337,27 +334,27 @@ var drag=function(o,e){
 		document.onmouseup=null;
 	}
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_35e02b9a-e6b9-43b3-800e-d486b1dfa7b0');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_35e02b9a-e6b9-43b3-800e-d486b1dfa7b0');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_6bc7d02a-69bb-4cbf-abec-3b1e79e5dd22');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_6bc7d02a-69bb-4cbf-abec-3b1e79e5dd22');" /></p>
 <p>非常简单。</p>
 <p>考虑一下边境问题：</p>
-<p><textarea class="runcode_text" id="runcode_d05e9903-587b-4b27-9ce9-a5fb1fb1c9ea">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>简单拖曳&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_37a605e0-3928-4bf9-94df-d9a732ed7473"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
 *{padding:0;margin:0;}
 html,body{height:100%;overflow:hidden;}
 .tips{position:absolute;background:#eee;width:100px;height:100px;}
-&lt;/style>
-&lt;/head>
-&lt;body style="">
-&lt;div class="tips" onmousedown="drag(this,event);">
+</style>
+</head>
+<body style="">
+<div class="tips" onmousedown="drag(this,event);">
 	拖动框
-&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</div>
+</body>
+<script type="text/javascript">
 var drag=function(o,e){
 	var e = e ? e : window.event;
 	var tX=o.offsetLeft,
@@ -372,11 +369,11 @@ var drag=function(o,e){
 			oY = tY + (e.clientY - dy);
 			(function(){
 			/* 考虑边境 */
-				if(oX > largeL || oX &lt; 0){
-					oX = (oX &lt; 0) ? 0 : largeL
+				if(oX > largeL || oX < 0){
+					oX = (oX < 0) ? 0 : largeL
 				}
-				if(oY > largeT || oY &lt; 0){
-					oY = (oY &lt; 0) ? 0 : largeT
+				if(oY > largeT || oY < 0){
+					oY = (oY < 0) ? 0 : largeT
 				}
 			})();
 			o.style.left = oX + "px";
@@ -387,28 +384,28 @@ var drag=function(o,e){
 		document.onmouseup=null;
 	}
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_d05e9903-587b-4b27-9ce9-a5fb1fb1c9ea');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_d05e9903-587b-4b27-9ce9-a5fb1fb1c9ea');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_37a605e0-3928-4bf9-94df-d9a732ed7473');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_37a605e0-3928-4bf9-94df-d9a732ed7473');" /></p>
 <p>如果拖动层内有元素不允许拖动。可以绑定一个事件，阻止拖动处理函数的执行。</p>
-<p><textarea class="runcode_text" id="runcode_0d92eac9-41f2-48f6-abd2-839888d345ae">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>简单拖曳&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_0e728104-7f2c-42d1-a648-69140a2d0e94"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>简单拖曳</title>
+<style type="text/css">
 *{padding:0;margin:0;}
 html,body{height:100%;overflow:hidden;}
 .tips{position:absolute;background:#eee;width:180px;height:200px;}
 textarea{font-size:12px;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;div class="tips" onmousedown="drag(this,event);">
-	&lt;textarea cols='25' rows='5' onmousedown="(document.all)?(event.cancelBubble = true) : (event.stopPropagation())">阻止拖动区域（ie,ff支持cancelBubble; ie除外，都支持标准stopPropagation()）&lt;/textarea>
+</style>
+</head>
+<body>
+<div class="tips" onmousedown="drag(this,event);">
+	<textarea cols='25' rows='5' onmousedown="(document.all)?(event.cancelBubble = true) : (event.stopPropagation())">阻止拖动区域（ie,ff支持cancelBubble; ie除外，都支持标准stopPropagation()）</textarea>
 	可以拖动区域
-&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</div>
+</body>
+<script type="text/javascript">
 var drag=function(o,e){
 	var e = e ? e : window.event;
 	var tX=o.offsetLeft,
@@ -425,28 +422,28 @@ var drag=function(o,e){
 		document.onmouseup=null;
 	}
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0d92eac9-41f2-48f6-abd2-839888d345ae');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0d92eac9-41f2-48f6-abd2-839888d345ae');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_0e728104-7f2c-42d1-a648-69140a2d0e94');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_0e728104-7f2c-42d1-a648-69140a2d0e94');" /></p>
 <p>图片的drag&amp;drop需要注意浏览器中在拖动图片时候会有默认动作的，拖动带链接的内容也是。所以拖动这些内容时应阻止其事件，另外加入setCapture。（下面拖动代码略有差别）</p>
-<p><textarea class="runcode_text" id="runcode_c5cd1d12-df0c-44d9-936a-430449971df2">&lt;!doctype html>
-&lt;html>
-&lt;head>
-&lt;meta charset="UTF-8" />
-&lt;title>拖曳&lt;/title>
-&lt;style type="text/css">
+<p><textarea class="runcode_text" id="runcode_fad21266-edae-4100-a1e1-0a4f3864c0bf"><!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>拖曳</title>
+<style type="text/css">
 *{padding:0;margin:0;}
 .tips{position:absolute;background:#eee;}
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;div class="tips" id="tips1" onmouseover="dragF.drag($id('tips1'));">
-	&lt;img src="http://www.baidu.com/img/bd_logo1.png">
-&lt;/div>
-&lt;div class="tips" id="tips2" onmouseover="dragF.drag($id('tips2'));">
-	&lt;a href="http://www.cssass.com" target="_blank">链接&lt;/a>&lt;br />
-&lt;/div>
-&lt;/body>
-&lt;script type="text/javascript">
+</style>
+</head>
+<body>
+<div class="tips" id="tips1" onmouseover="dragF.drag($id('tips1'));">
+	<img src="http://www.baidu.com/img/bd_logo1.png">
+</div>
+<div class="tips" id="tips2" onmouseover="dragF.drag($id('tips2'));">
+	<a href="http://www.cssass.com" target="_blank">链接</a><br />
+</div>
+</body>
+<script type="text/javascript">
 var $id=function(id){return document.getElementById(id);}
 var dragF={
 	locked:false,
@@ -463,7 +460,7 @@ var dragF={
 			dragF.locked=true;
 		  	obj.style.position="absolute";
 			obj.style.zIndex="100";
-			if (dragF.lastObj&amp;&amp;dragF.lastObj!=obj) {		 /* 多元素拖动时候需要恢复上一次元素的状态 */
+			if (dragF.lastObj&&dragF.lastObj!=obj) {		 /* 多元素拖动时候需要恢复上一次元素的状态 */
 				dragF.lastObj.style.zIndex = "1";
 			}
 			dragF.lastObj=obj;
@@ -491,8 +488,8 @@ var dragF={
 		}
 	}
 }
-&lt;/script>
-&lt;/html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_c5cd1d12-df0c-44d9-936a-430449971df2');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_c5cd1d12-df0c-44d9-936a-430449971df2');" /></p>
+</script>
+</html></textarea><input type="button" value="Run" class="runcode_button" onclick="runcode.open('runcode_fad21266-edae-4100-a1e1-0a4f3864c0bf');" />&nbsp;<input type="button" value="Copy" class="runcode_button" onclick="runcode.copy('runcode_fad21266-edae-4100-a1e1-0a4f3864c0bf');" /></p>
 </div>
     <div class="article__end">
       <div class="article__end-mark">完</div>
