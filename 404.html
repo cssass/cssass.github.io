@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -7,13 +8,18 @@
   <title>404 - 页面不存在</title>
   <script>
     (function () {
-      var path = window.location.pathname;
-      if (path === '/blog' || path === '/blog/' || path.indexOf('/blog/') === 0) {
-        window.location.replace('https://cssass.com/');
-      } else if (path === '/show' || path === '/show/' || path.indexOf('/show/') === 0) {
-        var rest = path.replace(/^\/show\/?/, '');
-        window.location.replace('https://show.cssass.com/' + rest + window.location.search + window.location.hash);
+      var host = window.location.hostname.toLowerCase();
+      if (host !== 'cssass.com' && host !== 'www.cssass.com') return;
+
+      var path = window.location.pathname || '/';
+      var targetHost = 'blog.neoxmind.com';
+
+      if (path === '/show' || path.indexOf('/show/') === 0) {
+        targetHost = 'show.neoxmind.com';
+        path = path.replace(/^\/show\/?/, '/');
       }
+
+      window.location.replace('https://' + targetHost + path + window.location.search + window.location.hash);
     })();
   </script>
   <style>
@@ -37,6 +43,6 @@
 <body>
   <h1>404</h1>
   <p>你访问的页面不存在</p>
-  <a href="https://cssass.com/">返回首页</a>
+  <a href="https://blog.neoxmind.com/">返回首页</a>
 </body>
 </html>
